@@ -26,3 +26,24 @@
 ## Preferências
 
 - Comunicação em **português do Brasil (pt-BR)**.
+
+## Notas técnicas — Claude Code Remote (mensagens entre sessões)
+
+- **`ListAgents`/`SendMessage` só funcionam entre sessões na MESMA máquina/container.**
+  Sessões criadas via `create_session` (Claude Code Remote) rodam em containers
+  remotos separados e NÃO aparecem no `ListAgents` umas das outras — uma tentativa
+  de `SendMessage` entre elas falha com "No agent named ... is reachable".
+- **Para mandar mensagem de uma sessão remota pra outra**, use:
+  `create_trigger` com `persistent_session_id="<session_id da sessão alvo>"`,
+  seguido de `fire_trigger` no trigger criado para entregar na hora
+  (sem `cron_expression`/`run_once_at` = dispara só quando chamado). Isso funciona
+  em ambas as direções — a sessão remota também pode usar o mesmo mecanismo pra
+  responder de volta (`persistent_session_id` = id da sessão que perguntou).
+- **Padrão executor/supervisor com sessões separadas**: uma sessão gera/atualiza um
+  artifact (ex.: a Ficha de Leads), manda resumo pra sessão supervisora pelo
+  mecanismo acima, a supervisora avalia (nota 0–100) e devolve aprovação ou
+  correções pelo mesmo caminho — repete até aprovar ou até um limite de rodadas.
+- Ao criar esse tipo de trigger via API/MCP, o parâmetro `connectors` do
+  `create_trigger` **não está disponível** para esta organização — se a sessão
+  disparada precisa de Google Drive/Mem0/etc., prefira disparar em uma sessão que
+  já os tenha carregados (self-bind) em vez de depender desse parâmetro.
