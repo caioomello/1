@@ -249,6 +249,14 @@ footer .links a{padding:10px 0}
 .float.on{transform:none}
 @media (max-width:760px){.float{display:inline-flex;left:16px;justify-content:center}footer{padding-bottom:112px}}
 
+/* Movimento na rolagem (JS define --h, --e, --c; sem JS fica estático) */
+.hero-bg img{transform:translate3d(0,calc(var(--h,0) * 22%),0) scale(calc(1.03 + var(--h,0) * .07));will-change:transform}
+.hero .wrap{transform:translate3d(0,calc(var(--h,0) * -70px),0);opacity:calc(1 - var(--h,0) * .5)}
+.band picture{position:absolute;inset:0;clip-path:inset(0 calc((1 - var(--e,1)) * 14%));transition:none}
+.band img{transform:translate3d(0,calc((var(--c,.5) - .5) * -14%),0) scale(1.16);will-change:transform}
+.group .ph img{transform:scale(calc(1.14 - var(--e,1) * .14));will-change:transform}
+.final picture img{transform:translate3d(0,calc((var(--c,.5) - .5) * -12%),0) scale(1.14);will-change:transform}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["LocalBusiness", "ProfessionalService"], "name": "Caio Adestra", "description": "Adestramento e comportamento canino em domicílio em Salto, Itu e Indaiatuba.", "url": "https://www.caioadestra.com.br/", "image": "https://www.caioadestra.com.br/img/og.jpg", "telephone": "+55-11-96373-0919", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}, "areaServed": [{"@type": "City", "name": "Salto, SP"}, {"@type": "City", "name": "Itu, SP"}, {"@type": "City", "name": "Indaiatuba, SP"}]}</script>
@@ -276,7 +284,7 @@ footer .links a{padding:10px 0}
 </header>
 
 <main id="conteudo">
-  <section class="hero dark" aria-labelledby="h1">
+  <section class="hero dark" data-fx="hero" aria-labelledby="h1">
     <picture class="hero-bg">
       <source media="(max-width:760px)" type="image/avif" srcset="img/hero-m-640.avif 640w, img/hero-m-1024.avif 1024w" sizes="100vw">
       <source media="(max-width:760px)" type="image/webp" srcset="img/hero-m-640.webp 640w, img/hero-m-1024.webp 1024w" sizes="100vw">
@@ -324,7 +332,7 @@ footer .links a{padding:10px 0}
       </div>
       <div class="groups">
         <div class="group">
-          <div class="ph"><picture><source type="image/avif" srcset="img/filhote-400.avif 400w, img/filhote-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/filhote-640.webp" srcset="img/filhote-400.webp 400w, img/filhote-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="489" alt="Filhote sem raça definida sentado na sala, olhando atento" loading="lazy" decoding="async"></picture></div>
+          <div class="ph" data-fx><picture><source type="image/avif" srcset="img/filhote-400.avif 400w, img/filhote-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/filhote-640.webp" srcset="img/filhote-400.webp 400w, img/filhote-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="489" alt="Filhote sem raça definida sentado na sala, olhando atento" loading="lazy" decoding="async"></picture></div>
           <div>
             <p class="label">Até 2 anos</p>
             <h3>Filhotes</h3>
@@ -339,7 +347,7 @@ footer .links a{padding:10px 0}
           </div>
         </div>
         <div class="group rev">
-          <div class="ph"><picture><source type="image/avif" srcset="img/shihtzu-400.avif 400w, img/shihtzu-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/shihtzu-640.webp" srcset="img/shihtzu-400.webp 400w, img/shihtzu-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="640" alt="Shih-tzu deitado tranquilo no tapete perto da porta de casa" loading="lazy" decoding="async"></picture></div>
+          <div class="ph" data-fx><picture><source type="image/avif" srcset="img/shihtzu-400.avif 400w, img/shihtzu-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/shihtzu-640.webp" srcset="img/shihtzu-400.webp 400w, img/shihtzu-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="640" alt="Shih-tzu deitado tranquilo no tapete perto da porta de casa" loading="lazy" decoding="async"></picture></div>
           <div>
             <p class="label">Cães adultos</p>
             <h3>Comportamento</h3>
@@ -357,7 +365,7 @@ footer .links a{padding:10px 0}
     </div>
   </section>
 
-  <section class="band" aria-label="Filosofia de trabalho">
+  <section class="band" data-fx aria-label="Cão passeando com guia frouxa">
     <picture>
       <source type="image/avif" srcset="img/passeio-800.avif 800w, img/passeio-1536.avif 1536w" sizes="100vw">
       <img src="img/passeio-1536.webp" srcset="img/passeio-800.webp 800w, img/passeio-1536.webp 1536w" sizes="100vw" width="1536" height="680" alt="Cão caminhando tranquilo ao lado do tutor, com a guia frouxa" loading="lazy" decoding="async">
@@ -485,7 +493,7 @@ footer .links a{padding:10px 0}
     </div>
   </section>
 
-  <section class="final dark" aria-labelledby="h-final">
+  <section class="final dark" data-fx aria-labelledby="h-final">
     <picture>
       <source type="image/avif" srcset="img/colo-800.avif 800w, img/colo-1536.avif 1536w" sizes="100vw">
       <img src="img/colo-1536.webp" srcset="img/colo-800.webp 800w, img/colo-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">
@@ -534,6 +542,25 @@ var ADS_CONVERSION = "";             // Ex.: "AW-123456789/AbCdEfGhIjK" (convers
     });
     [h,document.querySelector(".programs"),document.querySelector(".final")].forEach(function(el){if(el)io.observe(el)});
   }else{f.classList.add("on")}
+  /* Movimento na rolagem */
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var fx=[].slice.call(document.querySelectorAll("[data-fx]")),busy=false;
+    var upd=function(){
+      busy=false;var vh=innerHeight;
+      for(var i=0;i<fx.length;i++){
+        var el=fx[i],r=el.getBoundingClientRect();
+        if(el.getAttribute("data-fx")==="hero"){
+          if(r.bottom<0)continue;
+          el.style.setProperty("--h",Math.min(Math.max(-r.top/r.height,0),1).toFixed(4));continue;
+        }
+        if(r.bottom<-50||r.top>vh+50)continue;
+        el.style.setProperty("--e",Math.min(Math.max((vh-r.top)/(vh*.75),0),1).toFixed(4));
+        el.style.setProperty("--c",Math.min(Math.max((vh-r.top)/(vh+r.height),0),1).toFixed(4));
+      }
+    };
+    addEventListener("scroll",function(){if(!busy){busy=true;requestAnimationFrame(upd)}},{passive:true});
+    addEventListener("resize",upd);upd();
+  }
   /* Google Ads tag: carregado só depois da página pronta, para não pesar no carregamento */
   if(ADS_CONVERSION){
     window.dataLayer=window.dataLayer||[];
