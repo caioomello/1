@@ -83,12 +83,12 @@ em{font-style:italic;color:var(--brass-d)}
 
 /* Hero */
 .dark{background:var(--ink);color:var(--cream)}
-.hero{position:relative;overflow:hidden;min-height:min(100svh,940px);display:flex;align-items:flex-end;padding:clamp(130px,16vw,170px) 0 56px}
+.hero{position:relative;overflow:hidden;min-height:min(100svh,940px);display:flex;align-items:flex-end;padding:clamp(120px,14vw,150px) 0 56px}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 60%}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(640px 420px at 98% 6%,rgba(14,20,17,.98),rgba(14,20,17,.8) 50%,transparent 82%),linear-gradient(90deg,rgba(14,20,17,.94) 0%,rgba(14,20,17,.78) 34%,rgba(14,20,17,.18) 66%,rgba(14,20,17,.05) 100%),linear-gradient(0deg,rgba(14,20,17,.75),transparent 34%),linear-gradient(180deg,rgba(14,20,17,.6),transparent 22%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(760px 500px at 100% 0%,rgba(14,20,17,.99),rgba(14,20,17,.9) 52%,transparent 86%),linear-gradient(90deg,rgba(14,20,17,.94) 0%,rgba(14,20,17,.78) 34%,rgba(14,20,17,.18) 66%,rgba(14,20,17,.05) 100%),linear-gradient(0deg,rgba(14,20,17,.75),transparent 34%),linear-gradient(180deg,rgba(14,20,17,.6),transparent 22%);pointer-events:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
-.hero .wrap>div{max-width:660px}
-.hero h1{font-size:clamp(46px,7.4vw,96px);margin:28px 0 28px}
+.hero .wrap>div{max-width:720px}
+.hero h1{font-size:clamp(46px,6.2vw,80px);margin:28px 0 28px}
 .hero .lead{font-size:clamp(17px,1.6vw,19px);color:var(--muted-l);max-width:540px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
 .facts{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line-d);font-size:15px;color:var(--muted-l)}
@@ -104,17 +104,11 @@ em{font-style:italic;color:var(--brass-d)}
 .band{position:relative;padding:0;height:clamp(300px,40vw,580px);overflow:hidden;background:var(--ink);color:var(--cream)}
 .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 50%}
 .band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,20,17,.55),transparent 30%)}
-.band .wrap{position:relative;z-index:1;height:100%;display:flex;align-items:flex-end;padding-bottom:clamp(40px,6vw,80px)}
-.band figure{margin:0;max-width:480px}
-.band .mark{font:italic 500 90px/.6 var(--serif);color:var(--brass);height:40px}
-.band blockquote{margin:0;font:italic 500 clamp(28px,3vw,40px)/1.18 var(--serif)}
-.band figcaption{margin-top:22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-2)}
 @media (max-width:760px){
   .band{height:62vw;padding-top:0}
   .band img{height:100%;object-position:52% 50%}
   .band::after{background:none}
-  .band .wrap{padding-bottom:0}
-}
+  }
 @media (max-width:560px){
   .top .wrap{height:76px}
   .hero{padding:104px 0 96vw}
@@ -123,7 +117,8 @@ em{font-style:italic;color:var(--brass-d)}
   .hero .eyebrow{letter-spacing:.16em;font-size:11px}
   .hero .ctas{margin-top:30px}
   .hero .ctas .btn{width:100%}
-  .facts{margin-top:36px}
+  .facts{margin-top:36px;gap:8px 20px;font-size:14px}
+  .facts span:nth-child(2){display:none}
   .final .btn{width:100%}
 }
 
@@ -170,8 +165,6 @@ section{padding:clamp(80px,11vw,140px) 0}
 .prog .kind{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--brass-d)}
 .prog.feat .kind{color:var(--brass)}
 .prog h3{font-size:clamp(32px,3vw,40px);margin:18px 0 14px}
-.prog>p{color:var(--muted);font-size:15.5px}
-.prog.feat>p{color:var(--muted-l)}
 .prog ul{list-style:none;margin:28px 0 36px;padding:24px 0 0;border-top:1px solid var(--line-l);display:grid;gap:12px;font-size:15px;flex:1}
 .prog.feat ul{border-color:var(--line-d)}
 .prog li{display:flex;gap:12px}
@@ -203,7 +196,7 @@ section{padding:clamp(80px,11vw,140px) 0}
 
 /* About */
 .about{background:var(--cream)}
-.about .wrap{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.about .wrap{display:grid;grid-template-columns:1fr;max-width:860px;gap:clamp(32px,6vw,96px);align-items:center}
 .monogram{width:clamp(180px,20vw,260px);aspect-ratio:4/5;max-width:100%;background:var(--ink);display:grid;place-items:center;position:relative;overflow:hidden}
 .monogram::before{content:"";position:absolute;inset:18px;border:1px solid rgba(201,164,106,.35)}
 .monogram span{font:italic 500 clamp(64px,7vw,96px)/1 var(--serif);color:var(--brass)}
@@ -247,16 +240,17 @@ footer{background:var(--ink);color:var(--muted-l);border-top:1px solid var(--lin
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 footer a:hover{color:var(--cream)}
 footer .links{display:flex;gap:24px}
+footer .links a{padding:10px 0}
 
 /* Floating WhatsApp (mobile) */
 .float{position:fixed;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;display:none;align-items:center;gap:10px;height:52px;padding:0 22px;background:var(--brass);color:var(--ink);font:700 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;box-shadow:0 8px 20px rgba(0,0,0,.22);transform:translateY(120px);transition:transform .35s}
 .float svg{width:20px;height:20px}
 .float.on{transform:none}
-@media (max-width:760px){.float{display:inline-flex;left:16px;justify-content:center}body{padding-bottom:88px}}
+@media (max-width:760px){.float{display:inline-flex;left:16px;justify-content:center}footer{padding-bottom:112px}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["LocalBusiness", "ProfessionalService"], "name": "Caio Adestra", "description": "Adestramento e comportamento canino em domicílio em Salto, Itu e Indaiatuba.", "url": "https://www.caioadestra.com.br/", "image": "https://www.caioadestra.com.br/img/og.jpg", "telephone": "+55-11-96373-0919", "priceRange": "$$$", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}, "areaServed": [{"@type": "City", "name": "Salto, SP"}, {"@type": "City", "name": "Itu, SP"}, {"@type": "City", "name": "Indaiatuba, SP"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["LocalBusiness", "ProfessionalService"], "name": "Caio Adestra", "description": "Adestramento e comportamento canino em domicílio em Salto, Itu e Indaiatuba.", "url": "https://www.caioadestra.com.br/", "image": "https://www.caioadestra.com.br/img/og.jpg", "telephone": "+55-11-96373-0919", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}, "areaServed": [{"@type": "City", "name": "Salto, SP"}, {"@type": "City", "name": "Itu, SP"}, {"@type": "City", "name": "Indaiatuba, SP"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A avaliação é paga?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. São 50 minutos na sua casa, e você já sai com um plano. O valor eu informo pelo WhatsApp."}}, {"@type": "Question", "name": "Você usa correção?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, quando é necessária: correção justa com a guia, sem gerar medo. Na avaliação eu explico tudo antes de começar."}}, {"@type": "Question", "name": "As aulas são na minha casa?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, sempre em domicílio, em Salto, Itu e Indaiatuba."}}, {"@type": "Question", "name": "Meu cão é agressivo. Você atende?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Na avaliação eu entendo o caso e monto um plano de manejo seguro para a família e para o cão."}}, {"@type": "Question", "name": "Meu cão é adulto. Ainda dá tempo?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Adultos e idosos também aprendem. Muda o plano, não a possibilidade."}}, {"@type": "Question", "name": "Preciso participar das aulas?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Você aprende a conduzir o cão no dia a dia, e é isso que faz o resultado durar."}}, {"@type": "Question", "name": "Em quanto tempo vejo resultado?", "acceptedAnswer": {"@type": "Answer", "text": "A maioria das famílias percebe mudança já nas primeiras aulas. O tempo total depende do caso, e na avaliação eu te digo o que esperar."}}]}</script>
 </head>
 <body>
@@ -293,6 +287,18 @@ footer .links{display:flex;gap:24px}
         <p class="eyebrow">Adestrador em domicílio</p>
         <h1 id="h1">Um cão equilibrado muda a rotina da <em>casa inteira.</em></h1>
         <p class="lead" id="lead">Em Salto, Itu e Indaiatuba. Xixi fora do lugar, mordidas, ansiedade e reatividade: eu resolvo na sua casa.</p>
+        <script>(function(){
+  var leads={
+    xixi:"Em Salto, Itu e Indaiatuba. Seu cão faz xixi e cocô no lugar errado? Eu resolvo na sua casa, com rotina e método.",
+    mordida:"Em Salto, Itu e Indaiatuba. Mordidas, das mordidinhas de filhote às de verdade: eu resolvo na sua casa.",
+    ansiedade:"Em Salto, Itu e Indaiatuba. Chora, late ou destrói quando fica sozinho? Eu resolvo a ansiedade de separação na sua casa.",
+    reatividade:"Em Salto, Itu e Indaiatuba. Puxa a guia, late e avança no passeio? Eu resolvo a reatividade com você e o seu cão.",
+    agressividade:"Em Salto, Itu e Indaiatuba. Agressividade com pessoas ou outros cães: avaliação cuidadosa e plano seguro, na sua casa.",
+    filhote:"Em Salto, Itu e Indaiatuba. Filhote novo em casa? Rotina, xixi no lugar, mordidas e primeiros comandos, do jeito certo."
+  };
+  var q=(location.search.match(/[?&]p=([a-z]+)/)||[])[1];
+  if(q&&leads[q])document.getElementById("lead").textContent=leads[q];
+})();</script>
         <div class="ctas">
           <a class="btn btn-gold wa" href="https://wa.me/5511963730919?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-msg="Olá, Caio! Vim pelo site e quero agendar uma avaliação."><svg><use href="#wa"/></svg>Agendar avaliação</a>
           <a class="btn btn-line" href="#metodo">Como funciona</a>
@@ -436,11 +442,9 @@ footer .links{display:flex;gap:24px}
 
   <section class="about" aria-labelledby="h-sobre">
     <div class="wrap">
-      <div class="monogram">
-        <!-- Para usar uma foto sua: coloque o arquivo em site/img/caio.webp e descomente a linha abaixo -->
-        <!-- <img src="img/caio.webp" alt="Caio com um cão durante uma aula" width="800" height="1000" loading="lazy" decoding="async"> -->
-        <span aria-hidden="true">CA</span>
-      </div>
+      <!-- Foto do Caio: salve site/img/caio.webp (800x1000) e troque este comentário por:
+      <div class="monogram"><img src="img/caio.webp" alt="Caio com um cão durante uma aula" width="800" height="1000" loading="lazy" decoding="async"></div>
+      e mude .about .wrap para grid-template-columns:auto 1fr -->
       <div>
         <p class="eyebrow">Quem conduz</p>
         <h2 id="h-sobre">Quem vai até a sua casa <em>sou eu.</em></h2>
@@ -519,16 +523,7 @@ var ADS_CONVERSION = "";             // Ex.: "AW-123456789/AbCdEfGhIjK" (convers
     });
   }
   document.getElementById("y").textContent=new Date().getFullYear();
-  var leads={
-    xixi:"Em Salto, Itu e Indaiatuba. Seu cão faz xixi e cocô no lugar errado? Eu resolvo na sua casa, com rotina e método.",
-    mordida:"Em Salto, Itu e Indaiatuba. Mordidas, das mordidinhas de filhote às de verdade: eu resolvo na sua casa.",
-    ansiedade:"Em Salto, Itu e Indaiatuba. Chora, late ou destrói quando fica sozinho? Eu resolvo a ansiedade de separação na sua casa.",
-    reatividade:"Em Salto, Itu e Indaiatuba. Puxa a guia, late e avança no passeio? Eu resolvo a reatividade com você e o seu cão.",
-    agressividade:"Em Salto, Itu e Indaiatuba. Agressividade com pessoas ou outros cães: avaliação cuidadosa e plano seguro, na sua casa.",
-    filhote:"Em Salto, Itu e Indaiatuba. Filhote novo em casa? Rotina, xixi no lugar, mordidas e primeiros comandos, do jeito certo."
-  };
-  var q=(location.search.match(/[?&]p=([a-z]+)/)||[])[1];
-  if(q&&leads[q])document.getElementById("lead").textContent=leads[q];
+
   var f=document.querySelector(".float"),h=document.querySelector(".hero");
   if("IntersectionObserver" in window){
     var seen=new Set();
