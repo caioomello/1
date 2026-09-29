@@ -19,6 +19,7 @@ No `<head>`:
 
 ## Recomendado
 
+- **Imagens:** ficam em `img/` (AVIF + WebP em 2 tamanhos). `og.jpg` é a imagem de compartilhamento.
 - **Foto sua:** na seção "Quem conduz", salve `img/caio.webp` (até ~150 KB, 800×1000)
   e descomente a linha `<img>` indicada no HTML.
 - **Depoimentos reais** de clientes (com autorização) aumentam bastante a conversão.
