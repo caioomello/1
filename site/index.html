@@ -181,6 +181,15 @@ section{padding:clamp(80px,11vw,140px) 0}
 .region p:last-child{color:var(--muted-l);max-width:460px;margin:0 auto}
 @media (max-width:560px){.cities{flex-direction:column}.cities li::after{display:none}}
 
+.petisco{background:var(--cream)}
+.petisco .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,7vw,110px);align-items:start}
+.petisco h2{font-size:clamp(40px,5vw,66px);margin-top:22px}
+.petisco p{color:var(--muted);max-width:580px}
+.petisco p.big{font:500 clamp(22px,2.1vw,27px)/1.35 var(--serif);color:var(--text)}
+.moments{list-style:none;margin:30px 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.moments li{border:1px solid var(--line-l);padding:10px 16px;font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brass-d)}
+@media (max-width:860px){.petisco .wrap{grid-template-columns:1fr}}
+
 /* About */
 .about{background:var(--cream)}
 .about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,110px);align-items:center}
@@ -344,6 +353,20 @@ footer a:hover{color:var(--cream)}
         <div class="step"><h3>Avaliação comportamental</h3><p>Um encontro de 50 minutos na sua casa para observar o cão no ambiente dele, entender a rotina da família e identificar a origem do problema.</p></div>
         <div class="step"><h3>Plano sob medida</h3><p>Você sai com objetivos claros, as primeiras orientações práticas e a frequência de aulas indicada para o seu caso: 1x ou 2x por semana.</p></div>
         <div class="step"><h3>Aulas e acompanhamento</h3><p>Aulas práticas com o cão e com a família, ajustes a cada encontro e suporte pelo WhatsApp entre uma aula e outra.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="petisco" aria-labelledby="h-petisco">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Por que equilibrado</p>
+        <h2 id="h-petisco">Só petisco <em>nem sempre resolve.</em></h2>
+      </div>
+      <div>
+        <p class="big">Em casa, com calma, o petisco funciona. Mas quando o cão vê outro cão na rua, alguém toca a campainha ou ele fica sozinho, a comida perde a graça. É aí que muitos tutores travam.</p>
+        <ul class="moments"><li>Outro cão na rua</li><li>A campainha tocando</li><li>Sozinho em casa</li></ul>
+        <p>No adestramento equilibrado eu uso recompensa para ensinar e correção justa com a guia para mostrar o limite. Sem gritar, sem machucar e sem gerar medo. O cão entende o que pode e o que não pode, mesmo quando o petisco não interessa.</p>
       </div>
     </div>
   </section>
