@@ -196,7 +196,8 @@ section{padding:clamp(80px,11vw,140px) 0}
 
 /* About */
 .about{background:var(--cream)}
-.about .wrap{display:grid;grid-template-columns:1fr;max-width:860px;gap:clamp(32px,6vw,96px);align-items:center}
+.about .wrap>div{max-width:760px}
+.about .wrap{display:grid;grid-template-columns:1fr;gap:clamp(32px,6vw,96px);align-items:center}
 .monogram{width:clamp(180px,20vw,260px);aspect-ratio:4/5;max-width:100%;background:var(--ink);display:grid;place-items:center;position:relative;overflow:hidden}
 .monogram::before{content:"";position:absolute;inset:18px;border:1px solid rgba(201,164,106,.35)}
 .monogram span{font:italic 500 clamp(64px,7vw,96px)/1 var(--serif);color:var(--brass)}
@@ -444,7 +445,7 @@ footer .links a{padding:10px 0}
     <div class="wrap">
       <!-- Foto do Caio: salve site/img/caio.webp (800x1000) e troque este comentário por:
       <div class="monogram"><img src="img/caio.webp" alt="Caio com um cão durante uma aula" width="800" height="1000" loading="lazy" decoding="async"></div>
-      e mude .about .wrap para grid-template-columns:auto 1fr -->
+      e mude .about .wrap para grid-template-columns:auto 1fr (e tire o max-width de .about .wrap>div) -->
       <div>
         <p class="eyebrow">Quem conduz</p>
         <h2 id="h-sobre">Quem vai até a sua casa <em>sou eu.</em></h2>
