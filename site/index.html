@@ -257,6 +257,16 @@ footer .links a{padding:10px 0}
 .group .ph img{transform:scale(calc(1.14 - var(--e,1) * .14));will-change:transform}
 .final picture img{transform:translate3d(0,calc((var(--c,.5) - .5) * -12%),0) scale(1.14);will-change:transform}
 
+/* Transição topo → problemas: o topo fica parado e a seção seguinte sobe por cima */
+.fx .hero{position:sticky;top:var(--stick,0px);z-index:0}
+.fx .hero::after{content:"";position:absolute;inset:0;z-index:3;background:var(--ink);opacity:calc(var(--h,0) * .75);pointer-events:none}
+.fx #resolvemos{position:relative;z-index:1;background:var(--paper);box-shadow:0 -28px 60px rgba(0,0,0,.35)}
+/* Entrada suave de cada bloco */
+.fx .rv{opacity:0;transform:translate3d(0,32px,0);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.fx .rv.in{opacity:1;transform:none}
+.fx .step.rv:nth-child(2),.fx .prog.rv:nth-child(2){transition-delay:.12s}
+.fx .step.rv:nth-child(3),.fx .prog.rv:nth-child(3){transition-delay:.24s}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["LocalBusiness", "ProfessionalService"], "name": "Caio Adestra", "description": "Adestramento e comportamento canino em domicílio em Salto, Itu e Indaiatuba.", "url": "https://www.caioadestra.com.br/", "image": "https://www.caioadestra.com.br/img/og.jpg", "telephone": "+55-11-96373-0919", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}, "areaServed": [{"@type": "City", "name": "Salto, SP"}, {"@type": "City", "name": "Itu, SP"}, {"@type": "City", "name": "Indaiatuba, SP"}]}</script>
@@ -284,6 +294,7 @@ footer .links a{padding:10px 0}
 </header>
 
 <main id="conteudo">
+<div class="stack">
   <section class="hero dark" data-fx="hero" aria-labelledby="h1">
     <picture class="hero-bg">
       <source media="(max-width:760px)" type="image/avif" srcset="img/hero-m-640.avif 640w, img/hero-m-1024.avif 1024w" sizes="100vw">
@@ -323,7 +334,7 @@ footer .links a{padding:10px 0}
 
   <section id="resolvemos" aria-labelledby="h-resolvemos">
     <div class="wrap">
-      <div class="head">
+      <div class="head rv">
         <div>
           <p class="eyebrow">O que eu resolvo</p>
           <h2 id="h-resolvemos">Os problemas que <em>tiram a paz</em> de casa.</h2>
@@ -331,7 +342,7 @@ footer .links a{padding:10px 0}
         <p>Toque no problema do seu cão e me conte pelo WhatsApp.</p>
       </div>
       <div class="groups">
-        <div class="group">
+        <div class="group rv">
           <div class="ph" data-fx><picture><source type="image/avif" srcset="img/filhote-400.avif 400w, img/filhote-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/filhote-640.webp" srcset="img/filhote-400.webp 400w, img/filhote-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="489" alt="Filhote sem raça definida sentado na sala, olhando atento" loading="lazy" decoding="async"></picture></div>
           <div>
             <p class="label">Até 2 anos</p>
@@ -346,7 +357,7 @@ footer .links a{padding:10px 0}
             </ol>
           </div>
         </div>
-        <div class="group rev">
+        <div class="group rev rv">
           <div class="ph" data-fx><picture><source type="image/avif" srcset="img/shihtzu-400.avif 400w, img/shihtzu-640.avif 640w" sizes="(max-width:860px) 100vw, 460px"><img src="img/shihtzu-640.webp" srcset="img/shihtzu-400.webp 400w, img/shihtzu-640.webp 640w" sizes="(max-width:860px) 100vw, 460px" width="640" height="640" alt="Shih-tzu deitado tranquilo no tapete perto da porta de casa" loading="lazy" decoding="async"></picture></div>
           <div>
             <p class="label">Cães adultos</p>
@@ -365,6 +376,8 @@ footer .links a{padding:10px 0}
     </div>
   </section>
 
+</div>
+
   <section class="band" data-fx aria-label="Cão passeando com guia frouxa">
     <picture>
       <source type="image/avif" srcset="img/passeio-800.avif 800w, img/passeio-1536.avif 1536w" sizes="100vw">
@@ -374,7 +387,7 @@ footer .links a{padding:10px 0}
 
   <section id="metodo" class="dark" aria-labelledby="h-metodo">
     <div class="wrap">
-      <div class="head">
+      <div class="head rv">
         <div>
           <p class="eyebrow">O método</p>
           <h2 id="h-metodo">Adestramento <em>equilibrado.</em></h2>
@@ -382,15 +395,15 @@ footer .links a{padding:10px 0}
         <p>Um processo simples, feito na sua casa, do primeiro encontro ao resultado.</p>
       </div>
       <div class="steps">
-        <div class="step"><h3>Avaliação</h3><p>50 minutos na sua casa para entender a causa do problema.</p></div>
-        <div class="step"><h3>Plano</h3><p>Objetivos claros e a frequência ideal: 1x ou 2x por semana.</p></div>
-        <div class="step"><h3>Aulas</h3><p>Prática com o cão e a família, com ajustes a cada aula.</p></div>
+        <div class="step rv"><h3>Avaliação</h3><p>50 minutos na sua casa para entender a causa do problema.</p></div>
+        <div class="step rv"><h3>Plano</h3><p>Objetivos claros e a frequência ideal: 1x ou 2x por semana.</p></div>
+        <div class="step rv"><h3>Aulas</h3><p>Prática com o cão e a família, com ajustes a cada aula.</p></div>
       </div>
     </div>
   </section>
 
   <section class="petisco" aria-labelledby="h-petisco">
-    <div class="wrap">
+    <div class="wrap rv">
       <div>
         <p class="eyebrow">Por que equilibrado</p>
         <h2 id="h-petisco">Só petisco <em>nem sempre resolve.</em></h2>
@@ -405,7 +418,7 @@ footer .links a{padding:10px 0}
 
   <section id="programas" aria-labelledby="h-programas">
     <div class="wrap">
-      <div class="head">
+      <div class="head rv">
         <div>
           <p class="eyebrow">Programas</p>
           <h2 id="h-programas">Escolha o <em>ritmo</em> ideal.</h2>
@@ -413,7 +426,7 @@ footer .links a{padding:10px 0}
         <p>Tudo começa pela avaliação. Nela eu indico o pacote certo para o seu cão.</p>
       </div>
       <div class="programs">
-        <div class="prog">
+        <div class="prog rv">
           <span class="kind">Primeiro passo</span>
           <h3>Avaliação</h3>
           <ul>
@@ -423,7 +436,7 @@ footer .links a{padding:10px 0}
           </ul>
           <a class="btn btn-dark wa" href="https://wa.me/5511963730919?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." data-msg="Olá, Caio! Vim pelo site e quero agendar uma avaliação.">Agendar avaliação</a>
         </div>
-        <div class="prog">
+        <div class="prog rv">
           <span class="kind">Indicado para filhotes</span>
           <h3>4 aulas</h3>
           <ul>
@@ -433,7 +446,7 @@ footer .links a{padding:10px 0}
           </ul>
           <a class="btn btn-dark wa" href="https://wa.me/5511963730919?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20no%20pacote%20de%204%20aulas." data-msg="Olá, Caio! Vim pelo site e tenho interesse no pacote de 4 aulas.">Quero este pacote</a>
         </div>
-        <div class="prog feat">
+        <div class="prog feat rv">
           <span class="tag">Mais escolhido</span>
           <span class="kind">Problemas de comportamento</span>
           <h3>8 aulas</h3>
@@ -450,7 +463,7 @@ footer .links a{padding:10px 0}
   </section>
 
   <section class="about" aria-labelledby="h-sobre">
-    <div class="wrap">
+    <div class="wrap rv">
       <!-- Foto do Caio: salve site/img/caio.webp (800x1000) e troque este comentário por:
       <div class="monogram"><img src="img/caio.webp" alt="Caio com um cão durante uma aula" width="800" height="1000" loading="lazy" decoding="async"></div>
       e mude .about .wrap para grid-template-columns:auto 1fr (e tire o max-width de .about .wrap>div) -->
@@ -468,7 +481,7 @@ footer .links a{padding:10px 0}
   </section>
 
   <section id="regiao" class="region dark" aria-labelledby="h-regiao">
-    <div class="wrap">
+    <div class="wrap rv">
       <p class="eyebrow">Onde atendo</p>
       <h2 id="h-regiao"><span class="pre">Adestrador em domicílio em</span> <span class="cities"><span>Salto</span> <span>Itu</span> <span>Indaiatuba</span></span></h2>
       <p>Outra cidade da região? <a class="wa" href="https://wa.me/5511963730919?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site.%20Voc%C3%AAs%20atendem%20na%20minha%20cidade%3F" data-msg="Olá, Caio! Vim pelo site. Vocês atendem na minha cidade?">Me chame no WhatsApp</a>.</p>
@@ -476,7 +489,7 @@ footer .links a{padding:10px 0}
   </section>
 
   <section id="duvidas" class="faq" aria-labelledby="h-faq">
-    <div class="wrap">
+    <div class="wrap rv">
       <div class="side">
         <p class="eyebrow">Dúvidas</p>
         <h2 id="h-faq">Perguntas <em>frequentes.</em></h2>
@@ -498,7 +511,7 @@ footer .links a{padding:10px 0}
       <source type="image/avif" srcset="img/colo-800.avif 800w, img/colo-1536.avif 1536w" sizes="100vw">
       <img src="img/colo-1536.webp" srcset="img/colo-800.webp 800w, img/colo-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">
     </picture>
-    <div class="wrap"><div>
+    <div class="wrap"><div class="rv">
       <p class="eyebrow">Vamos começar</p>
       <h2 id="h-final">Me conte sobre <em>o seu cão.</em></h2>
       <p>Diga o que está acontecendo e eu respondo com os horários disponíveis.</p>
@@ -534,32 +547,35 @@ var ADS_CONVERSION = "";             // Ex.: "AW-123456789/AbCdEfGhIjK" (convers
   document.getElementById("y").textContent=new Date().getFullYear();
 
   var f=document.querySelector(".float"),h=document.querySelector(".hero");
+  var heroOn=true,seen=new Set();
+  var setFloat=function(){f.classList.toggle("on",!heroOn&&seen.size===0)};
   if("IntersectionObserver" in window){
-    var seen=new Set();
     var io=new IntersectionObserver(function(es){
       es.forEach(function(x){x.isIntersecting?seen.add(x.target):seen.delete(x.target)});
-      f.classList.toggle("on",seen.size===0);
+      setFloat();
     });
-    [h,document.querySelector(".programs"),document.querySelector(".final")].forEach(function(el){if(el)io.observe(el)});
-  }else{f.classList.add("on")}
-  /* Movimento na rolagem */
-  if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
-    var fx=[].slice.call(document.querySelectorAll("[data-fx]")),busy=false;
+    [document.querySelector(".programs"),document.querySelector(".final")].forEach(function(el){if(el)io.observe(el)});
+  }
+  addEventListener("scroll",function(){var o=scrollY<h.offsetHeight*.7;if(o!==heroOn){heroOn=o;setFloat()}},{passive:true});
+  /* Movimento na rolagem e transições entre seções */
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver" in window){
+    var root=document.documentElement;root.classList.add("fx");
+    var stick=function(){root.style.setProperty("--stick",Math.min(0,innerHeight-h.offsetHeight)+"px")};
+    var fx=[].slice.call(document.querySelectorAll("[data-fx]:not(.hero)")),busy=false;
     var upd=function(){
       busy=false;var vh=innerHeight;
+      h.style.setProperty("--h",Math.min(Math.max(scrollY/h.offsetHeight,0),1).toFixed(4));
       for(var i=0;i<fx.length;i++){
         var el=fx[i],r=el.getBoundingClientRect();
-        if(el.getAttribute("data-fx")==="hero"){
-          if(r.bottom<0)continue;
-          el.style.setProperty("--h",Math.min(Math.max(-r.top/r.height,0),1).toFixed(4));continue;
-        }
         if(r.bottom<-50||r.top>vh+50)continue;
         el.style.setProperty("--e",Math.min(Math.max((vh-r.top)/(vh*.75),0),1).toFixed(4));
         el.style.setProperty("--c",Math.min(Math.max((vh-r.top)/(vh+r.height),0),1).toFixed(4));
       }
     };
     addEventListener("scroll",function(){if(!busy){busy=true;requestAnimationFrame(upd)}},{passive:true});
-    addEventListener("resize",upd);upd();
+    addEventListener("resize",function(){stick();upd()});stick();upd();
+    var rio=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");rio.unobserve(x.target)}})},{rootMargin:"0px 0px -12% 0px"});
+    [].slice.call(document.querySelectorAll(".rv")).forEach(function(el){rio.observe(el)});
   }
   /* Google Ads tag: carregado só depois da página pronta, para não pesar no carregamento */
   if(ADS_CONVERSION){
