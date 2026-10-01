@@ -33,6 +33,10 @@ visual (o texto padrão já vem no HTML):
 - `?p=agressividade` (rosna, morde, agressivo com pessoas ou cães)
 - sem parâmetro: headline geral com o termo principal "Adestrador de cães em [CIDADE]"
 
+Regras: valor vazio ou desconhecido cai na versão geral; mordida fica em
+`?p=agressividade`. A variação muda **só** headline, subtítulo, dor em destaque e
+mensagem do WhatsApp, nunca preço, promessa ou seções.
+
 Cada grupo de anúncios do Google Ads aponta para a sua variação.
 
 ## Ordem das seções
@@ -47,13 +51,15 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
    família e para o cão." A dor vinda do `?p=` aparece em destaque.
 4. **Como funciona (3 passos):** (1) chame no WhatsApp, e **esse passo é um botão**,
    o ponto de maior intenção; (2) avaliação individual e paga na sua casa;
-   (3) plano de aulas e acompanhamento.
-5. **Por que confiar:** diferenciais (atendimento em casa, plano sob medida, reforço
-   positivo/sem violência, suporte pelo WhatsApp entre as aulas) e **depoimentos reais**.
-   **Fallback:** se ainda não houver depoimentos reais, o bloco de depoimentos é removido
-   e a seção funciona só com os diferenciais. Nenhum depoimento é inventado.
-6. **FAQ (4 perguntas):** Quanto custa? · Meu cachorro já é adulto (ou é filhote),
-   ainda dá? · Em quanto tempo vejo resultado? · Como são as aulas?
+   (3) plano de aulas, com suporte pelo WhatsApp entre as aulas.
+5. **Quem já passou por aqui:** só o que a faixa de confiança não cobre, ou seja,
+   **depoimentos reais** (e credencial/formação, se houver). Os diferenciais **não** se
+   repetem aqui. **Fallback:** sem depoimentos reais nem credencial verificável, a seção
+   inteira sai da página. Nenhum depoimento é inventado.
+6. **FAQ (4 perguntas):** Quanto custa? · Meu cachorro é adulto, ainda dá jeito? · Em
+   quanto tempo vejo resultado? · Como são as aulas?
+   A resposta sobre tempo **não promete prazo**: diz que depende do caso, que a
+   avaliação define o plano e que a evolução costuma aparecer já nas primeiras aulas.
 7. **CTA final:** repete a oferta. A versão padrão é neutra ("Me chame agora e receba os
    horários disponíveis desta semana"). A urgência "agenda limitada" só entra se o Caio
    confirmar que é verdade.
@@ -65,10 +71,19 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 - O `body` recebe padding inferior para o botão nunca cobrir o conteúdo.
 - No desktop, vira um botão flutuante discreto no canto.
 
+## Afirmações a confirmar com o Caio (marcadas no código com `[CONFIRMAR]`)
+| Afirmação | Se for falsa, usar |
+|---|---|
+| Aulas e avaliação na casa do cliente | "Aulas presenciais em [local]" e trocar "na sua casa" por "presencial" |
+| Método sem violência / reforço positivo | Remover o item da faixa; manter "plano individual" |
+| Suporte pelo WhatsApp entre as aulas | Remover do passo 3 |
+| "Resposta rápida no WhatsApp" | "Respondo no mesmo dia" ou remover; o horário no rodapé cobre a expectativa |
+
 ## Métricas
 - **Principal:** clique em qualquer botão de WhatsApp, registrado como conversão no
   Google Ads (gtag), com dois parâmetros no evento: `posicao` (hero, passos, fixo,
   final) e `problema` (valor do `?p=`). Serve para saber qual botão e qual variação
-  convertem.
+  convertem. O evento dispara **antes** de abrir o WhatsApp (`transport_type: 'beacon'`),
+  e o gtag é carregado com `async` depois do conteúdo, sem bloquear a renderização.
 - **Secundária (fora da página):** clique não é lead. O lead real é a conversa iniciada,
   e o resultado é o status "Fechado" na Ficha de Leads com origem "Google Ads".
