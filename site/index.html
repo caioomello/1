@@ -123,13 +123,16 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   .step::before{top:24px;left:24px}
   .quotes{grid-template-columns:repeat(2,1fr)}
 }
-@media (min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr}h1{max-width:14ch}}
+@media (min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr}h1{max-width:16ch}}
 @media (max-width:959px){.chat{display:none}}
 @media (max-width:759px){
-  .hero .btn,.final .btn{width:100%;font-size:1rem;padding:12px 16px}
+  .hero .btn,.final .btn{width:100%;white-space:nowrap;font-size:clamp(.92rem,4.1vw,1rem);padding:12px 14px;gap:8px}
+  .where{font-size:.85rem}
   .card{display:grid;grid-template-columns:40px 1fr;column-gap:14px;padding:18px}
   .card .ico{margin:0;grid-row:span 3}
 }
+@media (max-width:359px){.hero .btn svg,.final .btn svg{display:none}}
+@media (min-width:760px) and (max-width:959px){.trust li{font-size:.92rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -150,7 +153,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
         <p class="note">Texto provisório de microconfiança</p>
       </div>
       <div class="chat" aria-hidden="true">
-        <div class="chat-top"><i>C</i><div><b>Caio Adestra</b><small>online</small></div></div>
+        <div class="chat-top"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></i><div><b>Caio Adestra</b><small>online</small></div></div>
         <div class="bubble me">Oi Caio! Meu cachorro faz xixi pela casa toda. Consegue me ajudar?</div>
         <div class="bubble him">Oi! Consigo sim. Me conta a idade dele e como é a rotina?</div>
       </div>
