@@ -76,7 +76,7 @@ section{padding:56px 0}
 .card .ico{margin-bottom:14px}
 .card p{color:var(--ink-2);margin-top:6px;font-size:.98rem}
 .mid{text-align:center;margin-top:28px;font-weight:600;color:var(--ink-2)}
-.mid a{color:var(--blue-700);text-underline-offset:3px}
+.mid a{display:inline-flex;align-items:center;min-height:48px;padding:0 8px;white-space:nowrap;color:var(--blue-700);text-underline-offset:3px}
 .safe{display:block;margin-top:10px;font-size:.88rem;color:var(--blue-800);font-weight:600}
 
 /* Passos */
@@ -138,9 +138,11 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 /* Botão fixo */
 .sticky{position:fixed;z-index:50;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(10,35,80,.08);transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility .3s}
 .sticky.show{transform:none;visibility:visible}
+.sticky:not(.show){transition:transform .3s ease,visibility 0s}
 .sticky .btn{width:100%;white-space:nowrap}
 .card.hl{border-color:var(--blue-600);box-shadow:0 0 0 3px var(--blue-100)}
 @media (max-width:759px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
+@media (min-width:760px) and (max-width:1024px){#duvidas{padding-bottom:140px}}
 @media (min-width:760px){
   .sticky{left:auto;right:24px;bottom:24px;padding:0;background:none;border:0;box-shadow:none;transform:translateY(160%)}
   .sticky .btn{width:auto;min-height:52px;padding:10px 22px;font-size:1rem;box-shadow:0 10px 28px rgba(10,35,80,.22)}
@@ -264,7 +266,7 @@ var V={
 (function(){
   var d=document,raw=new URLSearchParams(location.search).get("p")||"";
   var p=raw.trim().toLowerCase();
-  if(p.normalize)p=p.normalize("NFD").replace(/[̀-ͯ]/g,"");
+  if(p.normalize)p=p.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   var v=Object.prototype.hasOwnProperty.call(V,p)?V[p]:null;
   if(!v)p="geral";
   var links=d.querySelectorAll("[data-wa]");
@@ -299,7 +301,7 @@ var V={
     if(ga)gtag("event","clique_whatsapp",{send_to:CONFIG.gaId,posicao:pos,problema:p,p_raw:raw,transport_type:"beacon"});
   }
   d.addEventListener("click",track);
-  d.addEventListener("auxclick",track);
+  d.addEventListener("auxclick",function(e){if(e.button===1)track(e)});
 
   /* Botão fixo: aparece quando o botão do hero sai por cima e some quando o botão final aparece */
   var st=d.getElementById("sticky");

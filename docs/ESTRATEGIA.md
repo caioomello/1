@@ -84,8 +84,8 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 
 ## Métricas
 - **Principal:** clique em qualquer botão de WhatsApp, registrado como conversão no
-  Google Ads (gtag), com dois parâmetros no evento: `posicao` (hero, passos, fixo,
-  final) e `problema` (valor do `?p=`). Serve para saber qual botão e qual variação
+  Google Ads (gtag), com dois parâmetros no evento: `posicao` (hero, meio, passos,
+  fixo, final) e `problema` (valor do `?p=`). Serve para saber qual botão e qual variação
   convertem. O evento dispara **antes** de abrir o WhatsApp (`transport_type: 'beacon'`),
   e o gtag é carregado com `async`, sem bloquear a renderização.
 - **Configuração no Google Ads:** criar a ação de conversão "Clique no WhatsApp" com
