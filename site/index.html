@@ -90,22 +90,30 @@ section{padding:56px 0}
 .about{display:grid;gap:20px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);margin-bottom:16px}
 .about h3{margin-bottom:8px}
 .about p{color:var(--ink-2)}
-.avatar{width:96px;height:96px;border-radius:50%;background:var(--blue-100);color:var(--blue-700);display:grid;place-items:center;overflow:hidden;flex:none}
+.avatar{width:112px;height:112px;border-radius:50%;background:var(--blue-100);color:var(--blue-700);display:grid;place-items:center;overflow:hidden;flex:none}
 .avatar svg{width:44px;height:44px}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .checks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
 .checks li{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:.97rem}
 .checks svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--wa)}
 .tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--blue-800);background:var(--blue-100);padding:3px 10px;border-radius:999px;margin-bottom:10px}
-@media (min-width:760px){.about{grid-template-columns:96px 1fr;gap:28px;padding:32px}}
+@media (min-width:760px){.about{grid-template-columns:112px 1fr;gap:28px;padding:32px}}
 
 /* Depoimentos */
+.quote .src{font-size:.82rem;color:var(--ink-2)}
+.rating{text-align:center;margin-top:20px}
+.mini{display:inline-block;border-radius:50%;vertical-align:middle;margin-right:6px}
+footer.site p{margin:0 0 6px}
+footer.site details{max-width:720px;margin:10px auto 0;text-align:left}
+footer.site summary{cursor:pointer;text-align:center;color:var(--blue-800);font-weight:600;padding:12px 0}
+footer.site summary:focus-visible{outline:2px solid var(--blue-700);outline-offset:2px;border-radius:6px}
+footer.site details p{margin-top:4px}
+
 .quotes{display:grid;gap:16px}
 .quote{margin:0;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px}
 .quote p{font-size:1.02rem}
 .quote footer{margin-top:14px;font-size:.9rem;color:var(--ink-2)}
 .quote footer b{color:var(--ink)}
-.stars{color:#d97706;letter-spacing:2px;margin-bottom:10px}
 
 /* FAQ */
 .faq{max-width:720px;margin:0 auto}
@@ -188,7 +196,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
           <svg aria-hidden="true"><use href="#wa"/></svg>
           Agendar pelo WhatsApp
         </a>
-        <p class="note"><!-- [CONFIRMAR] resposta rápida -->Resposta rápida · Sem compromisso</p>
+        <p class="note"><!-- [PREENCHER] com a foto pronta, coloque antes do texto: <img class="mini" src="caio.webp" width="28" height="28" alt=""> --><!-- [CONFIRMAR] é o Caio quem responde o WhatsApp -->Converse com o Caio, sem compromisso</p>
       </div>
       <div class="chat" aria-hidden="true">
         <div class="chat-top"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></i><div><b>Caio Adestra</b><small>WhatsApp</small></div></div>
@@ -202,6 +210,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 <div class="trust">
   <div class="wrap">
     <ul>
+      <!-- [PREENCHER] fato verificável (anos de experiência, formação ou nota no Google). Sem fato real, use "Plano individual para o seu cachorro". -->
       <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg></span>[PREENCHER fato verificável: ex. 5 anos de experiência]</li>
       <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span><!-- [CONFIRMAR] -->Aulas na sua casa</li>
       <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.3 6c-2.3 4.6-9.3 9-9.3 9z"/></svg></span><!-- [CONFIRMAR] -->Método sem violência</li>
@@ -234,27 +243,29 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 </section>
 
 <!-- Confiança: "Quem vai atender" + depoimentos.
-     Depoimentos: só REAIS (com autorização do tutor). Sem eles, apague o bloco .quotes inteiro.
+     Depoimentos: só REAIS, com autorização por escrito (guarde o print do WhatsApp). Sem eles, apague o bloco .quotes inteiro.
+     Não use depoimento com prazo ou resultado garantido ("resolveu em 1 semana"). Com 1 só depoimento, mantenha 1 só.
      Foto: troque o ícone por <img src="caio.webp" width="96" height="96" alt="Caio com um cachorro" loading="lazy" decoding="async"> (foto quadrada, até ~20 KB). -->
 <section id="confianca">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Quem vai até a sua casa</span><h2>Você sabe com quem está falando</h2></div>
+    <div class="head"><span class="eyebrow">Quem vai até a sua casa</span><h2>Prazer, eu sou o Caio</h2></div>
     <div class="about">
-      <div class="avatar"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></div>
+      <div class="avatar"><!-- [PREENCHER foto real do Caio, rosto visível, de preferência com um cão: 224x224 webp até ~20 KB] --><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></div>
       <div>
-        <h3>Caio · adestrador e especialista em comportamento canino</h3>
+        <h3>Caio [PREENCHER sobrenome] · adestrador<!-- [CONFIRMAR] acrescentar "e especialista em comportamento canino" só com formação/curso citado no texto abaixo --></h3>
         <p>[PREENCHER 1–2 frases reais: formação, anos de experiência, quantos cães já atendeu e por que trabalha sem violência.]</p>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você conversa comigo antes de pagar qualquer coisa</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Explico o plano e o valor antes de começar</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você aprende junto e sabe o que treinar entre as aulas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><!-- [CONFIRMAR] é o Caio quem responde o WhatsApp -->Você conversa comigo antes de pagar qualquer coisa</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você sabe o valor da avaliação antes de agendar e o das aulas antes de fechar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você participa de todas as aulas e sabe o que treinar entre elas</li>
         </ul>
       </div>
     </div>
     <div class="quotes">
-      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><span class="tag">[PREENCHER caso: ex. Xixi fora do lugar]</span><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cachorro]</footer></blockquote>
-      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><span class="tag">[PREENCHER caso: ex. Passeio]</span><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cachorro]</footer></blockquote>
+      <blockquote class="quote"><span class="tag">[PREENCHER caso: ex. Xixi fora do lugar]</span><p>[PREENCHER depoimento real]</p><footer><b>[PREENCHER primeiro nome + inicial]</b> · tutor(a) do [PREENCHER nome do cachorro] · [PREENCHER bairro]<br><span class="src">[PREENCHER origem: avaliação no Google / mensagem no WhatsApp]</span></footer></blockquote>
+      <blockquote class="quote"><span class="tag">[PREENCHER caso: ex. Passeio]</span><p>[PREENCHER depoimento real]</p><footer><b>[PREENCHER primeiro nome + inicial]</b> · tutor(a) do [PREENCHER nome do cachorro] · [PREENCHER bairro]<br><span class="src">[PREENCHER origem: avaliação no Google / mensagem no WhatsApp]</span></footer></blockquote>
     </div>
+    <p class="note rating"><!-- opcional: só com Perfil da Empresa no Google; senão apague esta linha -->[PREENCHER se houver: Nota X,X no Google · N avaliações]</p>
   </div>
 </section>
 
@@ -262,7 +273,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   <div class="wrap">
     <div class="head"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
     <div class="faq">
-      <details><summary>Quanto custa?</summary><p>A avaliação custa R$ [PREENCHER valor], é individual e feita na sua casa. Você sai com o diagnóstico e o plano de aulas e depois decide com calma se quer seguir (aula avulsa ou pacote de 4 aulas, 1 ou 2 vezes por semana).</p></details>
+      <details><summary>Quanto custa?</summary><p>A avaliação custa R$ [PREENCHER valor], é individual e feita na sua casa<!-- [CONFIRMAR] -->, com deslocamento incluso em [PREENCHER região] (fora dela, informo antes). Você sai com o diagnóstico e o plano de aulas e depois decide com calma se quer seguir (aula avulsa ou pacote de 4 aulas, 1 ou 2 vezes por semana).</p></details>
       <details><summary>Meu cachorro é adulto, ainda dá jeito?</summary><p>Dá, sim. Cães aprendem em qualquer idade. O que muda é o plano: ele é montado para o histórico e o temperamento do seu cachorro.</p></details>
       <details><summary>Em quanto tempo vejo resultado?</summary><p>Depende do cachorro, do problema e da rotina da casa. A avaliação define o plano e o ritmo, e você acompanha a evolução a cada aula. Não prometo prazo: cada cachorro tem o seu tempo.</p></details>
       <details><summary>Meu cachorro já mordeu alguém. Você atende?</summary><p>Atendo. Primeiro faço uma avaliação de risco e combinamos os cuidados de segurança antes de qualquer treino. Cada caso é diferente e não prometo resultado.</p></details>
@@ -279,7 +290,11 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </section>
 
-<footer class="site"><div class="wrap">Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade e região]<br>[PREENCHER opcional: CNPJ ou e-mail de contato; apague se não tiver]</div></footer>
+<footer class="site"><div class="wrap">
+  <p>Caio [PREENCHER sobrenome] · Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade/região]</p>
+  <p>WhatsApp [PREENCHER (DDD) 9XXXX-XXXX] · [PREENCHER e-mail] · [PREENCHER CNPJ/MEI, se tiver; senão apague]</p>
+  <details id="privacidade"><summary>Política de privacidade</summary><p>Esta página usa cookies do Google Ads para medir quantas pessoas clicam no botão de WhatsApp vindas de anúncios. Não coletamos nome, telefone ou e-mail aqui: a conversa acontece no WhatsApp, e os dados que você enviar lá são usados só para o atendimento. Para pedir a exclusão dos seus dados, fale com [PREENCHER e-mail ou WhatsApp]. Responsável: Caio [PREENCHER sobrenome].</p></details>
+</div></footer>
 
 <div class="sticky" id="sticky"><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="fixo"><svg aria-hidden="true"><use href="#wa"/></svg><span>Agendar pelo WhatsApp</span></a></div>
 
