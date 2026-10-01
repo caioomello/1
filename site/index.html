@@ -149,8 +149,8 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 }
 .step .btn svg{width:20px;height:20px}
 /* Transições entre seções (ativadas por JS só abaixo da dobra) */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 /* Chat do hero: as mensagens chegam em sequência (decorativo, só desktop) */
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 .chat .bubble{animation:pop .45s cubic-bezier(.2,.7,.2,1) both}
@@ -324,11 +324,11 @@ var V={
   if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
     var groups=[".head",".card",".mid",".step",".quote",".faq details",".final h2",".final p"],vh=innerHeight;
     var done=function(e){
-      if(e.target!==this||e.propertyName!=="transform")return;
+      if(e.target!==this||e.propertyName!=="transform"||!this.classList.contains("in"))return;
       this.classList.remove("reveal","in");this.style.transitionDelay="";
       this.removeEventListener("transitionend",done);
     };
-    var io=new IntersectionObserver(function(es){var n=0;es.forEach(function(x){if(x.isIntersecting){
+    var io=new IntersectionObserver(function(es){var n=0;es.sort(function(a,b){return a.target.compareDocumentPosition(b.target)&2?1:-1});es.forEach(function(x){if(x.isIntersecting){
       x.target.style.transitionDelay=Math.min(n++,3)*80+"ms";
       x.target.classList.add("in");io.unobserve(x.target);
     }})},{rootMargin:"0px 0px -8% 0px"});
@@ -339,6 +339,12 @@ var V={
         el.classList.add("reveal");el.addEventListener("transitionend",done);io.observe(el);
       }
     });
+    /* Salto brusco (arrastar a barra, tecla End): revela o que ficou para trás sem animar */
+    var tick=0;
+    addEventListener("scroll",function(){if(tick)return;tick=requestAnimationFrame(function(){tick=0;
+      var r=d.querySelectorAll(".reveal:not(.in)");
+      for(var i=0;i<r.length;i++)if(r[i].getBoundingClientRect().bottom<0){r[i].classList.remove("reveal");io.unobserve(r[i])}
+    })},{passive:true});
   }
 })();
 </script>
