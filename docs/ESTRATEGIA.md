@@ -1,4 +1,4 @@
-# Etapa 0: estratégia e estrutura (v2)
+# Etapa 0: estratégia e estrutura (v3, aprovada 9/10)
 
 ## Quem chega na página
 Tutor que acabou de buscar no Google algo como "adestrador de cães [cidade]", "cachorro
@@ -59,7 +59,7 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 6. **FAQ (4 perguntas):** Quanto custa? · Meu cachorro é adulto, ainda dá jeito? · Em
    quanto tempo vejo resultado? · Como são as aulas?
    A resposta sobre tempo **não promete prazo**: diz que depende do caso, que a
-   avaliação define o plano e que a evolução costuma aparecer já nas primeiras aulas.
+   avaliação define o plano e o ritmo.
 7. **CTA final:** repete a oferta. A versão padrão é neutra ("Me chame agora e receba os
    horários disponíveis desta semana"). A urgência "agenda limitada" só entra se o Caio
    confirmar que é verdade.
@@ -78,6 +78,9 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 | Método sem violência / reforço positivo | Remover o item da faixa; manter "plano individual" |
 | Suporte pelo WhatsApp entre as aulas | Remover do passo 3 |
 | "Resposta rápida no WhatsApp" | "Respondo no mesmo dia" ou remover; o horário no rodapé cobre a expectativa |
+
+**Regra de publicação:** se sobrar `[CONFIRMAR]` ou `[PREENCHER]` no código, a página
+não vai ao ar (verificação da etapa 8).
 
 ## Métricas
 - **Principal:** clique em qualquer botão de WhatsApp, registrado como conversão no
