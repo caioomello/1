@@ -42,7 +42,7 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 ## Ordem das seções
 1. **Hero:** headline (eco da busca), subtítulo com o "como" e a **região atendida**
    `[PREENCHER cidade/bairros]`, botão de WhatsApp e, logo abaixo, uma linha de
-   microconfiança ("Converse direto comigo, sem compromisso", com a foto do Caio ao lado).
+   microconfiança ("Fale direto comigo, sem compromisso", com a foto do Caio ao lado).
 2. **Faixa de confiança (logo abaixo do hero):** 3 itens curtos e verdadeiros
    (fato verificável sobre o Caio, ou "Plano individual" se não houver · aulas na sua casa
    · método sem violência). Responde "é
@@ -81,7 +81,7 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 | Aulas e avaliação na casa do cliente | "Aulas presenciais em [local]" e trocar "na sua casa" por "presencial" |
 | Método sem violência / reforço positivo | Remover o item da faixa; manter "plano individual" |
 | Suporte pelo WhatsApp entre as aulas | Remover do passo 3 |
-| É o próprio Caio quem responde o WhatsApp ("Converse direto comigo") | "Converse com a equipe do Caio, sem compromisso" e, nos compromissos, "Você conversa com a gente antes de pagar qualquer coisa" |
+| É o próprio Caio quem responde o WhatsApp ("Fale direto comigo") | "Converse com a equipe do Caio, sem compromisso" e, nos compromissos, "Você conversa com a gente antes de pagar qualquer coisa" |
 | Na avaliação o tutor sai com diagnóstico e plano | "Na avaliação, entendo a causa e explico os próximos passos" |
 | Deslocamento incluso na região atendida | "Taxa de deslocamento informada na conversa" |
 

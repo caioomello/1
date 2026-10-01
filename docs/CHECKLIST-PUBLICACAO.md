@@ -114,7 +114,9 @@ o Rocket Loader, o Zaraz e o Web Analytics.
 
 ### B5. Validar depois de publicar
 - [ ] PageSpeed Insights no celular ≥ 90 (com o gtag real).
-- [ ] Tag Assistant: a conversão dispara nos 5 botões (hero, meio, passos, final, fixo).
+- [ ] Tag Assistant: a conversão dispara nos 5 botões: hero, passos e final (em qualquer
+      tela), "meio" (só no computador, logo abaixo dos cartões de problema) e "fixo" (aparece
+      depois de rolar além do primeiro botão).
 - [ ] O Google Ads mostra a conversão como "Registrando conversões" em 24–48 h.
 - [ ] Abrir cada `?p=` no celular e conferir o título e a mensagem pronta do WhatsApp.
 - [ ] Mandar o link num chat do WhatsApp e conferir a prévia (`og.jpg`).

@@ -21,7 +21,7 @@ no fim do `site/index.html`: se mudar algo aqui, mude lá também.
 - `[PREENCHER]`: cidade, bairros/região, valor da avaliação, horário de atendimento e
   um fato verificável sobre o Caio (anos de experiência, nº de cães atendidos ou formação).
 - A confirmar com o Caio: a avaliação abate do pacote? Se sim, dizer isso no FAQ de preço.
-- `<!-- [CONFIRMAR] -->`: aulas em casa, sem violência, suporte entre aulas e resposta
-  rápida, "você sai com o diagnóstico e o plano" (alternativas na tabela da
-  ESTRATEGIA.md).
+- `<!-- [CONFIRMAR] -->`: aulas em casa, método sem violência, suporte entre aulas, se é o Caio quem
+  responde o WhatsApp, deslocamento incluso e "você sai com o diagnóstico e o plano"
+  (alternativas na tabela da ESTRATEGIA.md).
 - Depoimentos: só reais. Sem eles, a seção sai inteira.
