@@ -74,7 +74,6 @@ section{padding:56px 0}
 .card:hover{border-color:#c4d4ee}
 .card .ico{margin-bottom:14px}
 .card p{color:var(--ink-2);margin-top:6px;font-size:.98rem}
-.card.hl{border-color:var(--blue-600);box-shadow:0 0 0 3px var(--blue-100)}
 .safe{display:block;margin-top:10px;font-size:.88rem;color:var(--blue-800);font-weight:600}
 
 /* Passos */
@@ -133,10 +132,24 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   .card .ico{margin:0;grid-row:span 3}
 }
 @media (max-width:359px){.hero .btn svg,.final .btn svg{display:none}.hero .btn,.final .btn{white-space:normal}}
+/* Botão fixo */
+.sticky{position:fixed;z-index:50;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(10,35,80,.08);transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility .3s}
+.sticky.show{transform:none;visibility:visible}
+.sticky .btn{width:100%;white-space:nowrap}
+.card.hl{border-color:var(--blue-600);box-shadow:0 0 0 3px var(--blue-100)}
+@media (max-width:759px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
+@media (min-width:760px){
+  .sticky{left:auto;right:24px;bottom:24px;padding:0;background:none;border:0;box-shadow:none;transform:translateY(160%)}
+  .sticky .btn{width:60px;height:60px;min-height:0;padding:0;border-radius:50%}
+  .sticky .btn svg{width:30px;height:30px}
+  .sticky .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+}
+.step .btn svg{width:20px;height:20px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol></svg>
 
 <header class="hero">
   <div class="wrap">
@@ -146,8 +159,8 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
         <span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Atendo em [PREENCHER bairros/região]</span>
         <h1 id="h1">Adestrador de cães em [PREENCHER cidade], direto na sua casa</h1>
         <p class="lead" id="lead">Avalio seu cachorro em casa, monto um plano só para ele e acompanho cada aula. Xixi fora do lugar, cachorro que não fica sozinho, puxão no passeio e agressividade.</p>
-        <a class="btn" href="#">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        <a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="hero">
+          <svg aria-hidden="true"><use href="#wa"/></svg>
           Agendar pelo WhatsApp
         </a>
         <p class="note"><!-- [CONFIRMAR] resposta rápida -->Resposta rápida · Sem compromisso</p>
@@ -187,7 +200,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   <div class="wrap">
     <div class="head"><span class="eyebrow">Como funciona</span><h2>Começar é simples</h2></div>
     <ol class="steps">
-      <li class="step"><h3>Me chame no WhatsApp</h3><p>Conte o que está acontecendo e tire suas dúvidas, sem compromisso.</p><a class="btn" href="#">Chamar no WhatsApp</a></li>
+      <li class="step"><h3>Me chame no WhatsApp</h3><p>Conte o que está acontecendo e tire suas dúvidas, sem compromisso.</p><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="passos"><svg aria-hidden="true"><use href="#wa"/></svg>Chamar no WhatsApp</a></li>
       <li class="step"><h3>Avaliação na sua casa</h3><p><!-- [CONFIRMAR] em casa -->Observo seu cachorro no ambiente dele e entendo o que causa o problema. A avaliação é individual e paga, e você sai com o plano pronto.</p></li>
       <li class="step"><h3>Plano e acompanhamento</h3><p><!-- [CONFIRMAR] suporte entre aulas -->Aulas na sua casa ou no passeio, 1 ou 2 vezes por semana. Você participa e tem suporte pelo WhatsApp entre elas.</p></li>
     </ol>
@@ -217,16 +230,75 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </section>
 
-<section class="final">
+<section class="final" id="final">
   <div class="wrap">
     <h2>Vamos entender o que está acontecendo com o seu cachorro?</h2>
     <p>Me chame agora e receba os horários disponíveis desta semana.</p>
-    <a class="btn" href="#">Agendar pelo WhatsApp</a>
+    <a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="final"><svg aria-hidden="true"><use href="#wa"/></svg>Agendar pelo WhatsApp</a>
     <p class="note">Atendimento pelo WhatsApp · [PREENCHER horário]</p>
   </div>
 </section>
 
 <footer class="site"><div class="wrap">Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade e região]</div></footer>
 
+<div class="sticky" id="sticky"><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="fixo" aria-label="Agendar pelo WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg><span>Agendar pelo WhatsApp</span></a></div>
+
+<script>
+/* ===== CONFIGURAÇÃO: preencha antes de publicar ===== */
+var CONFIG={
+  whatsapp:"5500000000000",           /* [PREENCHER] 55 + DDD + número, só dígitos (troque também nos href, com localizar/substituir) */
+  adsId:"AW-XXXXXXXXXX",            /* [PREENCHER] ID de conversão do Google Ads */
+  adsLabel:"XXXXXXXXXXXXXXXXXXXX"   /* [PREENCHER] rótulo da ação de conversão "Clique no WhatsApp" */
+};
+/* Variações por anúncio: ?p=xixi | separacao | passeio | agressividade */
+var V={
+  xixi:["Xixi e cocô fora do lugar? Ensino o lugar certo, sem bronca","Treino na sua casa, com um plano para a rotina da família. Para filhotes e para adultos que nunca aprenderam.","Olá, Caio! Vim pelo site. Meu cachorro faz xixi ou cocô fora do lugar e quero agendar uma avaliação."],
+  separacao:["Cachorro que chora quando fica sozinho? Plano individual na sua casa","Avalio o caso na sua casa e monto um plano para ele aprender a ficar sozinho, no ritmo dele.","Olá, Caio! Vim pelo site. Meu cachorro sofre quando fica sozinho e quero agendar uma avaliação."],
+  passeio:["Cachorro puxa a guia ou late para outros cães? Ensino a passear com calma","Aulas no seu passeio, onde o problema acontece, com um plano feito para o seu cachorro.","Olá, Caio! Vim pelo site. Meu cachorro puxa a guia e reage no passeio, e quero agendar uma avaliação."],
+  agressividade:["Cachorro que rosna ou morde? Comece por uma avaliação de risco","Avaliação na sua casa e um plano individual, sem violência, para trazer segurança à família e ao cachorro.","Olá, Caio! Vim pelo site. Meu cachorro rosna ou morde e quero agendar uma avaliação."]
+};
+(function(){
+  var d=document,p=(new URLSearchParams(location.search).get("p")||"").toLowerCase(),v=V[p];
+  if(!v)p="geral";
+  var msg=v?v[2]:"Olá, Caio! Vim pelo site e quero agendar uma avaliação para o meu cachorro.";
+  if(v){
+    d.getElementById("h1").textContent=v[0];
+    d.getElementById("lead").textContent=v[1];
+    var card=d.querySelector('.card[data-p="'+p+'"]');
+    if(card){card.classList.add("hl");card.parentNode.insertBefore(card,card.parentNode.firstChild)}
+  }
+  d.getElementById("chat-me").textContent=msg;
+  var links=d.querySelectorAll("[data-wa]"),url="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg);
+  for(var i=0;i<links.length;i++)links[i].href=url;
+
+  /* Google Ads: carrega o gtag só depois da página pronta e só se o ID foi preenchido */
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  var ads=CONFIG.adsId.indexOf("X")<0;
+  if(ads){
+    gtag("js",new Date());gtag("config",CONFIG.adsId);
+    addEventListener("load",function(){var s=d.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id="+CONFIG.adsId;d.head.appendChild(s)});
+  }
+  d.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("[data-wa]");if(!a)return;
+    var pos=a.getAttribute("data-wa");
+    gtag("event","clique_whatsapp",{posicao:pos,problema:p,transport_type:"beacon"});
+    if(ads)gtag("event","conversion",{send_to:CONFIG.adsId+"/"+CONFIG.adsLabel,transport_type:"beacon"});
+  });
+
+  /* Botão fixo: aparece quando o botão do hero sai da tela e some no CTA final */
+  var st=d.getElementById("sticky");
+  if("IntersectionObserver" in window){
+    var heroOut=false,finalIn=false,first=true;
+    var upd=function(){st.classList.toggle("show",heroOut&&!finalIn)};
+    new IntersectionObserver(function(es){es.forEach(function(x){
+      if(x.target.id==="final")finalIn=x.isIntersecting;
+      else heroOut=!x.isIntersecting&&x.boundingClientRect.top<0;
+    });upd()}).observe(d.querySelector('[data-wa="hero"]'));
+    var io2=new IntersectionObserver(function(es){finalIn=es[0].isIntersecting;upd()});
+    io2.observe(d.getElementById("final"));
+  }
+})();
+</script>
 </body>
 </html>
