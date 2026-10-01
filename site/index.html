@@ -148,7 +148,15 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   .sticky .btn{width:auto;min-height:52px;padding:10px 22px;font-size:1rem;box-shadow:0 10px 28px rgba(10,35,80,.22)}
 }
 .step .btn svg{width:20px;height:20px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+/* Transições entre seções (ativadas por JS só abaixo da dobra) */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* Chat do hero: as mensagens chegam em sequência (decorativo, só desktop) */
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.chat .bubble{animation:pop .45s cubic-bezier(.2,.7,.2,1) both}
+.chat .bubble.me{animation-delay:.35s}
+.chat .bubble.him{animation-delay:1.3s}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -310,6 +318,20 @@ var V={
     var upd=function(){st.classList.toggle("show",heroOut&&!finalIn)};
     new IntersectionObserver(function(es){var x=es[0];heroOut=!x.isIntersecting&&x.boundingClientRect.top<0;upd()}).observe(d.querySelector('[data-wa="hero"]'));
     new IntersectionObserver(function(es){finalIn=es[0].isIntersecting;upd()}).observe(d.querySelector('[data-wa="final"]'));
+  }
+  /* Transições: elementos abaixo da dobra entram suavemente ao rolar; o que já está na tela não anima */
+  if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var groups=[".head",".card",".mid",".step",".quote",".faq details",".final h2",".final p",".final .btn"],vh=innerHeight;
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{rootMargin:"0px 0px -8% 0px"});
+    groups.forEach(function(sel){
+      var els=d.querySelectorAll(sel);
+      for(var i=0;i<els.length;i++){var el=els[i];
+        if(el.getBoundingClientRect().top<vh)continue;
+        el.classList.add("reveal");
+        if(sel!==".head"&&sel!==".mid")el.style.transitionDelay=(i%4)*90+"ms";
+        io.observe(el);
+      }
+    });
   }
 })();
 </script>
