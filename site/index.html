@@ -7,6 +7,17 @@
 <title>Adestrador de cães em [PREENCHER cidade] | Aulas em casa | Caio Adestra</title>
 <meta name="description" content="Adestramento e comportamento canino na sua casa: xixi fora do lugar, ansiedade de separação, passeio e agressividade. Agende sua avaliação pelo WhatsApp.">
 <meta name="theme-color" content="#0b3b8c">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://[PREENCHER dominio]/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%231450c8'/><g fill='white' transform='translate(3 3) scale(.75)'><ellipse cx='6' cy='9.5' rx='2' ry='2.6'/><ellipse cx='10' cy='5.5' rx='2' ry='2.6'/><ellipse cx='14' cy='5.5' rx='2' ry='2.6'/><ellipse cx='18' cy='9.5' rx='2' ry='2.6'/><path d='M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z'/></g></svg>">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Caio Adestra">
+<meta property="og:title" content="Adestrador de cães em [PREENCHER cidade], direto na sua casa">
+<meta property="og:description" content="Avaliação individual e plano feito para o seu cachorro: xixi fora do lugar, ansiedade de separação, passeio e agressividade.">
+<meta property="og:url" content="https://[PREENCHER dominio]/">
+<!-- opcional: <meta property="og:image" content="https://[dominio]/caio-og.jpg"> (1200x630, aparece ao compartilhar no WhatsApp) -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Caio Adestra","description":"Adestramento e comportamento canino na casa do cliente: avaliação individual e plano de aulas.","url":"https://[PREENCHER dominio]/","telephone":"+[PREENCHER 55DDDNUMERO]","areaServed":"[PREENCHER cidade/região]","address":{"@type":"PostalAddress","addressLocality":"[PREENCHER cidade]","addressRegion":"[PREENCHER UF]","addressCountry":"BR"},"founder":{"@type":"Person","name":"Caio [PREENCHER sobrenome]"},"knowsLanguage":"pt-BR"}</script>
 <style>
 :root{
   --blue-900:#0a2350;--blue-800:#0b3b8c;--blue-700:#1450c8;--blue-600:#1d64e6;
@@ -207,6 +218,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </header>
 
+<main>
 <div class="trust">
   <div class="wrap">
     <ul>
@@ -290,6 +302,8 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </section>
 
+</main>
+
 <footer class="site"><div class="wrap">
   <p>Caio [PREENCHER sobrenome] · Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade/região]</p>
   <p>WhatsApp [PREENCHER (DDD) 9XXXX-XXXX] · [PREENCHER e-mail] · [PREENCHER CNPJ/MEI, se tiver; senão apague]</p>
@@ -370,17 +384,18 @@ var V={
       this.classList.remove("reveal","in");this.style.transitionDelay="";
       this.removeEventListener("transitionend",done);
     };
-    var io=new IntersectionObserver(function(es){var n=0;es.sort(function(a,b){return a.target.compareDocumentPosition(b.target)&2?1:-1});es.forEach(function(x){if(x.isIntersecting){
-      x.target.style.transitionDelay=Math.min(n++,3)*80+"ms";
-      x.target.classList.add("in");io.unobserve(x.target);
-    }})},{rootMargin:"0px 0px -8% 0px"});
-    groups.forEach(function(sel){
-      var els=d.querySelectorAll(sel);
-      for(var i=0;i<els.length;i++){var el=els[i];
-        if(el.getBoundingClientRect().top<vh)continue;
-        el.classList.add("reveal");el.addEventListener("transitionend",done);io.observe(el);
+    /* 1ª chamada do observer: o que já está na tela (ou acima) fica como está; o resto é escondido para entrar depois.
+       Usa as medidas do próprio observer, sem forçar layout no carregamento. */
+    var io=new IntersectionObserver(function(es){var n=0;es.sort(function(a,b){return a.target.compareDocumentPosition(b.target)&2?1:-1});es.forEach(function(x){
+      var el=x.target;
+      if(!el._rv){el._rv=1;
+        if(x.boundingClientRect.top<vh)io.unobserve(el);
+        else{el.classList.add("reveal");el.addEventListener("transitionend",done)}
+        return;
       }
-    });
+      if(x.isIntersecting){el.style.transitionDelay=Math.min(n++,3)*80+"ms";el.classList.add("in");io.unobserve(el)}
+    })},{rootMargin:"0px 0px -8% 0px"});
+    groups.forEach(function(sel){var els=d.querySelectorAll(sel);for(var i=0;i<els.length;i++)io.observe(els[i])});
     /* Salto brusco (arrastar a barra, tecla End): revela o que ficou para trás sem animar */
     var tick=0,onScroll=function(){if(tick)return;tick=requestAnimationFrame(function(){tick=0;
       var r=d.querySelectorAll(".reveal:not(.in)");
