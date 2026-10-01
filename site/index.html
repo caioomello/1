@@ -86,6 +86,19 @@ section{padding:56px 0}
 .step p{color:var(--ink-2);margin-top:6px}
 .step .btn{margin-top:16px;min-height:48px;font-size:1rem;padding:0 20px}
 
+/* Quem vai atender */
+.about{display:grid;gap:20px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);margin-bottom:16px}
+.about h3{margin-bottom:8px}
+.about p{color:var(--ink-2)}
+.avatar{width:96px;height:96px;border-radius:50%;background:var(--blue-100);color:var(--blue-700);display:grid;place-items:center;overflow:hidden;flex:none}
+.avatar svg{width:44px;height:44px}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.checks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:.97rem}
+.checks svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--wa)}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--blue-800);background:var(--blue-100);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+@media (min-width:760px){.about{grid-template-columns:96px 1fr;gap:28px;padding:32px}}
+
 /* Depoimentos */
 .quotes{display:grid;gap:16px}
 .quote{margin:0;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px}
@@ -220,13 +233,27 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </section>
 
-<!-- Depoimentos: só publicar com depoimentos REAIS. Sem eles, apague esta seção inteira. -->
-<section id="depoimentos">
+<!-- Confiança: "Quem vai atender" + depoimentos.
+     Depoimentos: só REAIS (com autorização do tutor). Sem eles, apague o bloco .quotes inteiro.
+     Foto: troque o ícone por <img src="caio.webp" width="96" height="96" alt="Caio com um cachorro" loading="lazy" decoding="async"> (foto quadrada, até ~20 KB). -->
+<section id="confianca">
   <div class="wrap">
-    <div class="head"><span class="eyebrow">Quem já passou por aqui</span><h2>O que dizem os tutores</h2></div>
+    <div class="head"><span class="eyebrow">Quem vai até a sua casa</span><h2>Você sabe com quem está falando</h2></div>
+    <div class="about">
+      <div class="avatar"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></div>
+      <div>
+        <h3>Caio · adestrador e especialista em comportamento canino</h3>
+        <p>[PREENCHER 1–2 frases reais: formação, anos de experiência, quantos cães já atendeu e por que trabalha sem violência.]</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você conversa comigo antes de pagar qualquer coisa</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Explico o plano e o valor antes de começar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Você aprende junto e sabe o que treinar entre as aulas</li>
+        </ul>
+      </div>
+    </div>
     <div class="quotes">
-      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cão]</footer></blockquote>
-      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cão]</footer></blockquote>
+      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><span class="tag">[PREENCHER caso: ex. Xixi fora do lugar]</span><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cachorro]</footer></blockquote>
+      <blockquote class="quote"><div class="stars" aria-label="5 estrelas">★★★★★</div><span class="tag">[PREENCHER caso: ex. Passeio]</span><p>[PREENCHER depoimento real]</p><footer><b>[Nome]</b> · tutor(a) do [nome do cachorro]</footer></blockquote>
     </div>
   </div>
 </section>
@@ -252,7 +279,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   </div>
 </section>
 
-<footer class="site"><div class="wrap">Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade e região]</div></footer>
+<footer class="site"><div class="wrap">Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade e região]<br>[PREENCHER opcional: CNPJ ou e-mail de contato; apague se não tiver]</div></footer>
 
 <div class="sticky" id="sticky"><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="fixo"><svg aria-hidden="true"><use href="#wa"/></svg><span>Agendar pelo WhatsApp</span></a></div>
 
@@ -322,7 +349,7 @@ var V={
   }
   /* Transições: elementos abaixo da dobra entram suavemente ao rolar; o que já está na tela não anima */
   if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
-    var groups=[".head",".card",".mid",".step",".quote",".faq details",".final h2",".final p"],vh=innerHeight;
+    var groups=[".head",".card",".mid",".step",".about",".quote",".faq details",".final h2",".final p"],vh=innerHeight;
     var done=function(e){
       if(e.target!==this||e.propertyName!=="transform"||!this.classList.contains("in"))return;
       this.classList.remove("reveal","in");this.style.transitionDelay="";
@@ -340,11 +367,12 @@ var V={
       }
     });
     /* Salto brusco (arrastar a barra, tecla End): revela o que ficou para trás sem animar */
-    var tick=0;
-    addEventListener("scroll",function(){if(tick)return;tick=requestAnimationFrame(function(){tick=0;
+    var tick=0,onScroll=function(){if(tick)return;tick=requestAnimationFrame(function(){tick=0;
       var r=d.querySelectorAll(".reveal:not(.in)");
+      if(!r.length&&!d.querySelector(".reveal"))return removeEventListener("scroll",onScroll);
       for(var i=0;i<r.length;i++)if(r[i].getBoundingClientRect().bottom<0){r[i].classList.remove("reveal");io.unobserve(r[i])}
-    })},{passive:true});
+    })};
+    addEventListener("scroll",onScroll,{passive:true});
   }
 })();
 </script>
