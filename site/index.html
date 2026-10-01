@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <title>Adestrador de cães em [PREENCHER cidade] | Aulas em casa | Caio Adestra</title>
 <meta name="description" content="Adestramento e comportamento canino na sua casa: xixi fora do lugar, ansiedade de separação, passeio e agressividade. Agende sua avaliação pelo WhatsApp.">
 <meta name="theme-color" content="#0b3b8c">
@@ -74,6 +75,8 @@ section{padding:56px 0}
 .card:hover{border-color:#c4d4ee}
 .card .ico{margin-bottom:14px}
 .card p{color:var(--ink-2);margin-top:6px;font-size:.98rem}
+.mid{text-align:center;margin-top:28px;font-weight:600;color:var(--ink-2)}
+.mid a{color:var(--blue-700);text-underline-offset:3px}
 .safe{display:block;margin-top:10px;font-size:.88rem;color:var(--blue-800);font-weight:600}
 
 /* Passos */
@@ -140,9 +143,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 @media (max-width:759px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
 @media (min-width:760px){
   .sticky{left:auto;right:24px;bottom:24px;padding:0;background:none;border:0;box-shadow:none;transform:translateY(160%)}
-  .sticky .btn{width:60px;height:60px;min-height:0;padding:0;border-radius:50%}
-  .sticky .btn svg{width:30px;height:30px}
-  .sticky .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sticky .btn{width:auto;min-height:52px;padding:10px 22px;font-size:1rem;box-shadow:0 10px 28px rgba(10,35,80,.22)}
 }
 .step .btn svg{width:20px;height:20px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
@@ -193,6 +194,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
       <article class="card" data-p="passeio"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="3"/><path d="M8.5 16 20 4"/><path d="M16 4h4v4"/></svg></span><h3>Puxa a guia e reage no passeio</h3><p>Passeio virou cabo de guerra? Trabalho para ele andar ao seu lado e manter a calma perto de outros cães.</p></article>
       <article class="card" data-p="agressividade"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6z"/></svg></span><h3>Rosna, morde ou é agressivo</h3><p>Quando chega visita, quando a criança chega perto ou quando passa outro cão?</p><span class="safe">Avalio o risco antes de começar, para proteger a família e o cachorro.</span></article>
     </div>
+    <p class="mid">É o caso do seu cachorro? <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="meio">Chamar no WhatsApp</a></p>
   </div>
 </section>
 
@@ -241,14 +243,16 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
 
 <footer class="site"><div class="wrap">Caio Adestra · Adestramento e comportamento canino · [PREENCHER cidade e região]</div></footer>
 
-<div class="sticky" id="sticky"><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="fixo" aria-label="Agendar pelo WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg><span>Agendar pelo WhatsApp</span></a></div>
+<div class="sticky" id="sticky"><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="fixo"><svg aria-hidden="true"><use href="#wa"/></svg><span>Agendar pelo WhatsApp</span></a></div>
 
 <script>
-/* ===== CONFIGURAÇÃO: preencha antes de publicar ===== */
+/* ===== CONFIGURAÇÃO: preencha antes de publicar =====
+   WhatsApp [PREENCHER]: localize e substitua 5500000000000 em TODO o arquivo
+   (55 + DDD + número, só dígitos). Os links são a fonte única do número. */
 var CONFIG={
-  whatsapp:"5500000000000",           /* [PREENCHER] 55 + DDD + número, só dígitos (troque também nos href, com localizar/substituir) */
-  adsId:"AW-XXXXXXXXXX",            /* [PREENCHER] ID de conversão do Google Ads */
-  adsLabel:"XXXXXXXXXXXXXXXXXXXX"   /* [PREENCHER] rótulo da ação de conversão "Clique no WhatsApp" */
+  adsId:"AW-XXXXXXXXXX",           /* [PREENCHER] ID de conversão do Google Ads */
+  adsLabel:"XXXXXXXXXXXXXXXXXXXX", /* [PREENCHER] rótulo da conversão "Clique no WhatsApp" */
+  gaId:""                          /* opcional: ID do GA4 (G-XXXXXXX) para relatório por botão/variação */
 };
 /* Variações por anúncio: ?p=xixi | separacao | passeio | agressividade */
 var V={
@@ -258,45 +262,52 @@ var V={
   agressividade:["Cachorro que rosna ou morde? Comece por uma avaliação de risco","Avaliação na sua casa e um plano individual, sem violência, para trazer segurança à família e ao cachorro.","Olá, Caio! Vim pelo site. Meu cachorro rosna ou morde e quero agendar uma avaliação."]
 };
 (function(){
-  var d=document,p=(new URLSearchParams(location.search).get("p")||"").toLowerCase(),v=V[p];
+  var d=document,raw=new URLSearchParams(location.search).get("p")||"";
+  var p=raw.trim().toLowerCase();
+  if(p.normalize)p=p.normalize("NFD").replace(/[̀-ͯ]/g,"");
+  var v=Object.prototype.hasOwnProperty.call(V,p)?V[p]:null;
   if(!v)p="geral";
-  var msg=v?v[2]:"Olá, Caio! Vim pelo site e quero agendar uma avaliação para o meu cachorro.";
+  var links=d.querySelectorAll("[data-wa]");
+  var num=(links[0].getAttribute("href").match(/wa\.me\/(\d+)/)||[])[1];
   if(v){
     d.getElementById("h1").textContent=v[0];
     d.getElementById("lead").textContent=v[1];
+    d.getElementById("chat-me").textContent=v[2];
     var card=d.querySelector('.card[data-p="'+p+'"]');
     if(card){card.classList.add("hl");card.parentNode.insertBefore(card,card.parentNode.firstChild)}
+    var url="https://wa.me/"+num+"?text="+encodeURIComponent(v[2]);
+    for(var i=0;i<links.length;i++)links[i].href=url;
   }
-  d.getElementById("chat-me").textContent=msg;
-  var links=d.querySelectorAll("[data-wa]"),url="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg);
-  for(var i=0;i<links.length;i++)links[i].href=url;
 
-  /* Google Ads: carrega o gtag só depois da página pronta e só se o ID foi preenchido */
+  /* Google Ads (+ GA4 opcional): só carrega com IDs válidos; async, sem bloquear a página */
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments)};
-  var ads=CONFIG.adsId.indexOf("X")<0;
-  if(ads){
-    gtag("js",new Date());gtag("config",CONFIG.adsId);
-    addEventListener("load",function(){var s=d.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id="+CONFIG.adsId;d.head.appendChild(s)});
+  var ads=/^AW-\d+$/.test(CONFIG.adsId)&&!!CONFIG.adsLabel&&!/^X+$/.test(CONFIG.adsLabel);
+  var ga=/^G-[A-Z0-9]+$/.test(CONFIG.gaId);
+  if(ads||ga){
+    gtag("js",new Date());
+    if(ads)gtag("config",CONFIG.adsId);
+    if(ga)gtag("config",CONFIG.gaId);
+    var s=d.createElement("script");s.async=true;
+    s.src="https://www.googletagmanager.com/gtag/js?id="+(ads?CONFIG.adsId:CONFIG.gaId);
+    d.head.appendChild(s);
   }
-  d.addEventListener("click",function(e){
+  function track(e){
     var a=e.target.closest&&e.target.closest("[data-wa]");if(!a)return;
     var pos=a.getAttribute("data-wa");
-    gtag("event","clique_whatsapp",{posicao:pos,problema:p,transport_type:"beacon"});
-    if(ads)gtag("event","conversion",{send_to:CONFIG.adsId+"/"+CONFIG.adsLabel,transport_type:"beacon"});
-  });
+    if(ads)gtag("event","conversion",{send_to:CONFIG.adsId+"/"+CONFIG.adsLabel,posicao:pos,problema:p,transport_type:"beacon"});
+    if(ga)gtag("event","clique_whatsapp",{send_to:CONFIG.gaId,posicao:pos,problema:p,p_raw:raw,transport_type:"beacon"});
+  }
+  d.addEventListener("click",track);
+  d.addEventListener("auxclick",track);
 
-  /* Botão fixo: aparece quando o botão do hero sai da tela e some no CTA final */
+  /* Botão fixo: aparece quando o botão do hero sai por cima e some quando o botão final aparece */
   var st=d.getElementById("sticky");
   if("IntersectionObserver" in window){
-    var heroOut=false,finalIn=false,first=true;
+    var heroOut=false,finalIn=false;
     var upd=function(){st.classList.toggle("show",heroOut&&!finalIn)};
-    new IntersectionObserver(function(es){es.forEach(function(x){
-      if(x.target.id==="final")finalIn=x.isIntersecting;
-      else heroOut=!x.isIntersecting&&x.boundingClientRect.top<0;
-    });upd()}).observe(d.querySelector('[data-wa="hero"]'));
-    var io2=new IntersectionObserver(function(es){finalIn=es[0].isIntersecting;upd()});
-    io2.observe(d.getElementById("final"));
+    new IntersectionObserver(function(es){var x=es[0];heroOut=!x.isIntersecting&&x.boundingClientRect.top<0;upd()}).observe(d.querySelector('[data-wa="hero"]'));
+    new IntersectionObserver(function(es){finalIn=es[0].isIntersecting;upd()}).observe(d.querySelector('[data-wa="final"]'));
   }
 })();
 </script>

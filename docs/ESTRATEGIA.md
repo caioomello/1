@@ -79,14 +79,19 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 | Suporte pelo WhatsApp entre as aulas | Remover do passo 3 |
 | "Resposta rápida no WhatsApp" | "Respondo no mesmo dia" ou remover; o horário no rodapé cobre a expectativa |
 
-**Regra de publicação:** se sobrar `[CONFIRMAR]` ou `[PREENCHER]` no código, a página
-não vai ao ar (verificação da etapa 8).
+**Regra de publicação:** se sobrar `[CONFIRMAR]`, `[PREENCHER]`, `5500000000000` ou
+`AW-XXXX` no código, a página não vai ao ar (verificação da etapa 8).
 
 ## Métricas
 - **Principal:** clique em qualquer botão de WhatsApp, registrado como conversão no
   Google Ads (gtag), com dois parâmetros no evento: `posicao` (hero, passos, fixo,
   final) e `problema` (valor do `?p=`). Serve para saber qual botão e qual variação
   convertem. O evento dispara **antes** de abrir o WhatsApp (`transport_type: 'beacon'`),
-  e o gtag é carregado com `async` depois do conteúdo, sem bloquear a renderização.
+  e o gtag é carregado com `async`, sem bloquear a renderização.
+- **Configuração no Google Ads:** criar a ação de conversão "Clique no WhatsApp" com
+  **Contagem = Uma** (um lead por clique de anúncio, mesmo que a pessoa clique em vários
+  botões). Para ver o resultado por botão e por variação, criar as **variáveis
+  personalizadas de conversão** `posicao` e `problema`, ou preencher o `gaId` (GA4) no
+  CONFIG da página.
 - **Secundária (fora da página):** clique não é lead. O lead real é a conversa iniciada,
   e o resultado é o status "Fechado" na Ficha de Leads com origem "Google Ads".
