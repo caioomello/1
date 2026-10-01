@@ -42,7 +42,7 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 ## Ordem das seções
 1. **Hero:** headline (eco da busca), subtítulo com o "como" e a **região atendida**
    `[PREENCHER cidade/bairros]`, botão de WhatsApp e, logo abaixo, uma linha de
-   microconfiança ("Converse com o Caio, sem compromisso", com a foto dele quando houver).
+   microconfiança ("Converse direto comigo, sem compromisso", com a foto do Caio ao lado).
 2. **Faixa de confiança (logo abaixo do hero):** 3 itens curtos e verdadeiros
    (fato verificável sobre o Caio, ou "Plano individual" se não houver · aulas na sua casa
    · método sem violência). Responde "é
@@ -63,7 +63,7 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
    Você atende? (O formato das aulas foi para o passo 3.)
    A resposta sobre tempo **não promete prazo**: diz que depende do caso, que a
    avaliação define o plano e o ritmo.
-7. **CTA final:** repete a oferta. A versão padrão é neutra ("Me chame agora e receba os
+7. **CTA final** (com o horário de atendimento logo abaixo do botão): repete a oferta. A versão padrão é neutra ("Me chame agora e receba os
    horários disponíveis desta semana"). A urgência "agenda limitada" só entra se o Caio
    confirmar que é verdade.
 8. **Rodapé:** nome completo · região · WhatsApp em texto · e-mail · CNPJ/MEI (se
@@ -81,7 +81,9 @@ Cada grupo de anúncios do Google Ads aponta para a sua variação.
 | Aulas e avaliação na casa do cliente | "Aulas presenciais em [local]" e trocar "na sua casa" por "presencial" |
 | Método sem violência / reforço positivo | Remover o item da faixa; manter "plano individual" |
 | Suporte pelo WhatsApp entre as aulas | Remover do passo 3 |
-| "Resposta rápida no WhatsApp" | "Respondo no mesmo dia" ou remover; o horário no rodapé cobre a expectativa |
+| É o próprio Caio quem responde o WhatsApp ("Converse direto comigo") | "Converse com a equipe do Caio, sem compromisso" e, nos compromissos, "Você conversa com a gente antes de pagar qualquer coisa" |
+| Na avaliação o tutor sai com diagnóstico e plano | "Na avaliação, entendo a causa e explico os próximos passos" |
+| Deslocamento incluso na região atendida | "Taxa de deslocamento informada na conversa" |
 
 **Regra de publicação:** se sobrar `[CONFIRMAR]`, `[PREENCHER]`, `5500000000000` ou
 `AW-XXXX` no código, a página não vai ao ar (verificação da etapa 8).

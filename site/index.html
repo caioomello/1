@@ -180,6 +180,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   .step{padding:20px 16px 20px 62px}.step::before{left:14px;top:18px}
   .card{grid-template-columns:32px 1fr;column-gap:10px;padding:16px}.card .ico{width:32px;height:32px}
   .trust ul{padding:14px}
+  .step .btn{font-size:.88rem;padding:0 12px;gap:6px}
 }
 /* Botão fixo */
 .sticky{position:fixed;z-index:50;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(255,255,255,.96);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(10,35,80,.08);transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility .3s}
@@ -198,15 +199,17 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   .sticky .btn{width:auto;min-height:52px;padding:10px 22px;font-size:1rem;box-shadow:0 10px 28px rgba(10,35,80,.22)}
 }
 .step .btn svg{width:20px;height:20px}
-.step .btn{max-width:100%}
+.step .btn{max-width:100%;white-space:nowrap;padding:0 16px;font-size:.95rem}
+@media (min-width:760px) and (max-width:959px){.step .btn svg{display:none}.step .btn{padding:0 14px;font-size:.9rem}}
+@media (max-width:759px){.mid{display:none}}
 /* Transições entre seções (ativadas por JS só abaixo da dobra) */
 .reveal{opacity:0;transform:translateY(18px)}
 .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 /* Chat do hero: as mensagens chegam em sequência (decorativo, só desktop) */
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 .chat .bubble{animation:pop .45s cubic-bezier(.2,.7,.2,1) both}
-.chat .bubble.me{animation-delay:.35s}
-.chat .bubble.him{animation-delay:1.3s}
+.chat .bubble.me{animation-delay:.15s}
+.chat .bubble.him{animation-delay:.7s}
 @media print{.reveal{opacity:1!important;transform:none!important;transition:none!important}.sticky{display:none!important}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
@@ -226,7 +229,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
           <svg aria-hidden="true"><use href="#wa"/></svg>
           Agendar pelo WhatsApp
         </a>
-        <p class="note"><!-- [PREENCHER] com a foto pronta, coloque antes do texto: <img class="mini" src="caio.webp" width="28" height="28" alt=""> --><!-- [CONFIRMAR] é o Caio quem responde o WhatsApp -->Converse com o Caio, sem compromisso</p>
+        <p class="note"><!-- [PREENCHER] com a foto pronta, coloque antes do texto: <img class="mini" src="caio.webp" width="28" height="28" alt=""> --><!-- [CONFIRMAR] é o Caio quem responde o WhatsApp -->Converse direto comigo, sem compromisso</p>
       </div>
       <div class="chat" aria-hidden="true">
         <div class="chat-top"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6" cy="9.5" rx="2" ry="2.6"/><ellipse cx="10" cy="5.5" rx="2" ry="2.6"/><ellipse cx="14" cy="5.5" rx="2" ry="2.6"/><ellipse cx="18" cy="9.5" rx="2" ry="2.6"/><path d="M12 11c-3 0-6 4.2-6 6.6C6 19.4 7.4 20 9 20c1.3 0 2-.6 3-.6s1.7.6 3 .6c1.6 0 3-.6 3-2.4 0-2.4-3-6.6-6-6.6z"/></svg></i><div><b>Caio Adestra</b><small>WhatsApp</small></div></div>
@@ -267,7 +270,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
     <div class="head"><span class="eyebrow">Como funciona</span><h2>Começar é simples</h2></div>
     <ol class="steps">
       <li class="step"><h3>Me chame no WhatsApp</h3><p>Conte o que está acontecendo e tire suas dúvidas, sem compromisso.</p><a class="btn" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Caio%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cachorro." target="_blank" rel="noopener" data-wa="passos"><svg aria-hidden="true"><use href="#wa"/></svg>Chamar no WhatsApp</a></li>
-      <li class="step"><h3>Avaliação na sua casa</h3><p><!-- [CONFIRMAR] em casa -->Observo seu cachorro no ambiente dele e entendo o que causa o problema. A avaliação é individual e paga, e você sai com o plano pronto.</p></li>
+      <li class="step"><h3>Avaliação na sua casa</h3><p><!-- [CONFIRMAR] em casa -->Observo seu cachorro no ambiente dele e entendo o que causa o problema. A avaliação é individual e paga, e você sai com o plano pronto.<!-- [CONFIRMAR] sai com o plano pronto --></p></li>
       <li class="step"><h3>Plano e acompanhamento</h3><p><!-- [CONFIRMAR] suporte entre aulas -->Aulas na sua casa ou no passeio, 1 ou 2 vezes por semana. Você participa e tem suporte pelo WhatsApp entre elas.</p></li>
     </ol>
   </div>
@@ -304,7 +307,7 @@ footer.site{padding:28px 0;font-size:.88rem;color:var(--ink-2);text-align:center
   <div class="wrap">
     <div class="head"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
     <div class="faq">
-      <details><summary>Quanto custa?</summary><p>A avaliação custa R$ [PREENCHER valor], é individual e feita na sua casa<!-- [CONFIRMAR] -->, com deslocamento incluso em [PREENCHER região] (fora dela, informo antes). Você sai com o diagnóstico e o plano de aulas e depois decide com calma se quer seguir (aula avulsa ou pacote de 4 aulas, 1 ou 2 vezes por semana).</p></details>
+      <details><summary>Quanto custa?</summary><p>A avaliação custa R$ [PREENCHER valor], é individual e feita na sua casa<!-- [CONFIRMAR] -->, com deslocamento incluso em [PREENCHER região] (fora dela, informo antes). Você sai com o diagnóstico e o plano de aulas<!-- [CONFIRMAR] sai com diagnóstico e plano --> e depois decide com calma se quer seguir (aula avulsa ou pacote de 4 aulas, 1 ou 2 vezes por semana).</p></details>
       <details><summary>Meu cachorro é adulto, ainda dá jeito?</summary><p>Dá, sim. Cães aprendem em qualquer idade. O que muda é o plano: ele é montado para o histórico e o temperamento do seu cachorro.</p></details>
       <details><summary>Em quanto tempo vejo resultado?</summary><p>Depende do cachorro, do problema e da rotina da casa. A avaliação define o plano e o ritmo, e você acompanha a evolução a cada aula. Não prometo prazo: cada cachorro tem o seu tempo.</p></details>
       <details><summary>Meu cachorro já mordeu alguém. Você atende?</summary><p>Atendo. Primeiro faço uma avaliação de risco e combinamos os cuidados de segurança antes de qualquer treino. Cada caso é diferente e não prometo resultado.</p></details>

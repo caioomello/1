@@ -1,60 +1,121 @@
-# Checklist para publicar a landing page
+# Checklist para colocar a página no ar
 
-O script `site/publicar.sh` **se recusa a gerar a versão final** enquanto sobrar
-`[PREENCHER]`, `[CONFIRMAR]`, o número `5500000000000`, `AW-XXXX` ou o rótulo `XXXX…` no
-código. Siga a lista abaixo e rode o script no final.
+São duas partes: **A** é para o Caio responder (sem nada técnico) e **B** é para quem vai
+publicar.
 
-## 1. Dados para enviar (ou preencher em `site/index.html`)
-| O quê | Onde aparece |
+---
+
+## Parte A: perguntas para o Caio
+
+Responda e envie para quem vai publicar. Tudo o que você escrever aparece na página,
+então **só coloque informação verdadeira**.
+
+### Dados do negócio
+1. Número do WhatsApp de atendimento (com DDD): ______________________
+2. Cidade e estado: ______________________
+3. Bairros ou região que você atende: ______________________
+4. Seu sobrenome (aparece em "Prazer, eu sou o Caio" e no rodapé): ______________________
+5. Valor da avaliação (R$): ______________________
+6. Horário em que você responde o WhatsApp (ex.: seg a sáb, 8h às 19h): ______________________
+7. E-mail de contato: ______________________
+8. CNPJ ou MEI (se tiver): ______________________
+9. Endereço do site que você vai comprar (ex.: caioadestra.com.br): ______________________
+
+### Sobre você
+10. Escreva 1 ou 2 frases sobre você: formação, há quanto tempo trabalha com cães, quantos
+    cães já atendeu e por que trabalha sem violência.
+    ______________________________________________________________
+11. Um fato curto e verdadeiro para o topo da página (ex.: "6 anos de experiência",
+    "Formado em comportamento canino pela X", "Nota 4,9 no Google"). Se não tiver,
+    deixe em branco. ______________________
+12. **Foto sua (obrigatória: sem foto, a página não vai ao ar).** Como fazer:
+    - de dia, com luz natural, rosto bem visível e sorrindo;
+    - de preferência com um cachorro (pode ser o seu ou de um cliente, com autorização);
+    - foto na vertical ou quadrada, sem filtro, com fundo simples;
+    - mande o arquivo original pelo WhatsApp **como documento**, para não perder qualidade.
+
+### Depoimentos (opcional, mas ajuda muito)
+13. Até 2 depoimentos **reais** de clientes, com autorização deles por escrito (guarde
+    o print). Para cada um, informe:
+    - primeiro nome e inicial do sobrenome;
+    - nome do cachorro;
+    - bairro;
+    - qual era o problema;
+    - o texto;
+    - onde a pessoa escreveu (Google ou WhatsApp).
+    Evite depoimentos com prazo ("resolveu em 1 semana"). Sem depoimentos, a seção é
+    retirada da página.
+14. Você tem perfil no Google (Perfil da Empresa) com avaliações? Se sim, informe a nota,
+    o número de avaliações e o link. E o seu Instagram? ______________________
+
+### Confirme (responda sim ou não)
+| Pergunta | Sim/Não |
 |---|---|
-| **Número do WhatsApp** (55 + DDD + número) | Localize e substitua `5500000000000` em todo o arquivo. Coloque também no rodapé em formato legível e no JSON-LD (`telephone`). |
-| **Cidade, UF e bairros/região atendidos** | Título, descrição, h1, selo "Atendo em", FAQ (deslocamento), rodapé e JSON-LD |
-| **Sobrenome do Caio** | Seção "Prazer, eu sou o Caio", rodapé, privacidade e JSON-LD |
-| **Foto do Caio** (quadrada, rosto visível, de preferência com um cachorro). Salve como `site/caio.webp` com 224x224 e até ~20 KB | Seção "Prazer" e nota do hero (os dois trechos já estão prontos em comentário) |
-| **1 fato verificável** (anos de experiência, formação ou nota no Google) | 1º item da faixa de confiança. Se não houver, use "Plano individual para o seu cachorro". |
-| **Bio curta** (1 ou 2 frases reais) | Seção "Prazer" |
-| **Valor da avaliação** | FAQ "Quanto custa?" e JSON-LD (`priceRange`) |
-| **Horário de atendimento no WhatsApp** | Abaixo do CTA final e no JSON-LD |
-| **E-mail** e **CNPJ/MEI** (se tiver) | Rodapé e privacidade |
-| **Depoimentos reais** (com autorização) | Seção "Prazer": nome + inicial, nome do cachorro, bairro, caso e origem. **Sem depoimentos, apague o bloco `.quotes`.** |
-| **Nota no Google / links do Perfil da Empresa e do Instagram** (se tiver) | Linha abaixo dos depoimentos e JSON-LD (`sameAs`). Se não tiver, apague. |
-| **Domínio** (ex.: caioadestra.com.br) | canonical, og:url, og:image, JSON-LD, robots.txt e sitemap.xml |
-| **ID e rótulo de conversão do Google Ads** | Bloco `CONFIG` no fim do arquivo |
+| As aulas e a avaliação são feitas na casa do cliente? | |
+| O seu método é sem violência (sem enforcador, choque ou punição)? | |
+| O cliente tem suporte pelo WhatsApp entre as aulas? | |
+| É você mesmo quem responde o WhatsApp? | |
+| O deslocamento está incluso na região que você atende? | |
+| Na avaliação, o cliente sai com o diagnóstico e o plano de aulas? | |
+| Você tem formação ou curso em comportamento canino? (qual?) | |
+| O valor da avaliação é descontado se o cliente fechar o pacote? | |
 
-## 2. Afirmações para confirmar (apague o comentário `[CONFIRMAR]` depois)
-Se alguma for falsa, use a alternativa da tabela em `docs/ESTRATEGIA.md`.
-- As aulas e a avaliação são **na casa do cliente**?
-- O método é **sem violência**?
-- Há **suporte pelo WhatsApp entre as aulas**?
-- É o **próprio Caio** quem responde o WhatsApp?
-- O **deslocamento está incluso** na região atendida?
-- O tutor **sai da avaliação com o diagnóstico e o plano**?
-- Existe formação que justifique "especialista em comportamento canino"?
-- A avaliação **abate do pacote**? Se sim, vale dizer isso no FAQ de preço, porque é o melhor argumento contra a objeção de preço.
+Se alguma resposta for "não", o texto da página muda para uma versão verdadeira (as
+alternativas estão em `docs/ESTRATEGIA.md`).
 
-## 3. Google Ads
+---
+
+## Parte B: para quem vai publicar
+
+### B1. Pré-requisitos
+- Comprar o domínio no registro.br (ou outro registrador).
+- Criar uma conta grátis no **Cloudflare Pages** e apontar o domínio para ela.
+- Ter **Node.js 18+** e **bash** na máquina (o script usa `npx`).
+- Ter acesso à conta do **Google Ads** do Caio.
+
+### B2. Preencher `site/index.html`
+O script `site/publicar.sh` **se recusa a publicar** enquanto sobrar `[PREENCHER]`,
+`[CONFIRMAR]`, o número `5500000000000`, `AW-XXXX`, o rótulo `XXXX…`, a foto ou
+dados estruturados inválidos.
+
+| Dado (resposta da Parte A) | Onde trocar |
+|---|---|
+| WhatsApp (A1) | Localize e substitua `5500000000000` em todo o arquivo (formato 55DDDNÚMERO). Coloque também no rodapé, em formato legível, e no `telephone` do JSON-LD. |
+| Cidade, UF, bairros (A2, A3) | `<title>`, description, og:title, h1, selo "Atendo em", FAQ de preço, rodapé e JSON-LD |
+| Sobrenome (A4) | Seção #confianca, rodapé, privacidade e JSON-LD (`founder`) |
+| Valor (A5) | FAQ "Quanto custa?" e `priceRange` do JSON-LD |
+| Horário (A6) | Nota abaixo do CTA final e `openingHoursSpecification` |
+| E-mail, CNPJ (A7, A8) | Rodapé e privacidade. Sem CNPJ, apague o trecho. |
+| Domínio (A9) | canonical, og:url, og:image, JSON-LD, `robots.txt` e `sitemap.xml` |
+| Bio e fato (A10, A11) | Seção #confianca e 1º item da faixa de confiança. Sem fato, use "Plano individual para o seu cachorro". |
+| Foto (A12) | Recorte quadrado de 224x224, salve como `site/caio.webp` (até ~20 KB). Ative os 2 trechos que já estão prontos em comentário: o `.avatar` e a nota do hero. |
+| Depoimentos (A13) | Bloco `.quotes`. Sem depoimentos, apague o bloco inteiro. |
+| Google e Instagram (A14) | Linha `.rating` e `sameAs` do JSON-LD. Sem eles, apague (cuidado com a vírgula no JSON). |
+| Confirmações | Para cada "sim", apague o comentário `[CONFIRMAR]`; para cada "não", use a alternativa de `docs/ESTRATEGIA.md`. Inclua também o `[CONFIRMAR]` da política de privacidade: se o `gaId` (GA4) for preenchido, o texto passa a citar o Google Analytics. Se a avaliação for descontada do pacote, acrescente isso no FAQ de preço. |
+
+### B3. Google Ads
 1. Crie a ação de conversão **"Clique no WhatsApp"** (Site → manual), com **Contagem = Uma**.
-2. Copie o ID (`AW-…`) e o rótulo para o `CONFIG`.
+2. Copie o ID (`AW-…`) e o rótulo para o bloco `CONFIG`, no fim do `index.html`.
 3. Crie as variáveis personalizadas de conversão `posicao` e `problema`, ou preencha o
    `gaId` do GA4, para saber qual botão e qual anúncio convertem.
 4. Aponte cada grupo de anúncios para a variação certa:
-   - `https://seudominio/?p=xixi`
+   - `https://dominio/?p=xixi`
    - `?p=separacao`
    - `?p=passeio`
    - `?p=agressividade`
    - sem parâmetro para o grupo genérico ("adestrador de cães")
 
-## 4. Publicar
+### B4. Gerar e subir
 ```bash
 cd site && ./publicar.sh      # gera site/dist/
 ```
-Suba a pasta `dist/` no **Cloudflare Pages** (grátis, rápido no Brasil e lê o `_headers`).
-Ative "Always Use HTTPS" e deixe **desligados** o Rocket Loader, o Zaraz e o Web Analytics.
+Suba a pasta `dist/` no Cloudflare Pages. Ative "Always Use HTTPS" e deixe **desligados**
+o Rocket Loader, o Zaraz e o Web Analytics.
 
-## 5. Validar depois de publicar
+### B5. Validar depois de publicar
 - [ ] PageSpeed Insights no celular ≥ 90 (com o gtag real).
 - [ ] Tag Assistant: a conversão dispara nos 5 botões (hero, meio, passos, final, fixo).
 - [ ] O Google Ads mostra a conversão como "Registrando conversões" em 24–48 h.
 - [ ] Abrir cada `?p=` no celular e conferir o título e a mensagem pronta do WhatsApp.
-- [ ] Mandar o link num chat do WhatsApp e conferir a prévia (imagem `og.jpg`).
+- [ ] Mandar o link num chat do WhatsApp e conferir a prévia (`og.jpg`).
 - [ ] Com a cidade preenchida, confirmar que o botão do hero aparece sem rolar num iPhone SE.

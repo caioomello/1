@@ -2,7 +2,8 @@
 
 A versão geral (sem `?p=`) está no HTML. As variações abaixo trocam **só** o h1, o
 subtítulo, o cartão de dor em destaque (que sobe para o topo da lista) e a mensagem
-pronta do WhatsApp. Elas são ligadas por JS na Etapa 3.
+pronta do WhatsApp (e o título da aba). O texto delas fica no objeto `V`, no script
+no fim do `site/index.html`: se mudar algo aqui, mude lá também.
 
 | `?p=` | H1 | Subtítulo | Mensagem pronta no WhatsApp (também aparece no balão do chat no desktop) |
 |---|---|---|---|
