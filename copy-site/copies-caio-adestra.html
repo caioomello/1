@@ -1,0 +1,2280 @@
+<title>Copies do Site Caio Adestra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: caderno de campo; resumo e recomendação no topo, depois as 10 copies em abas (dor em cobre, desejo em verde-água), e no fim o que confirmar */
+:root{
+  --bg:#f3f1ec; --card:#fbfaf7; --ink:#1d2523; --soft:#5c6763; --line:#d9d6cc;
+  --accent:#1f6f6a; --accent-soft:#d9ebe8; --warm:#b4612a; --warm-soft:#f4e3d4;
+  --cf:#8a6a12; --cf-soft:#f6ebc6; --pr:#8a3b52; --pr-soft:#f5dde4;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a19; --card:#1b2321; --ink:#e7ece9; --soft:#9aa7a2; --line:#2c3633;
+  --accent:#5fc0b6; --accent-soft:#1d3532; --warm:#e39a62; --warm-soft:#3a2a1d;
+  --cf:#e8c766; --cf-soft:#3a3118; --pr:#ec9ab0; --pr-soft:#3c2129; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a19; --card:#1b2321; --ink:#e7ece9; --soft:#9aa7a2; --line:#2c3633;
+  --accent:#5fc0b6; --accent-soft:#1d3532; --warm:#e39a62; --warm-soft:#3a2a1d;
+  --cf:#e8c766; --cf-soft:#3a3118; --pr:#ec9ab0; --pr-soft:#3c2129; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:920px;margin:0 auto;padding-inline:16px;padding-block:2.2rem 4rem;display:flex;flex-direction:column;gap:2.6rem}
+header{display:flex;flex-direction:column;gap:.5rem;border-bottom:2px solid var(--ink);padding-bottom:1.2rem}
+.eye{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3rem);line-height:1.02;margin:0;text-wrap:balance}
+.lede{color:var(--soft);max-width:64ch;margin:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.35rem;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:1.05rem;margin:0}
+p{margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--line);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.big{font-family:var(--f-display);font-weight:800;font-size:2.2rem;line-height:1;color:var(--warm)}
+.card .small{color:var(--soft);font-size:.92rem}
+.reco{background:var(--accent-soft);border-left:4px solid var(--accent);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.reco ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem}
+.tabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:.5rem;margin-bottom:1rem}
+.tab{all:unset;cursor:pointer;display:flex;gap:.55rem;align-items:center;padding:.55rem .65rem;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:.9rem;line-height:1.25;min-width:0}
+.tab[aria-selected="true"]{border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.tab:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tid{font-family:var(--f-mono);font-size:.75rem;padding:.12rem .4rem;border-radius:3px;flex:none}
+.tid.dor,.tag.dor{background:var(--warm-soft);color:var(--warm)}
+.tid.desejo,.tag.desejo{background:var(--accent-soft);color:var(--accent)}
+.tag{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;padding:.15rem .45rem;border-radius:3px;align-self:flex-start}
+.panel{background:var(--card);border:1px solid var(--line);padding:1.2rem 1.3rem 1.5rem}
+.ph{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1rem}
+.phl{display:flex;flex-direction:column;gap:.35rem;min-width:0;flex:1 1 320px}
+.h1q{font-family:var(--f-display);font-size:1.15rem;color:var(--soft)}
+.meta{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+.meta div{display:flex;flex-direction:column;align-items:flex-start}
+.meta b{font-family:var(--f-mono);font-size:1.1rem;font-variant-numeric:tabular-nums}
+.meta span{font-size:.75rem;color:var(--soft)}
+.copy{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.78rem;padding:.45rem .75rem;border:1px solid var(--ink);color:var(--ink)}
+.copybody{max-width:68ch;min-width:0;overflow-wrap:anywhere}
+.copybody h2{font-size:1.1rem;margin:1.6rem 0 .6rem;padding-top:.9rem;border-top:1px dashed var(--line)}
+.copybody h2:first-child{margin-top:0;border-top:0;padding-top:0}
+.copybody h1{font-family:var(--f-display);font-size:1.45rem;line-height:1.15;margin:.6rem 0}
+.copybody p,.copybody ul,.copybody ol{margin:.5rem 0}
+.copybody li{margin:.2rem 0}
+.pn{font-family:var(--f-mono);font-size:.75rem;color:var(--soft);margin-right:.3rem}
+mark{padding:0 .25rem;border-radius:2px;font-family:var(--f-mono);font-size:.72em}
+mark.cf{background:var(--cf-soft);color:var(--cf)}
+mark.pr{background:var(--pr-soft);color:var(--pr)}
+.src{position:absolute;left:-9999px;width:1px;height:1px}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.88rem;color:var(--soft);margin-bottom:.8rem}
+.list{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.4rem;max-width:70ch}
+.note{color:var(--soft);font-size:.92rem;max-width:68ch}
+</style>
+<div class="wrap">
+  <header>
+    <span class="eye">Caio Adestra · gauntlet de copy · out/2026</span>
+    <h1>Copies do Site Caio Adestra</h1>
+    <p class="lede">10 versões completas do texto do site, 5 pela dor e 5 pelo desejo. Cada parte só entrou aqui depois de vencer, às cegas, um júri formado pelos clientes que fecharam com o Caio, montado a partir das conversas e dos áudios reais do WhatsApp.</p>
+  </header>
+
+  <section>
+    <h2>O que os dados dizem</h2>
+    <div class="grid">
+      <div class="card"><span class="big">5 de 8</span><p>clientes que fecharam chegaram por dor. Só 1 por desejo (a Julia, que viaja e queria levar a filhote). 2 foram mistos.</p></div>
+      <div class="card"><span class="big">~6 de 190</span><p>pedidos públicos de orçamento na região eram preventivos. Todo o resto já chegava com o problema instalado.</p></div>
+      <div class="card"><span class="big">38/100</span><p>foi a nota do revisor para a copy atual. Título genérico, preço escondido e nenhuma prova de confiança.</p></div>
+    </div>
+    <p class="note" style="margin-top:1rem">O que fecha venda nas conversas: preço e duração na mesma mensagem, data concreta (muitas vezes hoje ou amanhã), a família aprendendo junto e um método sem tranco. Ninguém discutiu o preço da avaliação. A objeção de preço só aparece no pacote.</p>
+  </section>
+
+  <section class="reco">
+    <h2 style="margin:0">Como eu testaria</h2>
+    <ol>
+      <li><b>Antes de tudo, ligue a medição.</b> No código atual a conversão do Google Ads está vazia, então hoje não dá para saber qual página gera conversa no WhatsApp.</li>
+      <li><b>Primeiro teste: D2 contra W1.</b> São as mais fortes de cada lado: as duas venceram todas as partes na última rodada.</li>
+      <li><b>Segundo teste: D4 contra W5.</b> As próximas mais fortes de cada lado, com 7 de 8 partes na última rodada.</li>
+      <li>Rode cada teste até cerca de 30 conversas por versão antes de decidir. Com poucos leads, uma diferença pequena é sorte.</li>
+    </ol>
+    <p class="note">O júri foi simulado a partir de clientes reais, mas não substitui o teste com anúncio. A aposta pelos dados é que a dor ganhe, porque é ela que faz a pessoa chamar.</p>
+  </section>
+
+  <section>
+    <h2>As 10 copies</h2>
+    <div class="legend"><span><mark class="cf">CONFIRMAR</mark> dado que o Caio precisa validar</span><span><mark class="pr">PREENCHER</mark> dado que ainda não existe</span></div>
+    <div class="tabs" role="tablist" aria-label="Copies"><button class="tab" role="tab" id="t-D1" aria-controls="p-D1" aria-selected="true" data-id="D1"><span class="tid dor">D1</span><span class="tn">Não sei mais o que fazer</span></button>
+<button class="tab" role="tab" id="t-D2" aria-controls="p-D2" aria-selected="false" data-id="D2"><span class="tid dor">D2</span><span class="tn">Antes de pensar em doar</span></button>
+<button class="tab" role="tab" id="t-D3" aria-controls="p-D3" aria-selected="false" data-id="D3"><span class="tid dor">D3</span><span class="tn">O vizinho já reclamou</span></button>
+<button class="tab" role="tab" id="t-D4" aria-controls="p-D4" aria-selected="false" data-id="D4"><span class="tid dor">D4</span><span class="tn">Já tentei de tudo</span></button>
+<button class="tab" role="tab" id="t-D5" aria-controls="p-D5" aria-selected="false" data-id="D5"><span class="tid dor">D5</span><span class="tn">Antes que alguém se machuque</span></button>
+<button class="tab" role="tab" id="t-W1" aria-controls="p-W1" aria-selected="false" data-id="W1"><span class="tid desejo">W1</span><span class="tn">O passeio que você imaginou</span></button>
+<button class="tab" role="tab" id="t-W2" aria-controls="p-W2" aria-selected="false" data-id="W2"><span class="tid desejo">W2</span><span class="tn">Comece certo com o seu filhote</span></button>
+<button class="tab" role="tab" id="t-W3" aria-controls="p-W3" aria-selected="false" data-id="W3"><span class="tid desejo">W3</span><span class="tn">Um cão que obedece a casa inteira</span></button>
+<button class="tab" role="tab" id="t-W4" aria-controls="p-W4" aria-selected="false" data-id="W4"><span class="tid desejo">W4</span><span class="tn">Sair de casa sem culpa</span></button>
+<button class="tab" role="tab" id="t-W5" aria-controls="p-W5" aria-selected="false" data-id="W5"><span class="tid desejo">W5</span><span class="tn">O cachorro que você sonhou</span></button></div>
+    <section class="panel" role="tabpanel" id="p-D1" aria-labelledby="t-D1" >
+<div class="ph"><div class="phl"><span class="tag dor">dor</span><h2>Não sei mais o que fazer</h2><p class="h1q">“Xixi pela casa toda, mordida em todo mundo, passeio que ninguém segura, e você já não sabe mais o que fazer?”</p></div>
+<div class="meta"><div><b>3</b><span>rodadas até vencer</span></div><div><b>3/8</b><span>na última rodada</span></div><button class="copy" data-src="src-D1">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador que vai até a sua casa · Salto, Itu, Indaiatuba e região (Jundiaí, Campinas, Cabreúva)</p>
+<p><strong>Título (H1):</strong> Xixi pela casa toda, mordida em todo mundo, passeio que ninguém segura, e você já não sabe mais o que fazer?</p>
+<p><strong>Subtítulo:</strong> Eu vou até a sua casa, vejo o cão e a rotina de vocês e já começo na primeira aula. Você sai dela sabendo o que fazer no dia a dia. Sem grito e sem machucar.</p>
+<p><strong>Botão:</strong> [Contar meu problema no WhatsApp]</p>
+<ul>
+<li>Primeira aula na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 60 min</li>
+<li>Manhã, tarde ou fim de semana, de segunda a segunda</li>
+<li>Quem responde e quem vai é o próprio Caio <mark class="cf">CONFIRMAR</mark></li>
+</ul>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Alguma dessas já saiu da sua boca?</strong></p>
+<p>Frases de tutores que me chamaram.</p>
+<p><strong>Dentro de casa</strong>
+- "Faz xixi e cocô pela casa toda, cada hora num canto."
+- "Mudamos pra apartamento e tô com medo de ele se perder no xixi."
+- "Morde tudo e todos. Se eu brigo, ele enfrenta e morde mais."
+- "Destrói tudo. Não dá nem pra assistir TV com ele."
+- "Eu desço um andar e ele já chora sem parar."</p>
+<p><strong>Na rua</strong>
+- "Puxa a guia que nem maluco. Minha mulher não consegue segurar."
+- "Vê outro cachorro, fica maluquinho e tá difícil de segurar o boi."</p>
+<p><strong>Com a família e os outros bichos</strong>
+- "Está batendo no cachorro menor."
+- "Na hora do remédio, franze o nariz e me ameaça."</p>
+<p>Tudo isso dá pra trabalhar na sua casa, com vocês junto, do filhote ao cão de 45 quilos. Toque na sua frase e me mande no WhatsApp.</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Como a gente começa</strong></p>
+<ol>
+<li><strong>Você me chama no WhatsApp</strong> e conta o que está acontecendo. Eu respondo com dia e horário: manhã, tarde ou fim de semana.</li>
+<li><strong>Aula de avaliação na sua casa</strong>, cerca de 60 minutos, com a família junto.</li>
+<li><strong>Aulas na sua casa</strong>, 1 ou 2 por semana. Entre uma e outra, você tira dúvida comigo pelo WhatsApp.</li>
+</ol>
+<p><strong>O que acontece na avaliação</strong>
+- Vejo a casa, a rotina e por que ele faz o que faz.
+- Já começo os exercícios com ele.
+- Deixo o que fazer no dia seguinte: horários, lugar do xixi, como reagir quando ele errar.
+- Te digo qual pacote faz sentido. Você decide depois.</p>
+<p><strong>Vida corrida?</strong> Eu monto uma rotina que cabe nela. Cão com rotina fica mais tranquilo, sabe que tem hora pra tudo.</p>
+<p><strong>Como eu ensino:</strong> petisco, brincadeira e limite com a guia. Sem grito, sem tranco, sem medo. A família aprende junto, pra ele obedecer vocês também.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Quanto custa, sem precisar pedir orçamento</strong></p>
+<p><strong>Aula de avaliação: R$ 169 <mark class="cf">CONFIRMAR</mark></strong>
+Cerca de 60 min na sua casa. Você já sai com instruções.
+[Marcar minha avaliação]</p>
+<p><strong>4 aulas, 1 por semana: R$ 636 <mark class="cf">CONFIRMAR</mark></strong>
+Pra filhote e também pra mordida e passeio difícil. Mais leve pro bolso.
+[Quero o de 4 aulas]</p>
+<p><strong>8 aulas, 2 por semana: R$ 1.272 <mark class="cf">CONFIRMAR</mark></strong>
+Pra quem tem muita coisa pra ajustar.
+[Quero o de 8 aulas]</p>
+<p>Você paga só a avaliação primeiro. O pacote a gente escolhe junto depois. Pix ou cartão de crédito, e o pacote dá pra dividir: metade no começo, metade no meio.</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Quem vai aí sou eu, o Caio</strong></p>
+<p>Moro em Salto e atendo Itu, Indaiatuba, Jundiaí, Campinas, Cabreúva e região.</p>
+<p>Minha malinois é elétrica e tem instinto de caça forte. Criei uma rotina com ela: sabe que tem hora pra tudo e fica tranquila, até com os meus gatos.</p>
+<p><mark class="pr">PREENCHER: anos de experiência e formação</mark></p>
+<p><strong>O que os tutores me disseram</strong>
+- "A gente trouxe ele no parque agora... a gente não desceu do carro até ele acalmar... na hora que ele desistiu ele deitou... Agora ele tá aqui brincando." Kaylhandra, tutora do Luke, golden reativo de 45 kg, Campinas <mark class="cf">CONFIRMAR autorização</mark>
+- "Ele não tá aprontando muito não." Felipe, tutor do Freud, filhote que mordia e chorava, Cabreúva <mark class="cf">CONFIRMAR autorização</mark>
+- "Ontem ele não fez nenhuma necessidade em casa." Lucas, tutor do Banguela, Indaiatuba <mark class="cf">CONFIRMAR autorização</mark></p>
+<p><mark class="pr">PREENCHER: nota e número de avaliações no Google</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>A avaliação é paga?</strong>
+Sim, R$ 169 <mark class="cf">CONFIRMAR</mark>, e já é aula.</p>
+<p><strong>Você é bruto? Usa tranco?</strong>
+Não. Petisco e limite com a guia, sem grito. Brigar costuma piorar: o cão para de avisar e morde direto.</p>
+<p><strong>Meu cão é grande e avança em outro cachorro. Você atende?</strong>
+Atendo, e olho os outros cães da casa também.</p>
+<p><strong>Só posso 1x por semana e preciso parcelar. Dá?</strong>
+Dá. 4 aulas, 1x por semana, em 2x no Pix ou no cartão, até em dois cartões. Tem aula avulsa também.</p>
+<p><strong>Só posso à tarde ou no fim de semana.</strong>
+Dá. Atendo de segunda a segunda.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Me conta o que ele aprontou hoje.</strong></p>
+<p>Escreve do seu jeito ou manda áudio, a qualquer hora. Eu te respondo com dia e horário. Ninguém aqui vai te julgar pelo que já tentou.</p>
+<p>[Chamar o Caio no WhatsApp]</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site e não sei mais o que fazer com meu cachorro. Ele se chama <strong><em>, tem ___ e o que mais me preocupa é </em></strong>. Moro no bairro <strong><em>, em </em></strong>.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da aula de avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169).</li>
+<li>Pacote de 4 aulas (1 por semana): R$ 636.</li>
+<li>Pacote de 8 aulas (2 por semana): R$ 1.272.</li>
+<li>Que é sempre você mesmo quem responde e quem vai na casa.</li>
+<li><mark class="pr">PREENCHER</mark> Anos de experiência e formação.</li>
+<li><mark class="pr">PREENCHER</mark> Nota e número de avaliações no Google.</li>
+<li>Autorização da Kaylhandra (Luke) para usar o depoimento.</li>
+<li>Autorização do Felipe (Freud) para usar o depoimento.</li>
+<li>Autorização do Lucas (Banguela) para usar o depoimento.</li>
+</ol></div>
+<textarea class="src" id="src-D1" readonly aria-label="Texto em markdown da copy D1"># D1: Não sei mais o que fazer
+
+## P1 Topo
+**Etiqueta:** Adestrador que vai até a sua casa · Salto, Itu, Indaiatuba e região (Jundiaí, Campinas, Cabreúva)
+
+**Título (H1):** Xixi pela casa toda, mordida em todo mundo, passeio que ninguém segura, e você já não sabe mais o que fazer?
+
+**Subtítulo:** Eu vou até a sua casa, vejo o cão e a rotina de vocês e já começo na primeira aula. Você sai dela sabendo o que fazer no dia a dia. Sem grito e sem machucar.
+
+**Botão:** [Contar meu problema no WhatsApp]
+
+- Primeira aula na sua casa: R$ 169 [CONFIRMAR], cerca de 60 min
+- Manhã, tarde ou fim de semana, de segunda a segunda
+- Quem responde e quem vai é o próprio Caio [CONFIRMAR]
+
+## P2 Problemas
+**Alguma dessas já saiu da sua boca?**
+
+Frases de tutores que me chamaram.
+
+**Dentro de casa**
+- &quot;Faz xixi e cocô pela casa toda, cada hora num canto.&quot;
+- &quot;Mudamos pra apartamento e tô com medo de ele se perder no xixi.&quot;
+- &quot;Morde tudo e todos. Se eu brigo, ele enfrenta e morde mais.&quot;
+- &quot;Destrói tudo. Não dá nem pra assistir TV com ele.&quot;
+- &quot;Eu desço um andar e ele já chora sem parar.&quot;
+
+**Na rua**
+- &quot;Puxa a guia que nem maluco. Minha mulher não consegue segurar.&quot;
+- &quot;Vê outro cachorro, fica maluquinho e tá difícil de segurar o boi.&quot;
+
+**Com a família e os outros bichos**
+- &quot;Está batendo no cachorro menor.&quot;
+- &quot;Na hora do remédio, franze o nariz e me ameaça.&quot;
+
+Tudo isso dá pra trabalhar na sua casa, com vocês junto, do filhote ao cão de 45 quilos. Toque na sua frase e me mande no WhatsApp.
+
+## P3 Como funciona
+**Como a gente começa**
+
+1. **Você me chama no WhatsApp** e conta o que está acontecendo. Eu respondo com dia e horário: manhã, tarde ou fim de semana.
+2. **Aula de avaliação na sua casa**, cerca de 60 minutos, com a família junto.
+3. **Aulas na sua casa**, 1 ou 2 por semana. Entre uma e outra, você tira dúvida comigo pelo WhatsApp.
+
+**O que acontece na avaliação**
+- Vejo a casa, a rotina e por que ele faz o que faz.
+- Já começo os exercícios com ele.
+- Deixo o que fazer no dia seguinte: horários, lugar do xixi, como reagir quando ele errar.
+- Te digo qual pacote faz sentido. Você decide depois.
+
+**Vida corrida?** Eu monto uma rotina que cabe nela. Cão com rotina fica mais tranquilo, sabe que tem hora pra tudo.
+
+**Como eu ensino:** petisco, brincadeira e limite com a guia. Sem grito, sem tranco, sem medo. A família aprende junto, pra ele obedecer vocês também.
+
+## P4 Oferta e preço
+**Quanto custa, sem precisar pedir orçamento**
+
+**Aula de avaliação: R$ 169 [CONFIRMAR]**
+Cerca de 60 min na sua casa. Você já sai com instruções.
+[Marcar minha avaliação]
+
+**4 aulas, 1 por semana: R$ 636 [CONFIRMAR]**
+Pra filhote e também pra mordida e passeio difícil. Mais leve pro bolso.
+[Quero o de 4 aulas]
+
+**8 aulas, 2 por semana: R$ 1.272 [CONFIRMAR]**
+Pra quem tem muita coisa pra ajustar.
+[Quero o de 8 aulas]
+
+Você paga só a avaliação primeiro. O pacote a gente escolhe junto depois. Pix ou cartão de crédito, e o pacote dá pra dividir: metade no começo, metade no meio.
+
+## P5 Quem é o Caio
+**Quem vai aí sou eu, o Caio**
+
+Moro em Salto e atendo Itu, Indaiatuba, Jundiaí, Campinas, Cabreúva e região.
+
+Minha malinois é elétrica e tem instinto de caça forte. Criei uma rotina com ela: sabe que tem hora pra tudo e fica tranquila, até com os meus gatos.
+
+[PREENCHER: anos de experiência e formação]
+
+**O que os tutores me disseram**
+- &quot;A gente trouxe ele no parque agora... a gente não desceu do carro até ele acalmar... na hora que ele desistiu ele deitou... Agora ele tá aqui brincando.&quot; Kaylhandra, tutora do Luke, golden reativo de 45 kg, Campinas [CONFIRMAR autorização]
+- &quot;Ele não tá aprontando muito não.&quot; Felipe, tutor do Freud, filhote que mordia e chorava, Cabreúva [CONFIRMAR autorização]
+- &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, tutor do Banguela, Indaiatuba [CONFIRMAR autorização]
+
+[PREENCHER: nota e número de avaliações no Google]
+
+## P6 Perguntas
+**A avaliação é paga?**
+Sim, R$ 169 [CONFIRMAR], e já é aula.
+
+**Você é bruto? Usa tranco?**
+Não. Petisco e limite com a guia, sem grito. Brigar costuma piorar: o cão para de avisar e morde direto.
+
+**Meu cão é grande e avança em outro cachorro. Você atende?**
+Atendo, e olho os outros cães da casa também.
+
+**Só posso 1x por semana e preciso parcelar. Dá?**
+Dá. 4 aulas, 1x por semana, em 2x no Pix ou no cartão, até em dois cartões. Tem aula avulsa também.
+
+**Só posso à tarde ou no fim de semana.**
+Dá. Atendo de segunda a segunda.
+
+## P7 Chamada final
+**Me conta o que ele aprontou hoje.**
+
+Escreve do seu jeito ou manda áudio, a qualquer hora. Eu te respondo com dia e horário. Ninguém aqui vai te julgar pelo que já tentou.
+
+[Chamar o Caio no WhatsApp]
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site e não sei mais o que fazer com meu cachorro. Ele se chama ___, tem ___ e o que mais me preocupa é ___. Moro no bairro ___, em ___.
+
+## Título da aba (SEO)
+Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da aula de avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169).
+2. Pacote de 4 aulas (1 por semana): R$ 636.
+3. Pacote de 8 aulas (2 por semana): R$ 1.272.
+4. Que é sempre você mesmo quem responde e quem vai na casa.
+5. [PREENCHER] Anos de experiência e formação.
+6. [PREENCHER] Nota e número de avaliações no Google.
+7. Autorização da Kaylhandra (Luke) para usar o depoimento.
+8. Autorização do Felipe (Freud) para usar o depoimento.
+9. Autorização do Lucas (Banguela) para usar o depoimento.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-D2" aria-labelledby="t-D2" hidden>
+<div class="ph"><div class="phl"><span class="tag dor">dor</span><h2>Antes de pensar em doar</h2><p class="h1q">“Mordida, xixi pela casa, briga com o outro cão: dá pra resolver bem antes de alguém falar em doar.”</p></div>
+<div class="meta"><div><b>4</b><span>rodadas até vencer</span></div><div><b>8/8</b><span>na última rodada</span></div><button class="copy" data-src="src-D2">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba e região</p>
+<h1>Mordida, xixi pela casa, briga com o outro cão: dá pra resolver bem antes de alguém falar em doar.</h1>
+<p><strong>Subtítulo:</strong> Filhote que chegou agora ou cão adulto que está batendo no menor. Eu vou até a sua casa, muitas vezes no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>, e na avaliação você já sai sabendo o que fazer.</p>
+<p><strong>Botão:</strong> [Contar o que está acontecendo no WhatsApp]</p>
+<ul>
+<li>Avaliação em casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, 1 hora</li>
+<li>Sem grito, sem machucar</li>
+<li>Atendo de segunda a segunda</li>
+</ul>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> Ninguém pensa em doar no primeiro dia. Começa assim:</p>
+<p><strong>Linha de apoio:</strong> Toque na sua frase: o WhatsApp abre com ela escrita.</p>
+<p><strong>Filhote</strong>
+- [“Chegou há poucos dias e chora se eu desço um andar.”] → ficar sozinho aos poucos
+- [“Morde tudo e todos. Mesmo brigando, ele enfrenta e morde mais.”] → parar de morder vocês
+- [“Faz xixi e cocô cada hora num canto.”] → rotina e lugar certo
+- [“Os gatos estão com medo dele, e ele dos gatos.”] → um respeitando o outro</p>
+<p><strong>Cão adulto</strong>
+- [“Está batendo no cachorro menor.”] → convivência sem ataque
+- [“Rosna e ameaça a gente quando é contrariado.”] → limite sem medo</p>
+<p>Quase tudo é normal da fase. Sem ajuste, vira hábito.</p>
+<p>[Chamar no WhatsApp]</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Como a gente começa</p>
+<ol>
+<li><strong>Você me chama no WhatsApp.</strong> Nome, problema e bairro. Eu mesmo respondo, no mesmo dia <mark class="cf">CONFIRMAR</mark>.</li>
+<li><strong>Eu vou até a sua casa.</strong> Muitas vezes no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>. Manhã, tarde ou fim de semana, e remarcar é tranquilo.</li>
+<li><strong>Avaliação, cerca de 1 hora.</strong> Conheço o seu cachorro, a casa e a rotina, já começo os exercícios e deixo instruções. A família participa de toda aula.</li>
+<li><strong>Depois, aulas 1x ou 2x por semana, em pacote mensal.</strong> Filhote começa antes de terminar as vacinas.</li>
+</ol>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Quanto custa, sem rodeio</p>
+<ul>
+<li><strong>Avaliação: R$ 169 <mark class="cf">CONFIRMAR</mark>.</strong> 1 hora, e o trabalho já começa nela.</li>
+<li><strong>Pacote mensal, 4 aulas, 1 por semana: R$ 636 <mark class="cf">CONFIRMAR</mark>.</strong> Pra filhote e rotina corrida.</li>
+<li><strong>Pacote mensal, 8 aulas, 2 por semana: R$ 1.272 <mark class="cf">CONFIRMAR</mark>.</strong> Pra mordida forte, briga entre cães, passeio difícil.</li>
+<li><strong>Aula avulsa: R$ 160 <mark class="cf">CONFIRMAR</mark>.</strong></li>
+</ul>
+<p><strong>O que ele aprende, conforme o caso:</strong> parar de morder, xixi e cocô no lugar, ficar sozinho com calma, conviver com os outros bichos, passear sem puxar.</p>
+<p>Renova mês a mês <mark class="cf">CONFIRMAR</mark>. Dá pra começar com 1x por semana e subir depois <mark class="cf">CONFIRMAR</mark>. Pix ou cartão, e o pacote dá pra pagar metade no começo e metade no meio.</p>
+<p>[Marcar minha avaliação no WhatsApp]</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu, o Caio.</p>
+<p><strong>Nota no Google: <mark class="pr">PREENCHER nota</mark> · <mark class="pr">PREENCHER número</mark> avaliações</strong> <mark class="pr">PREENCHER: link</mark></p>
+<p>Sou de Salto e atendo Itu, Indaiatuba e região, até Cabreúva, Campinas, Jundiaí e Sorocaba. Faço cada aula pessoalmente. Aqui ninguém julga.</p>
+<p>Minha malinois, caçadora nata, não mexe com os meus gatos. <mark class="cf">CONFIRMAR</mark></p>
+<p><strong>Três casos reais:</strong>
+- <strong>Três cães em Itu, um batendo no menor.</strong> O Tarciso chamou pelo site às 14h20. Às 15h18 eu estava chegando. No dia seguinte começamos. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Filhote que mordia, 3 gatos em casa, Cabreúva.</strong> O Freud chorava se o Felipe descia um andar. Depois das aulas: "Ele não tá aprontando muito não." Felipe renovou. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Golden de 45 kg que avançava em cães, Campinas.</strong> Kaylhandra, após a 1ª aula: "A gente não desceu do carro até ele acalmar [...] Agora ele tá aqui brincando." <mark class="cf">CONFIRMAR autorização</mark></p>
+<p><mark class="pr">PREENCHER: tempo de experiência e formação, se quiser</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Já pensei em doar. Ainda dá tempo?</strong>
+Filhote e adulto aprendem. Na avaliação eu te digo com sinceridade o que dá pra esperar no caso de vocês.</p>
+<p><strong>Peguei o filhote agora. Já dá pra começar?</strong>
+Sim. É a fase em que ele aprende mais rápido. Se ainda falta vacina, a aula é dentro de casa.</p>
+<p><strong>Tenho gatos ou outros cães. Você trabalha isso?</strong>
+Sim. Eu olho todos os bichos da casa, porque a convivência depende de todos.</p>
+<p><strong>Ele rosna e já mordeu alguém. Você atende?</strong>
+Sim, e o ideal é começar logo. Castigar o aviso pode fazer ele parar de avisar e só morder.</p>
+<p><strong>Você usa tranco ou bate no cachorro?</strong>
+Não. Petisco e brincadeira pra ensinar, guia com calma pro limite. Você acompanha tudo.</p>
+<p><strong>Atende a minha cidade?</strong>
+Salto, Itu, Indaiatuba e região, como Cabreúva, Campinas, Jundiaí e Sorocaba. Me manda o bairro.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Antes de virar "não aguento mais", me conta o que ele está fazendo.</p>
+<p><strong>Texto:</strong> Manda nome, problema e bairro, por escrito ou áudio. Eu mesmo respondo no mesmo dia <mark class="cf">CONFIRMAR</mark>.</p>
+<p><strong>Botão:</strong> [Chamar o Caio no WhatsApp]</p>
+<p>Avaliação R$ 169 <mark class="cf">CONFIRMAR</mark> · manhã, tarde ou fim de semana · muitas vezes no mesmo dia <mark class="cf">CONFIRMAR</mark></p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama <strong><em>_ e o que está difícil em casa é </em></strong>_. Moro no bairro <strong><em>_, em </em></strong>_.</p>
+<p>(Nos links da seção de problemas, o campo do problema já vem preenchido com a frase tocada.)</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em Salto, Itu e Indaiatuba | Aula na sua casa | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).</li>
+<li>Pacote de 4 aulas (1 por semana): R$ 636.</li>
+<li>Pacote de 8 aulas (2 por semana): R$ 1.272.</li>
+<li>Aula avulsa: R$ 160 (nas conversas a avulsa foi cotada a R$ 190 para a Kaylhandra).</li>
+<li>Que você mesmo responde no mesmo dia.</li>
+<li>Que muitas vezes dá pra ir no mesmo dia ou no seguinte.</li>
+<li>Que o pacote renova mês a mês e dá pra começar com 1x por semana e subir depois.</li>
+<li>Usar o caso da sua malinois com os gatos.</li>
+<li><mark class="pr">PREENCHER</mark> Nota no Google, número de avaliações e link.</li>
+<li><mark class="pr">PREENCHER</mark> Tempo de experiência e formação (opcional).</li>
+<li>Autorização do Tarciso (Boris) para usar o caso.</li>
+<li>Autorização do Felipe (Freud) para usar o caso e a frase.</li>
+<li>Autorização da Kaylhandra (Luke) para usar o caso e a frase.</li>
+</ol></div>
+<textarea class="src" id="src-D2" readonly aria-label="Texto em markdown da copy D2"># D2: Antes de pensar em doar
+
+## P1 Topo
+
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba e região
+
+# Mordida, xixi pela casa, briga com o outro cão: dá pra resolver bem antes de alguém falar em doar.
+
+**Subtítulo:** Filhote que chegou agora ou cão adulto que está batendo no menor. Eu vou até a sua casa, muitas vezes no mesmo dia ou no seguinte [CONFIRMAR], e na avaliação você já sai sabendo o que fazer.
+
+**Botão:** [Contar o que está acontecendo no WhatsApp]
+
+- Avaliação em casa: R$ 169 [CONFIRMAR], 1 hora
+- Sem grito, sem machucar
+- Atendo de segunda a segunda
+
+## P2 Problemas
+
+**Título:** Ninguém pensa em doar no primeiro dia. Começa assim:
+
+**Linha de apoio:** Toque na sua frase: o WhatsApp abre com ela escrita.
+
+**Filhote**
+- [“Chegou há poucos dias e chora se eu desço um andar.”] → ficar sozinho aos poucos
+- [“Morde tudo e todos. Mesmo brigando, ele enfrenta e morde mais.”] → parar de morder vocês
+- [“Faz xixi e cocô cada hora num canto.”] → rotina e lugar certo
+- [“Os gatos estão com medo dele, e ele dos gatos.”] → um respeitando o outro
+
+**Cão adulto**
+- [“Está batendo no cachorro menor.”] → convivência sem ataque
+- [“Rosna e ameaça a gente quando é contrariado.”] → limite sem medo
+
+Quase tudo é normal da fase. Sem ajuste, vira hábito.
+
+[Chamar no WhatsApp]
+
+## P3 Como funciona
+
+**Título:** Como a gente começa
+
+1. **Você me chama no WhatsApp.** Nome, problema e bairro. Eu mesmo respondo, no mesmo dia [CONFIRMAR].
+2. **Eu vou até a sua casa.** Muitas vezes no mesmo dia ou no seguinte [CONFIRMAR]. Manhã, tarde ou fim de semana, e remarcar é tranquilo.
+3. **Avaliação, cerca de 1 hora.** Conheço o seu cachorro, a casa e a rotina, já começo os exercícios e deixo instruções. A família participa de toda aula.
+4. **Depois, aulas 1x ou 2x por semana, em pacote mensal.** Filhote começa antes de terminar as vacinas.
+
+## P4 Oferta e preço
+
+**Título:** Quanto custa, sem rodeio
+
+- **Avaliação: R$ 169 [CONFIRMAR].** 1 hora, e o trabalho já começa nela.
+- **Pacote mensal, 4 aulas, 1 por semana: R$ 636 [CONFIRMAR].** Pra filhote e rotina corrida.
+- **Pacote mensal, 8 aulas, 2 por semana: R$ 1.272 [CONFIRMAR].** Pra mordida forte, briga entre cães, passeio difícil.
+- **Aula avulsa: R$ 160 [CONFIRMAR].**
+
+**O que ele aprende, conforme o caso:** parar de morder, xixi e cocô no lugar, ficar sozinho com calma, conviver com os outros bichos, passear sem puxar.
+
+Renova mês a mês [CONFIRMAR]. Dá pra começar com 1x por semana e subir depois [CONFIRMAR]. Pix ou cartão, e o pacote dá pra pagar metade no começo e metade no meio.
+
+[Marcar minha avaliação no WhatsApp]
+
+## P5 Quem é o Caio
+
+**Título:** Quem vai até a sua casa sou eu, o Caio.
+
+**Nota no Google: [PREENCHER nota] · [PREENCHER número] avaliações** [PREENCHER: link]
+
+Sou de Salto e atendo Itu, Indaiatuba e região, até Cabreúva, Campinas, Jundiaí e Sorocaba. Faço cada aula pessoalmente. Aqui ninguém julga.
+
+Minha malinois, caçadora nata, não mexe com os meus gatos. [CONFIRMAR]
+
+**Três casos reais:**
+- **Três cães em Itu, um batendo no menor.** O Tarciso chamou pelo site às 14h20. Às 15h18 eu estava chegando. No dia seguinte começamos. [CONFIRMAR autorização]
+- **Filhote que mordia, 3 gatos em casa, Cabreúva.** O Freud chorava se o Felipe descia um andar. Depois das aulas: &quot;Ele não tá aprontando muito não.&quot; Felipe renovou. [CONFIRMAR autorização]
+- **Golden de 45 kg que avançava em cães, Campinas.** Kaylhandra, após a 1ª aula: &quot;A gente não desceu do carro até ele acalmar [...] Agora ele tá aqui brincando.&quot; [CONFIRMAR autorização]
+
+[PREENCHER: tempo de experiência e formação, se quiser]
+
+## P6 Perguntas
+
+**Já pensei em doar. Ainda dá tempo?**
+Filhote e adulto aprendem. Na avaliação eu te digo com sinceridade o que dá pra esperar no caso de vocês.
+
+**Peguei o filhote agora. Já dá pra começar?**
+Sim. É a fase em que ele aprende mais rápido. Se ainda falta vacina, a aula é dentro de casa.
+
+**Tenho gatos ou outros cães. Você trabalha isso?**
+Sim. Eu olho todos os bichos da casa, porque a convivência depende de todos.
+
+**Ele rosna e já mordeu alguém. Você atende?**
+Sim, e o ideal é começar logo. Castigar o aviso pode fazer ele parar de avisar e só morder.
+
+**Você usa tranco ou bate no cachorro?**
+Não. Petisco e brincadeira pra ensinar, guia com calma pro limite. Você acompanha tudo.
+
+**Atende a minha cidade?**
+Salto, Itu, Indaiatuba e região, como Cabreúva, Campinas, Jundiaí e Sorocaba. Me manda o bairro.
+
+## P7 Chamada final
+
+**Título:** Antes de virar &quot;não aguento mais&quot;, me conta o que ele está fazendo.
+
+**Texto:** Manda nome, problema e bairro, por escrito ou áudio. Eu mesmo respondo no mesmo dia [CONFIRMAR].
+
+**Botão:** [Chamar o Caio no WhatsApp]
+
+Avaliação R$ 169 [CONFIRMAR] · manhã, tarde ou fim de semana · muitas vezes no mesmo dia [CONFIRMAR]
+
+## Mensagem pronta do WhatsApp
+
+Oi, Caio! Vim pelo site. Meu cachorro se chama ____ e o que está difícil em casa é ____. Moro no bairro ____, em ____.
+
+(Nos links da seção de problemas, o campo do problema já vem preenchido com a frase tocada.)
+
+## Título da aba (SEO)
+
+Adestrador em Salto, Itu e Indaiatuba | Aula na sua casa | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).
+2. Pacote de 4 aulas (1 por semana): R$ 636.
+3. Pacote de 8 aulas (2 por semana): R$ 1.272.
+4. Aula avulsa: R$ 160 (nas conversas a avulsa foi cotada a R$ 190 para a Kaylhandra).
+5. Que você mesmo responde no mesmo dia.
+6. Que muitas vezes dá pra ir no mesmo dia ou no seguinte.
+7. Que o pacote renova mês a mês e dá pra começar com 1x por semana e subir depois.
+8. Usar o caso da sua malinois com os gatos.
+9. [PREENCHER] Nota no Google, número de avaliações e link.
+10. [PREENCHER] Tempo de experiência e formação (opcional).
+11. Autorização do Tarciso (Boris) para usar o caso.
+12. Autorização do Felipe (Freud) para usar o caso e a frase.
+13. Autorização da Kaylhandra (Luke) para usar o caso e a frase.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-D3" aria-labelledby="t-D3" hidden>
+<div class="ph"><div class="phl"><span class="tag dor">dor</span><h2>O vizinho já reclamou</h2><p class="h1q">“Vizinho reclamando ou filhote que acabou de chegar? Na primeira visita, a família já aprende o que fazer.”</p></div>
+<div class="meta"><div><b>5</b><span>rodadas até vencer</span></div><div><b>4/8</b><span>na última rodada</span></div><button class="copy" data-src="src-D3">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva e Campinas</p>
+<p><strong>Título (H1):</strong> Vizinho reclamando ou filhote que acabou de chegar? Na primeira visita, a família já aprende o que fazer.</p>
+<p><strong>Subtítulo:</strong> Late quando você sai, xixi pela garagem, avança em outros cães até a creche reclamar, puxa tanto que só um consegue passear. Eu vou até a sua casa e ensino todo mundo junto, sem grito e sem tranco.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<p><strong>Apoio:</strong>
+- Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 1 hora
+- De segunda a segunda, às vezes no mesmo dia
+- Pode mandar áudio</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> Quando o cachorro vira problema com todo mundo</p>
+<p><strong>Linha de apoio:</strong> Se alguém de fora já reparou, é hora de agir antes que vire hábito.</p>
+<ul>
+<li>"Chora e late sem parar quando fica sozinho. O vizinho já veio falar."</li>
+<li>"Tô tendo problema no condomínio por causa do latido."</li>
+<li>"Faz xixi e cocô na casa toda. Ninguém aguenta mais limpar."</li>
+<li>"Morde todo mundo. Não dá nem pra assistir TV com ele."</li>
+<li>"Quer comer até a coleira. Não passa nem do portão."</li>
+<li>"Puxa tanto que minha mulher não consegue nem sair com ele."</li>
+<li>"Fica maluquinho com outro cachorro. A creche já reclamou."</li>
+<li>"Os cachorros da casa brigam. Tem que deixar separado."</li>
+</ul>
+<p><strong>Acabou de chegar um filhote?</strong> Nessa fase ele aprende rápido e dá pra evitar tudo isso: xixi no lugar, mordidinhas, guia, portão, caixa de transporte pra viajar junto.</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Como a gente resolve, dentro da sua casa</p>
+<ol>
+<li><strong>Você me chama no WhatsApp.</strong> Quem responde sou eu.</li>
+<li><strong>Marcamos dia e hora.</strong> Quando a agenda deixa, vou no mesmo dia.</li>
+<li><strong>Avaliação na sua casa, cerca de 1 hora.</strong> Já começo o trabalho, e você sai com uma rotina pra seguir: horários, sinais pra observar e como reagir quando ele errar.</li>
+<li><strong>Aulas 1x ou 2x por semana</strong>, cerca de 1 hora cada <mark class="cf">CONFIRMAR</mark>. Filhote sem todas as vacinas já pode ter aula dentro de casa.</li>
+</ol>
+<p><strong>Por que sem bronca:</strong> primeiro eu entendo por que ele faz. Punir o aviso ensina o cão a esconder o rosnado. Então ensino com petisco e brincadeira, e a guia mostra o limite, sem tranco.</p>
+<p><strong>A família participa:</strong> eu passo umas horas por semana com ele, vocês passam o resto. Por isso aprendem junto.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Preço aberto, pra você mostrar em casa e decidir junto</p>
+<ul>
+<li><strong>Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>.</strong> Se é só xixi e cocô, muitas vezes essa aula já alinha a rotina.</li>
+<li><strong>Cão tranquilo: 4 aulas, 1x por semana, R$ 636 <mark class="cf">CONFIRMAR</mark>.</strong> 2x de R$ 318. Pra filhote.</li>
+<li><strong>Cão agitado: 8 aulas, 2x por semana, R$ 1.272 <mark class="cf">CONFIRMAR</mark>.</strong> 2x de R$ 636. Pra quando já tem reclamação.</li>
+<li><strong>Aula avulsa:</strong> valor no WhatsApp <mark class="cf">CONFIRMAR</mark>.</li>
+</ul>
+<p>Pix ou cartão em 2x sem juros, e dá pra dividir em dois cartões. Você só fecha pacote depois da avaliação.</p>
+<p><strong>Botões:</strong> Marcar minha avaliação · Perguntar sobre os pacotes</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu</p>
+<p><strong><mark class="pr">PREENCHER nota e nº de avaliações no Google, com link</mark></strong></p>
+<p>Sou o Caio, de Salto. Faço eu mesmo cada avaliação e cada aula, em Salto, Itu, Indaiatuba, Cabreúva, Campinas, Jundiaí e Sorocaba. Minha malinois tem instinto de caça forte e não pega nenhum dos meus gatos.</p>
+<p><strong>Casos reais</strong> <mark class="cf">CONFIRMAR autorização</mark>:
+- <strong>Golden de 45 kg que avançava em outros cães. A creche tinha reclamado.</strong> Sem tranco. Depois da primeira aula: "A gente não desceu do carro até ele acalmar... Agora ele tá aqui brincando." Kay, Campinas <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Mudança pra apartamento novo, com medo de ele errar o lugar do xixi e cocô.</strong> Um dia depois da avaliação: "Ontem ele não fez nenhuma necessidade em casa." Lucas, Indaiatuba <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Filhote recém-chegada, ainda sem todas as vacinas.</strong> Chamou ao meio-dia, avaliação às 16h30, dentro de casa. Julia, Cabreúva <mark class="cf">CONFIRMAR autorização</mark></p>
+<p><mark class="pr">PREENCHER foto do Caio com a malinois</mark> · <mark class="pr">PREENCHER anos de experiência e formação</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Quanto custa e como pago?</strong>
+Avaliação R$ 169 <mark class="cf">CONFIRMAR</mark>, pacotes a R$ 159 por aula. Pix ou cartão, em 2 vezes.</p>
+<p><strong>Você atende a minha cidade?</strong>
+Salto, Itu e Indaiatuba, sempre. Outras cidades da região, me consulta.</p>
+<p><strong>Meu filhote ainda não tomou todas as vacinas. Tem problema?</strong>
+Pra sair na rua, sim. Aula dentro de casa, não.</p>
+<p><strong>Meu cachorro morde ou avança. Você atende?</strong>
+Atendo. Castigar o rosnado faz o cão parar de avisar e ir direto pra mordida, então eu trabalho a causa.</p>
+<p><strong>Em quanto tempo melhora?</strong>
+Depende do caso. Na avaliação eu digo o que esperar no seu.</p>
+<p><strong>E se eu precisar remarcar?</strong>
+Imprevisto acontece. A gente remarca.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Antes da próxima reclamação (ou da primeira), me chama</p>
+<p><strong>Texto:</strong> Manda o nome dele, o problema e o seu bairro. Pode ser áudio. Eu mesmo respondo com os horários livres. Quando a agenda deixa, vou no mesmo dia.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<p><strong>Abaixo do botão:</strong> Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 1 hora</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama <strong><em>. O que está pegando aqui em casa é </em></strong>. Moro no bairro <strong><em>, em </em></strong>.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169.</li>
+<li>Duração das aulas do pacote: cerca de 1 hora cada.</li>
+<li>Valores dos pacotes: 4 aulas R$ 636 (2x de R$ 318) e 8 aulas R$ 1.272 (2x de R$ 636).</li>
+<li>Valor da aula avulsa (para a Kaylhandra foi cotada a R$ 190).</li>
+<li>Autorização para usar os casos da Kay (Campinas), do Lucas (Indaiatuba) e da Julia (Cabreúva).</li>
+<li>Nota e nº de avaliações no Google, com link.</li>
+<li>Foto do Caio com a malinois.</li>
+<li>Anos de experiência e formação.</li>
+</ol></div>
+<textarea class="src" id="src-D3" readonly aria-label="Texto em markdown da copy D3"># D3: O vizinho já reclamou
+
+## P1 Topo
+
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva e Campinas
+
+**Título (H1):** Vizinho reclamando ou filhote que acabou de chegar? Na primeira visita, a família já aprende o que fazer.
+
+**Subtítulo:** Late quando você sai, xixi pela garagem, avança em outros cães até a creche reclamar, puxa tanto que só um consegue passear. Eu vou até a sua casa e ensino todo mundo junto, sem grito e sem tranco.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+**Apoio:**
+- Avaliação na sua casa: R$ 169 [CONFIRMAR], cerca de 1 hora
+- De segunda a segunda, às vezes no mesmo dia
+- Pode mandar áudio
+
+## P2 Problemas
+
+**Título:** Quando o cachorro vira problema com todo mundo
+
+**Linha de apoio:** Se alguém de fora já reparou, é hora de agir antes que vire hábito.
+
+- &quot;Chora e late sem parar quando fica sozinho. O vizinho já veio falar.&quot;
+- &quot;Tô tendo problema no condomínio por causa do latido.&quot;
+- &quot;Faz xixi e cocô na casa toda. Ninguém aguenta mais limpar.&quot;
+- &quot;Morde todo mundo. Não dá nem pra assistir TV com ele.&quot;
+- &quot;Quer comer até a coleira. Não passa nem do portão.&quot;
+- &quot;Puxa tanto que minha mulher não consegue nem sair com ele.&quot;
+- &quot;Fica maluquinho com outro cachorro. A creche já reclamou.&quot;
+- &quot;Os cachorros da casa brigam. Tem que deixar separado.&quot;
+
+**Acabou de chegar um filhote?** Nessa fase ele aprende rápido e dá pra evitar tudo isso: xixi no lugar, mordidinhas, guia, portão, caixa de transporte pra viajar junto.
+
+## P3 Como funciona
+
+**Título:** Como a gente resolve, dentro da sua casa
+
+1. **Você me chama no WhatsApp.** Quem responde sou eu.
+2. **Marcamos dia e hora.** Quando a agenda deixa, vou no mesmo dia.
+3. **Avaliação na sua casa, cerca de 1 hora.** Já começo o trabalho, e você sai com uma rotina pra seguir: horários, sinais pra observar e como reagir quando ele errar.
+4. **Aulas 1x ou 2x por semana**, cerca de 1 hora cada [CONFIRMAR]. Filhote sem todas as vacinas já pode ter aula dentro de casa.
+
+**Por que sem bronca:** primeiro eu entendo por que ele faz. Punir o aviso ensina o cão a esconder o rosnado. Então ensino com petisco e brincadeira, e a guia mostra o limite, sem tranco.
+
+**A família participa:** eu passo umas horas por semana com ele, vocês passam o resto. Por isso aprendem junto.
+
+## P4 Oferta e preço
+
+**Título:** Preço aberto, pra você mostrar em casa e decidir junto
+
+- **Avaliação na sua casa: R$ 169 [CONFIRMAR].** Se é só xixi e cocô, muitas vezes essa aula já alinha a rotina.
+- **Cão tranquilo: 4 aulas, 1x por semana, R$ 636 [CONFIRMAR].** 2x de R$ 318. Pra filhote.
+- **Cão agitado: 8 aulas, 2x por semana, R$ 1.272 [CONFIRMAR].** 2x de R$ 636. Pra quando já tem reclamação.
+- **Aula avulsa:** valor no WhatsApp [CONFIRMAR].
+
+Pix ou cartão em 2x sem juros, e dá pra dividir em dois cartões. Você só fecha pacote depois da avaliação.
+
+**Botões:** Marcar minha avaliação · Perguntar sobre os pacotes
+
+## P5 Quem é o Caio
+
+**Título:** Quem vai até a sua casa sou eu
+
+**[PREENCHER nota e nº de avaliações no Google, com link]**
+
+Sou o Caio, de Salto. Faço eu mesmo cada avaliação e cada aula, em Salto, Itu, Indaiatuba, Cabreúva, Campinas, Jundiaí e Sorocaba. Minha malinois tem instinto de caça forte e não pega nenhum dos meus gatos.
+
+**Casos reais** [CONFIRMAR autorização]:
+- **Golden de 45 kg que avançava em outros cães. A creche tinha reclamado.** Sem tranco. Depois da primeira aula: &quot;A gente não desceu do carro até ele acalmar... Agora ele tá aqui brincando.&quot; Kay, Campinas [CONFIRMAR autorização]
+- **Mudança pra apartamento novo, com medo de ele errar o lugar do xixi e cocô.** Um dia depois da avaliação: &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, Indaiatuba [CONFIRMAR autorização]
+- **Filhote recém-chegada, ainda sem todas as vacinas.** Chamou ao meio-dia, avaliação às 16h30, dentro de casa. Julia, Cabreúva [CONFIRMAR autorização]
+
+[PREENCHER foto do Caio com a malinois] · [PREENCHER anos de experiência e formação]
+
+## P6 Perguntas
+
+**Quanto custa e como pago?**
+Avaliação R$ 169 [CONFIRMAR], pacotes a R$ 159 por aula. Pix ou cartão, em 2 vezes.
+
+**Você atende a minha cidade?**
+Salto, Itu e Indaiatuba, sempre. Outras cidades da região, me consulta.
+
+**Meu filhote ainda não tomou todas as vacinas. Tem problema?**
+Pra sair na rua, sim. Aula dentro de casa, não.
+
+**Meu cachorro morde ou avança. Você atende?**
+Atendo. Castigar o rosnado faz o cão parar de avisar e ir direto pra mordida, então eu trabalho a causa.
+
+**Em quanto tempo melhora?**
+Depende do caso. Na avaliação eu digo o que esperar no seu.
+
+**E se eu precisar remarcar?**
+Imprevisto acontece. A gente remarca.
+
+## P7 Chamada final
+
+**Título:** Antes da próxima reclamação (ou da primeira), me chama
+
+**Texto:** Manda o nome dele, o problema e o seu bairro. Pode ser áudio. Eu mesmo respondo com os horários livres. Quando a agenda deixa, vou no mesmo dia.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+**Abaixo do botão:** Avaliação na sua casa: R$ 169 [CONFIRMAR], cerca de 1 hora
+
+## Mensagem pronta do WhatsApp
+
+Oi, Caio! Vim pelo site. Meu cachorro se chama ___. O que está pegando aqui em casa é ___. Moro no bairro ___, em ___.
+
+## Título da aba (SEO)
+
+Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169.
+2. Duração das aulas do pacote: cerca de 1 hora cada.
+3. Valores dos pacotes: 4 aulas R$ 636 (2x de R$ 318) e 8 aulas R$ 1.272 (2x de R$ 636).
+4. Valor da aula avulsa (para a Kaylhandra foi cotada a R$ 190).
+5. Autorização para usar os casos da Kay (Campinas), do Lucas (Indaiatuba) e da Julia (Cabreúva).
+6. Nota e nº de avaliações no Google, com link.
+7. Foto do Caio com a malinois.
+8. Anos de experiência e formação.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-D4" aria-labelledby="t-D4" hidden>
+<div class="ph"><div class="phl"><span class="tag dor">dor</span><h2>Já tentei de tudo</h2><p class="h1q">“Faz 2 dias ou 2 anos que você tenta, e ele continua igual?”</p></div>
+<div class="meta"><div><b>4</b><span>rodadas até vencer</span></div><div><b>7/8</b><span>na última rodada</span></div><button class="copy" data-src="src-D4">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador na sua casa · Salto, Itu, Indaiatuba e região</p>
+<p><strong>Título (H1):</strong> Faz 2 dias ou 2 anos que você tenta, e ele continua igual?</p>
+<p><strong>Subtítulo:</strong> Morde tudo e todos, faz xixi fora, chora se você desce um andar, puxa a guia que nem maluco? Eu vou até a sua casa e ensino a família junto, sem bronca, pra ele obedecer a vocês.</p>
+<p><strong>Botão principal:</strong> Contar o meu caso no WhatsApp</p>
+<p><strong>Apoio:</strong>
+- Avaliação em casa, 1 hora, R$ 169 <mark class="cf">CONFIRMAR</mark>: já sai sabendo o que fazer
+- Muitas vezes, visita no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>
+- Também vou a Cabreúva, Campinas, Jundiaí e Sorocaba</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> O que você já tentou, e o que ele ainda faz</p>
+<p><strong>Apoio:</strong> Toque na sua e me conte no WhatsApp. A gente começa do que você já tentou.</p>
+<ul>
+<li>"Brigo e ele enfrenta: late e morde mais. Atacou até a veterinária."</li>
+<li>"Coloquei tapetinho e jornal, e ele faz cada hora num canto."</li>
+<li>"Mudamos e tenho medo de ele ficar perdido no xixi."</li>
+<li>"Desço um andar e ele já chora muito."</li>
+<li>"Os gatos têm medo dele. E ele dos gatos."</li>
+<li>"Puxa a guia que nem maluco e vai pra cima de outro cachorro."</li>
+<li>"Comigo ele obedece. Com a minha mulher, nada."</li>
+<li>"Vi um monte de vídeo. No vídeo o cachorro obedece. Aqui, nada."</li>
+</ul>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Desta vez você não tenta sozinho</p>
+<p><strong>1. Você me conta pelo WhatsApp</strong> o que ele faz e o que já tentou. Eu respondo com os horários livres.</p>
+<p><strong>2. Avaliação na sua casa (cerca de 1 hora).</strong>
+- Vejo onde o problema acontece e separo o que serve e o que atrapalha no que você já tentou.
+- Já começo o trabalho na sua frente.
+- Você fica com horários, o que fazer quando ele errar e o que parar de fazer.</p>
+<p><strong>3. Aulas com a família.</strong> Você treina e eu ajusto do lado. Entre as aulas, tira dúvida no WhatsApp. Imprevisto? A gente remarca.</p>
+<p><strong>Filhote:</strong> dá pra começar já na chegada, dentro de casa, mesmo antes das vacinas. Tem gato? Entra no plano.</p>
+<p><strong>Por que ele vai obedecer a você:</strong> eu fico umas horas por semana com ele. Vocês ficam o resto. Se só eu souber fazer, ele apronta quando eu saio.</p>
+<p><strong>E a bronca?</strong> Costuma piorar: ele fica mais agitado ou para de avisar antes de morder. Eu ensino com petisco e brincadeira e mostro o limite com a guia, sem gritar e sem machucar.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Quanto custa parar de tentar sozinho</p>
+<p><strong>Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark></strong>
+Cerca de 1 hora; você já sai com instruções pro dia a dia. Manhã, tarde ou fim de semana, muitas vezes no mesmo dia <mark class="cf">CONFIRMAR</mark>.
+<strong>Botão:</strong> Agendar a avaliação</p>
+<p><strong>Depois, se quiser, pacote de 1 mês:</strong>
+- <strong>4 aulas, 1x por semana: R$ 636 <mark class="cf">CONFIRMAR</mark>.</strong> Pra rotina corrida e filhote em vacinação.
+- <strong>8 aulas, 2x por semana: R$ 1.272 <mark class="cf">CONFIRMAR</mark>.</strong> Pra quem já tentou muito sozinho.
+- <strong>Aula avulsa: R$ 160 <mark class="cf">CONFIRMAR</mark>.</strong></p>
+<p>Pix ou cartão. Paga metade no começo, metade no meio. Renova só se quiser <mark class="cf">CONFIRMAR</mark>. Imprevisto? A gente remarca.
+<strong>Botão:</strong> Tirar dúvida sobre os pacotes</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu</p>
+<p>Sou o Caio. Eu mesmo faço a avaliação e cada aula, e você fala direto comigo do começo ao fim. Muita família me chama depois de meses tentando sozinha. <mark class="cf">CONFIRMAR</mark></p>
+<p>Em casa eu tenho uma malinois, cachorra de instinto de caça lá em cima, que não pega nenhum dos meus gatos. <mark class="cf">CONFIRMAR</mark></p>
+<p><mark class="pr">PREENCHER: formação e tempo de experiência</mark></p>
+<p><strong>Quem já chamou</strong>:
+- "Ele não tá aprontando muito não." Felipe, Cabreúva (filhote de border collie e 3 gatos) <mark class="cf">CONFIRMAR autorização</mark>
+- "Ontem ele não fez nenhuma necessidade em casa." Lucas, Indaiatuba <mark class="cf">CONFIRMAR autorização</mark>
+- "A gente não desceu do carro até ele acalmar [...] Agora ele tá aqui brincando." Kaylhandra, Campinas (golden de 45 kg, depois da 1ª aula) <mark class="cf">CONFIRMAR autorização</mark>
+- Avaliações no Google: <mark class="pr">PREENCHER nota e link</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Quanto custa?</strong>
+Avaliação R$ 169 <mark class="cf">CONFIRMAR</mark>. Pacotes a partir de R$ 636 por mês <mark class="cf">CONFIRMAR</mark>, no Pix ou cartão.</p>
+<p><strong>Quando você vem? Dá pra remarcar?</strong>
+Atendo de segunda a segunda. Imprevisto, a gente remarca.</p>
+<p><strong>Atende a minha cidade?</strong>
+Sou de Salto e atendo Itu, Indaiatuba, Cabreúva, Campinas, Jundiaí e Sorocaba. Me manda o bairro.</p>
+<p><strong>Ele morde todo mundo. Você atende?</strong>
+Atendo, sem bronca: brigar costuma fazer ele enfrentar e morder mais.</p>
+<p><strong>Meu filhote ainda não tomou as vacinas. Dá pra começar?</strong>
+Dá. Antes das vacinas, a aula é dentro de casa.</p>
+<p><strong>Minha vida é uma correria. Dá certo?</strong>
+Dá. Eu também vivo na correria e criei uma rotina com a minha cachorra. Ela fica tranquila porque sabe a hora de tudo.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Você não precisa mais tentar sozinho</p>
+<p><strong>Texto:</strong> Filhote que morde, xixi fora, choro, guia puxando? Me conta. Avaliação em casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, em Salto, Itu, Indaiatuba e região. Mande até domingo: respondo com o primeiro horário livre. Imprevisto, a gente remarca.</p>
+<p><strong>Botão:</strong> Contar o meu caso no WhatsApp</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro é o <strong><em>_ e o que mais preciso resolver é </em></strong>_. Moro em ____ (bairro e cidade).</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).</li>
+<li>Que muitas vezes dá pra ir no mesmo dia ou no seguinte.</li>
+<li>Pacote de 4 aulas (1 por semana): R$ 636 (e "a partir de R$ 636 por mês").</li>
+<li>Pacote de 8 aulas (2 por semana): R$ 1.272.</li>
+<li>Aula avulsa: R$ 160 (nas conversas a avulsa foi cotada a R$ 190 para a Kaylhandra).</li>
+<li>Que a renovação do pacote é opcional ("renova só se quiser").</li>
+<li>Que muita família te chama depois de meses tentando sozinha.</li>
+<li>Usar o caso da sua malinois com os gatos.</li>
+<li><mark class="pr">PREENCHER</mark> Formação e tempo de experiência.</li>
+<li><mark class="pr">PREENCHER</mark> Nota e link das avaliações no Google.</li>
+<li>Autorização do Felipe (Freud) para usar a frase.</li>
+<li>Autorização do Lucas (Banguela) para usar a frase.</li>
+<li>Autorização da Kaylhandra (Luke) para usar a frase.</li>
+</ol></div>
+<textarea class="src" id="src-D4" readonly aria-label="Texto em markdown da copy D4"># D4: Já tentei de tudo
+
+## P1 Topo
+
+**Etiqueta:** Adestrador na sua casa · Salto, Itu, Indaiatuba e região
+
+**Título (H1):** Faz 2 dias ou 2 anos que você tenta, e ele continua igual?
+
+**Subtítulo:** Morde tudo e todos, faz xixi fora, chora se você desce um andar, puxa a guia que nem maluco? Eu vou até a sua casa e ensino a família junto, sem bronca, pra ele obedecer a vocês.
+
+**Botão principal:** Contar o meu caso no WhatsApp
+
+**Apoio:**
+- Avaliação em casa, 1 hora, R$ 169 [CONFIRMAR]: já sai sabendo o que fazer
+- Muitas vezes, visita no mesmo dia ou no seguinte [CONFIRMAR]
+- Também vou a Cabreúva, Campinas, Jundiaí e Sorocaba
+
+## P2 Problemas
+
+**Título:** O que você já tentou, e o que ele ainda faz
+
+**Apoio:** Toque na sua e me conte no WhatsApp. A gente começa do que você já tentou.
+
+- &quot;Brigo e ele enfrenta: late e morde mais. Atacou até a veterinária.&quot;
+- &quot;Coloquei tapetinho e jornal, e ele faz cada hora num canto.&quot;
+- &quot;Mudamos e tenho medo de ele ficar perdido no xixi.&quot;
+- &quot;Desço um andar e ele já chora muito.&quot;
+- &quot;Os gatos têm medo dele. E ele dos gatos.&quot;
+- &quot;Puxa a guia que nem maluco e vai pra cima de outro cachorro.&quot;
+- &quot;Comigo ele obedece. Com a minha mulher, nada.&quot;
+- &quot;Vi um monte de vídeo. No vídeo o cachorro obedece. Aqui, nada.&quot;
+
+## P3 Como funciona
+
+**Título:** Desta vez você não tenta sozinho
+
+**1. Você me conta pelo WhatsApp** o que ele faz e o que já tentou. Eu respondo com os horários livres.
+
+**2. Avaliação na sua casa (cerca de 1 hora).**
+- Vejo onde o problema acontece e separo o que serve e o que atrapalha no que você já tentou.
+- Já começo o trabalho na sua frente.
+- Você fica com horários, o que fazer quando ele errar e o que parar de fazer.
+
+**3. Aulas com a família.** Você treina e eu ajusto do lado. Entre as aulas, tira dúvida no WhatsApp. Imprevisto? A gente remarca.
+
+**Filhote:** dá pra começar já na chegada, dentro de casa, mesmo antes das vacinas. Tem gato? Entra no plano.
+
+**Por que ele vai obedecer a você:** eu fico umas horas por semana com ele. Vocês ficam o resto. Se só eu souber fazer, ele apronta quando eu saio.
+
+**E a bronca?** Costuma piorar: ele fica mais agitado ou para de avisar antes de morder. Eu ensino com petisco e brincadeira e mostro o limite com a guia, sem gritar e sem machucar.
+
+## P4 Oferta e preço
+
+**Título:** Quanto custa parar de tentar sozinho
+
+**Avaliação na sua casa: R$ 169 [CONFIRMAR]**
+Cerca de 1 hora; você já sai com instruções pro dia a dia. Manhã, tarde ou fim de semana, muitas vezes no mesmo dia [CONFIRMAR].
+**Botão:** Agendar a avaliação
+
+**Depois, se quiser, pacote de 1 mês:**
+- **4 aulas, 1x por semana: R$ 636 [CONFIRMAR].** Pra rotina corrida e filhote em vacinação.
+- **8 aulas, 2x por semana: R$ 1.272 [CONFIRMAR].** Pra quem já tentou muito sozinho.
+- **Aula avulsa: R$ 160 [CONFIRMAR].**
+
+Pix ou cartão. Paga metade no começo, metade no meio. Renova só se quiser [CONFIRMAR]. Imprevisto? A gente remarca.
+**Botão:** Tirar dúvida sobre os pacotes
+
+## P5 Quem é o Caio
+
+**Título:** Quem vai até a sua casa sou eu
+
+Sou o Caio. Eu mesmo faço a avaliação e cada aula, e você fala direto comigo do começo ao fim. Muita família me chama depois de meses tentando sozinha. [CONFIRMAR]
+
+Em casa eu tenho uma malinois, cachorra de instinto de caça lá em cima, que não pega nenhum dos meus gatos. [CONFIRMAR]
+
+[PREENCHER: formação e tempo de experiência]
+
+**Quem já chamou**:
+- &quot;Ele não tá aprontando muito não.&quot; Felipe, Cabreúva (filhote de border collie e 3 gatos) [CONFIRMAR autorização]
+- &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, Indaiatuba [CONFIRMAR autorização]
+- &quot;A gente não desceu do carro até ele acalmar [...] Agora ele tá aqui brincando.&quot; Kaylhandra, Campinas (golden de 45 kg, depois da 1ª aula) [CONFIRMAR autorização]
+- Avaliações no Google: [PREENCHER nota e link]
+
+## P6 Perguntas
+
+**Quanto custa?**
+Avaliação R$ 169 [CONFIRMAR]. Pacotes a partir de R$ 636 por mês [CONFIRMAR], no Pix ou cartão.
+
+**Quando você vem? Dá pra remarcar?**
+Atendo de segunda a segunda. Imprevisto, a gente remarca.
+
+**Atende a minha cidade?**
+Sou de Salto e atendo Itu, Indaiatuba, Cabreúva, Campinas, Jundiaí e Sorocaba. Me manda o bairro.
+
+**Ele morde todo mundo. Você atende?**
+Atendo, sem bronca: brigar costuma fazer ele enfrentar e morder mais.
+
+**Meu filhote ainda não tomou as vacinas. Dá pra começar?**
+Dá. Antes das vacinas, a aula é dentro de casa.
+
+**Minha vida é uma correria. Dá certo?**
+Dá. Eu também vivo na correria e criei uma rotina com a minha cachorra. Ela fica tranquila porque sabe a hora de tudo.
+
+## P7 Chamada final
+
+**Título:** Você não precisa mais tentar sozinho
+
+**Texto:** Filhote que morde, xixi fora, choro, guia puxando? Me conta. Avaliação em casa: R$ 169 [CONFIRMAR], em Salto, Itu, Indaiatuba e região. Mande até domingo: respondo com o primeiro horário livre. Imprevisto, a gente remarca.
+
+**Botão:** Contar o meu caso no WhatsApp
+
+## Mensagem pronta do WhatsApp
+
+Oi, Caio! Vim pelo site. Meu cachorro é o ____ e o que mais preciso resolver é ____. Moro em ____ (bairro e cidade).
+
+## Título da aba (SEO)
+
+Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).
+2. Que muitas vezes dá pra ir no mesmo dia ou no seguinte.
+3. Pacote de 4 aulas (1 por semana): R$ 636 (e &quot;a partir de R$ 636 por mês&quot;).
+4. Pacote de 8 aulas (2 por semana): R$ 1.272.
+5. Aula avulsa: R$ 160 (nas conversas a avulsa foi cotada a R$ 190 para a Kaylhandra).
+6. Que a renovação do pacote é opcional (&quot;renova só se quiser&quot;).
+7. Que muita família te chama depois de meses tentando sozinha.
+8. Usar o caso da sua malinois com os gatos.
+9. [PREENCHER] Formação e tempo de experiência.
+10. [PREENCHER] Nota e link das avaliações no Google.
+11. Autorização do Felipe (Freud) para usar a frase.
+12. Autorização do Lucas (Banguela) para usar a frase.
+13. Autorização da Kaylhandra (Luke) para usar a frase.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-D5" aria-labelledby="t-D5" hidden>
+<div class="ph"><div class="phl"><span class="tag dor">dor</span><h2>Antes que alguém se machuque</h2><p class="h1q">“Filhote que morde, cão que avança ou que bate no outro da casa? Vamos resolver antes que alguém se machuque.”</p></div>
+<div class="meta"><div><b>4</b><span>rodadas até vencer</span></div><div><b>6/8</b><span>na última rodada</span></div><button class="copy" data-src="src-D5">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba, Jundiaí e região</p>
+<p><strong>Título (H1):</strong> Filhote que morde, cão que avança ou que bate no outro da casa? Vamos resolver antes que alguém se machuque.</p>
+<p><strong>Subtítulo:</strong> E também xixi e cocô fora do lugar. Vou até a sua casa e trabalho onde o problema acontece, sem gritar e sem machucar.</p>
+<p><strong>Botão principal:</strong> Contar o caso no WhatsApp</p>
+<p><strong>Apoio abaixo do botão:</strong>
+- Avaliação em casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 1 hora
+- Manhã, tarde ou fim de semana. Muitas vezes vou no mesmo dia <mark class="cf">CONFIRMAR</mark>
+- Sem tranco, sem grito, sem medo</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> Reconhece o seu cão aqui?</p>
+<p><strong>Linha de apoio:</strong> Coisa de filhote vira hábito, e o que já assusta tende a piorar. Toque no seu caso e me conte no WhatsApp.</p>
+<p><strong>Filhote</strong>
+- Faz xixi e cocô cada hora num canto da casa ou da garagem
+- Morde tudo e todos, e se você briga ele enfrenta e morde mais
+- Come tudo, destrói tudo, até o forro do sofá
+- Rola no chão, tenta comer a coleira e não passa do portão
+- Chora sem parar se você desce um andar</p>
+<p><strong>Em casa</strong>
+- Rosna e mostra os dentes quando você tira algo da boca dele
+- Deixa fazer carinho e do nada morde
+- Está batendo no cão menor, e vocês já vivem com eles separados</p>
+<p><strong>No passeio</strong>
+- Fica maluquinho quando vê outro cachorro e quer ir pra cima
+- Puxa tanto que ninguém em casa consegue segurar</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Do primeiro recado a uma casa mais segura, em 3 passos.</p>
+<ol>
+<li><strong>Você me conta pelo WhatsApp</strong> o nome do cão, o problema e o bairro. Atendo todo dia, manhã ou tarde. Se é urgente, muitas vezes vou no mesmo dia <mark class="cf">CONFIRMAR</mark>.</li>
+<li><strong>Aula de avaliação na sua casa</strong>, cerca de 1 hora. Já trabalho com o cão e com vocês.</li>
+<li><strong>Aulas 1x ou 2x por semana</strong>, com a família junto. Entre as aulas, dúvidas no WhatsApp.</li>
+</ol>
+<p><strong>Na avaliação</strong>
+- Olho todos os cães da casa, não só o que briga.
+- No xixi e cocô, acerto o lugar, limpo o cheiro do jeito certo e passo os horários.
+- Na mordida, na briga ou no avanço, descubro o que vem antes.
+- No fim digo o que recomendo, e você decide com calma, em casa.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Quanto custa começar.</p>
+<p><strong>Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark></strong>
+Já sai com instruções pro dia a dia.
+Botão: <strong>Agendar avaliação</strong></p>
+<p><strong>Só xixi e cocô? Aula única: R$ 150 <mark class="cf">CONFIRMAR</mark></strong>
+Uma aula e você sai com a rotina pronta.</p>
+<p><strong>Depois da avaliação, você escolhe o ritmo:</strong>
+- <strong>Cão tranquilo · 4 aulas, 1x por semana:</strong> cerca de R$ 636 <mark class="cf">CONFIRMAR</mark>
+- <strong>Cão agitado · 8 aulas, 2x por semana:</strong> cerca de R$ 1.272 <mark class="cf">CONFIRMAR</mark>. Indicado para mordida, briga e cão que avança.</p>
+<p>Pix ou cartão, metade no início e metade no meio. Eu só indico o pacote depois de ver o seu cão.
+Botão: <strong>Perguntar sobre os pacotes</strong></p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem entra na sua casa sou eu.</p>
+<p>Sou o Caio, adestrador há <mark class="pr">PREENCHER</mark> anos, com nota <mark class="pr">PREENCHER</mark> no Google. Atendo Salto, Itu, Indaiatuba, Jundiaí, Campinas, Sorocaba e Cabreúva. Eu mesmo faço cada aula e falo direto com você.</p>
+<p><strong>Provas de confiança</strong>
+- <strong>Cães brigando, Itu:</strong> o tutor me chamou às 14h20: um dos três cães batia no menor. Às 15h18 eu estava chegando. No dia seguinte, começamos as aulas. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Filhote que mordia, Cabreúva:</strong> border collie de 2 meses que mordia, chorava e assustava os 3 gatos. Fez 8 aulas e a família renovou por mais 4. "Ele não tá aprontando muito não." Felipe <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Xixi, Indaiatuba:</strong> "Ontem ele não fez nenhuma necessidade em casa." Lucas, um dia depois da avaliação <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Golden de 45 kg que avançava, Campinas:</strong> "Agora ele tá aqui brincando." Kay, no parque, depois da primeira aula. Voltou, fechou o pacote e me indicou. <mark class="cf">CONFIRMAR autorização</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Meu cão já mordeu alguém. Você atende?</strong>
+Sim. Até a avaliação: não deixe criança sozinha com ele, não tire nada da boca dele à força e não castigue o rosnado.</p>
+<p><strong>Meu filhote faz xixi em todo canto. Resolve rápido?</strong>
+É mais rotina do que adestramento. Em uma aula você já sai sabendo o que fazer.</p>
+<p><strong>Quanto custa e como pago?</strong>
+Avaliação R$ 169 <mark class="cf">CONFIRMAR</mark>. Pix ou cartão, pacote em duas vezes.</p>
+<p><strong>Atende à tarde?</strong>
+Sim, de manhã e à tarde <mark class="cf">CONFIRMAR</mark>.</p>
+<p><strong>Você usa tranco ou algo que machuque?</strong>
+Não. Petisco e brincadeira pra ensinar, guia com pressão e alívio pra mostrar o limite.</p>
+<p><strong>Atende a minha cidade?</strong>
+Salto e região. Já fui também a Cabreúva, Campinas, Jundiaí e Sorocaba.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Filhote cresce, e a mordida cresce junto. Chame antes que alguém se machuque.</p>
+<p><strong>Texto:</strong> Me mande o nome do cão, o problema e o bairro, escrito ou em áudio. Pode ser "faz xixi na garagem toda" ou "mordeu meu filho": respondo com o primeiro horário livre. Avaliação em casa: R$ 169 <mark class="cf">CONFIRMAR</mark>. Salto, Itu, Indaiatuba, Jundiaí e região.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama <strong><em>. O que está acontecendo é </em></strong>. Moro no bairro <strong><em>, em </em></strong>.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba: filhote, mordida e cão que avança | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).</li>
+<li>Que muitas vezes dá pra ir no mesmo dia.</li>
+<li>Aula única de xixi e cocô: R$ 150 (valor cotado ao Luiz Felipe em junho).</li>
+<li>Pacote de 4 aulas (1 por semana): cerca de R$ 636.</li>
+<li>Pacote de 8 aulas (2 por semana): cerca de R$ 1.272.</li>
+<li>Que atende de manhã e à tarde.</li>
+<li><mark class="pr">PREENCHER</mark> Anos de experiência.</li>
+<li><mark class="pr">PREENCHER</mark> Nota no Google.</li>
+<li>Autorização do Tarciso (Boris) para usar o caso.</li>
+<li>Autorização do Felipe (Freud) para usar o caso e a frase.</li>
+<li>Autorização do Lucas (Banguela) para usar a frase.</li>
+<li>Autorização da Kaylhandra (Luke) para usar o caso e a frase.</li>
+</ol></div>
+<textarea class="src" id="src-D5" readonly aria-label="Texto em markdown da copy D5"># D5: Antes que alguém se machuque
+
+## P1 Topo
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba, Jundiaí e região
+
+**Título (H1):** Filhote que morde, cão que avança ou que bate no outro da casa? Vamos resolver antes que alguém se machuque.
+
+**Subtítulo:** E também xixi e cocô fora do lugar. Vou até a sua casa e trabalho onde o problema acontece, sem gritar e sem machucar.
+
+**Botão principal:** Contar o caso no WhatsApp
+
+**Apoio abaixo do botão:**
+- Avaliação em casa: R$ 169 [CONFIRMAR], cerca de 1 hora
+- Manhã, tarde ou fim de semana. Muitas vezes vou no mesmo dia [CONFIRMAR]
+- Sem tranco, sem grito, sem medo
+
+## P2 Problemas
+**Título:** Reconhece o seu cão aqui?
+
+**Linha de apoio:** Coisa de filhote vira hábito, e o que já assusta tende a piorar. Toque no seu caso e me conte no WhatsApp.
+
+**Filhote**
+- Faz xixi e cocô cada hora num canto da casa ou da garagem
+- Morde tudo e todos, e se você briga ele enfrenta e morde mais
+- Come tudo, destrói tudo, até o forro do sofá
+- Rola no chão, tenta comer a coleira e não passa do portão
+- Chora sem parar se você desce um andar
+
+**Em casa**
+- Rosna e mostra os dentes quando você tira algo da boca dele
+- Deixa fazer carinho e do nada morde
+- Está batendo no cão menor, e vocês já vivem com eles separados
+
+**No passeio**
+- Fica maluquinho quando vê outro cachorro e quer ir pra cima
+- Puxa tanto que ninguém em casa consegue segurar
+
+## P3 Como funciona
+**Título:** Do primeiro recado a uma casa mais segura, em 3 passos.
+
+1. **Você me conta pelo WhatsApp** o nome do cão, o problema e o bairro. Atendo todo dia, manhã ou tarde. Se é urgente, muitas vezes vou no mesmo dia [CONFIRMAR].
+2. **Aula de avaliação na sua casa**, cerca de 1 hora. Já trabalho com o cão e com vocês.
+3. **Aulas 1x ou 2x por semana**, com a família junto. Entre as aulas, dúvidas no WhatsApp.
+
+**Na avaliação**
+- Olho todos os cães da casa, não só o que briga.
+- No xixi e cocô, acerto o lugar, limpo o cheiro do jeito certo e passo os horários.
+- Na mordida, na briga ou no avanço, descubro o que vem antes.
+- No fim digo o que recomendo, e você decide com calma, em casa.
+
+## P4 Oferta e preço
+**Título:** Quanto custa começar.
+
+**Avaliação na sua casa: R$ 169 [CONFIRMAR]**
+Já sai com instruções pro dia a dia.
+Botão: **Agendar avaliação**
+
+**Só xixi e cocô? Aula única: R$ 150 [CONFIRMAR]**
+Uma aula e você sai com a rotina pronta.
+
+**Depois da avaliação, você escolhe o ritmo:**
+- **Cão tranquilo · 4 aulas, 1x por semana:** cerca de R$ 636 [CONFIRMAR]
+- **Cão agitado · 8 aulas, 2x por semana:** cerca de R$ 1.272 [CONFIRMAR]. Indicado para mordida, briga e cão que avança.
+
+Pix ou cartão, metade no início e metade no meio. Eu só indico o pacote depois de ver o seu cão.
+Botão: **Perguntar sobre os pacotes**
+
+## P5 Quem é o Caio
+**Título:** Quem entra na sua casa sou eu.
+
+Sou o Caio, adestrador há [PREENCHER] anos, com nota [PREENCHER] no Google. Atendo Salto, Itu, Indaiatuba, Jundiaí, Campinas, Sorocaba e Cabreúva. Eu mesmo faço cada aula e falo direto com você.
+
+**Provas de confiança**
+- **Cães brigando, Itu:** o tutor me chamou às 14h20: um dos três cães batia no menor. Às 15h18 eu estava chegando. No dia seguinte, começamos as aulas. [CONFIRMAR autorização]
+- **Filhote que mordia, Cabreúva:** border collie de 2 meses que mordia, chorava e assustava os 3 gatos. Fez 8 aulas e a família renovou por mais 4. &quot;Ele não tá aprontando muito não.&quot; Felipe [CONFIRMAR autorização]
+- **Xixi, Indaiatuba:** &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, um dia depois da avaliação [CONFIRMAR autorização]
+- **Golden de 45 kg que avançava, Campinas:** &quot;Agora ele tá aqui brincando.&quot; Kay, no parque, depois da primeira aula. Voltou, fechou o pacote e me indicou. [CONFIRMAR autorização]
+
+## P6 Perguntas
+**Meu cão já mordeu alguém. Você atende?**
+Sim. Até a avaliação: não deixe criança sozinha com ele, não tire nada da boca dele à força e não castigue o rosnado.
+
+**Meu filhote faz xixi em todo canto. Resolve rápido?**
+É mais rotina do que adestramento. Em uma aula você já sai sabendo o que fazer.
+
+**Quanto custa e como pago?**
+Avaliação R$ 169 [CONFIRMAR]. Pix ou cartão, pacote em duas vezes.
+
+**Atende à tarde?**
+Sim, de manhã e à tarde [CONFIRMAR].
+
+**Você usa tranco ou algo que machuque?**
+Não. Petisco e brincadeira pra ensinar, guia com pressão e alívio pra mostrar o limite.
+
+**Atende a minha cidade?**
+Salto e região. Já fui também a Cabreúva, Campinas, Jundiaí e Sorocaba.
+
+## P7 Chamada final
+**Título:** Filhote cresce, e a mordida cresce junto. Chame antes que alguém se machuque.
+
+**Texto:** Me mande o nome do cão, o problema e o bairro, escrito ou em áudio. Pode ser &quot;faz xixi na garagem toda&quot; ou &quot;mordeu meu filho&quot;: respondo com o primeiro horário livre. Avaliação em casa: R$ 169 [CONFIRMAR]. Salto, Itu, Indaiatuba, Jundiaí e região.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site. Meu cachorro se chama ___. O que está acontecendo é ___. Moro no bairro ___, em ___.
+
+## Título da aba (SEO)
+Adestrador em casa em Salto, Itu e Indaiatuba: filhote, mordida e cão que avança | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169; para a Kaylhandra foi R$ 190).
+2. Que muitas vezes dá pra ir no mesmo dia.
+3. Aula única de xixi e cocô: R$ 150 (valor cotado ao Luiz Felipe em junho).
+4. Pacote de 4 aulas (1 por semana): cerca de R$ 636.
+5. Pacote de 8 aulas (2 por semana): cerca de R$ 1.272.
+6. Que atende de manhã e à tarde.
+7. [PREENCHER] Anos de experiência.
+8. [PREENCHER] Nota no Google.
+9. Autorização do Tarciso (Boris) para usar o caso.
+10. Autorização do Felipe (Freud) para usar o caso e a frase.
+11. Autorização do Lucas (Banguela) para usar a frase.
+12. Autorização da Kaylhandra (Luke) para usar o caso e a frase.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-W1" aria-labelledby="t-W1" hidden>
+<div class="ph"><div class="phl"><span class="tag desejo">desejo</span><h2>O passeio que você imaginou</h2><p class="h1q">“Do cão que ninguém segura ao passeio de guia frouxa.”</p></div>
+<div class="meta"><div><b>5</b><span>rodadas até vencer</span></div><div><b>8/8</b><span>na última rodada</span></div><button class="copy" data-src="src-W1">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí</p>
+<p><strong>Título (H1):</strong> Do cão que ninguém segura ao passeio de guia frouxa.</p>
+<p><strong>Subtítulo:</strong> Ele puxa, avança em outro cachorro, faz xixi pela casa ou é filhote novo? Eu vou até você, sem grito e sem machucar, pra ele andar do seu lado e ir junto até na viagem.</p>
+<p><strong>Botão:</strong> Quero marcar a avaliação</p>
+<ul>
+<li>Avaliação de 1 hora na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark></li>
+<li>Filhote novo? Dá pra começar antes das vacinas</li>
+<li>Se tiver vaga, vou no mesmo dia</li>
+</ul>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Do jeito que tá hoje ao passeio que você quer</strong></p>
+<p>Ache a sua frase. Depois da seta, aonde a gente vai.</p>
+<ul>
+<li>"Os passeios, tá impossível, ele fica maluquinho com outros cachorros" → cruzar com outro cão e seguir</li>
+<li>"Puxar a guia que nem maluco" → guia frouxa, ele do seu lado</li>
+<li>"Minha mulher não consegue segurar ele" → qualquer um da casa levar</li>
+<li>"Trocamos de local, tô com medo de ficar perdido" → xixi no lugar certo na casa nova</li>
+<li>"Fica franzinho do nariz pra mim, me ameaçando" → mexer nele sem medo</li>
+<li>"Morde tudo e todos" → brincar sem machucar</li>
+<li>"Pegamos ela tem dias" → rotina, xixi no lugar e caixa de transporte pra viajar junto</li>
+</ul>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Do primeiro dia ao primeiro passeio bom</strong></p>
+<ol>
+<li><strong>Você me chama.</strong> Se tiver vaga, a avaliação pode ser hoje.</li>
+<li><strong>Avaliação na sua casa, cerca de 1 hora.</strong> Antes de corrigir, entendo por que ele faz o que faz: a casa, a rotina, quem segura a guia. Você já sai sabendo o que fazer amanhã cedo.</li>
+<li><strong>Você decide depois.</strong> Eu digo qual pacote faz sentido, e você pensa com calma.</li>
+<li><strong>Aulas 1 ou 2 vezes por semana,</strong> de segunda a segunda, até fim de semana. Começa dentro de casa, depois a calçada e a praça. Precisou remarcar? Sem problema.</li>
+</ol>
+<p><strong>Vida corrida?</strong> A gente monta uma rotina curta que cabe no seu dia.</p>
+<p><strong>Como eu ensino:</strong> petisco e brincadeira pra mostrar o certo. No limite, a guia avisa e solta, sem tranco e sem grito. A família aprende junto e tira dúvida no WhatsApp entre as aulas.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Quanto custa chegar lá</strong></p>
+<p><strong>Avaliação · R$ 169 <mark class="cf">CONFIRMAR</mark></strong>
+1 hora na sua casa, já com instruções pro dia a dia.</p>
+<p><strong>4 aulas · 1 por semana · R$ 636 <mark class="cf">CONFIRMAR</mark></strong>
+Pra filhote e pra rotina corrida.</p>
+<p><strong>8 aulas · 2 por semana · R$ 1.272 <mark class="cf">CONFIRMAR</mark></strong>
+Mais ritmo, pra cão que puxa forte, avança ou briga.</p>
+<p><strong>Aula avulsa · R$ 160 <mark class="cf">CONFIRMAR</mark></strong></p>
+<p>O pacote a gente escolhe depois da avaliação. Pix ou cartão em até 2x sem juros <mark class="cf">CONFIRMAR</mark>, dá pra dividir em dois cartões, ou metade no começo e metade no meio.</p>
+<p>Botão: <strong>Começar pela avaliação</strong></p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Prazer, Caio. Eu também tenho cachorro elétrico em casa.</strong></p>
+<p>Sou de Salto e atendo Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí. Adestro há <mark class="pr">PREENCHER</mark> anos. Eu mesmo dou cada aula e respondo o WhatsApp.</p>
+<p>Minha malinois tem instinto de caça e convive com meus gatos sem pegar nenhum. Ensinei desde filhote, com rotina: ela fica tranquila porque sabe que tem hora pra tudo.</p>
+<p><strong>Quem já passou por aqui</strong> <mark class="cf">CONFIRMAR autorização</mark>
+- "A gente não desceu do carro até ele acalmar... na hora que ele desistiu ele deitou... Agora ele tá aqui brincando." Kaylhandra, Campinas, depois da 1ª aula. O Luke, golden de 45 kg, encrespava com outros cães. <mark class="cf">CONFIRMAR autorização</mark>
+- "Ontem ele não fez nenhuma necessidade em casa. Segurou pra fazer no passeio de noite." Lucas, Indaiatuba, recém-mudado pra apartamento. <mark class="cf">CONFIRMAR autorização</mark>
+- A Julia, de Cabreúva, tinha acabado de pegar a Sophi, schnauzer filhote, e queria levar ela nas viagens. Chamou ao meio-dia, e às 16h30 do mesmo dia a avaliação começou, com caixa de transporte no plano <mark class="cf">CONFIRMAR</mark>. <mark class="cf">CONFIRMAR autorização</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Você atende minha cidade?</strong>
+Salto, Itu e Indaiatuba. Já fui a Cabreúva, Campinas e Jundiaí. Me manda o bairro.</p>
+<p><strong>Peguei um filhote agora e faltam vacinas. Dá pra começar?</strong>
+Dá. Começo dentro de casa: rotina, xixi, mordidinha e caixa de transporte pra viajar junto. A rua fica pra quando o veterinário liberar.</p>
+<p><strong>Você é bruto com o cachorro?</strong>
+Não. Petisco e carinho primeiro, guia com calma, sem tranco. Na avaliação você vê de perto.</p>
+<p><strong>Meu cão é grande e avança em outro cachorro. Tem jeito?</strong>
+Tem. Adulto aprende também. Na avaliação eu monto o plano pra passear com segurança.</p>
+<p><strong>Dá pra fazer só 1 vez por semana e parcelar?</strong>
+Dá. O pacote de 4 aulas é 1 por semana, em 2x no cartão ou no Pix.</p>
+<p><strong>Em quanto tempo eu passeio tranquilo?</strong>
+Depende do cão. Muita família vê mudança nas primeiras aulas, e na avaliação eu digo o que esperar.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Seu primeiro passeio bom começa com uma mensagem.</strong></p>
+<p>Manda áudio, do jeito que der e na hora que lembrar: se ele puxa, avança, faz xixi pela casa ou se o filhote acabou de chegar. Sem sermão pelo que deu errado. Me diz o bairro. Eu mesmo respondo e, se tiver vaga, vou no mesmo dia.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama <strong><em>_ e o que eu mais quero é </em></strong>_. Moro no bairro <strong><em>_, em </em></strong>_.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169.</li>
+<li>Valores dos pacotes: 4 aulas R$ 636 e 8 aulas R$ 1.272.</li>
+<li>Valor da aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).</li>
+<li>Cartão em até 2x sem juros (para o Luiz Felipe foi dito "com juros da maquininha").</li>
+<li>Anos de experiência.</li>
+<li>Autorização para usar os depoimentos da Kaylhandra, do Lucas e da Julia.</li>
+<li>Caixa de transporte no plano da Sophi (o Caio sugeriu na conversa; conferir se entrou no trabalho).</li>
+</ol></div>
+<textarea class="src" id="src-W1" readonly aria-label="Texto em markdown da copy W1"># W1: O passeio que você imaginou
+
+## P1 Topo
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí
+
+**Título (H1):** Do cão que ninguém segura ao passeio de guia frouxa.
+
+**Subtítulo:** Ele puxa, avança em outro cachorro, faz xixi pela casa ou é filhote novo? Eu vou até você, sem grito e sem machucar, pra ele andar do seu lado e ir junto até na viagem.
+
+**Botão:** Quero marcar a avaliação
+
+- Avaliação de 1 hora na sua casa: R$ 169 [CONFIRMAR]
+- Filhote novo? Dá pra começar antes das vacinas
+- Se tiver vaga, vou no mesmo dia
+
+## P2 Problemas
+**Do jeito que tá hoje ao passeio que você quer**
+
+Ache a sua frase. Depois da seta, aonde a gente vai.
+
+- &quot;Os passeios, tá impossível, ele fica maluquinho com outros cachorros&quot; → cruzar com outro cão e seguir
+- &quot;Puxar a guia que nem maluco&quot; → guia frouxa, ele do seu lado
+- &quot;Minha mulher não consegue segurar ele&quot; → qualquer um da casa levar
+- &quot;Trocamos de local, tô com medo de ficar perdido&quot; → xixi no lugar certo na casa nova
+- &quot;Fica franzinho do nariz pra mim, me ameaçando&quot; → mexer nele sem medo
+- &quot;Morde tudo e todos&quot; → brincar sem machucar
+- &quot;Pegamos ela tem dias&quot; → rotina, xixi no lugar e caixa de transporte pra viajar junto
+
+## P3 Como funciona
+**Do primeiro dia ao primeiro passeio bom**
+
+1. **Você me chama.** Se tiver vaga, a avaliação pode ser hoje.
+2. **Avaliação na sua casa, cerca de 1 hora.** Antes de corrigir, entendo por que ele faz o que faz: a casa, a rotina, quem segura a guia. Você já sai sabendo o que fazer amanhã cedo.
+3. **Você decide depois.** Eu digo qual pacote faz sentido, e você pensa com calma.
+4. **Aulas 1 ou 2 vezes por semana,** de segunda a segunda, até fim de semana. Começa dentro de casa, depois a calçada e a praça. Precisou remarcar? Sem problema.
+
+**Vida corrida?** A gente monta uma rotina curta que cabe no seu dia.
+
+**Como eu ensino:** petisco e brincadeira pra mostrar o certo. No limite, a guia avisa e solta, sem tranco e sem grito. A família aprende junto e tira dúvida no WhatsApp entre as aulas.
+
+## P4 Oferta e preço
+**Quanto custa chegar lá**
+
+**Avaliação · R$ 169 [CONFIRMAR]**
+1 hora na sua casa, já com instruções pro dia a dia.
+
+**4 aulas · 1 por semana · R$ 636 [CONFIRMAR]**
+Pra filhote e pra rotina corrida.
+
+**8 aulas · 2 por semana · R$ 1.272 [CONFIRMAR]**
+Mais ritmo, pra cão que puxa forte, avança ou briga.
+
+**Aula avulsa · R$ 160 [CONFIRMAR]**
+
+O pacote a gente escolhe depois da avaliação. Pix ou cartão em até 2x sem juros [CONFIRMAR], dá pra dividir em dois cartões, ou metade no começo e metade no meio.
+
+Botão: **Começar pela avaliação**
+
+## P5 Quem é o Caio
+**Prazer, Caio. Eu também tenho cachorro elétrico em casa.**
+
+Sou de Salto e atendo Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí. Adestro há [PREENCHER] anos. Eu mesmo dou cada aula e respondo o WhatsApp.
+
+Minha malinois tem instinto de caça e convive com meus gatos sem pegar nenhum. Ensinei desde filhote, com rotina: ela fica tranquila porque sabe que tem hora pra tudo.
+
+**Quem já passou por aqui** [CONFIRMAR autorização]
+- &quot;A gente não desceu do carro até ele acalmar... na hora que ele desistiu ele deitou... Agora ele tá aqui brincando.&quot; Kaylhandra, Campinas, depois da 1ª aula. O Luke, golden de 45 kg, encrespava com outros cães. [CONFIRMAR autorização]
+- &quot;Ontem ele não fez nenhuma necessidade em casa. Segurou pra fazer no passeio de noite.&quot; Lucas, Indaiatuba, recém-mudado pra apartamento. [CONFIRMAR autorização]
+- A Julia, de Cabreúva, tinha acabado de pegar a Sophi, schnauzer filhote, e queria levar ela nas viagens. Chamou ao meio-dia, e às 16h30 do mesmo dia a avaliação começou, com caixa de transporte no plano [CONFIRMAR]. [CONFIRMAR autorização]
+
+## P6 Perguntas
+**Você atende minha cidade?**
+Salto, Itu e Indaiatuba. Já fui a Cabreúva, Campinas e Jundiaí. Me manda o bairro.
+
+**Peguei um filhote agora e faltam vacinas. Dá pra começar?**
+Dá. Começo dentro de casa: rotina, xixi, mordidinha e caixa de transporte pra viajar junto. A rua fica pra quando o veterinário liberar.
+
+**Você é bruto com o cachorro?**
+Não. Petisco e carinho primeiro, guia com calma, sem tranco. Na avaliação você vê de perto.
+
+**Meu cão é grande e avança em outro cachorro. Tem jeito?**
+Tem. Adulto aprende também. Na avaliação eu monto o plano pra passear com segurança.
+
+**Dá pra fazer só 1 vez por semana e parcelar?**
+Dá. O pacote de 4 aulas é 1 por semana, em 2x no cartão ou no Pix.
+
+**Em quanto tempo eu passeio tranquilo?**
+Depende do cão. Muita família vê mudança nas primeiras aulas, e na avaliação eu digo o que esperar.
+
+## P7 Chamada final
+**Seu primeiro passeio bom começa com uma mensagem.**
+
+Manda áudio, do jeito que der e na hora que lembrar: se ele puxa, avança, faz xixi pela casa ou se o filhote acabou de chegar. Sem sermão pelo que deu errado. Me diz o bairro. Eu mesmo respondo e, se tiver vaga, vou no mesmo dia.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site. Meu cachorro se chama ____ e o que eu mais quero é ____. Moro no bairro ____, em ____.
+
+## Título da aba (SEO)
+Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169.
+2. Valores dos pacotes: 4 aulas R$ 636 e 8 aulas R$ 1.272.
+3. Valor da aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).
+4. Cartão em até 2x sem juros (para o Luiz Felipe foi dito &quot;com juros da maquininha&quot;).
+5. Anos de experiência.
+6. Autorização para usar os depoimentos da Kaylhandra, do Lucas e da Julia.
+7. Caixa de transporte no plano da Sophi (o Caio sugeriu na conversa; conferir se entrou no trabalho).
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-W2" aria-labelledby="t-W2" hidden>
+<div class="ph"><div class="phl"><span class="tag desejo">desejo</span><h2>Comece certo com o seu filhote</h2><p class="h1q">“Seu filhote acabou de chegar. Comece certo com ele.”</p></div>
+<div class="meta"><div><b>4</b><span>rodadas até vencer</span></div><div><b>6/8</b><span>na última rodada</span></div><button class="copy" data-src="src-W2">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador de filhote, na sua casa · Salto, Itu, Indaiatuba e região (Jundiaí, Campinas, Cabreúva)</p>
+<p><strong>Título (H1):</strong> Seu filhote acabou de chegar. Comece certo com ele.</p>
+<p><strong>Subtítulo:</strong> Xixi no lugar certo, mordida só no brinquedo, tranquilo quando fica sozinho. Nessa fase ele aprende rápido. Eu vou até a sua casa e ensino vocês a criar esse cachorro desde o primeiro dia.</p>
+<p><strong>Botão:</strong> Quero marcar a avaliação</p>
+<p><strong>Abaixo do botão:</strong>
+- Avaliação em casa: 60 min, R$ 169 <mark class="cf">CONFIRMAR</mark>
+- Pode começar antes de terminar as vacinas
+- Atendo de segunda a segunda, às vezes ainda hoje</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> O que ele faz hoje é o começo do cachorro que ele vai ser.</p>
+<p><strong>Apoio:</strong> É normal da idade, mas o que ele repete agora vira hábito.</p>
+<ul>
+<li>"Faz xixi e cocô em todo canto" → aprende o lugar certo</li>
+<li>"Morde a mão, o pé, o chinelo, todo mundo" → mordida só no brinquedo</li>
+<li>"Não conseguimos nem assistir TV com ele" → deita com vocês no fim do dia</li>
+<li>"Chora se eu desço um andar" → fica sozinho sem sofrer</li>
+<li>"Destrói tudo e come afobado" → rói o que é dele e come com calma</li>
+<li>"Os gatos têm medo dele, e ele deles" → os bichos da casa em paz</li>
+</ul>
+<p>Já passou da fase de filhote? Também atendo cães adultos.</p>
+<p><strong>Botão:</strong> Me conta qual é o do seu</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Do primeiro dia ao cão educado, em 3 passos</p>
+<ol>
+<li><strong>Você me chama no WhatsApp.</strong> Conta o nome, a idade e o que ele apronta. Eu respondo com dia e horário.</li>
+<li><strong>Avaliação na sua casa (60 min).</strong> De manhã, à tarde ou no fim de semana. Conheço o filhote, a casa e a rotina, e já começo a ensinar ali. Precisou remarcar? Sem problema.</li>
+<li><strong>Aulas 1x ou 2x por semana.</strong> Em casa, com a família junto. Dúvidas pelo WhatsApp entre as aulas.</li>
+</ol>
+<p><strong>Você sai da avaliação com a rotina pronta:</strong> onde faz xixi, o que fazer quando morder, como deixar sozinho.</p>
+<p>Eu passo poucas horas por semana com ele. Vocês passam o resto. Por isso a família aprende junto.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Quanto custa, tudo às claras</p>
+<ul>
+<li><strong>Avaliação na sua casa, 60 min: R$ 169 <mark class="cf">CONFIRMAR</mark>.</strong> Ele já começa a aprender ali.</li>
+<li><strong>Pacote do mês, 4 aulas (1x por semana): R$ 636 <mark class="cf">CONFIRMAR</mark></strong>, ou 2x de R$ 318.</li>
+<li><strong>Pacote do mês, 8 aulas (2x por semana): R$ 1.272 <mark class="cf">CONFIRMAR</mark></strong>, ou 2x de R$ 636.</li>
+</ul>
+<p>Pix ou cartão, em duas vezes.</p>
+<p><strong>Qual escolher:</strong> 1x por semana pra montar a rotina do filhote. 2x por semana quando a mordida já virou hábito: ele treina o dobro.</p>
+<p>Dá pra começar com 1x até as vacinas e subir depois. Você renova mês a mês <mark class="cf">CONFIRMAR</mark>.</p>
+<p><strong>Botão:</strong> Chamar no WhatsApp e marcar a avaliação
+<strong>Link abaixo:</strong> Perguntar qual pacote serve pro meu</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu, o Caio</p>
+<p>Sou de Salto e vou até Itu, Indaiatuba, Jundiaí, Campinas, Cabreúva e região. Faço cada aula e respondo o WhatsApp pessoalmente. <mark class="pr">PREENCHER: experiência e formação</mark></p>
+<p><strong>Casos reais:</strong>
+- <strong>Sophi, Cabreúva.</strong> A Julia chamou ao meio-dia. Às 16h30 eu estava na casa dela. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Ozzy, Jundiaí.</strong> Beagle que mordia todo mundo. Avaliação marcada uma hora depois da resposta da Juliana. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Freud, Cabreúva.</strong> Border collie de 2 meses que chorava, mordia e assustava os 3 gatos. Contei da minha malinois, que convive com gatos, e combinamos ensinar o Freud também. Depois de 8 aulas, o Felipe renovou: "Ele não tá aprontando muito não." <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Banguela, Indaiatuba.</strong> Avaliação no dia seguinte. Depois: "Ontem ele não fez nenhuma necessidade em casa." (Lucas) <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Luke, Campinas.</strong> Golden de 45 kg que ameaçava a família. Bronca faz o cão parar de avisar antes de morder; eu começo com petisco e carinho. A Kaylhandra: "achei legal a sua abordagem." <mark class="cf">CONFIRMAR autorização</mark></p>
+<p>Avaliações no Google: <mark class="pr">PREENCHER nota e link</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Ele ainda não tomou todas as vacinas. Já pode?</strong>
+Pode. A aula é dentro de casa. A rua fica pra depois.</p>
+<p><strong>Com quantos meses dá pra começar?</strong>
+Assim que ele chegar. Já comecei com filhote de 2 meses, poucos dias depois de chegar.</p>
+<p><strong>Em quanto tempo ele para de morder?</strong>
+Depende do filhote e de quanto a casa repete o combinado. Desde a avaliação você já sabe o que fazer na hora da mordida.</p>
+<p><strong>Atende à tarde e no fim de semana? E se eu precisar remarcar?</strong>
+Atendo de segunda a segunda, de manhã ou à tarde. Imprevisto acontece: é só me avisar e a gente remarca.</p>
+<p><strong>Você atende a minha cidade?</strong>
+Salto, Itu e Indaiatuba, e já atendi Cabreúva, Campinas e Jundiaí. Me fala o bairro.</p>
+<p><strong>O jeito de ensinar machuca o filhote?</strong>
+Não. Ensino com petisco e brincadeira. A guia mostra o limite, sem gritar e sem machucar.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Ele está aprendendo alguma coisa hoje. Que seja do jeito certo.</p>
+<p><strong>Texto:</strong> Me manda o nome e a idade do seu filhote. Eu respondo no mesmo dia <mark class="cf">CONFIRMAR</mark> com os próximos horários: manhã, tarde ou fim de semana.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vi seu site. Meu filhote se chama ___ e tem ___ meses. Quero começar certo com ele. Moro em ___. Qual o próximo horário pra avaliação?</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador de filhote em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece R$ 159, R$ 160, R$ 169 e R$ 190).</li>
+<li>Valores dos pacotes: 4 aulas R$ 636 (2x R$ 318) e 8 aulas R$ 1.272 (2x R$ 636).</li>
+<li>"Você renova mês a mês": o pacote é mensal e renovável assim?</li>
+<li>"Eu respondo no mesmo dia" com os próximos horários.</li>
+<li>Autorização de Julia, Juliana, Felipe, Lucas e Kaylhandra para os casos (nome, cão e cidade).</li>
+<li><mark class="pr">PREENCHER</mark> experiência e formação.</li>
+<li><mark class="pr">PREENCHER</mark> nota e link das avaliações no Google.</li>
+</ol></div>
+<textarea class="src" id="src-W2" readonly aria-label="Texto em markdown da copy W2"># W2: Comece certo com o seu filhote
+
+## P1 Topo
+**Etiqueta:** Adestrador de filhote, na sua casa · Salto, Itu, Indaiatuba e região (Jundiaí, Campinas, Cabreúva)
+
+**Título (H1):** Seu filhote acabou de chegar. Comece certo com ele.
+
+**Subtítulo:** Xixi no lugar certo, mordida só no brinquedo, tranquilo quando fica sozinho. Nessa fase ele aprende rápido. Eu vou até a sua casa e ensino vocês a criar esse cachorro desde o primeiro dia.
+
+**Botão:** Quero marcar a avaliação
+
+**Abaixo do botão:**
+- Avaliação em casa: 60 min, R$ 169 [CONFIRMAR]
+- Pode começar antes de terminar as vacinas
+- Atendo de segunda a segunda, às vezes ainda hoje
+
+## P2 Problemas
+**Título:** O que ele faz hoje é o começo do cachorro que ele vai ser.
+
+**Apoio:** É normal da idade, mas o que ele repete agora vira hábito.
+
+- &quot;Faz xixi e cocô em todo canto&quot; → aprende o lugar certo
+- &quot;Morde a mão, o pé, o chinelo, todo mundo&quot; → mordida só no brinquedo
+- &quot;Não conseguimos nem assistir TV com ele&quot; → deita com vocês no fim do dia
+- &quot;Chora se eu desço um andar&quot; → fica sozinho sem sofrer
+- &quot;Destrói tudo e come afobado&quot; → rói o que é dele e come com calma
+- &quot;Os gatos têm medo dele, e ele deles&quot; → os bichos da casa em paz
+
+Já passou da fase de filhote? Também atendo cães adultos.
+
+**Botão:** Me conta qual é o do seu
+
+## P3 Como funciona
+**Título:** Do primeiro dia ao cão educado, em 3 passos
+
+1. **Você me chama no WhatsApp.** Conta o nome, a idade e o que ele apronta. Eu respondo com dia e horário.
+2. **Avaliação na sua casa (60 min).** De manhã, à tarde ou no fim de semana. Conheço o filhote, a casa e a rotina, e já começo a ensinar ali. Precisou remarcar? Sem problema.
+3. **Aulas 1x ou 2x por semana.** Em casa, com a família junto. Dúvidas pelo WhatsApp entre as aulas.
+
+**Você sai da avaliação com a rotina pronta:** onde faz xixi, o que fazer quando morder, como deixar sozinho.
+
+Eu passo poucas horas por semana com ele. Vocês passam o resto. Por isso a família aprende junto.
+
+## P4 Oferta e preço
+**Título:** Quanto custa, tudo às claras
+
+- **Avaliação na sua casa, 60 min: R$ 169 [CONFIRMAR].** Ele já começa a aprender ali.
+- **Pacote do mês, 4 aulas (1x por semana): R$ 636 [CONFIRMAR]**, ou 2x de R$ 318.
+- **Pacote do mês, 8 aulas (2x por semana): R$ 1.272 [CONFIRMAR]**, ou 2x de R$ 636.
+
+Pix ou cartão, em duas vezes.
+
+**Qual escolher:** 1x por semana pra montar a rotina do filhote. 2x por semana quando a mordida já virou hábito: ele treina o dobro.
+
+Dá pra começar com 1x até as vacinas e subir depois. Você renova mês a mês [CONFIRMAR].
+
+**Botão:** Chamar no WhatsApp e marcar a avaliação
+**Link abaixo:** Perguntar qual pacote serve pro meu
+
+## P5 Quem é o Caio
+**Título:** Quem vai até a sua casa sou eu, o Caio
+
+Sou de Salto e vou até Itu, Indaiatuba, Jundiaí, Campinas, Cabreúva e região. Faço cada aula e respondo o WhatsApp pessoalmente. [PREENCHER: experiência e formação]
+
+**Casos reais:**
+- **Sophi, Cabreúva.** A Julia chamou ao meio-dia. Às 16h30 eu estava na casa dela. [CONFIRMAR autorização]
+- **Ozzy, Jundiaí.** Beagle que mordia todo mundo. Avaliação marcada uma hora depois da resposta da Juliana. [CONFIRMAR autorização]
+- **Freud, Cabreúva.** Border collie de 2 meses que chorava, mordia e assustava os 3 gatos. Contei da minha malinois, que convive com gatos, e combinamos ensinar o Freud também. Depois de 8 aulas, o Felipe renovou: &quot;Ele não tá aprontando muito não.&quot; [CONFIRMAR autorização]
+- **Banguela, Indaiatuba.** Avaliação no dia seguinte. Depois: &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; (Lucas) [CONFIRMAR autorização]
+- **Luke, Campinas.** Golden de 45 kg que ameaçava a família. Bronca faz o cão parar de avisar antes de morder; eu começo com petisco e carinho. A Kaylhandra: &quot;achei legal a sua abordagem.&quot; [CONFIRMAR autorização]
+
+Avaliações no Google: [PREENCHER nota e link]
+
+## P6 Perguntas
+**Ele ainda não tomou todas as vacinas. Já pode?**
+Pode. A aula é dentro de casa. A rua fica pra depois.
+
+**Com quantos meses dá pra começar?**
+Assim que ele chegar. Já comecei com filhote de 2 meses, poucos dias depois de chegar.
+
+**Em quanto tempo ele para de morder?**
+Depende do filhote e de quanto a casa repete o combinado. Desde a avaliação você já sabe o que fazer na hora da mordida.
+
+**Atende à tarde e no fim de semana? E se eu precisar remarcar?**
+Atendo de segunda a segunda, de manhã ou à tarde. Imprevisto acontece: é só me avisar e a gente remarca.
+
+**Você atende a minha cidade?**
+Salto, Itu e Indaiatuba, e já atendi Cabreúva, Campinas e Jundiaí. Me fala o bairro.
+
+**O jeito de ensinar machuca o filhote?**
+Não. Ensino com petisco e brincadeira. A guia mostra o limite, sem gritar e sem machucar.
+
+## P7 Chamada final
+**Título:** Ele está aprendendo alguma coisa hoje. Que seja do jeito certo.
+
+**Texto:** Me manda o nome e a idade do seu filhote. Eu respondo no mesmo dia [CONFIRMAR] com os próximos horários: manhã, tarde ou fim de semana.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vi seu site. Meu filhote se chama ___ e tem ___ meses. Quero começar certo com ele. Moro em ___. Qual o próximo horário pra avaliação?
+
+## Título da aba (SEO)
+Adestrador de filhote em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece R$ 159, R$ 160, R$ 169 e R$ 190).
+2. Valores dos pacotes: 4 aulas R$ 636 (2x R$ 318) e 8 aulas R$ 1.272 (2x R$ 636).
+3. &quot;Você renova mês a mês&quot;: o pacote é mensal e renovável assim?
+4. &quot;Eu respondo no mesmo dia&quot; com os próximos horários.
+5. Autorização de Julia, Juliana, Felipe, Lucas e Kaylhandra para os casos (nome, cão e cidade).
+6. [PREENCHER] experiência e formação.
+7. [PREENCHER] nota e link das avaliações no Google.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-W3" aria-labelledby="t-W3" hidden>
+<div class="ph"><div class="phl"><span class="tag desejo">desejo</span><h2>Um cão que obedece a casa inteira</h2><p class="h1q">“Quando a casa inteira fala a mesma língua, o cachorro obedece todo mundo.”</p></div>
+<div class="meta"><div><b>4</b><span>rodadas até vencer</span></div><div><b>6/8</b><span>na última rodada</span></div><button class="copy" data-src="src-W3">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva e região</p>
+<p><strong>Título (H1):</strong> Quando a casa inteira fala a mesma língua, o cachorro obedece todo mundo.</p>
+<p><strong>Subtítulo:</strong> Xixi pela garagem, mordida, briga com o outro cão ou filhote recém-chegado: eu vou até a sua casa e ensino o cão e a família juntos. Você já sai da avaliação sabendo o que fazer.</p>
+<p><strong>Botão:</strong> Contar do meu cachorro no WhatsApp</p>
+<p><strong>Apoio:</strong>
+- Avaliação de 60 min na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>
+- Atendo todos os dias, muitas vezes no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>
+- Pode mandar áudio</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> Cada um da casa tem uma frase sobre ele. Qual é a sua?</p>
+<p><strong>Linha de apoio:</strong> Toque na sua e ela já vai escrita pro meu WhatsApp.</p>
+<ul>
+<li>"Quer comer até a coleira. Não passa nem do portão."</li>
+<li>"Minha mulher não consegue nem sair com ele."</li>
+<li>"Espalha xixi e cocô pela garagem inteira."</li>
+<li>"Fica mordendo todos, até as crianças."</li>
+<li>"Comigo ele obedece. Com o resto da casa, é osso."</li>
+<li>"Está batendo no cão menor."</li>
+<li>"Não conseguimos assistir TV com ele."</li>
+</ul>
+<p><strong>Ou vocês querem começar certo:</strong>
+- "Pegamos ele tem dias."
+- "A gente viaja e quer levar ele junto."</p>
+<p>Na avaliação, a sua frase vira um jeito só de agir, que todo mundo da casa faz igual.</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Eu ensino o cachorro. E ensino quem mora com ele.</p>
+<p>Eu passo algumas horas por semana com o seu cão. Vocês passam o resto do dia. Se cada um pede de um jeito, ele obedece só a quem acerta. Por isso a família aprende junto.</p>
+<p><strong>1. Você me chama no WhatsApp.</strong> Conta o nome do cão, o que está acontecendo e o bairro. Eu respondo com dia e horário.</p>
+<p><strong>2. Avaliação na sua casa (cerca de 60 min).</strong> Vejo o cão onde tudo acontece: sala, quintal, portão. Filhote sem todas as vacinas pode ter aula dentro de casa.</p>
+<p><strong>3. Aulas com a família, 1 ou 2 vezes por semana.</strong> Adultos, crianças e avós aprendem o mesmo jeito de pedir, de recompensar e de dar limite. Entre as aulas, dúvida é no WhatsApp.</p>
+<p><strong>Na avaliação:</strong> entendo a rotina da casa, olho todos os bichos, já começo o trabalho e deixo instruções: horários, o que fazer quando ele errar, o papel de cada um.</p>
+<p><strong>Como eu ensino:</strong> petisco, brincadeira e carinho. Quando precisa de limite, uso a guia, sem tranco, sem grito, sem machucar e sem medo.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Os valores, antes de eu chegar.</p>
+<p><strong>Avaliação na sua casa:</strong> R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 60 minutos. Já é a primeira aula. Se é só xixi e cocô, muitas vezes ela já resolve a rotina.</p>
+<p>Depois, se precisar:</p>
+<ul>
+<li><strong>Cão tranquilo, 4 aulas (1 por semana):</strong> R$ 636 <mark class="cf">CONFIRMAR</mark>, em 2x de R$ 318. Pra filhote e rotina da casa.</li>
+<li><strong>Cão agitado, 8 aulas (2 por semana):</strong> R$ 1.272 <mark class="cf">CONFIRMAR</mark>, em 2x de R$ 636. Pra mordida, briga entre cães, passeio difícil.</li>
+<li><strong>Aula avulsa:</strong> R$ 159 <mark class="cf">CONFIRMAR</mark>.</li>
+</ul>
+<p><strong>Pagamento:</strong> Pix ou cartão. Pacote em duas partes: metade no começo, metade no meio.</p>
+<p><strong>Botões:</strong> Agendar minha avaliação · Perguntar qual pacote serve pra mim</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu, o Caio.</p>
+<p>Sou de Salto. Eu mesmo faço a avaliação e cada aula, e você fala direto comigo.</p>
+<p>Em casa tenho uma malinois com instinto de caça alto. Ela convive com os meus gatos sem mexer com nenhum, porque eu ensinei desde pequena. É essa convivência que eu monto na sua casa.</p>
+<p><strong>Experiência:</strong> <mark class="pr">PREENCHER anos de trabalho / formação</mark></p>
+<p><strong>Casas que eu atendi:</strong>
+- <strong>Tarciso, Itu.</strong> O Boris batia no cão menor. Avaliação no mesmo dia, aulas no dia seguinte. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Julia, Cabreúva.</strong> Filhote recém-chegada. Chamou ao meio-dia, avaliação às 16h30. <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Lucas, Indaiatuba.</strong> Mudou pro apê com o Banguela. Depois da avaliação: "Ontem ele não fez nenhuma necessidade em casa." <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Kaylhandra, Campinas.</strong> Golden de 45 kg que avançava em outros cães: "achei legal a sua abordagem." <mark class="cf">CONFIRMAR autorização</mark></p>
+<p><strong>Avaliações no Google:</strong> <mark class="pr">PREENCHER nota e link</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Quanto custa e dá pra parcelar?</strong>
+Avaliação: R$ 169 <mark class="cf">CONFIRMAR</mark>. Pacote só depois dela, no Pix ou cartão, metade no começo e metade no meio.</p>
+<p><strong>Ele só obedece a mim. E o resto da casa?</strong>
+Todos aprendem o mesmo jeito de pedir, e eu vejo cada um fazendo.</p>
+<p><strong>Atende Cabreúva? É longe?</strong>
+É perto. Sou de Salto e atendo Itu, Indaiatuba, Cabreúva e região.</p>
+<p><strong>Dá pra começar amanhã?</strong>
+Atendo todos os dias. Às vezes, no mesmo dia.</p>
+<p><strong>Meu cão morde ou briga com o outro da casa.</strong>
+Atendo. Olho todos os cães, juntos.</p>
+<p><strong>Filhote sem todas as vacinas pode?</strong>
+Dentro de casa, sim. Rua, depois.</p>
+<p><strong>E se precisar remarcar?</strong>
+Chuva, vacina, imprevisto: me avisa e a gente remarca.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Hoje a sua casa pode começar a falar a mesma língua com ele.</p>
+<p>Me manda o nome do cão, o que está acontecendo e o bairro. Pode ser áudio. Quando a agenda deixa, vou no mesmo dia ou no seguinte, em Salto, Itu, Indaiatuba, Cabreúva e região.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<p>Abaixo do botão: Avaliação de 60 min, R$ 169 <mark class="cf">CONFIRMAR</mark>.</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama ___ e o que mais quero mudar aqui em casa é <strong><em>. Moram com ele ___ (tem criança ou idoso? </em></strong>). Moro no bairro <strong><em>, em </em></strong>.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em Salto, Itu e Indaiatuba | Caio Adestra, aulas na sua casa com a família</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece R$ 159, R$ 160, R$ 169 e R$ 190).</li>
+<li>Valores dos pacotes: 4 aulas R$ 636 (2x R$ 318) e 8 aulas R$ 1.272 (2x R$ 636).</li>
+<li>Valor da aula avulsa: a copy diz R$ 159, mas para a Kaylhandra a avulsa foi cotada a R$ 190.</li>
+<li>"Muitas vezes no mesmo dia ou no seguinte": acontece com frequência suficiente para prometer no topo?</li>
+<li>Autorização de Tarciso, Julia, Lucas e Kaylhandra para os casos (nome, cão e cidade).</li>
+<li><mark class="pr">PREENCHER</mark> anos de trabalho / formação.</li>
+<li><mark class="pr">PREENCHER</mark> nota e link das avaliações no Google.</li>
+</ol></div>
+<textarea class="src" id="src-W3" readonly aria-label="Texto em markdown da copy W3"># W3: Um cão que obedece a casa inteira
+
+## P1 Topo
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva e região
+
+**Título (H1):** Quando a casa inteira fala a mesma língua, o cachorro obedece todo mundo.
+
+**Subtítulo:** Xixi pela garagem, mordida, briga com o outro cão ou filhote recém-chegado: eu vou até a sua casa e ensino o cão e a família juntos. Você já sai da avaliação sabendo o que fazer.
+
+**Botão:** Contar do meu cachorro no WhatsApp
+
+**Apoio:**
+- Avaliação de 60 min na sua casa: R$ 169 [CONFIRMAR]
+- Atendo todos os dias, muitas vezes no mesmo dia ou no seguinte [CONFIRMAR]
+- Pode mandar áudio
+
+## P2 Problemas
+**Título:** Cada um da casa tem uma frase sobre ele. Qual é a sua?
+
+**Linha de apoio:** Toque na sua e ela já vai escrita pro meu WhatsApp.
+
+- &quot;Quer comer até a coleira. Não passa nem do portão.&quot;
+- &quot;Minha mulher não consegue nem sair com ele.&quot;
+- &quot;Espalha xixi e cocô pela garagem inteira.&quot;
+- &quot;Fica mordendo todos, até as crianças.&quot;
+- &quot;Comigo ele obedece. Com o resto da casa, é osso.&quot;
+- &quot;Está batendo no cão menor.&quot;
+- &quot;Não conseguimos assistir TV com ele.&quot;
+
+**Ou vocês querem começar certo:**
+- &quot;Pegamos ele tem dias.&quot;
+- &quot;A gente viaja e quer levar ele junto.&quot;
+
+Na avaliação, a sua frase vira um jeito só de agir, que todo mundo da casa faz igual.
+
+## P3 Como funciona
+**Título:** Eu ensino o cachorro. E ensino quem mora com ele.
+
+Eu passo algumas horas por semana com o seu cão. Vocês passam o resto do dia. Se cada um pede de um jeito, ele obedece só a quem acerta. Por isso a família aprende junto.
+
+**1. Você me chama no WhatsApp.** Conta o nome do cão, o que está acontecendo e o bairro. Eu respondo com dia e horário.
+
+**2. Avaliação na sua casa (cerca de 60 min).** Vejo o cão onde tudo acontece: sala, quintal, portão. Filhote sem todas as vacinas pode ter aula dentro de casa.
+
+**3. Aulas com a família, 1 ou 2 vezes por semana.** Adultos, crianças e avós aprendem o mesmo jeito de pedir, de recompensar e de dar limite. Entre as aulas, dúvida é no WhatsApp.
+
+**Na avaliação:** entendo a rotina da casa, olho todos os bichos, já começo o trabalho e deixo instruções: horários, o que fazer quando ele errar, o papel de cada um.
+
+**Como eu ensino:** petisco, brincadeira e carinho. Quando precisa de limite, uso a guia, sem tranco, sem grito, sem machucar e sem medo.
+
+## P4 Oferta e preço
+**Título:** Os valores, antes de eu chegar.
+
+**Avaliação na sua casa:** R$ 169 [CONFIRMAR], cerca de 60 minutos. Já é a primeira aula. Se é só xixi e cocô, muitas vezes ela já resolve a rotina.
+
+Depois, se precisar:
+
+- **Cão tranquilo, 4 aulas (1 por semana):** R$ 636 [CONFIRMAR], em 2x de R$ 318. Pra filhote e rotina da casa.
+- **Cão agitado, 8 aulas (2 por semana):** R$ 1.272 [CONFIRMAR], em 2x de R$ 636. Pra mordida, briga entre cães, passeio difícil.
+- **Aula avulsa:** R$ 159 [CONFIRMAR].
+
+**Pagamento:** Pix ou cartão. Pacote em duas partes: metade no começo, metade no meio.
+
+**Botões:** Agendar minha avaliação · Perguntar qual pacote serve pra mim
+
+## P5 Quem é o Caio
+**Título:** Quem vai até a sua casa sou eu, o Caio.
+
+Sou de Salto. Eu mesmo faço a avaliação e cada aula, e você fala direto comigo.
+
+Em casa tenho uma malinois com instinto de caça alto. Ela convive com os meus gatos sem mexer com nenhum, porque eu ensinei desde pequena. É essa convivência que eu monto na sua casa.
+
+**Experiência:** [PREENCHER anos de trabalho / formação]
+
+**Casas que eu atendi:**
+- **Tarciso, Itu.** O Boris batia no cão menor. Avaliação no mesmo dia, aulas no dia seguinte. [CONFIRMAR autorização]
+- **Julia, Cabreúva.** Filhote recém-chegada. Chamou ao meio-dia, avaliação às 16h30. [CONFIRMAR autorização]
+- **Lucas, Indaiatuba.** Mudou pro apê com o Banguela. Depois da avaliação: &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; [CONFIRMAR autorização]
+- **Kaylhandra, Campinas.** Golden de 45 kg que avançava em outros cães: &quot;achei legal a sua abordagem.&quot; [CONFIRMAR autorização]
+
+**Avaliações no Google:** [PREENCHER nota e link]
+
+## P6 Perguntas
+**Quanto custa e dá pra parcelar?**
+Avaliação: R$ 169 [CONFIRMAR]. Pacote só depois dela, no Pix ou cartão, metade no começo e metade no meio.
+
+**Ele só obedece a mim. E o resto da casa?**
+Todos aprendem o mesmo jeito de pedir, e eu vejo cada um fazendo.
+
+**Atende Cabreúva? É longe?**
+É perto. Sou de Salto e atendo Itu, Indaiatuba, Cabreúva e região.
+
+**Dá pra começar amanhã?**
+Atendo todos os dias. Às vezes, no mesmo dia.
+
+**Meu cão morde ou briga com o outro da casa.**
+Atendo. Olho todos os cães, juntos.
+
+**Filhote sem todas as vacinas pode?**
+Dentro de casa, sim. Rua, depois.
+
+**E se precisar remarcar?**
+Chuva, vacina, imprevisto: me avisa e a gente remarca.
+
+## P7 Chamada final
+**Título:** Hoje a sua casa pode começar a falar a mesma língua com ele.
+
+Me manda o nome do cão, o que está acontecendo e o bairro. Pode ser áudio. Quando a agenda deixa, vou no mesmo dia ou no seguinte, em Salto, Itu, Indaiatuba, Cabreúva e região.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+Abaixo do botão: Avaliação de 60 min, R$ 169 [CONFIRMAR].
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site. Meu cachorro se chama ___ e o que mais quero mudar aqui em casa é ___. Moram com ele ___ (tem criança ou idoso? ___). Moro no bairro ___, em ___.
+
+## Título da aba (SEO)
+Adestrador em Salto, Itu e Indaiatuba | Caio Adestra, aulas na sua casa com a família
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece R$ 159, R$ 160, R$ 169 e R$ 190).
+2. Valores dos pacotes: 4 aulas R$ 636 (2x R$ 318) e 8 aulas R$ 1.272 (2x R$ 636).
+3. Valor da aula avulsa: a copy diz R$ 159, mas para a Kaylhandra a avulsa foi cotada a R$ 190.
+4. &quot;Muitas vezes no mesmo dia ou no seguinte&quot;: acontece com frequência suficiente para prometer no topo?
+5. Autorização de Tarciso, Julia, Lucas e Kaylhandra para os casos (nome, cão e cidade).
+6. [PREENCHER] anos de trabalho / formação.
+7. [PREENCHER] nota e link das avaliações no Google.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-W4" aria-labelledby="t-W4" hidden>
+<div class="ph"><div class="phl"><span class="tag desejo">desejo</span><h2>Sair de casa sem culpa</h2><p class="h1q">“Sair de casa sem culpa. Voltar e achar tudo no lugar.”</p></div>
+<div class="meta"><div><b>3</b><span>rodadas até vencer</span></div><div><b>6/8</b><span>na última rodada</span></div><button class="copy" data-src="src-W4">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador que vai até a sua casa · Salto, Itu, Indaiatuba e Cabreúva</p>
+<h1>Sair de casa sem culpa. Voltar e achar tudo no lugar.</h1>
+<p>Se ele chora quando você sai, faz xixi pela casa ou pula em quem chega, é por aí que a gente começa. Filhote recém-chegado? Dá pra começar certo. Vou até a sua casa e ensino você e o seu cão juntos, sem grito e sem medo.</p>
+<p><strong>[Marcar minha avaliação no WhatsApp]</strong></p>
+<ul>
+<li>Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 60 min</li>
+<li>Você já sai dela sabendo o que fazer</li>
+<li>Atendo de segunda a segunda, às vezes no mesmo dia</li>
+</ul>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>O que hoje te prende em casa?</strong></p>
+<p>Toque no que acontece aí e me conte no WhatsApp.</p>
+<ul>
+<li>"Desço um andar e ele já chora muito." Quero sair sem aperto no peito.</li>
+<li>"Faz xixi e cocô pela casa toda." Quero ele solto em casa, até no sofá.</li>
+<li>"Morde tudo e todos, rói chinelo, sofá." Quero chegar e achar a casa inteira.</li>
+<li>"Pula e late em quem chega." Quero receber a família de novo.</li>
+<li>"Puxa a guia que nem maluco, vai pra cima de outro cão." Quero que qualquer um saia com ele.</li>
+<li>"Os gatos ainda têm medo dele." Quero todo mundo junto em paz.</li>
+<li>"Pegamos ela tem dias e a gente viaja muito." Quero começar certo e levar ela junto, até no Airbnb.</li>
+</ul>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Do primeiro "oi" até a primeira saída tranquila</strong></p>
+<ol>
+<li><strong>Você me chama no WhatsApp.</strong> Já fiz avaliação no mesmo dia em que a pessoa chamou.</li>
+<li><strong>Avaliação na sua casa</strong>, num horário em que a família possa estar. Já começo o trabalho ali. Você sai com uma rotina pra seguir: horários, como sair e chegar, o que fazer quando ele errar.</li>
+<li><strong>Aulas na sua casa, 1 ou 2 por semana.</strong> Vocês treinam no dia a dia e tiram dúvida comigo no WhatsApp. Imprevisto acontece: a gente remarca.</li>
+</ol>
+<p>Filhote sem todas as vacinas começa dentro de casa. Tem gato ou outro cão? Entra no plano.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Quanto custa pra começar</strong></p>
+<p><strong>Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark></strong>
+Cerca de 60 minutos.
+<strong>[Marcar avaliação]</strong></p>
+<p>Depois você escolhe o ritmo. Cada pacote dura cerca de 1 mês e dá pra renovar <mark class="cf">CONFIRMAR</mark>:
+- <strong>4 aulas, 1 por semana:</strong> R$ 636 <mark class="cf">CONFIRMAR</mark>. Cabe em rotina corrida e em filhote tomando vacina.
+- <strong>8 aulas, 2 por semana:</strong> R$ 1.272 <mark class="cf">CONFIRMAR</mark>. Pra andar mais rápido.
+- <strong>Aula avulsa:</strong> R$ 160 <mark class="cf">CONFIRMAR</mark>.</p>
+<p>Pix ou cartão. Pacote em 2 vezes, metade no começo e metade no meio.
+<strong>[Ver qual pacote serve pro meu cão]</strong></p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Quem vai na sua casa sou eu</strong></p>
+<p>Sou o Caio, de Salto. Eu mesmo faço todas as aulas <mark class="cf">CONFIRMAR</mark> e você fala direto comigo.</p>
+<p>Também vivo na correria. Minha malinois é elétrica e tem instinto de caça alto, mas fica tranquila em casa porque criei uma rotina com ela. E não pega nenhum dos meus gatos: ensinei desde pequena. É essa rotina que eu monto com você.</p>
+<p>Ensino com petisco e brincadeira, e uso a guia com calma pro limite. Sem gritar, sem machucar.</p>
+<p><strong>Quem já fez:</strong>
+- "Ontem ele não fez nenhuma necessidade em casa." Lucas, Indaiatuba, do Banguela, recém-mudado pra apartamento <mark class="cf">CONFIRMAR autorização</mark>
+- "Ele não tá aprontando muito não." Felipe, Cabreúva, do Freud, filhote de border collie com 3 gatos em casa <mark class="cf">CONFIRMAR autorização</mark>
+- "A gente não desceu do carro até ele acalmar... Agora ele tá aqui brincando." Kaylhandra, Campinas, do Luke, golden de 45 kg <mark class="cf">CONFIRMAR autorização</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>Ele chora quando eu saio. Tem como melhorar?</strong>
+Dá pra trabalhar. Ele aprende a ficar sozinho aos poucos, e você aprende o que fazer na saída e na volta. O tempo muda de cão pra cão.</p>
+<p><strong>Atende minha cidade? É longe?</strong>
+Atendo em volta de Salto, Cabreúva inclusive. Me manda o bairro.</p>
+<p><strong>Preciso estar junto nas aulas?</strong>
+Sim, a família também. Eu passo umas horas por semana com ele, vocês passam o resto.</p>
+<p><strong>Meu filhote não tomou todas as vacinas.</strong>
+Aula dentro de casa pode. Pra rua, a gente espera.</p>
+<p><strong>Tenho gato. Vão conviver?</strong>
+Dá pra ensinar desde cedo, como fiz com a minha malinois.</p>
+<p><strong>Dá pra deixar ele pronto pra viajar?</strong>
+Dá pra acostumar com caixa de transporte e lugar novo.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>O que você quer voltar a fazer?</strong></p>
+<p>Sair sem ouvir choro no portão. Receber visita sem prender ele no quarto. Viajar com ele. Me manda o nome, uma foto e o que acontece hoje. Quem responde sou eu, e às vezes dá pra ir hoje ou amanhã. Salto, Itu, Indaiatuba, Cabreúva e região.</p>
+<p><strong>[Chamar o Caio no WhatsApp]</strong></p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Meu cão se chama <strong><em>, tem </em></strong>. O que mais pega hoje: <strong><em>. Moro em </em></strong>. Quero marcar a avaliação.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu, Indaiatuba e Cabreúva | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169).</li>
+<li>Pacote de 4 aulas (1 por semana): R$ 636.</li>
+<li>Pacote de 8 aulas (2 por semana): R$ 1.272.</li>
+<li>Aula avulsa: R$ 160 (nas conversas a avulsa aparece a R$ 190; R$ 160 aparece como preço por aula de pacote).</li>
+<li>Que cada pacote dura cerca de 1 mês e pode ser renovado.</li>
+<li>Que você mesmo faz todas as aulas.</li>
+<li>Autorização do Lucas (Banguela) para usar o depoimento.</li>
+<li>Autorização do Felipe (Freud) para usar o depoimento.</li>
+<li>Autorização da Kaylhandra (Luke) para usar o depoimento.</li>
+</ol></div>
+<textarea class="src" id="src-W4" readonly aria-label="Texto em markdown da copy W4"># W4: Sair de casa sem culpa
+
+## P1 Topo
+**Etiqueta:** Adestrador que vai até a sua casa · Salto, Itu, Indaiatuba e Cabreúva
+
+# Sair de casa sem culpa. Voltar e achar tudo no lugar.
+
+Se ele chora quando você sai, faz xixi pela casa ou pula em quem chega, é por aí que a gente começa. Filhote recém-chegado? Dá pra começar certo. Vou até a sua casa e ensino você e o seu cão juntos, sem grito e sem medo.
+
+**[Marcar minha avaliação no WhatsApp]**
+
+- Avaliação na sua casa: R$ 169 [CONFIRMAR], cerca de 60 min
+- Você já sai dela sabendo o que fazer
+- Atendo de segunda a segunda, às vezes no mesmo dia
+
+## P2 Problemas
+**O que hoje te prende em casa?**
+
+Toque no que acontece aí e me conte no WhatsApp.
+
+- &quot;Desço um andar e ele já chora muito.&quot; Quero sair sem aperto no peito.
+- &quot;Faz xixi e cocô pela casa toda.&quot; Quero ele solto em casa, até no sofá.
+- &quot;Morde tudo e todos, rói chinelo, sofá.&quot; Quero chegar e achar a casa inteira.
+- &quot;Pula e late em quem chega.&quot; Quero receber a família de novo.
+- &quot;Puxa a guia que nem maluco, vai pra cima de outro cão.&quot; Quero que qualquer um saia com ele.
+- &quot;Os gatos ainda têm medo dele.&quot; Quero todo mundo junto em paz.
+- &quot;Pegamos ela tem dias e a gente viaja muito.&quot; Quero começar certo e levar ela junto, até no Airbnb.
+
+## P3 Como funciona
+**Do primeiro &quot;oi&quot; até a primeira saída tranquila**
+
+1. **Você me chama no WhatsApp.** Já fiz avaliação no mesmo dia em que a pessoa chamou.
+2. **Avaliação na sua casa**, num horário em que a família possa estar. Já começo o trabalho ali. Você sai com uma rotina pra seguir: horários, como sair e chegar, o que fazer quando ele errar.
+3. **Aulas na sua casa, 1 ou 2 por semana.** Vocês treinam no dia a dia e tiram dúvida comigo no WhatsApp. Imprevisto acontece: a gente remarca.
+
+Filhote sem todas as vacinas começa dentro de casa. Tem gato ou outro cão? Entra no plano.
+
+## P4 Oferta e preço
+**Quanto custa pra começar**
+
+**Avaliação na sua casa: R$ 169 [CONFIRMAR]**
+Cerca de 60 minutos.
+**[Marcar avaliação]**
+
+Depois você escolhe o ritmo. Cada pacote dura cerca de 1 mês e dá pra renovar [CONFIRMAR]:
+- **4 aulas, 1 por semana:** R$ 636 [CONFIRMAR]. Cabe em rotina corrida e em filhote tomando vacina.
+- **8 aulas, 2 por semana:** R$ 1.272 [CONFIRMAR]. Pra andar mais rápido.
+- **Aula avulsa:** R$ 160 [CONFIRMAR].
+
+Pix ou cartão. Pacote em 2 vezes, metade no começo e metade no meio.
+**[Ver qual pacote serve pro meu cão]**
+
+## P5 Quem é o Caio
+**Quem vai na sua casa sou eu**
+
+Sou o Caio, de Salto. Eu mesmo faço todas as aulas [CONFIRMAR] e você fala direto comigo.
+
+Também vivo na correria. Minha malinois é elétrica e tem instinto de caça alto, mas fica tranquila em casa porque criei uma rotina com ela. E não pega nenhum dos meus gatos: ensinei desde pequena. É essa rotina que eu monto com você.
+
+Ensino com petisco e brincadeira, e uso a guia com calma pro limite. Sem gritar, sem machucar.
+
+**Quem já fez:**
+- &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, Indaiatuba, do Banguela, recém-mudado pra apartamento [CONFIRMAR autorização]
+- &quot;Ele não tá aprontando muito não.&quot; Felipe, Cabreúva, do Freud, filhote de border collie com 3 gatos em casa [CONFIRMAR autorização]
+- &quot;A gente não desceu do carro até ele acalmar... Agora ele tá aqui brincando.&quot; Kaylhandra, Campinas, do Luke, golden de 45 kg [CONFIRMAR autorização]
+
+## P6 Perguntas
+**Ele chora quando eu saio. Tem como melhorar?**
+Dá pra trabalhar. Ele aprende a ficar sozinho aos poucos, e você aprende o que fazer na saída e na volta. O tempo muda de cão pra cão.
+
+**Atende minha cidade? É longe?**
+Atendo em volta de Salto, Cabreúva inclusive. Me manda o bairro.
+
+**Preciso estar junto nas aulas?**
+Sim, a família também. Eu passo umas horas por semana com ele, vocês passam o resto.
+
+**Meu filhote não tomou todas as vacinas.**
+Aula dentro de casa pode. Pra rua, a gente espera.
+
+**Tenho gato. Vão conviver?**
+Dá pra ensinar desde cedo, como fiz com a minha malinois.
+
+**Dá pra deixar ele pronto pra viajar?**
+Dá pra acostumar com caixa de transporte e lugar novo.
+
+## P7 Chamada final
+**O que você quer voltar a fazer?**
+
+Sair sem ouvir choro no portão. Receber visita sem prender ele no quarto. Viajar com ele. Me manda o nome, uma foto e o que acontece hoje. Quem responde sou eu, e às vezes dá pra ir hoje ou amanhã. Salto, Itu, Indaiatuba, Cabreúva e região.
+
+**[Chamar o Caio no WhatsApp]**
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Meu cão se chama ___, tem ___. O que mais pega hoje: ___. Moro em ___. Quero marcar a avaliação.
+
+## Título da aba (SEO)
+Adestrador em casa em Salto, Itu, Indaiatuba e Cabreúva | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169 (nas conversas aparece de R$ 159 a R$ 169).
+2. Pacote de 4 aulas (1 por semana): R$ 636.
+3. Pacote de 8 aulas (2 por semana): R$ 1.272.
+4. Aula avulsa: R$ 160 (nas conversas a avulsa aparece a R$ 190; R$ 160 aparece como preço por aula de pacote).
+5. Que cada pacote dura cerca de 1 mês e pode ser renovado.
+6. Que você mesmo faz todas as aulas.
+7. Autorização do Lucas (Banguela) para usar o depoimento.
+8. Autorização do Felipe (Freud) para usar o depoimento.
+9. Autorização da Kaylhandra (Luke) para usar o depoimento.
+</textarea>
+</section>
+<section class="panel" role="tabpanel" id="p-W5" aria-labelledby="t-W5" hidden>
+<div class="ph"><div class="phl"><span class="tag desejo">desejo</span><h2>O cachorro que você sonhou</h2><p class="h1q">“O cachorro que você sonhou: sem mordida, sem xixi pela casa, sem guerra no passeio.”</p></div>
+<div class="meta"><div><b>5</b><span>rodadas até vencer</span></div><div><b>7/8</b><span>na última rodada</span></div><button class="copy" data-src="src-W5">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em domicílio · Salto, Itu, Indaiatuba, Campinas e região</p>
+<p><strong>Título (H1):</strong> O cachorro que você sonhou: sem mordida, sem xixi pela casa, sem guerra no passeio.</p>
+<p><strong>Subtítulo:</strong> Filhote que morde tudo e todos, cão que avança na rua ou bate no outro da casa: eu vou até vocês e ensino ele e a família juntos, sem tranco e sem gritar.</p>
+<p><strong>Botão:</strong> Contar do meu cachorro no WhatsApp</p>
+<p><strong>Apoio:</strong>
+- Avaliação de 60 min na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>
+- Segunda a segunda, às vezes no mesmo dia
+- Horário mudou? Remarco sem drama</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Título:</strong> Onde ele está hoje, e onde ele pode chegar</p>
+<p><strong>Linha de apoio:</strong> Toque no seu e já abre o WhatsApp comigo.</p>
+<p><strong>Filhote</strong>
+- "Morde tudo e todos, e se a gente briga ele enfrenta e morde mais" → brincar sem sair com a mão marcada.
+- "Ainda não acerta o lugar do cocô" → ele solto em casa, tapete limpo.</p>
+<p><strong>Em casa</strong>
+- "Tá batendo no cão menor" → os cães juntos de novo.
+- Rosna quando a gente tira algo da boca dele → ninguém em casa com medo dele.</p>
+<p><strong>No passeio</strong>
+- "Minha mulher não consegue segurar ele" → qualquer um da casa levando ele de guia frouxa.
+- "Fica maluquinho com outros cachorros" → passar por outro cão e seguir em frente.</p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Título:</strong> Como a gente chega nesse cachorro</p>
+<ol>
+<li><strong>Você me chama no WhatsApp</strong> com o nome dele, o problema e o bairro. Atendo de segunda a segunda, às vezes no mesmo dia.</li>
+<li><strong>Avaliação na sua casa, 60 min.</strong> Olho o ambiente, a rotina e todos os cães da casa. Já começo ali e deixo uma rotina: horários, sinais, o que fazer quando ele errar.</li>
+<li><strong>Aulas com a família junto.</strong> Eu fico uma hora com ele; vocês, o resto da semana. Dúvida, WhatsApp. Imprevisto, remarco.</li>
+</ol>
+<p><strong>Como eu ensino:</strong> rosnado é aviso. Punir o aviso faz ele parar de avisar e ir direto pra mordida. Por isso começo com petisco e carinho, e mostro limite com a guia, sem tranco.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Título:</strong> Quanto custa chegar lá</p>
+<ul>
+<li><strong>Avaliação em casa, 60 min: R$ 169</strong> <mark class="cf">CONFIRMAR</mark></li>
+<li><strong>4 aulas, 1x por semana: R$ 636</strong> <mark class="cf">CONFIRMAR</mark>. Filhote e rotina corrida.</li>
+<li><strong>8 aulas, 2x por semana: R$ 1.272</strong> <mark class="cf">CONFIRMAR</mark>. Cão que puxa forte, avança ou briga.</li>
+<li><strong>Aula avulsa: R$ 160</strong> <mark class="cf">CONFIRMAR</mark>. Um ajuste só, como xixi e cocô.</li>
+</ul>
+<p>Pix ou cartão em 2x sem juros <mark class="cf">CONFIRMAR</mark>. Pacote: metade no começo e metade no meio, até em dois cartões, escolhido depois da avaliação.</p>
+<p>Agenda de segunda a segunda, às vezes no mesmo dia.</p>
+<p><strong>Botão:</strong> Marcar minha avaliação</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Título:</strong> Quem vai até a sua casa sou eu, o Caio.</p>
+<p><strong>Texto:</strong> Eu mesmo faço cada aula. Tenho uma malinois com instinto de caça lá em cima. Ela vive com os meus gatos e não pega nenhum. Ensinei desde pequena. Sou de Salto e atendo até Campinas, Jundiaí e Sorocaba.</p>
+<p><strong>Provas de confiança:</strong>
+- Tarciso, de Itu, chamou porque o Boris batia no cão menor. Fui na mesma tarde. <mark class="cf">CONFIRMAR autorização</mark>
+- "Ontem ele não fez nenhuma necessidade em casa." Lucas, um dia depois da avaliação <mark class="cf">CONFIRMAR autorização</mark>
+- "A gente trouxe ele no parque agora... Agora ele tá aqui brincando." Kay, tutora de golden de 45 kg <mark class="cf">CONFIRMAR autorização</mark>
+- "Ele não tá aprontando muito não." Felipe, tutor de filhote que mordia e chorava <mark class="cf">CONFIRMAR autorização</mark>
+- Nota no Google: <mark class="pr">PREENCHER</mark> · Tempo de experiência: <mark class="pr">PREENCHER</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>A avaliação é paga?</strong>
+Sim, R$ 169 <mark class="cf">CONFIRMAR</mark>. Já é aula: 60 minutos na sua casa.</p>
+<p><strong>Você atende a minha cidade?</strong>
+Salto, Itu, Indaiatuba e região, até Campinas, Jundiaí e Sorocaba. Me fala o bairro.</p>
+<p><strong>Tenho mais de um cão e eles brigam.</strong>
+Atendo. Na avaliação olho todos, não só o que briga.</p>
+<p><strong>Meu cachorro avança ou rosna pra gente. Tem jeito?</strong>
+Tem. Com ameaça ou mordida, o ideal é começar logo. Na avaliação já passo um jeito seguro de lidar.</p>
+<p><strong>Meu filhote não tomou todas as vacinas. Já dá?</strong>
+Dá. Dentro de casa sem problema; a rua fica pra depois.</p>
+<p><strong>Você vai ser bruto com ele?</strong>
+Não. Começo com petisco e carinho, e você vê tudo.</p>
+<p><strong>Dá pra remarcar e parcelar?</strong>
+Dá. Remarco sem drama e divido metade e metade, no Pix ou cartão.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Título:</strong> Mordida, xixi e briga viram hábito. Quanto antes começar, mais perto fica o cachorro que você sonhou.</p>
+<p><strong>Texto:</strong> Manda o nome dele, o problema e o bairro, por texto ou áudio. Respondo com o primeiro horário livre, fim de semana também, às vezes no mesmo dia. Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark>. Salto, Itu, Indaiatuba, Campinas e região.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site. Meu cachorro se chama <strong><em>_ e o que mais preciso ajustar é </em></strong>_. Moro no bairro <strong><em>_, em </em></strong>_.</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169.</li>
+<li>Valores dos pacotes: 4 aulas R$ 636 e 8 aulas R$ 1.272.</li>
+<li>Valor da aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).</li>
+<li>Cartão em 2x sem juros (para o Luiz Felipe foi dito "com juros da maquininha").</li>
+<li>Autorização para usar os depoimentos do Tarciso, do Lucas, da Kay e do Felipe.</li>
+<li>Nota no Google.</li>
+<li>Tempo de experiência.</li>
+</ol></div>
+<textarea class="src" id="src-W5" readonly aria-label="Texto em markdown da copy W5"># W5: O cachorro que você sonhou quando trouxe ele pra casa
+
+## P1 Topo
+**Etiqueta:** Adestrador em domicílio · Salto, Itu, Indaiatuba, Campinas e região
+
+**Título (H1):** O cachorro que você sonhou: sem mordida, sem xixi pela casa, sem guerra no passeio.
+
+**Subtítulo:** Filhote que morde tudo e todos, cão que avança na rua ou bate no outro da casa: eu vou até vocês e ensino ele e a família juntos, sem tranco e sem gritar.
+
+**Botão:** Contar do meu cachorro no WhatsApp
+
+**Apoio:**
+- Avaliação de 60 min na sua casa: R$ 169 [CONFIRMAR]
+- Segunda a segunda, às vezes no mesmo dia
+- Horário mudou? Remarco sem drama
+
+## P2 Problemas
+**Título:** Onde ele está hoje, e onde ele pode chegar
+
+**Linha de apoio:** Toque no seu e já abre o WhatsApp comigo.
+
+**Filhote**
+- &quot;Morde tudo e todos, e se a gente briga ele enfrenta e morde mais&quot; → brincar sem sair com a mão marcada.
+- &quot;Ainda não acerta o lugar do cocô&quot; → ele solto em casa, tapete limpo.
+
+**Em casa**
+- &quot;Tá batendo no cão menor&quot; → os cães juntos de novo.
+- Rosna quando a gente tira algo da boca dele → ninguém em casa com medo dele.
+
+**No passeio**
+- &quot;Minha mulher não consegue segurar ele&quot; → qualquer um da casa levando ele de guia frouxa.
+- &quot;Fica maluquinho com outros cachorros&quot; → passar por outro cão e seguir em frente.
+
+## P3 Como funciona
+**Título:** Como a gente chega nesse cachorro
+
+1. **Você me chama no WhatsApp** com o nome dele, o problema e o bairro. Atendo de segunda a segunda, às vezes no mesmo dia.
+2. **Avaliação na sua casa, 60 min.** Olho o ambiente, a rotina e todos os cães da casa. Já começo ali e deixo uma rotina: horários, sinais, o que fazer quando ele errar.
+3. **Aulas com a família junto.** Eu fico uma hora com ele; vocês, o resto da semana. Dúvida, WhatsApp. Imprevisto, remarco.
+
+**Como eu ensino:** rosnado é aviso. Punir o aviso faz ele parar de avisar e ir direto pra mordida. Por isso começo com petisco e carinho, e mostro limite com a guia, sem tranco.
+
+## P4 Oferta e preço
+**Título:** Quanto custa chegar lá
+
+- **Avaliação em casa, 60 min: R$ 169** [CONFIRMAR]
+- **4 aulas, 1x por semana: R$ 636** [CONFIRMAR]. Filhote e rotina corrida.
+- **8 aulas, 2x por semana: R$ 1.272** [CONFIRMAR]. Cão que puxa forte, avança ou briga.
+- **Aula avulsa: R$ 160** [CONFIRMAR]. Um ajuste só, como xixi e cocô.
+
+Pix ou cartão em 2x sem juros [CONFIRMAR]. Pacote: metade no começo e metade no meio, até em dois cartões, escolhido depois da avaliação.
+
+Agenda de segunda a segunda, às vezes no mesmo dia.
+
+**Botão:** Marcar minha avaliação
+
+## P5 Quem é o Caio
+**Título:** Quem vai até a sua casa sou eu, o Caio.
+
+**Texto:** Eu mesmo faço cada aula. Tenho uma malinois com instinto de caça lá em cima. Ela vive com os meus gatos e não pega nenhum. Ensinei desde pequena. Sou de Salto e atendo até Campinas, Jundiaí e Sorocaba.
+
+**Provas de confiança:**
+- Tarciso, de Itu, chamou porque o Boris batia no cão menor. Fui na mesma tarde. [CONFIRMAR autorização]
+- &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas, um dia depois da avaliação [CONFIRMAR autorização]
+- &quot;A gente trouxe ele no parque agora... Agora ele tá aqui brincando.&quot; Kay, tutora de golden de 45 kg [CONFIRMAR autorização]
+- &quot;Ele não tá aprontando muito não.&quot; Felipe, tutor de filhote que mordia e chorava [CONFIRMAR autorização]
+- Nota no Google: [PREENCHER] · Tempo de experiência: [PREENCHER]
+
+## P6 Perguntas
+**A avaliação é paga?**
+Sim, R$ 169 [CONFIRMAR]. Já é aula: 60 minutos na sua casa.
+
+**Você atende a minha cidade?**
+Salto, Itu, Indaiatuba e região, até Campinas, Jundiaí e Sorocaba. Me fala o bairro.
+
+**Tenho mais de um cão e eles brigam.**
+Atendo. Na avaliação olho todos, não só o que briga.
+
+**Meu cachorro avança ou rosna pra gente. Tem jeito?**
+Tem. Com ameaça ou mordida, o ideal é começar logo. Na avaliação já passo um jeito seguro de lidar.
+
+**Meu filhote não tomou todas as vacinas. Já dá?**
+Dá. Dentro de casa sem problema; a rua fica pra depois.
+
+**Você vai ser bruto com ele?**
+Não. Começo com petisco e carinho, e você vê tudo.
+
+**Dá pra remarcar e parcelar?**
+Dá. Remarco sem drama e divido metade e metade, no Pix ou cartão.
+
+## P7 Chamada final
+**Título:** Mordida, xixi e briga viram hábito. Quanto antes começar, mais perto fica o cachorro que você sonhou.
+
+**Texto:** Manda o nome dele, o problema e o bairro, por texto ou áudio. Respondo com o primeiro horário livre, fim de semana também, às vezes no mesmo dia. Avaliação na sua casa: R$ 169 [CONFIRMAR]. Salto, Itu, Indaiatuba, Campinas e região.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site. Meu cachorro se chama ____ e o que mais preciso ajustar é ____. Moro no bairro ____, em ____.
+
+## Título da aba (SEO)
+Adestrador em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169.
+2. Valores dos pacotes: 4 aulas R$ 636 e 8 aulas R$ 1.272.
+3. Valor da aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).
+4. Cartão em 2x sem juros (para o Luiz Felipe foi dito &quot;com juros da maquininha&quot;).
+5. Autorização para usar os depoimentos do Tarciso, do Lucas, da Kay e do Felipe.
+6. Nota no Google.
+7. Tempo de experiência.
+</textarea>
+</section>
+  </section>
+
+  <section>
+    <h2>Antes de publicar, confirme</h2>
+    <ol class="list">
+      <li><b>Preço da avaliação.</b> As copies usam R$ 169. Nas conversas aparece de R$ 159 a R$ 169, e para a Kaylhandra foram R$ 190.</li>
+      <li><b>Preço dos pacotes.</b> As copies usam R$ 636 (4 aulas) e R$ 1.272 (8 aulas). Nas conversas também aparecem R$ 520, R$ 604 e R$ 676.</li>
+      <li><b>Aula avulsa.</b> As copies variam entre R$ 150 e R$ 160. Para a Kaylhandra foi cotada a R$ 190.</li>
+      <li><b>Rapidez.</b> "Respondo no mesmo dia" e "muitas vezes vou no mesmo dia ou no seguinte". Aconteceu com 3 dos 8 clientes.</li>
+      <li><b>Regras do pacote.</b> Renova mês a mês, dá para começar 1x por semana e subir, 2x sem juros no cartão (para o Luiz Felipe você falou em "juros da maquininha") e duração de cerca de 1 hora por aula.</li>
+      <li><b>Prova de confiança.</b> Nota e link do Google, número de avaliações, anos de experiência, formação e uma foto sua. É a parte que mais pesou no júri.</li>
+      <li><b>Autorização dos clientes</b> citados nos casos: Tarciso, Felipe, Kaylhandra, Lucas, Julia, Luiz Felipe e Juliana. Use só o primeiro nome.</li>
+      <li><b>O caso da sua malinois</b> que convive com os gatos, citado em várias copies.</li>
+      <li><b>Deslocamento</b> fora de Salto, Itu e Indaiatuba: se tem taxa, e quanto.</li>
+    </ol>
+    <p class="note" style="margin-top:.8rem">Cada copy traz no fim a própria lista "Para o Caio confirmar".</p>
+  </section>
+
+  <section>
+    <h2>Como as copies foram julgadas</h2>
+    <p class="note">Transcrevi os áudios de 8 clientes que fecharam e montei um dossiê de cada um, com as palavras deles. Cada copy foi dividida em 7 partes (topo, problemas, como funciona, oferta e preço, quem é o Caio, perguntas, chamada final), mais a página inteira. Um crítico separado, sem saber qual texto era qual, encarnou 3 desses clientes e escolheu a opção que os faria chamar no WhatsApp. Na rodada 1 a disputa foi contra o site atual e o melhor concorrente (Cão Cidadão, CTC Sorocaba ou Tutor Adestramento). Como 9 de 10 venceram fácil, a partir da rodada 2 cada parte passou a disputar com a mesma parte de duas outras copies. A parte que vencia era congelada, e as que perdiam voltavam ao redator. Foram de 3 a 5 rodadas por copy. No fim, um checador conferiu cada fato e cada citação com as conversas reais.</p>
+  </section>
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){
+    tabs.forEach(function(t){var on=t.dataset.id===id;t.setAttribute('aria-selected',on?'true':'false');document.getElementById('p-'+t.dataset.id).hidden=!on;});
+    try{localStorage.setItem('copyTab',id)}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.id)});});
+  try{var s=localStorage.getItem('copyTab');if(s&&document.getElementById('p-'+s))show(s)}catch(e){}
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var ta=document.getElementById(b.dataset.src);
+      var done=function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar texto'},1600)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,function(){ta.style.position='static';ta.style.width='100%';ta.style.height='12rem';ta.select();b.textContent='Selecione e copie'});}
+      else{ta.style.position='static';ta.style.width='100%';ta.style.height='12rem';ta.select();b.textContent='Selecione e copie';}
+    });
+  });
+})();
+</script>
