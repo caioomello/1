@@ -232,10 +232,11 @@
   .card .top .bs { display: flex; gap: .3rem; flex-wrap: wrap; justify-content: flex-end; }
   .card .name { font-weight: 700; font-size: 1.02rem; line-height: 1.3; overflow-wrap: anywhere; }
   .card .dog { font-size: .84rem; color: var(--soft); line-height: 1.35; margin-top: .1rem; }
-  .card .flag { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; font-size: .84rem; line-height: 1.35; padding: .4rem .6rem; background: var(--rust-soft); color: var(--rust); }
+  .card .flag { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; font-size: .84rem; line-height: 1.35; padding: .4rem .6rem; background: var(--rust-soft); color: var(--ink); }
   .card .flag b { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .card .flag.warn { background: var(--amber-soft); color: var(--amber); }
-  .card .flag.info { background: var(--slate-soft); color: var(--slate); }
+  .card .flag.warn { background: var(--amber-soft); }
+  .card .flag.info { background: var(--slate-soft); }
+  .vload { min-height: 100vh; } /* enquanto carrega, segura o rodapé fora da tela (evita salto de layout) */
   .card .kv { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 1rem; padding-top: .55rem; border-top: 1px solid var(--line); margin-top: auto; }
   .card .kv .l { font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--soft); }
   .card .kv .v { font-weight: 700; font-size: .95rem; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -248,6 +249,7 @@
   .card .meta { font-size: .78rem; color: var(--soft); line-height: 1.35; overflow-wrap: anywhere; }
 
   /* Google Ads: retorno do mês em destaque, custos ao lado */
+  @media (max-width: 719px) { .chips.scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; } .chips.scroll::-webkit-scrollbar { display: none; } .chips.scroll .chip { flex: none; white-space: nowrap; } }
   .adwarn { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; background: var(--amber-soft); color: var(--ink); border-left: 4px solid var(--amber); padding: .65rem var(--px); margin-bottom: 1rem; font-size: .88rem; line-height: 1.4; }
   .adwarn b { font-weight: 700; }
   .adtop { display: grid; gap: .75rem; margin-bottom: 2rem; }
@@ -268,9 +270,9 @@
   .cmp .hl { display: flex; justify-content: space-between; gap: .75rem; font-size: .84rem; margin-bottom: .25rem; }
   .cmp .hl b { font-weight: 700; font-variant-numeric: tabular-nums; }
   .cmp .bar { height: 6px; background: var(--line); position: relative; border-radius: 3px; overflow: hidden; }
-  .cmp .bar span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
-  .cmp .inv span { background: var(--rust); }
-  .cmp .rec span { background: var(--accent); }
+  .cmp .bar > span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+  .cmp .inv .bar > span { background: var(--rust); }
+  .cmp .rec .bar > span { background: var(--accent); }
   .roi .f { font-size: .76rem; color: var(--soft); line-height: 1.4; margin: .8rem 0 0; }
   .dl { font-weight: 700; font-variant-numeric: tabular-nums; }
   .dl.good { color: var(--accent); }
@@ -844,9 +846,9 @@
     const maxN = Math.max(1, ...rows.map((r) => r[1]));
     const side = rows.length ? `<div class="hbars">${rows.map(([n, k]) => hbar(n, k, maxN)).join('')}</div>` : `<div class="empty">Nenhuma aula dada ainda em ${esc(monthLabel(CUR, true))}.</div>`;
 
-    return `${warn}<div class="grid2">
+    return `${warn}<div class="grid2${S.agenda.status === 'loading' ? ' vload' : ''}">
       <div>
-        <section><div class="sh"><h2>Hoje</h2><span class="count">${esc(hojeCount || (weekday(TODAY) + ', ' + dm(TODAY)))}</span></div>${hoje}</section>
+        <section><div class="sh"><h2>Hoje</h2><span class="count">${esc([weekday(TODAY) + ', ' + dm(TODAY), hojeCount].filter(Boolean).join(' · '))}</span></div>${hoje}</section>
         ${noData ? '' : `<section><div class="sh"><h2>Próximos 15 dias</h2><span class="count">${esc(aulas(later.length))}${fresh ? ' · ' + esc(fresh) : ''}</span></div>${prox}
           <p class="agfoot">Toque numa aula para abrir no Google Agenda.</p></section>`}
       </div>
@@ -898,19 +900,75 @@
   }
 
   // ---------- clientes ----------
+  // Progresso do pacote deduzido da agenda: aulas desde o início contra o total do plano ("4 aulas" → 4). null quando não dá para saber.
+  function pacoteInfo(c) {
+    const m = /(\d+)\s*aulas?/i.exec(c.plano || '');
+    const total = m ? Number(m[1]) : 0;
+    if (!total || !c.inicio || S.agenda.status !== 'ok') return null;
+    if (c.inicio < CUR + '-01' && (S.hist.status !== 'ok' || c.inicio < addMonths(CUR, -6) + '-01')) return null;
+    const now = new Date(), seen = new Set();
+    const evs = [...S.hist.events, ...S.agenda.events].filter((e) => {
+      const k = (e.id || '') + e.date + e.time;
+      if (seen.has(k)) return false; seen.add(k);
+      return /^aula/i.test(e.raw) && e.date >= c.inicio && clientForEvent(e) === c;
+    });
+    const done = evs.filter((e) => e.startDate < now).length;
+    if (done > total) return null; // mais aulas que o plano: já é outro pacote, não dá para saber
+    return { total, done, sched: Math.min(evs.length - done, total - done) };
+  }
   function vClientes() {
     const f = S.cliFilter;
+    const sameName = (a, b) => norm(a).trim() === norm(b).trim();
+    const at = atrasados();
     const counts = Object.fromEntries(CLI_STATUS.map(([k]) => [k, S.clientes.filter((c) => c.status === k).length]));
-    const list = S.clientes.filter((c) => f === 'todos' || c.status === f).sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR'));
-    const chips = [...CLI_STATUS.map(([k, l]) => [k, `${l} (${counts[k]})`]), ['todos', `Todos (${S.clientes.length})`]]
-      .map(([k, l]) => `<button class="chip" aria-pressed="${f === k}" data-act="cf:${k}">${esc(l)}</button>`).join('');
+    const nowD = new Date();
+    const whenTxt = (e) => `${e.date === TODAY ? 'Hoje' : e.date === addDays(TODAY, 1) ? 'Amanhã' : weekday(e.date) + ' ' + dm(e.date)}${e.time === 'dia' ? '' : ' · ' + e.time}`;
+    // situação de cada cliente: dívida, renovação, próxima aula, pacote
+    const info = new Map(S.clientes.map((c) => {
+      const late = at.filter((p) => sameName(p.cliente || '', c.nome || ''));
+      const owe = sum(late, (p) => p.valor);
+      const openP = S.pagamentos.filter((p) => noPrazo(p) && sameName(p.cliente || '', c.nome || '')).sort((x, y) => x.vencimento.localeCompare(y.vencimento))[0];
+      const pk = c.status === 'ativo' || c.status === 'renovar' ? pacoteInfo(c) : null;
+      const full = pk && pk.done >= pk.total && c.status === 'ativo';
+      const rank = owe ? 0 : (c.status === 'renovar' || full) ? 1 : 2;
+      return [c.id, { late, owe, openP, pk, full, rank, nx: nextClassFor(c) }];
+    }));
+    const inFilter = (c) => f === 'todos' || c.status === f || (f === 'ativo' && c.status === 'renovar');
+    const list = S.clientes.filter(inFilter).sort((a, b) => {
+      const x = info.get(a.id), y = info.get(b.id);
+      return x.rank - y.rank || y.owe - x.owe || (a.nome || '').localeCompare(b.nome || '', 'pt-BR');
+    });
+    const CHIP = { ativo: 'Atuais', renovar: 'Renovar', pausado: 'Pausados', encerrado: 'Encerrados' };
+    const chips = [...CLI_STATUS.map(([k]) => [k, CHIP[k], k === 'ativo' ? counts.ativo + counts.renovar : counts[k]]), ['todos', 'Todos', S.clientes.length]]
+      .map(([k, l, n]) => `<button class="chip" aria-pressed="${f === k}" data-act="cf:${k}">${esc(l)} <span class="mono" style="font-size:.78rem">${n}</span></button>`).join('');
     const cards = list.map((c) => {
-      const nx = nextClassFor(c);
-      return `<div class="card" data-act="cli:${esc(c.id)}" tabindex="0">
-        <div class="top"><span class="name">${esc(c.nome)}</span><span>${badge(c.status, label(CLI_STATUS, c.status))}${c.conferir ? ' ' + badge('conferir', 'conferir') : ''}</span></div>
-        <div class="dog">${esc([c.cao, c.questao].filter(Boolean).join(' — ') || 'Cão não informado')}</div>
-        ${c.obs ? `<div class="d" style="font-size:.82rem">${esc(c.obs)}</div>` : ''}
-        <div class="facts"><span>${esc(c.plano || 'Plano —')}</span><span>Pacote <b>${c.valorMensal ? brl(c.valorMensal) : '—'}</b></span>${c.cidade ? `<span>${esc(c.cidade)}</span>` : ''}${nx ? `<span>Próxima: <b>${esc(dm(nx.date))} ${esc(nx.time)}</b></span>` : ''}</div>
+      const i = info.get(c.id);
+      const late0 = i.late[0];
+      let flag = '', cls = '';
+      if (i.owe) {
+        const d = Math.round((parse(TODAY) - parse(late0.vencimento)) / 864e5);
+        flag = `<div class="flag" title="${esc('Venceu ' + dm(late0.vencimento))}"><span>Devendo há ${d} ${d === 1 ? 'dia' : 'dias'}</span><b>${brl(i.owe)}</b></div>`; cls = 'bad';
+      } else if (c.status === 'renovar' || i.full) {
+        if (i.openP) flag = `<div class="flag info"><span>Já renovou? Pagamento em ${esc(dm(i.openP.vencimento))}</span><b>${brl(i.openP.valor)}</b></div>`;
+        else flag = `<div class="flag warn"><span>${i.full ? `Pacote completo (${i.pk.done} de ${i.pk.total}).` : 'Pacote acabou.'} Oferecer renovação.</span>${c.valorMensal ? `<b>${brl(c.valorMensal)}</b>` : ''}</div>`;
+        cls = 'warn';
+      } else if (i.openP && i.openP.status === 'pendente') {
+        flag = `<div class="flag info"><span>Paga ${i.openP.vencimento === TODAY ? 'hoje' : 'em ' + esc(dm(i.openP.vencimento))}</span><b>${brl(i.openP.valor)}</b></div>`;
+      }
+      const vl = /avulsa/i.test(c.plano || '') ? 'Aula' : /avalia/i.test(c.plano || '') ? 'Avaliação' : 'Pacote';
+      const pk = i.pk;
+      const prog = pk ? `<div class="prog"><div class="pl"><span>${esc(c.plano)}</span><span><b>${pk.done} de ${pk.total}</b> dadas${pk.sched ? ` · ${pk.sched} ${pk.sched === 1 ? 'marcada' : 'marcadas'}` : ''}</span></div>
+          <div class="pbar" role="img" aria-label="${esc(`${pk.done} de ${pk.total} aulas do pacote dadas`)}"><span style="width:${((pk.done / pk.total) * 100).toFixed(1)}%"></span></div></div>` : '';
+      const meta = [pk ? '' : c.plano, c.cidade, c.origem && c.origem !== 'Não informado' ? 'via ' + c.origem : ''].filter(Boolean).join(' · ');
+      const showStatus = c.status !== 'ativo';
+      return `<div class="card ${cls}" data-act="cli:${esc(c.id)}" tabindex="0">
+        <div><div class="top"><span class="name">${esc(c.nome)}</span>${showStatus || c.conferir ? `<span class="bs">${showStatus ? badge(c.status, label(CLI_STATUS, c.status).split(' ')[0]) : ''}${c.conferir ? badge('conferir', 'conferir') : ''}</span>` : ''}</div>
+        <div class="dog">${esc([c.cao, c.questao].filter(Boolean).join(' · ') || 'Cão não informado')}</div></div>
+        ${flag}
+        <div class="kv"><span class="l">Próxima aula</span><span class="l r">${vl}</span>
+          <span class="v${i.nx ? '' : ' none'}">${i.nx ? esc(whenTxt(i.nx)) : S.agenda.status === 'ok' ? 'Nada marcado' : '—'}</span><span class="v r">${c.valorMensal ? brl(c.valorMensal) : '—'}</span></div>
+        ${prog}
+        ${meta || c.obs ? `<div class="meta">${esc([meta, c.obs].filter(Boolean).join('. '))}</div>` : ''}
       </div>`;
     }).join('');
     // origem
@@ -919,18 +977,23 @@
     const ogRows = Object.entries(og).sort((a, b) => b[1] - a[1]);
     const maxO = Math.max(1, ...ogRows.map((r) => r[1]));
     const ticket = ativos().filter((c) => num(c.valorMensal) > 0);
-    return `<div class="sh"><div class="chips" style="margin:0">${chips}</div><button class="btn" data-act="new:clientes">Novo cliente</button></div>
-      <div class="kpis" style="margin-top:1rem">
-        ${kpi('Ticket médio (ativos)', ticket.length ? brl(sum(ticket, (c) => c.valorMensal) / ticket.length) : '—', `${ticket.length} com valor informado`)}
-        ${kpi('Valor dos pacotes ativos', brl(fatEstimado()), 'soma dos pacotes em andamento', 'good')}
-        ${kpi('Para renovar', counts.renovar || 0, 'pacote acabou', counts.renovar ? 'warn' : '')}
-        ${kpi('Dados a conferir', S.clientes.filter((c) => c.conferir).length, 'deduzidos da agenda', '')}
+    const owers = [...new Set(at.map((p) => (p.cliente || 'Sem nome').split(' ')[0]))];
+    const atTot = sum(at, (p) => p.valor);
+    const renN = S.clientes.filter((c) => { const i = info.get(c.id); return c.status === 'renovar' || i.full; }).length;
+    const loading = isLoading();
+    const L = (v) => (loading ? '…' : v);
+    return `<div class="sh"><h2>Clientes</h2><button class="btn" data-act="new:clientes">Novo cliente</button></div>
+      <div class="kpis">
+        ${kpi('Devendo', L(brl(atTot)), loading ? '&nbsp;' : at.length ? esc(owers.join(', ')) : 'ninguém em atraso', !loading && at.length ? 'bad' : '')}
+        ${kpi('Para renovar', L(String(renN)), renN === 1 ? 'pacote acabou' : 'pacotes acabaram', renN ? 'warn' : '')}
+        ${kpi('Ativos', L(String(counts.ativo)), loading ? '&nbsp;' : `${brl(fatEstimado())} em pacotes`)}
+        ${kpi('Ticket médio', L(ticket.length ? brl(Math.round(sum(ticket, (c) => c.valorMensal) / ticket.length)) : '—'), `${ticket.length} ${ticket.length === 1 ? 'ativo' : 'ativos'} com valor`)}
       </div>
-      <div class="grid2">
-        <section>${list.length ? `<div class="cards">${cards}</div>` : `<div class="empty">${isLoading() ? 'Carregando…' : 'Nenhum cliente neste filtro.'}</div>`}</section>
-        <section><div class="sh"><h2>De onde vêm os clientes</h2></div>
-          <p class="note">Clientes não encerrados por origem. Preencher a origem mostra se o Google Ads está se pagando.</p>
+      <div class="grid2${loading ? ' vload' : ''}">
+        <section><div class="chips scroll" role="group" aria-label="Filtrar clientes">${chips}</div>${list.length ? `<div class="cards">${cards}</div>` : `<div class="empty">${loading ? 'Carregando…' : 'Nenhum cliente neste filtro.'}</div>`}</section>
+        <section><div class="sh"><h2>De onde vêm os clientes</h2><span class="count">não encerrados</span></div>
           ${ogRows.length ? `<div class="hbars">${ogRows.map(([n, k]) => hbar(n, k, maxO)).join('')}</div>` : '<div class="empty">Sem dados.</div>'}
+          <p class="agfoot">Preencher a origem de cada cliente mostra na aba Google Ads se o anúncio se paga.</p>
         </section>
       </div>`;
   }
@@ -938,28 +1001,91 @@
   // ---------- anúncios ----------
   function vAnuncios() {
     const rows = [...S.anuncios].sort((a, b) => b.id.localeCompare(a.id));
-    const filled = rows.filter((a) => a.investimento != null && a.investimento !== '');
-    const last = filled[0];
+    const has = (v) => v != null && v !== '';
+    const filled = rows.filter((a) => has(a.investimento));
+    const last = filled[0], prev = filled[1];
     const div = (a, b) => (num(b) ? num(a) / num(b) : null);
+    // custos por unidade sempre com 2 casas; totais em reais (centavos só se houver)
+    const brl2 = (v) => num(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const pct1 = (v) => (num(v) * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
     const fx = (v, f) => (v == null ? '—' : f(v));
-    const k = last ? `<div class="kpis">
-        ${kpi(`Investido em ${monthShort(last.id)}`, brl(last.investimento), `${int(last.cliques)} cliques`)}
-        ${kpi('Custo por clique', fx(div(last.investimento, last.cliques), brl), `CTR ${fx(div(last.cliques, last.impressoes), pct)}`)}
-        ${kpi('Custo por contato', fx(div(last.investimento, last.contatos), brl), `${int(last.contatos)} contatos (conversões)`, '')}
-        ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl), `${int(last.clientes)} clientes fechados via Google`, 'good')}
-      </div>` : `<div class="banner" style="background:var(--slate-soft);border-color:var(--slate)">Ainda não há números lançados. No app do Google Ads, abra <b>Visão geral</b>, filtre o mês e copie: custo, impressões, cliques e conversões. Clientes fechados vêm da sua conversa no WhatsApp.</div>`;
-    const table = rows.length ? `<div class="tscroll"><table><thead><tr><th>Mês</th><th class="r">Investido</th><th class="r">Impressões</th><th class="r">Cliques</th><th class="r">CPC</th><th class="r">Contatos</th><th class="r">Custo/contato</th><th class="r">Clientes</th><th class="r">Custo/cliente</th></tr></thead><tbody>
-      ${rows.map((a) => `<tr class="clickable" data-act="ads:${esc(a.id)}" tabindex="0"><td style="text-transform:capitalize">${esc(monthLabel(a.id))}</td><td class="r">${a.investimento != null && a.investimento !== '' ? brl(a.investimento) : '—'}</td><td class="r">${a.impressoes != null ? int(a.impressoes) : '—'}</td><td class="r">${a.cliques != null ? int(a.cliques) : '—'}</td><td class="r">${fx(div(a.investimento, a.cliques), brl)}</td><td class="r">${a.contatos != null ? int(a.contatos) : '—'}</td><td class="r">${fx(div(a.investimento, a.contatos), brl)}</td><td class="r">${a.clientes != null ? int(a.clientes) : '—'}</td><td class="r">${fx(div(a.investimento, a.clientes), brl)}</td></tr>`).join('')}
-      </tbody></table></div>` : `<div class="empty">${isLoading() ? 'Carregando…' : 'Nenhum mês lançado.'}</div>`;
+    const mName = (m) => monthLabel(m, true).split(' ')[0];
+    const loading = !S.loaded.anuncios && S.dbState !== 'off';
+
+    // retorno estimado: clientes fechados via Google × ticket médio dos clientes de origem Google Ads
+    const gcli = S.clientes.filter((c) => c.origem === 'Google Ads' && num(c.valorMensal) > 0);
+    const tk = gcli.length ? sum(gcli, (c) => c.valorMensal) / gcli.length : null;
+    const ret = (a) => (tk == null || !has(a.clientes) ? null : num(a.clientes) * tk - num(a.investimento));
+
+    // mês anterior não lançado
+    const prevM = addMonths(CUR, -1), pa = adsMes(prevM);
+    const missing = S.loaded.anuncios && !(pa && has(pa.investimento));
+    const warn = missing ? `<div class="adwarn"><span><b style="text-transform:capitalize">${esc(mName(prevM))}</b> ainda não foi lançado.${last ? ` Os números abaixo são de ${esc(mName(last.id))}.` : ''}</span><button class="btn small" data-act="new:anuncios">Lançar ${esc(mName(prevM))}</button></div>` : '';
+
+    let top;
+    if (loading) top = `<div class="empty" style="margin-bottom:2rem">Carregando…</div>`;
+    else if (!last) top = `<div class="empty" style="margin-bottom:2rem">Ainda não há números lançados. No app do Google Ads, abra <b>Visão geral</b>, filtre o mês e copie: custo, impressões, cliques e conversões. Clientes fechados vêm da sua conversa no WhatsApp.</div>`;
+    else {
+      const inv = num(last.investimento), r = ret(last);
+      let hero;
+      if (r == null) {
+        hero = `<div class="roi"><div class="l">Retorno de ${esc(mName(last.id))}</div><div class="r1"><div class="n">—</div></div>
+          <p class="t">${!has(last.clientes) ? 'Lance quantos clientes fecharam via Google neste mês para ver se o anúncio se pagou.' : 'Marque a origem "Google Ads" nos clientes (com valor do pacote) para estimar o retorno.'}</p></div>`;
+      } else {
+        const rec = r + inv, ok = r >= 0, n = num(last.clientes);
+        const mx = Math.max(rec, inv, 1);
+        const txt = n === 0
+          ? `<b class="bad">Não se pagou.</b> ${brl(inv)} investidos e nenhum cliente fechado via Google.`
+          : ok ? `<b class="good">Se pagou.</b> ${brl(inv)} investidos trouxeram ${n} ${n === 1 ? 'cliente' : 'clientes'}, cerca de ${brl(Math.round(rec))} em pacotes.`
+            : `<b class="bad">Não se pagou.</b> ${brl(inv)} investidos trouxeram ${n} ${n === 1 ? 'cliente' : 'clientes'}, cerca de ${brl(Math.round(rec))}. Faltaram ${brl(Math.round(-r))}.`;
+        hero = `<div class="roi"><div class="l">Retorno de ${esc(mName(last.id))}</div>
+          <div class="r1"><div class="n ${ok ? 'good' : 'bad'}">${ok ? '+' : '−'}${brl(Math.round(Math.abs(r)))}</div>${inv ? `<div class="x">cada R$ 1 virou <b>${(rec / inv).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></div>` : ''}</div>
+          <p class="t">${txt}</p>
+          <div class="cmp" role="img" aria-label="${esc(`Investido ${brl(inv)}, receita estimada ${brl(Math.round(rec))}`)}">
+            <div class="inv"><div class="hl"><span>Investido</span><b>${brl(inv)}</b></div><div class="bar"><span style="width:${((inv / mx) * 100).toFixed(1)}%"></span></div></div>
+            <div class="rec"><div class="hl"><span>Receita estimada</span><b>${brl(Math.round(rec))}</b></div><div class="bar"><span style="width:${((rec / mx) * 100).toFixed(1)}%"></span></div></div>
+          </div>
+          <p class="f">Estimativa: ${n} ${n === 1 ? 'cliente fechado' : 'clientes fechados'} × ${brl(Math.round(tk))}, ticket médio dos ${gcli.length} ${gcli.length === 1 ? 'cliente' : 'clientes'} com origem Google Ads. Renovações não entram.</p></div>`;
+      }
+      // variação de custo contra o mês lançado anterior (custo menor = bom)
+      const dv = (k) => {
+        if (!prev) return '';
+        const a = div(last.investimento, last[k]), b = div(prev.investimento, prev[k]);
+        if (a == null || b == null || !b) return '';
+        const p = Math.round(((a - b) / b) * 100);
+        if (!p) return ` · igual a ${esc(monthShort(prev.id))}`;
+        return ` · <span class="dl ${p < 0 ? 'good' : 'bad'}">${p < 0 ? '▼' : '▲'} ${Math.abs(p)}%</span> vs ${esc(monthShort(prev.id))}`;
+      };
+      const k = `<div class="kpis">
+          ${kpi(`Investido em ${esc(monthShort(last.id))}`, brl(last.investimento), `${has(last.impressoes) ? int(last.impressoes) + ' impressões · ' : ''}CTR ${fx(div(last.cliques, last.impressoes), pct1)}`)}
+          ${kpi('Custo por clique', fx(div(last.investimento, last.cliques), brl2), `${int(last.cliques)} cliques${dv('cliques')}`)}
+          ${kpi('Custo por contato', fx(div(last.investimento, last.contatos), brl2), `${int(last.contatos)} contatos${dv('contatos')}`)}
+          ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl2), `${int(last.clientes)} ${num(last.clientes) === 1 ? 'cliente' : 'clientes'}${dv('clientes')}`)}
+        </div>`;
+      top = `<div class="adtop">${hero}${k}</div>`;
+    }
+
+    // mês a mês: lista empilhada no celular, tabela no computador
+    const cell = (v) => (has(v) ? int(v) : '—');
+    const retCell = (a) => { const r = has(a.investimento) ? ret(a) : null; return r == null ? '—' : `${r >= 0 ? '+' : '−'}${brl(Math.round(Math.abs(r)))}`; };
+    const retCls = (a) => { const r = has(a.investimento) ? ret(a) : null; return r == null ? '' : r >= 0 ? 'good' : 'bad'; };
+    const mlist = rows.length ? `<div class="list adlist">${rows.map((a) => `<div class="row clickable" data-act="ads:${esc(a.id)}" tabindex="0">
+        <div class="main"><div class="t" style="text-transform:capitalize">${esc(monthLabel(a.id, true))}</div>
+          <div class="d">${cell(a.cliques)} cliques · ${cell(a.contatos)} contatos · ${cell(a.clientes)} ${num(a.clientes) === 1 ? 'cliente' : 'clientes'}</div>
+          <div class="d">${fx(div(a.investimento, a.clientes), brl2)} por cliente · ${fx(div(a.investimento, a.cliques), brl2)} por clique</div></div>
+        <div class="v">${has(a.investimento) ? brl(a.investimento) : '—'}<small class="dl ${retCls(a)}">${retCell(a) === '—' ? '' : 'retorno ' + retCell(a)}</small></div></div>`).join('')}</div>` : '';
+    const table = rows.length ? `${mlist}<div class="tscroll adtable"><table><thead><tr><th>Mês</th><th class="r">Investido</th><th class="r">Cliques</th><th class="r">CTR</th><th class="r">Por clique</th><th class="r">Contatos</th><th class="r">Por contato</th><th class="r">Clientes</th><th class="r">Por cliente</th><th class="r">Retorno</th></tr></thead><tbody>
+      ${rows.map((a) => `<tr class="clickable" data-act="ads:${esc(a.id)}" tabindex="0"><td style="text-transform:capitalize">${esc(monthLabel(a.id))}</td><td class="r">${has(a.investimento) ? brl(a.investimento) : '—'}</td><td class="r">${cell(a.cliques)}</td><td class="r">${fx(div(a.cliques, a.impressoes), pct1)}</td><td class="r">${fx(div(a.investimento, a.cliques), brl2)}</td><td class="r">${cell(a.contatos)}</td><td class="r">${fx(div(a.investimento, a.contatos), brl2)}</td><td class="r">${cell(a.clientes)}</td><td class="r">${fx(div(a.investimento, a.clientes), brl2)}</td><td class="r ${retCls(a)}">${retCell(a)}</td></tr>`).join('')}
+      </tbody></table></div>` : `<div class="empty">${loading ? 'Carregando…' : 'Nenhum mês lançado.'}</div>`;
     const withNotes = rows.find((a) => (a.termos && a.termos.length) || (a.recomendacoes && a.recomendacoes.length) || a.leitura);
     const notes = withNotes ? `
       ${withNotes.leitura ? `<p class="note" style="margin-top:0">${esc(withNotes.leitura)}</p>` : ''}
       ${withNotes.termos?.length ? `<h3 style="font-size:1rem;margin:.5rem 0">Termos que mostraram seus anúncios</h3><div class="tags">${withNotes.termos.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
       ${withNotes.recomendacoes?.length ? `<h3 style="font-size:1rem;margin:1.25rem 0 .5rem">Recomendações do Google pendentes</h3><div class="list">${withNotes.recomendacoes.map((r) => `<div class="row"><div class="main"><div class="t">${esc(r.t)}</div>${r.nota ? `<div class="d">${esc(r.nota)}</div>` : ''}</div><div class="v">${esc(r.g || '')}</div></div>`).join('')}</div>` : ''}
       <p class="note" style="margin-top:.6rem">Fonte: prints do app do Google Ads de ${esc(dm(withNotes.fonteData || ''))}.</p>` : '<div class="empty">Sem observações salvas.</div>';
-    return `<div class="sh"><h2>Google Ads</h2><button class="btn" data-act="new:anuncios">Lançar mês</button></div>
-      ${k}
-      <div class="grid2"><section><div class="sh"><h2>Mês a mês</h2></div>${table}</section>
+    return `<div class="sh"><h2>Google Ads</h2>${missing ? '' : '<button class="btn" data-act="new:anuncios">Lançar mês</button>'}</div>
+      <div class="${loading ? 'vload' : ''}">${warn}${top}
+      <section><div class="sh"><h2>Mês a mês</h2><span class="count">toque num mês para editar</span></div>${table}</section>
       <section><div class="sh"><h2>O que o Google está mostrando</h2></div>${notes}</section></div>`;
   }
 
