@@ -1,4 +1,9 @@
 <title>Painel Caio Adestra</title>
+<script>
+  // O fragmento não controla o <html>: idioma e descrição definidos aqui (leitores de tela e buscadores)
+  document.documentElement.lang = 'pt-BR';
+  if (!document.querySelector('meta[name="description"]')) { const md = document.createElement('meta'); md.name = 'description'; md.content = 'Painel do Caio Adestra: recebimentos do mês, quem está devendo, próximas aulas, clientes e Google Ads.'; document.head.appendChild(md); }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -99,6 +104,8 @@
   .kpi.good .n { color: var(--accent); }
   .kpi.warn .n { color: var(--amber); }
   .kpi.bad .n { color: var(--rust); }
+  .kpi.alert { background: var(--rust-soft); }
+  .kpi.alert .l, .kpi.alert .s { color: var(--ink); }
   .meter { height: 6px; background: var(--line); margin-top: .5rem; position: relative; }
   .meter > span { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
 
@@ -131,8 +138,9 @@
   .dlist:last-child { margin-bottom: -.9rem; }
   .drow { display: flex; align-items: center; gap: .65rem; padding: .5rem var(--px); border-top: 1px solid var(--line); }
   .drow .main { flex: 1; min-width: 0; }
-  .drow .t { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .drow .d { font-size: .78rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .drow .t { font-weight: 600; overflow-wrap: anywhere; line-height: 1.35; }
+  .drow .d { font-size: .78rem; color: var(--soft); line-height: 1.35; }
+  .nw { display: inline-block; max-width: 100%; } /* quebra entre partes, não no meio de "Aula avulsa" */
   .drow .v { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .drow .btn { min-height: 2.25rem; }
   .drow.clickable { cursor: pointer; }
@@ -185,9 +193,11 @@
   .row .v { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .row .acts { display: flex; gap: .4rem; flex-shrink: 0; }
   .row .end { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
-  .row .end .btn, .drow .btn { min-height: 2.25rem; min-width: 4.75rem; }
+  .row .end .btn { min-height: 2.25rem; min-width: 4.75rem; }
+  .drow .btn { min-height: 2.25rem; padding-inline: .6rem; }
   @media (max-width: 719px) { .row .end { flex-direction: column; align-items: flex-end; gap: .35rem; } }
   .row .d .badge { margin-right: .35rem; vertical-align: 1px; }
+  .row .tg { display: flex; flex-wrap: wrap; gap: .3rem; margin: .2rem 0 .15rem; }
   .row .t .badge { margin-left: .35rem; vertical-align: 2px; }
   .day .datechip { display: none; }
   .row.clickable { cursor: pointer; }
@@ -249,7 +259,9 @@
   .card .meta { font-size: .78rem; color: var(--soft); line-height: 1.35; overflow-wrap: anywhere; }
 
   /* Google Ads: retorno do mês em destaque, custos ao lado */
-  @media (max-width: 719px) { .chips.scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; } .chips.scroll::-webkit-scrollbar { display: none; } .chips.scroll .chip { flex: none; white-space: nowrap; } }
+  @media (max-width: 719px) { .chips.scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; } .chips.scroll::-webkit-scrollbar { display: none; } .chips.scroll .chip { flex: none; white-space: nowrap; }
+    .chips.scroll::after { content: ""; flex: none; width: 1.5rem; } /* no fim da rolagem o degradê cai sobre este espaço, não sobre o último filtro */
+    .chips.scroll { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); } }
   .adwarn { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; background: var(--amber-soft); color: var(--ink); border-left: 4px solid var(--amber); padding: .65rem var(--px); margin-bottom: 1rem; font-size: .88rem; line-height: 1.4; }
   .adwarn b { font-weight: 700; }
   .adtop { display: grid; gap: .75rem; margin-bottom: 2rem; }
@@ -271,7 +283,7 @@
   .cmp .hl b { font-weight: 700; font-variant-numeric: tabular-nums; }
   .cmp .bar { height: 6px; background: var(--line); position: relative; border-radius: 3px; overflow: hidden; }
   .cmp .bar > span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
-  .cmp .inv .bar > span { background: var(--rust); }
+  .cmp .inv .bar > span { background: var(--slate); }
   .cmp .rec .bar > span { background: var(--accent); }
   .roi .f { font-size: .76rem; color: var(--soft); line-height: 1.4; margin: .8rem 0 0; }
   .dl { font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -301,27 +313,26 @@
   .legend span { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
   .legend i { flex: none; width: 10px; height: 10px; }
   .legend i.ln { width: 14px; height: 0; border-top: 2px dashed var(--rust); }
-  .legend b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .legend b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
   .s-rec { background: var(--accent); }
   .s-are { background: repeating-linear-gradient(135deg, var(--amber) 0 2px, var(--amber-soft) 2px 5px); }
+  .s-atr { background: repeating-linear-gradient(45deg, var(--rust) 0 3px, var(--rust-soft) 3px 5px); }
   .s-dad { background: var(--leather); }
   .s-mar { background: repeating-linear-gradient(135deg, var(--leather) 0 2px, var(--leather-soft) 2px 5px); }
   .cplot, .ctab { display: grid; grid-template-columns: var(--gut) repeat(var(--n), minmax(0, 1fr)); }
   .cplot { height: 148px; }
   @media (min-width: 720px) { .cplot { height: 176px; } }
   .yax { position: relative; }
-  .yax span { position: absolute; right: .65rem; transform: translateY(50%); font: 500 11px/1 var(--mono); color: var(--soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .yax .ref { font-family: var(--body); font-weight: 600; color: var(--rust); }
+  .yax span { position: absolute; right: .65rem; transform: translateY(50%); font: 500 11px/1 var(--body); color: var(--soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .parea .rlab { position: absolute; right: 0; z-index: 3; transform: translateY(-2px); font-size: 11px; line-height: 1; font-weight: 600; color: var(--rust); background: var(--raised); padding: 0 0 2px 4px; white-space: nowrap; pointer-events: none; font-variant-numeric: tabular-nums; }
   .parea { grid-column: 2 / -1; position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); border-bottom: 1px solid var(--soft); }
   .parea .gl, .parea .rl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--line); pointer-events: none; }
   .parea .rl { z-index: 2; border-top: 1.5px dashed var(--rust); }
   .col { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 100%; cursor: default; }
   .col::before { content: ""; position: absolute; top: -6px; bottom: 0; left: max(2px, calc(50% - min(28%, 1.375rem) - 12px)); right: max(2px, calc(50% - min(28%, 1.375rem) - 12px)); background: transparent; }
-  .col.cur::before { background: var(--accent-soft); }
   .col:hover::before, .col:focus-visible::before { background: var(--line); opacity: .55; }
-  .col.cur:hover::before, .col.cur:focus-visible::before { background: var(--accent-soft); opacity: 1; }
   .col:focus-visible { outline-offset: -2px; }
-  .stk { position: relative; z-index: 1; width: min(56%, 2.75rem); height: 100%; display: flex; flex-direction: column-reverse; gap: 2px; }
+  .stk { position: relative; z-index: 1; width: min(56%, 2.75rem); height: 100%; display: flex; flex-direction: column-reverse; gap: 0; }
   .stk span { display: block; flex: none; min-height: 2px; }
   .stk span:last-child { border-radius: 2px 2px 0 0; }
   .tip { display: none; position: absolute; z-index: 4; top: -8px; left: 50%; transform: translate(-50%, -100%); background: var(--ink); color: var(--paper);
@@ -331,13 +342,15 @@
   .col:hover .tip, .col:focus .tip { display: block; }
   .ctab span { min-width: 0; text-align: center; white-space: nowrap; overflow: hidden; }
   .ctab.mos { padding-top: .4rem; font-size: .8rem; color: var(--soft); }
-  .ctab.mos .cur { color: var(--ink); font-weight: 700; }
+  .ctab.mos .cur { color: var(--ink); font-weight: 700; line-height: 1.25; }
+  .ctab.mos .cur small { display: block; font-size: .7rem; font-weight: 500; color: var(--soft); }
   .ctab.vals { margin-top: .55rem; padding-top: .5rem; border-top: 1px solid var(--line); row-gap: .2rem; align-items: baseline; }
-  .ctab .rh { text-align: left; font-size: .75rem; color: var(--soft); overflow: hidden; text-overflow: ellipsis; }
-  .ctab .cv { font-family: var(--mono); font-size: .78rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ctab .rh { text-align: left; font-size: .75rem; line-height: 1.2; color: var(--soft); white-space: normal; overflow-wrap: anywhere; }
+  .ctab .cv { font-size: .8rem; font-weight: 500; font-variant-numeric: tabular-nums; }
   .ctab .cv.cur { font-weight: 700; }
   .ctab .cv.z { color: var(--soft); font-weight: 400; }
   .ctab .cv.am:not(.z) { color: var(--amber); }
+  .ctab .cv.bad:not(.z) { color: var(--rust); }
   @media (max-width: 380px) { .chart { --gut: 3.5rem; padding-inline: .75rem; } }
   /* Funil: barra fina segmentada + lista com quantidade e fatia */
   .funnel { display: flex; gap: 2px; height: 10px; }
@@ -346,14 +359,14 @@
   .flist li { display: flex; align-items: center; gap: .5rem; min-width: 0; max-width: 15rem; }
   .flist i { flex: none; width: 10px; height: 10px; }
   .flist .lb { flex: 1; min-width: 0; }
-  .flist b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .flist .pc { width: 3.1rem; text-align: right; font-size: .78rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .flist b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .flist .pc { width: 3.4rem; text-align: right; font-size: .78rem; color: var(--soft); font-variant-numeric: tabular-nums; }
   /* Barras horizontais: nome e número na mesma linha, barra fina embaixo (nome nunca é cortado no celular) */
   .hbars { background: var(--raised); border: 1px solid var(--line); padding: .85rem 1rem .25rem; }
   .hbar { margin-bottom: .75rem; }
   .hbar .hl { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; font-size: .875rem; margin-bottom: .3rem; }
   .hbar .hl span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .hbar .hl b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .hbar .hl b { font-weight: 600; font-variant-numeric: tabular-nums; }
   .hbar .bar { height: 6px; background: var(--leather-soft); position: relative; }
   .hbar .bar span { position: absolute; inset: 0 auto 0 0; background: var(--leather); }
 
@@ -581,7 +594,7 @@
       debt = `<div class="empty"><span class="okmsg">Ninguém em atraso.</span>${prox ? ` Próximo: ${esc(prox.cliente || 'cliente')}, ${brl(prox.valor)} ${prox.vencimento === TODAY ? 'hoje' : 'em ' + dm(prox.vencimento)}.` : ''}</div>`;
     } else {
       debt = `<div class="dlist">${at.slice(0, 3).map((p) => { const n = lateDays(p); return `<div class="drow clickable" data-act="pay:${esc(p.id)}" tabindex="0">
-        <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">há ${n} ${n === 1 ? 'dia' : 'dias'} · venceu ${esc(dm(p.vencimento))}</div></div>
+        <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d"><span class="nw">venceu ${esc(dm(p.vencimento))}</span> · <span class="nw">há ${n} ${n === 1 ? 'dia' : 'dias'}</span></div></div>
         <div class="v">${brl(p.valor)}</div><button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button></div>`; }).join('')}</div>`
         + (at.length > 3 ? `<div class="pfoot"><span>Mais ${at.length - 3} em atraso</span><button class="lnk" data-act="tab:financeiro">Ver no Financeiro</button></div>` : '');
     }
@@ -612,12 +625,15 @@
     </div>`;
 
     // listas ao lado (calculadas antes para a fila de ações não repetir o que já está nelas)
-    // "Próximas aulas" começa depois da aula que já está no painel "Próxima aula"
-    const up = S.agenda.events.filter((e) => e.startDate >= nowD && e !== nx).slice(0, 6);
+    // "Em seguida": as aulas dos próximos 7 dias depois da que já está em "Próxima aula" (mesma base do "N aulas em 7 dias")
+    const UPMAX = 6;
+    const up7 = ev7.filter((e) => e !== nx);
+    const up = (up7.length ? up7 : S.agenda.events.filter((e) => e.startDate >= nowD && e !== nx).slice(0, 3)).slice(0, UPMAX);
+    const upMore = up7.length - Math.min(up7.length, UPMAX);
     const nextPays = S.pagamentos.filter(noPrazo).sort((a, b) => a.vencimento.localeCompare(b.vencimento)).slice(0, 5);
 
     // Precisa de atenção: fila única de ações, mais urgente primeiro. Fica de fora o que já aparece
-    // em "Quem está devendo", "Próxima aula", "Próximas aulas" e "Próximos recebimentos".
+    // em "Quem está devendo", "Próxima aula", "Em seguida" e "Próximos recebimentos".
     const shownPay = new Set([...at.slice(0, 3), ...nextPays].map((p) => p.id));
     const shownEv = new Set(nx ? [nx, ...up] : up);
     const sameName = (a, b) => norm(a).trim() === norm(b).trim();
@@ -651,7 +667,7 @@
 
     // próximas aulas
     const aulas = (S.agenda.status !== 'ok' && !up.length && !nx) ? agendaBox() : up.length
-      ? `<div class="list">${up.map(evRow).join('')}</div>`
+      ? `<div class="list">${up.map(evRow).join('')}</div>${upMore ? `<div class="pfoot" style="padding-top:.5rem"><span>+${upMore} nos próximos 7 dias</span><button class="lnk" data-act="tab:agenda">Ver agenda</button></div>` : ''}`
       : `<div class="empty">${nx ? 'Depois da próxima aula, nada marcado nos próximos 15 dias.' : 'Nenhuma aula marcada nos próximos 15 dias.'}</div>`;
 
     // recebimentos próximos
@@ -661,12 +677,12 @@
       <div>
         <section><div class="sh"><h2>Precisa de atenção</h2>${items.length ? `<span class="count">${items.length} ${items.length === 1 ? 'item' : 'itens'}</span>` : ''}</div>${attn}</section>
         <section><div class="sh"><h2>Faturamento</h2><span class="count">últimos 6 meses</span></div>${revenueChart()}
-          <div class="inline" style="margin-top:.75rem"><label for="metaInput" style="font-size:.85rem;color:var(--soft)">Meta mensal (R$)</label><input id="metaInput" type="number" inputmode="decimal" min="0" step="50" value="${m || ''}" placeholder="ex.: 6000"><button class="btn small" data-act="saveMeta">Salvar meta</button></div>
+          <div class="inline" style="margin-top:.75rem"><label for="metaInput" style="font-size:.85rem;color:var(--soft)">${m ? `Meta mensal: <b class="num" style="color:var(--ink)">${brl(m)}</b>. Mudar para` : 'Meta mensal (R$)'}</label><input id="metaInput" type="number" inputmode="decimal" min="0" step="50" value="" placeholder="${m ? esc(int(m)) : 'ex.: 6.000'}"><button class="btn small" data-act="saveMeta">Salvar meta</button></div>
         </section>
         <section><div class="sh"><h2>Aulas por mês</h2><span class="count">Google Agenda, últimos 7 meses</span></div>${classesChart()}</section>
       </div>
       <div>
-        <section><div class="sh"><h2>Próximas aulas</h2><button class="btn ghost small" data-act="tab:agenda">Ver agenda</button></div>${aulas}</section>
+        <section><div class="sh"><h2>Em seguida</h2>${S.agenda.status === 'ok' && nx ? `<span class="count">${up7.length ? `depois dessa, ${up7.length} em 7 dias` : 'depois da próxima aula'}</span>` : ''}</div>${aulas}</section>
         <section><div class="sh"><h2>Próximos recebimentos</h2><button class="btn ghost small" data-act="tab:financeiro">Financeiro</button></div>${pays}</section>
         <section>${funnelBox()}</section>
       </div>
@@ -677,63 +693,71 @@
   function funnelBox() {
     const f = S.funil;
     if (!f) return `<div class="sh"><h2>Funil de leads</h2></div><div class="empty">${isLoading() ? 'Carregando…' : 'Sem levantamento salvo.'} <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></div>`;
-    const parts = [['fechado', 'Fechados', 'var(--leather)'], ['aberto', 'Em aberto', 'var(--amber)'], ['perdido', 'Perdidos', 'var(--rust)'], ['indefinido', 'Indefinidos', 'var(--slate)'], ['erro', 'Erro', 'var(--line)']];
-    const total = parts.reduce((a, [k]) => a + num(f[k]), 0) || 1;
-    const valid = total - num(f.erro);
-    const share = (k) => Math.round((num(f[k]) / total) * 100) + '%';
+    // base única: os leads lidos (sem Erro). Erro fica à parte, sem porcentagem.
+    const parts = [['fechado', 'Fechados', 'var(--leather)'], ['aberto', 'Em aberto', 'var(--amber)'], ['perdido', 'Perdidos', 'var(--rust)'], ['indefinido', 'Indefinidos', 'var(--slate)']];
+    const valid = parts.reduce((a, [k]) => a + num(f[k]), 0), base = valid || 1, err = num(f.erro);
+    const share = (k) => pct(num(f[k]) / base);
     return `<div class="sh"><h2>Funil de leads</h2><span class="count">levantamento de ${esc(dm(f.data))}</span></div>
       <div class="chart">
-        <div class="funnel" role="img" aria-label="${esc('Leads por status: ' + parts.map(([k, l]) => `${l} ${num(f[k])}`).join(', '))}">${parts.filter(([k]) => num(f[k]) > 0).map(([k, l, c]) => `<span style="width:${((num(f[k]) / total) * 100).toFixed(2)}%;background:${c}" title="${esc(`${l}: ${num(f[k])}`)}"></span>`).join('')}</div>
-        <ul class="flist">${parts.map(([k, l, c]) => `<li><i style="background:${c}${k === 'erro' ? ';box-shadow:inset 0 0 0 1px var(--soft)' : ''}"></i><span class="lb">${l}</span><b>${num(f[k])}</b><span class="pc">${share(k)}</span></li>`).join('')}</ul>
+        <div class="funnel" role="img" aria-label="${esc(`${valid} leads lidos: ` + parts.map(([k, l]) => `${l} ${num(f[k])} (${share(k)})`).join(', '))}">${parts.filter(([k]) => num(f[k]) > 0).map(([k, l, c]) => `<span style="width:${((num(f[k]) / base) * 100).toFixed(2)}%;background:${c}" title="${esc(`${l}: ${num(f[k])}`)}"></span>`).join('')}</div>
+        <ul class="flist">${parts.map(([k, l, c]) => `<li><i style="background:${c}"></i><span class="lb">${l}</span><b>${num(f[k])}</b><span class="pc">${share(k)}</span></li>`).join('')}</ul>
+        <p class="agfoot" style="margin-top:.7rem">Porcentagens sobre os ${valid} leads lidos.${err ? ` ${err} ${err === 1 ? 'conversa não pôde ser lida (erro) e ficou' : 'conversas não puderam ser lidas (erro) e ficaram'} de fora.` : ''}</p>
       </div>
-      <p class="note" style="margin:.6rem 0 0">Na Ficha, ${num(f.fechado)} dos ${valid} leads lidos estavam fechados (${pct(num(f.fechado) / (valid || 1))}). A conversão real é maior: vários clientes que pagaram não estão na Ficha. ${num(f.aberto)} ainda em aberto. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
+      <p class="note" style="margin:.6rem 0 0">${num(f.fechado)} dos ${valid} leads lidos fecharam (${share('fechado')}) e ${num(f.aberto)} seguem em aberto. A conversão real é maior: vários clientes que pagaram não estão na Ficha. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
   }
 
   // ---------- gráfico de colunas (HTML/CSS) ----------
   // Texto em tamanho real em qualquer tela; sem medir nada nem redesenhar no resize.
-  const PLOT_MIN_H = 148; // altura mínima da área do gráfico (igual a .cplot no CSS), usada para evitar rótulos sobrepostos no eixo
   const kfmt = (v) => (v >= 1000 ? (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits: v >= 10000 ? 0 : 1 }) + 'k' : String(Math.round(v)));
-  // cols: [{ label, cur, segs: [{ v, cls }], tip, aria }]; rows: [{ h, vals: [{ t, z }], cls }]; ref: { v, l } (linha de meta)
+  // cols: [{ label, cur, segs: [{ v, cls }], tip, aria }]; rows: [{ h, vals: [{ t, z }], cls }]; ref: { v, l } (linha de meta, rótulo na ponta)
+  // O mês corrente leva "parcial" embaixo do rótulo, sem faixa de fundo.
   function colChart({ aria, legend, cols, rows, ref }) {
     const n = cols.length;
     const maxV = Math.max(ref ? ref.v : 0, ...cols.map((c) => c.segs.reduce((a, s) => a + s.v, 0)), 1);
     const step = Math.max(1, niceStep(maxV / 3)), top = Math.ceil(maxV / step) * step;
     const pc = (v) => ((v / top) * 100).toFixed(2) + '%';
-    const nearRef = (v) => ref && (Math.abs(v - ref.v) / top) * PLOT_MIN_H < 14;
     let ax = '', lines = '';
     for (let v = 0; v <= top + 1e-9; v += step) {
-      if (!nearRef(v)) ax += `<span style="bottom:${pc(v)}">${kfmt(v)}</span>`;
+      ax += `<span style="bottom:${pc(v)}">${kfmt(v)}</span>`;
       if (v > 0) lines += `<i class="gl" style="bottom:${pc(v)}"></i>`;
     }
-    if (ref) { lines += `<i class="rl" style="bottom:${pc(ref.v)}"></i>`; ax += `<span class="ref" style="bottom:${pc(ref.v)}">${esc(ref.l)}</span>`; }
+    if (ref) lines += `<i class="rl" style="bottom:${pc(ref.v)}"></i><span class="rlab" style="bottom:${pc(ref.v)}">${esc(ref.l)}</span>`;
     const bars = cols.map((c, i) => `<div class="col${c.cur ? ' cur' : ''}" tabindex="0" role="img" aria-label="${esc(c.aria)}"><div class="stk">${c.segs.filter((s) => s.v > 0).map((s) => `<span class="${s.cls}" style="height:${pc(s.v)}"></span>`).join('')}</div><div class="tip${i === 0 ? ' l' : i === n - 1 ? ' r' : ''}" aria-hidden="true">${c.tip}</div></div>`).join('');
     const cell = (c, i, cls, x) => `<span class="${cls}${cols[i].cur ? ' cur' : ''}${x || ''}">${c}</span>`;
     return `<figure class="chart" style="margin:0;--n:${n}" aria-label="${esc(aria)}">
       <div class="legend">${legend}</div>
       <div class="cplot"><div class="yax" aria-hidden="true">${ax}</div><div class="parea">${lines}${bars}</div></div>
-      <div class="ctab mos" aria-hidden="true"><span></span>${cols.map((c, i) => cell(esc(c.label), i, '')).join('')}</div>
+      <div class="ctab mos" aria-hidden="true"><span></span>${cols.map((c, i) => cell(esc(c.label) + (c.cur ? '<small>parcial</small>' : ''), i, '')).join('')}</div>
       <div class="ctab vals" aria-hidden="true">${rows.map((r) => `<span class="rh">${esc(r.h)}</span>${r.vals.map((v, i) => cell(v.t, i, 'cv ' + (r.cls || ''), v.z ? ' z' : '')).join('')}`).join('')}</div>
     </figure>`;
   }
 
   function revenueChart() {
     const months = Array.from({ length: 6 }, (_, i) => addMonths(CUR, i - 5));
-    const data = months.map((m) => ({ m, r: recebido(m), o: aReceber(m) }));
+    // mesmas definições do topo: em atraso = combinado com data vencida (como em "Quem está devendo");
+    // a receber no prazo = em aberto com data de hoje em diante. Previsões vencidas ficam fora (são estimativas a confirmar).
+    const inM = (m) => (p) => (p.vencimento || '').startsWith(m);
+    const data = months.map((m) => ({ m, r: recebido(m), a: sum(S.pagamentos.filter((p) => isLate(p) && inM(m)(p)), (p) => p.valor), o: aReceberNoPrazo(m) }));
     const m = meta();
-    const anyO = data.some((d) => d.o > 0);
+    const anyA = data.some((d) => d.a > 0), anyO = data.some((d) => d.o > 0);
     const cols = data.map((d) => {
       const name = monthLabel(d.m, true);
+      const ex = [d.a ? ['Em atraso', d.a] : null, d.o ? ['A receber no prazo', d.o] : null].filter(Boolean);
       return {
         label: monthShort(d.m), cur: d.m === CUR,
-        segs: [{ v: d.r, cls: 's-rec' }, { v: d.o, cls: 's-are' }],
-        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>Recebido ${brl(d.r)}${d.o ? `<br>A receber ${brl(d.o)}` : ''}`,
-        aria: `${name}: recebido ${brl(d.r)}${d.o ? `, a receber ${brl(d.o)}` : ''}`,
+        segs: [{ v: d.r, cls: 's-rec' }, { v: d.a, cls: 's-atr' }, { v: d.o, cls: 's-are' }],
+        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>Recebido ${brl(d.r)}${ex.map(([l, v]) => `<br>${l} ${brl(v)}`).join('')}`,
+        aria: `${name}: recebido ${brl(d.r)}${ex.map(([l, v]) => `, ${l.toLowerCase()} ${brl(v)}`).join('')}`,
       };
     });
-    const rows = [{ h: 'Recebido', vals: data.map((d) => ({ t: d.r ? kfmt(d.r) : '0', z: !d.r })) }];
-    if (anyO) rows.push({ h: 'A receber', cls: 'am', vals: data.map((d) => ({ t: d.o ? kfmt(d.o) : '–', z: !d.o })) });
-    const legend = `<span><i class="s-rec"></i>Recebido</span>${anyO ? '<span><i class="s-are"></i>A receber</span>' : ''}${m ? `<span><i class="ln"></i>Meta <b>${brl(m)}</b></span>` : ''}`;
-    return colChart({ aria: 'Recebido por mês nos últimos 6 meses', legend, cols, rows, ref: m ? { v: m, l: 'meta' } : null });
+    // mês corrente com o valor exato (bate com o topo); meses fechados abreviados
+    const cv = (d, v, z) => (!v ? z : d.m === CUR && v < 1e4 ? int(Math.round(v)) : kfmt(v));
+    const rows = [{ h: 'Recebido', vals: data.map((d) => ({ t: cv(d, d.r, '0'), z: !d.r })) }];
+    if (anyA) rows.push({ h: 'Em atraso', cls: 'bad', vals: data.map((d) => ({ t: cv(d, d.a, '–'), z: !d.a })) });
+    if (anyO) rows.push({ h: 'No prazo', cls: 'am', vals: data.map((d) => ({ t: cv(d, d.o, '–'), z: !d.o })) });
+    const legend = `<span><i class="s-rec"></i>Recebido</span>${anyA ? '<span><i class="s-atr"></i>Em atraso</span>' : ''}${anyO ? '<span><i class="s-are"></i>A receber no prazo</span>' : ''}`;
+    const mil = (v) => (v >= 1000 ? 'R$ ' + (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + ' mil' : brl(v));
+    return colChart({ aria: `Recebido por mês nos últimos 6 meses${m ? `, meta de ${brl(m)}` : ''}`, legend, cols, rows, ref: m ? { v: m, l: 'meta ' + mil(m) } : null });
   }
   // ---------- aulas por mês ----------
   const SKIP = ['remarcada', 'remarcado', 'pro', 'final', 'do', 'da', 'pacote', 'e', 'de'];
@@ -757,17 +781,17 @@
     const anyS = data.some((d) => d.sched > 0);
     const cols = data.map((d) => {
       const name = monthLabel(d.m, true);
-      const parts = `${d.done} ${d.done === 1 ? 'dada' : 'dadas'}${d.sched ? `, ${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}, ${d.cli} ${d.cli === 1 ? 'cliente' : 'clientes'}`;
+      const parts = `${d.done} ${d.done === 1 ? 'dada' : 'dadas'}${d.sched ? `, ${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}, ${d.cli} ${d.cli === 1 ? 'cliente atendido' : 'clientes atendidos'}`;
       return {
         label: monthShort(d.m), cur: d.m === CUR,
         segs: [{ v: d.done, cls: 's-dad' }, { v: d.sched, cls: 's-mar' }],
-        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>${d.done} ${d.done === 1 ? 'aula dada' : 'aulas dadas'}${d.sched ? `<br>${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}<br>${d.cli} ${d.cli === 1 ? 'cliente' : 'clientes'}`,
+        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>${d.done} ${d.done === 1 ? 'aula dada' : 'aulas dadas'}${d.sched ? `<br>${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}<br>${d.cli} ${d.cli === 1 ? 'cliente atendido' : 'clientes atendidos'}`,
         aria: `${name}: ${parts}`,
       };
     });
     const rows = [
       { h: 'Aulas', vals: data.map((d) => ({ t: String(d.done + d.sched), z: !(d.done + d.sched) })) },
-      { h: 'Clientes', vals: data.map((d) => ({ t: String(d.cli), z: !d.cli })) },
+      { h: 'Clientes atendidos', vals: data.map((d) => ({ t: String(d.cli), z: !d.cli })) },
     ];
     const legend = `<span><i class="s-dad"></i>Dadas</span>${anyS ? '<span><i class="s-mar"></i>Marcadas</span>' : ''}`;
     return colChart({ aria: 'Aulas por mês nos últimos 7 meses', legend, cols, rows });
@@ -797,12 +821,12 @@
   // noDate === true esconde o chip de data (linhas já agrupadas por dia). Checa === true porque .map(evRow) passa o índice.
   function evRow(e, noDate) {
     const n = evName(e);
-    const sub = [n.dog, e.loc].filter(Boolean).join(' · ');
+    const sub = [n.dog, e.loc].filter(Boolean).map((x) => `<span class="nw">${esc(x)}</span>`).join(' · ');
     const tags = (/^avalia/i.test(e.raw) ? badge('previsto', 'avaliação') : '') + (e.pay ? badge('pendente', 'pagamento') : '');
     return `<a class="row" href="${esc(e.link)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
       ${noDate === true ? '' : `<div class="datechip">${esc(weekday(e.date))}<b>${esc(e.date.slice(8, 10))}</b></div>`}
       <div class="time">${esc(e.time)}</div>
-      <div class="main"><div class="t">${esc(n.name)}</div>${tags || sub ? `<div class="d">${tags}${esc(sub)}</div>` : ''}</div></a>`;
+      <div class="main"><div class="t">${esc(n.name)}</div>${tags ? `<div class="tg">${tags}</div>` : ''}${sub ? `<div class="d">${sub}</div>` : ''}</div></a>`;
   }
   // Agenda: começa pelo que importa agora (hoje), depois os próximos dias; histórico fica por último
   function vAgenda() {
@@ -863,10 +887,10 @@
   function payRow(p) {
     const late = isLate(p);
     const st = late ? badge('atrasado', 'atrasado') : badge(p.status, label(PAY_STATUS, p.status).split(/[ ,]/)[0]);
-    const det = [p.descricao, p.status === 'pago' && p.pagoEm && p.pagoEm !== p.vencimento ? 'pago em ' + dm(p.pagoEm) : '', p.status === 'pago' ? p.forma : ''].filter(Boolean).join(' · ');
+    const det = [p.descricao, p.status === 'pago' && p.pagoEm && p.pagoEm !== p.vencimento ? 'pago em ' + dm(p.pagoEm) : '', p.status === 'pago' ? p.forma : ''].filter(Boolean).map((x) => `<span class="nw">${esc(x)}</span>`).join(' · ');
     return `<div class="row stripe ${late ? 'bad' : p.status === 'pago' ? 'good' : p.status === 'pendente' ? 'warn' : 'info'} clickable" data-act="pay:${esc(p.id)}" tabindex="0">
       <div class="datechip">${esc(weekday(p.vencimento || TODAY))}<b>${esc((p.vencimento || '').slice(8, 10) || '—')}</b>${esc(p.vencimento ? monthShort(p.vencimento.slice(0, 7)) : '')}</div>
-      <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">${st}${p.conferir ? badge('conferir', 'conferir') : ''}${esc(det)}</div></div>
+      <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="tg">${st}${p.conferir ? badge('conferir', 'conferir') : ''}</div>${det ? `<div class="d">${det}</div>` : ''}</div>
       <div class="end"><div class="v">${brl(p.valor)}</div>${open(p) ? `<button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button>` : ''}</div></div>`;
   }
   function vFinanceiro() {
@@ -879,11 +903,12 @@
     return `<div class="sh"><div class="monthnav"><button class="btn ghost small" data-act="month:-1" aria-label="Mês anterior">←</button><strong>${esc(monthLabel(m, true))}</strong><button class="btn ghost small" data-act="month:1" aria-label="Próximo mês">→</button></div>
       <div class="inline"><button class="btn" data-act="new:pagamentos">Novo recebimento</button><button class="btn ghost" data-act="new:despesas">Nova despesa</button></div></div>
       <div class="kpis">
+        ${at.length ? kpi('Em atraso', brl(sum(at, (p) => p.valor)), `${at.length} ${at.length === 1 ? 'pagamento' : 'pagamentos'}, de todos os meses`, 'bad alert') : ''}
         ${kpi('Recebido', brl(rec), `${list.filter((p) => p.status === 'pago').length} pagamentos`, 'good')}
         ${kpi('A receber no prazo', brl(are), (() => { const n = list.filter(noPrazo).length; return `${n} ${n === 1 ? 'pagamento' : 'pagamentos'}, sem os atrasados`; })(), 'warn')}
         ${kpi('Despesas + anúncios', brl(desp + ads), ads ? `${brl(ads)} no Google Ads` : 'Google Ads não lançado')}
         ${kpi('Sobra aproximada', brl(lucro), 'recebido menos custos, antes de impostos', lucro < 0 ? 'bad' : '')}
-        ${kpi('Em atraso', brl(sum(at, (p) => p.valor)), `${at.length} ${at.length === 1 ? 'pagamento' : 'pagamentos'}, de todos os meses`, at.length ? 'bad' : '')}
+        ${at.length ? '' : kpi('Em atraso', brl(0), 'nenhum pagamento atrasado')}
       </div>
       <div class="grid2">
         <section><div class="sh"><h2>Recebimentos de ${esc(monthShort(m))}</h2><span class="count">${list.length} lançamentos</span></div>
@@ -1049,18 +1074,18 @@
       }
       // variação de custo contra o mês lançado anterior (custo menor = bom)
       const dv = (k) => {
-        if (!prev) return '';
+        if (!prev) return '<br>&nbsp;';
         const a = div(last.investimento, last[k]), b = div(prev.investimento, prev[k]);
-        if (a == null || b == null || !b) return '';
+        if (a == null || b == null || !b) return '<br>&nbsp;';
         const p = Math.round(((a - b) / b) * 100);
-        if (!p) return ` · igual a ${esc(monthShort(prev.id))}`;
-        return ` · <span class="dl ${p < 0 ? 'good' : 'bad'}">${p < 0 ? '▼' : '▲'} ${Math.abs(p)}%</span> vs ${esc(monthShort(prev.id))}`;
+        if (!p) return `<br><span class="nw">igual a ${esc(monthShort(prev.id))}</span>`;
+        return `<br><span class="nw"><span class="dl ${p < 0 ? 'good' : 'bad'}">${p < 0 ? '▼' : '▲'} ${Math.abs(p)}%</span> vs ${esc(monthShort(prev.id))}</span>`;
       };
       const k = `<div class="kpis">
-          ${kpi(`Investido em ${esc(monthShort(last.id))}`, brl(last.investimento), `${has(last.impressoes) ? int(last.impressoes) + ' impressões · ' : ''}CTR ${fx(div(last.cliques, last.impressoes), pct1)}`)}
-          ${kpi('Custo por clique', fx(div(last.investimento, last.cliques), brl2), `${int(last.cliques)} cliques${dv('cliques')}`)}
-          ${kpi('Custo por contato', fx(div(last.investimento, last.contatos), brl2), `${int(last.contatos)} contatos${dv('contatos')}`)}
-          ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl2), `${int(last.clientes)} ${num(last.clientes) === 1 ? 'cliente' : 'clientes'}${dv('clientes')}`)}
+          ${kpi(`Investido em ${esc(monthShort(last.id))}`, brl(last.investimento), `${has(last.impressoes) ? `<span class="nw">${int(last.impressoes)} impressões</span><br>` : ''}<span class="nw">CTR ${fx(div(last.cliques, last.impressoes), pct1)}</span>`)}
+          ${kpi('Custo por clique', fx(div(last.investimento, last.cliques), brl2), `<span class="nw">${int(last.cliques)} cliques</span>${dv('cliques')}`)}
+          ${kpi('Custo por contato', fx(div(last.investimento, last.contatos), brl2), `<span class="nw">${int(last.contatos)} contatos</span>${dv('contatos')}`)}
+          ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl2), `<span class="nw">${int(last.clientes)} ${num(last.clientes) === 1 ? 'cliente' : 'clientes'}</span>${dv('clientes')}`)}
         </div>`;
       top = `<div class="adtop">${hero}${k}</div>`;
     }
@@ -1218,7 +1243,8 @@
       return;
     }
     if (k === 'saveMeta') {
-      const val = Number($('#metaInput').value);
+      const raw = $('#metaInput').value.trim(), val = Number(raw);
+      if (raw === '') return toast('Digite o valor da nova meta.');
       if (!S.db) return toast('Abra o painel pelo claude.ai para salvar.');
       if (!Number.isFinite(val) || val < 0) return toast('Digite um valor válido.');
       try { await S.db.doc('config/geral').set({ ...S.config, metaMensal: val }); toast('Meta salva'); } catch (e) { toast(dbErr(e)); }
