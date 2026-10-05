@@ -292,7 +292,8 @@
   const sum = (arr, f) => arr.reduce((a, x) => a + num(f(x)), 0);
   const recebido = (m) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m)), (p) => p.valor);
   const aReceber = (m) => sum(S.pagamentos.filter((p) => open(p) && (p.vencimento || '').startsWith(m)), (p) => p.valor);
-  const atrasados = () => S.pagamentos.filter((p) => open(p) && p.vencimento && p.vencimento < TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
+  const previstosVencidos = () => S.pagamentos.filter((p) => p.status === 'previsto' && p.vencimento && p.vencimento < TODAY);
+  const atrasados = () => S.pagamentos.filter((p) => p.status === 'pendente' && p.vencimento && p.vencimento < TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const vencendo = (days) => S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY && p.vencimento <= addDays(TODAY, days)).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const despesasMes = (m) => sum(S.despesas.filter((d) => (d.data || '').startsWith(m)), (d) => d.valor);
   const adsMes = (m) => S.anuncios.find((a) => a.id === m);
@@ -302,9 +303,19 @@
 
   const firstWord = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').split(/[\s,()]+/).filter(Boolean)[0] || '';
   const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const matchCache = new Map();
   function clientForEvent(ev) {
+    const ck = (ev.id || '') + '|' + ev.raw + '|' + ev.date + '|' + ev.time;
+    if (matchCache.has(ck)) return matchCache.get(ck);
     const words = norm(ev.title).split(/[\s,()]+/).filter(Boolean);
-    return S.clientes.find((c) => words.includes(firstWord(c.nome))) || S.clientes.find((c) => c.cao && words.includes(firstWord(c.cao)));
+    const hits = S.clientes.filter((c) => words.includes(firstWord(c.nome)) || (c.cao && words.includes(firstWord(c.cao))));
+    let best = hits[0];
+    if (hits.length > 1) {
+      const before = hits.filter((c) => !c.inicio || c.inicio <= ev.date).sort((a, b) => (b.inicio || '').localeCompare(a.inicio || ''));
+      best = before[0] || null;
+    }
+    matchCache.set(ck, best || null);
+    return best || null;
   }
   function nextClassFor(c) {
     const now = new Date();
@@ -316,7 +327,10 @@
   function render() {
     document.querySelectorAll('.tab').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === S.tab)));
     const html = { geral: vGeral, agenda: vAgenda, financeiro: vFinanceiro, clientes: vClientes, anuncios: vAnuncios }[S.tab]();
+    const ae = document.activeElement;
+    const keep = ae && ae.id && view.contains(ae) && 'value' in ae ? { id: ae.id, v: ae.value, s: ae.selectionStart } : null;
     view.innerHTML = html;
+    if (keep) { const el = document.getElementById(keep.id); if (el) { el.value = keep.v; el.focus(); try { el.setSelectionRange(keep.s, keep.s); } catch (_) {} } }
   }
 
   const kpi = (l, n, s, cls = '', extra = '') => `<div class="kpi ${cls}"><div class="l">${l}</div><div class="n">${n}</div>${s ? `<div class="s">${s}</div>` : ''}${extra}</div>`;
@@ -334,7 +348,7 @@
 
     let h = `<div class="kpis">
       ${kpi('Clientes ativos', isLoading() ? '…' : ativos().length, `${S.clientes.filter((c) => c.status === 'renovar').length} para renovar`)}
-      ${kpi('Faturamento estimado / mês', isLoading() ? '…' : brl(fatEstimado()), 'soma dos planos ativos')}
+      ${kpi('Valor dos pacotes ativos', isLoading() ? '…' : brl(fatEstimado()), 'soma dos pacotes em andamento, não é o que entra no mês')}
       ${kpi(`Recebido em ${monthShort(CUR)}`, brl(rec), m ? `${pct(rec / m)} da meta de ${brl(m)}` : 'defina uma meta abaixo', 'good', meter)}
       ${kpi('A receber no mês', brl(are), at.length ? `${at.length} em atraso: ${brl(sum(at, (p) => p.valor))}` : 'nada em atraso', at.length ? 'bad' : 'warn')}
       ${kpi('Aulas nos próximos 7 dias', agendaN, S.agenda.status === 'ok' ? `${evMes.length} dadas em ${monthShort(CUR)}` : agendaHint())}
@@ -342,7 +356,8 @@
 
     // atenção
     const items = [];
-    at.forEach((p) => items.push(['bad', `Cobrar ${p.cliente || 'cliente'}`, `${p.descricao || 'Pagamento'} · venceu ${dm(p.vencimento)}${p.status === 'previsto' ? ' (era previsão — confirmar se foi combinado)' : ''}`, brl(p.valor), `pay:${p.id}`]));
+    at.forEach((p) => items.push(['bad', `Cobrar ${p.cliente || 'cliente'}`, `${p.descricao || 'Pagamento'} · venceu ${dm(p.vencimento)}`, brl(p.valor), `pay:${p.id}`]));
+    previstosVencidos().forEach((p) => items.push(['info', `Confirmar com ${p.cliente || 'cliente'}`, `${p.descricao || 'Previsão'} · era previsto para ${dm(p.vencimento)}. Marque como pago, combinado ou exclua.`, brl(p.valor), `pay:${p.id}`]));
     ven.forEach((p) => items.push(['warn', `${p.cliente || 'Cliente'} paga ${p.vencimento === TODAY ? 'hoje' : 'em ' + dm(p.vencimento)}`, `${p.descricao || ''}${p.status === 'previsto' ? ' · previsto' : ''}`, brl(p.valor), `pay:${p.id}`]));
     S.agenda.events.filter((e) => e.pay && e.date >= TODAY).forEach((e) => items.push(['warn', `Pagamento na aula de ${dm(e.date)}`, e.raw, '', '']));
     S.clientes.filter((c) => c.status === 'renovar').forEach((c) => items.push(['warn', `Oferecer renovação a ${c.nome}`, [c.cao, c.obs].filter(Boolean).join(' · '), c.valorMensal ? brl(c.valorMensal) : '', `cli:${c.id}`]));
@@ -351,7 +366,6 @@
     const prevM = addMonths(CUR, -1);
     const pa = adsMes(prevM);
     if (S.loaded.anuncios && (!pa || pa.investimento == null || pa.investimento === '')) items.push(['info', `Lançar números do Google Ads de ${monthLabel(prevM, true)}`, 'Investimento, cliques e contatos — leva 1 minuto e libera o custo por cliente', '', 'tab:anuncios']);
-    (S.funil?.followups || []).slice(0, 3).forEach((f) => items.push(['info', `Follow-up: ${f.nome}`, f.acao, '', '']));
 
     const attn = items.length
       ? `<div class="list">${items.map(([k, t, d, v, act]) => `<div class="row stripe ${k} ${act ? 'clickable' : ''}" ${act ? `data-act="${esc(act)}" tabindex="0"` : ''}><div class="main"><div class="t">${esc(t)}</div>${d ? `<div class="d">${esc(d)}</div>` : ''}</div>${v ? `<div class="v">${v}</div>` : ''}</div>`).join('')}</div>`
@@ -393,7 +407,7 @@
     return `<div class="sh"><h2>Funil de leads</h2><span class="count">levantamento de ${esc(dm(f.data))}</span></div>
       <div class="funnel" role="img" aria-label="Distribuição dos leads por status">${parts.map(([k, , c]) => `<span style="width:${(num(f[k]) / total) * 100}%;background:${c}" title="${k}"></span>`).join('')}</div>
       <div class="legend">${parts.map(([k, l, c]) => `<span><i style="background:${c}"></i>${l} <b class="num">${num(f[k])}</b></span>`).join('')}</div>
-      <p class="note" style="margin:.25rem 0 0">Conversão: <b>${pct(num(f.fechado) / (valid || 1))}</b> dos ${valid} leads lidos viraram cliente. ${num(f.aberto)} ainda em aberto. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
+      <p class="note" style="margin:.25rem 0 0">Na Ficha, ${num(f.fechado)} dos ${valid} leads lidos estavam fechados (${pct(num(f.fechado) / (valid || 1))}). A conversão real é maior: vários clientes que pagaram não estão na Ficha. ${num(f.aberto)} ainda em aberto. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
   }
 
   function revenueChart() {
@@ -438,7 +452,7 @@
     if (st !== 'ok' && !S.hist.events.length) return st === 'loading' ? `<div class="empty">Buscando o histórico no Google Agenda…</div>` : agendaBox();
     const nowD = new Date();
     const months = Array.from({ length: 7 }, (_, i) => addMonths(CUR, i - 6));
-    const all = [...S.hist.events, ...S.agenda.events.filter((e) => e.date.startsWith(CUR))];
+    const all = [...S.hist.events, ...S.agenda.events.filter((e) => e.date.startsWith(CUR) && /^aula/i.test(e.raw))];
     const data = months.map((m) => {
       const evs = all.filter((e) => e.date.startsWith(m));
       const done = evs.filter((e) => e.startDate < nowD);
@@ -527,7 +541,7 @@
 
   // ---------- financeiro ----------
   function payRow(p) {
-    const late = open(p) && p.vencimento && p.vencimento < TODAY;
+    const late = p.status === 'pendente' && p.vencimento && p.vencimento < TODAY;
     const st = late ? badge('atrasado', 'atrasado') : badge(p.status, label(PAY_STATUS, p.status).split(/[ ,]/)[0]);
     return `<div class="row stripe ${late ? 'bad' : p.status === 'pago' ? 'good' : p.status === 'pendente' ? 'warn' : 'info'} clickable" data-act="pay:${esc(p.id)}" tabindex="0">
       <div class="datechip">${esc(weekday(p.vencimento || TODAY))}<b>${esc((p.vencimento || '').slice(8, 10) || '—')}</b>${esc(p.vencimento ? monthShort(p.vencimento.slice(0, 7)) : '')}</div>
@@ -548,7 +562,7 @@
         ${kpi('Recebido', brl(rec), `${list.filter((p) => p.status === 'pago').length} pagamentos`, 'good')}
         ${kpi('A receber', brl(are), `${list.filter(open).length} em aberto`, 'warn')}
         ${kpi('Despesas + anúncios', brl(desp + ads), ads ? `${brl(ads)} no Google Ads` : 'Google Ads não lançado')}
-        ${kpi('Lucro estimado', brl(lucro), 'recebido − despesas − anúncios', lucro < 0 ? 'bad' : '')}
+        ${kpi('Sobra aproximada', brl(lucro), 'recebido − custos lançados (sem impostos e taxas)', lucro < 0 ? 'bad' : '')}
         ${kpi('Em atraso (todos os meses)', brl(sum(at, (p) => p.valor)), `${at.length} pagamentos`, at.length ? 'bad' : '')}
       </div>
       <div class="grid2">
@@ -578,7 +592,7 @@
         <div class="top"><span class="name">${esc(c.nome)}</span><span>${badge(c.status, label(CLI_STATUS, c.status))}${c.conferir ? ' ' + badge('conferir', 'conferir') : ''}</span></div>
         <div class="dog">${esc([c.cao, c.questao].filter(Boolean).join(' — ') || 'Cão não informado')}</div>
         ${c.obs ? `<div class="d" style="font-size:.82rem">${esc(c.obs)}</div>` : ''}
-        <div class="facts"><span>${esc(c.plano || 'Plano —')}</span><span><b>${c.valorMensal ? brl(c.valorMensal) : '—'}</b>/mês</span>${c.cidade ? `<span>${esc(c.cidade)}</span>` : ''}${nx ? `<span>Próxima: <b>${esc(dm(nx.date))} ${esc(nx.time)}</b></span>` : ''}</div>
+        <div class="facts"><span>${esc(c.plano || 'Plano —')}</span><span>Pacote <b>${c.valorMensal ? brl(c.valorMensal) : '—'}</b></span>${c.cidade ? `<span>${esc(c.cidade)}</span>` : ''}${nx ? `<span>Próxima: <b>${esc(dm(nx.date))} ${esc(nx.time)}</b></span>` : ''}</div>
       </div>`;
     }).join('');
     // origem
@@ -590,7 +604,7 @@
     return `<div class="sh"><div class="chips" style="margin:0">${chips}</div><button class="btn" data-act="new:clientes">Novo cliente</button></div>
       <div class="kpis" style="margin-top:1rem">
         ${kpi('Ticket médio (ativos)', ticket.length ? brl(sum(ticket, (c) => c.valorMensal) / ticket.length) : '—', `${ticket.length} com valor informado`)}
-        ${kpi('Faturamento recorrente', brl(fatEstimado()), 'por mês, clientes ativos', 'good')}
+        ${kpi('Valor dos pacotes ativos', brl(fatEstimado()), 'soma dos pacotes em andamento', 'good')}
         ${kpi('Para renovar', counts.renovar || 0, 'pacote acabou', counts.renovar ? 'warn' : '')}
         ${kpi('Dados a conferir', S.clientes.filter((c) => c.conferir).length, 'deduzidos da agenda', '')}
       </div>
@@ -636,7 +650,7 @@
     clientes: { t: 'cliente', f: [
       ['nome', 'Nome do tutor', 'text', { req: 1, full: 1 }], ['cao', 'Cão (nome, raça, idade)', 'text', { full: 1 }], ['questao', 'Questão principal', 'text', { full: 1 }],
       ['cidade', 'Cidade', 'text'], ['origem', 'Origem', 'select', { opts: ORIGENS }],
-      ['plano', 'Plano', 'select', { opts: PLANOS }], ['valorMensal', 'Valor mensal (R$)', 'number'],
+      ['plano', 'Plano', 'select', { opts: PLANOS }], ['valorMensal', 'Valor do pacote (R$)', 'number'],
       ['status', 'Status', 'select', { opts: CLI_STATUS }], ['inicio', 'Início', 'date'],
       ['obs', 'Observações', 'textarea', { full: 1 }], ['conferir', 'Dados a conferir', 'checkbox', { full: 1 }],
     ] },
@@ -800,6 +814,7 @@
     ['clientes', 'pagamentos', 'anuncios', 'despesas'].forEach((col) => {
       db.collection(col).onSnapshot((snap) => {
         S[col] = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        if (col === 'clientes') matchCache.clear();
         S.loaded[col] = true; render();
       }, onErr);
     });
@@ -827,7 +842,9 @@
     const C = window.claude;
     const mcp = C && C.use ? await C.use('mcp').catch(() => null) : null;
     if (!mcp) { S.agenda.status = 'off'; S.hist.status = 'off'; render(); return; }
-    const input = { startTime: CUR + '-01T00:00:00-03:00', endTime: addDays(TODAY, 15) + 'T23:59:00-03:00', pageSize: 250, orderBy: 'startTime' };
+    const monthEnd = addDays(addMonths(CUR, 1) + '-01', -1);
+    const endDay = addDays(TODAY, 15) > monthEnd ? addDays(TODAY, 15) : monthEnd;
+    const input = { startTime: CUR + '-01T00:00:00-03:00', endTime: endDay + 'T23:59:00-03:00', pageSize: 250, orderBy: 'startTime' };
     try {
       mcp.watchTool('Google Calendar', 'list_events', input, (ev) => {
         if (ev.type === 'data') {
