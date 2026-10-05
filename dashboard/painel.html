@@ -157,8 +157,8 @@
   .mini { background: var(--raised); padding: .65rem var(--px) .7rem; min-width: 0; }
   .mini.clickable { cursor: pointer; }
   .mini.clickable:hover { background: var(--accent-soft); }
-  .mini .l { font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); font-weight: 600; line-height: 1.25; }
-  .mini .n { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1.2; margin-top: .15rem; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .mini .l { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); font-weight: 600; line-height: 1.25; }
+  .mini .n { font-family: var(--display); font-weight: 700; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.2; margin-top: .15rem; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
   .mini .s { font-size: .74rem; color: var(--soft); line-height: 1.3; }
   @media (max-width: 719px) {
     .mini .l { font-size: .76rem; text-transform: none; letter-spacing: 0; }
@@ -477,14 +477,14 @@
   const PLANOS = ['Avaliação', 'Avulsa', '4 aulas 1x/sem', '8 aulas 2x/sem', 'A confirmar', 'Outro'];
   const FORMAS = ['Pix', 'Cartão', 'InfinitePay', 'Dinheiro', 'Transferência', 'Outro'];
   const CATS = ['Combustível', 'Material', 'Cursos', 'Anúncios (fora do Google)', 'Outros'];
-  const label = (list, v) => (list.find((x) => x[0] === v) || [v, v])[1];
+  const label = (list, v) => String((list.find((x) => x[0] === v) || [v, v])[1] ?? '—');
   const FICHA = 'https://claude.ai/artifact/SVhMFgTXY4MDhXhPGq9jBP';
 
   // ---------- estado ----------
   const S = {
     tab: 'geral', finMonth: CUR, cliFilter: 'ativo',
     clientes: [], pagamentos: [], anuncios: [], despesas: [], config: {}, funil: null,
-    loaded: { clientes: false, pagamentos: false, anuncios: false, despesas: false },
+    loaded: { clientes: false, pagamentos: false, anuncios: false, despesas: false, config: false },
     db: null, dbState: 'loading',
     agenda: { status: 'loading', events: [], storedAt: null, code: null },
     hist: { status: 'loading', events: [] },
@@ -497,12 +497,12 @@
   const recebido = (m) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m)), (p) => p.valor);
   const recebidoAte = (m, dia) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m) && Number(payMonth(p).slice(8, 10)) <= dia), (p) => p.valor);
   const aReceber = (m) => sum(S.pagamentos.filter((p) => open(p) && (p.vencimento || '').startsWith(m)), (p) => p.valor);
-  const isLate = (p) => p.status === 'pendente' && !!p.vencimento && p.vencimento < TODAY;
+  const isLate = (p) => open(p) && p.status !== 'previsto' && !!p.vencimento && p.vencimento < TODAY;
   // em aberto no mês com data de hoje em diante: sem os atrasados (que já contam em "Em atraso" / "Quem está devendo") nem previsões vencidas, para não somar o mesmo dinheiro duas vezes
   const noPrazo = (p) => open(p) && (p.vencimento || '') >= TODAY;
   const aReceberNoPrazo = (m) => sum(S.pagamentos.filter((p) => noPrazo(p) && p.vencimento.startsWith(m)), (p) => p.valor);
   const previstosVencidos = () => S.pagamentos.filter((p) => p.status === 'previsto' && p.vencimento && p.vencimento < TODAY);
-  const atrasados = () => S.pagamentos.filter((p) => p.status === 'pendente' && p.vencimento && p.vencimento < TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
+  const atrasados = () => S.pagamentos.filter(isLate).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const vencendo = (days) => S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY && p.vencimento <= addDays(TODAY, days)).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const despesasMes = (m) => sum(S.despesas.filter((d) => (d.data || '').startsWith(m)), (d) => d.valor);
   const adsMes = (m) => S.anuncios.find((a) => a.id === m);
@@ -552,8 +552,8 @@
   }
 
   const kpi = (l, n, s, cls = '', extra = '') => `<div class="kpi ${cls}"><div class="l">${l}</div><div class="n">${n}</div>${s ? `<div class="s">${s}</div>` : ''}${extra}</div>`;
-  const badge = (k, t) => `<span class="badge b-${k}">${esc(t)}</span>`;
-  const isLoading = () => S.dbState === 'loading' || (S.dbState === 'ok' && !S.loaded.clientes);
+  const badge = (k, t) => `<span class="badge b-${esc(k)}">${esc(t)}</span>`;
+  const isLoading = () => S.dbState === 'loading' || (S.dbState === 'ok' && (!S.loaded.clientes || !S.loaded.pagamentos));
 
   function vGeral() {
     const at = atrasados(), ven = vencendo(7);
@@ -585,13 +585,13 @@
 
     // 2) quem está devendo agora
     const atTot = sum(at, (p) => p.valor);
-    const lateDays = (p) => Math.round((parse(TODAY) - parse(p.vencimento)) / 864e5);
+    const lateDays = (p) => Math.round((parse(TODAY) - parse(p.vencimento.slice(0, 10))) / 864e5);
     let debt;
     if (loading) debt = `<div class="empty">Carregando recebimentos…</div>`;
     else if (noDb) debt = `<div class="empty">Os recebimentos aparecem quando o painel é aberto pelo claude.ai.</div>`;
     else if (!at.length) {
       const prox = S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento))[0];
-      debt = `<div class="empty"><span class="okmsg">Ninguém em atraso.</span>${prox ? ` Próximo: ${esc(prox.cliente || 'cliente')}, ${brl(prox.valor)} ${prox.vencimento === TODAY ? 'hoje' : 'em ' + dm(prox.vencimento)}.` : ''}</div>`;
+      debt = `<div class="empty"><span class="okmsg">Ninguém em atraso.</span>${prox ? ` Próximo: ${esc(prox.cliente || 'cliente')}, ${brl(prox.valor)} ${prox.vencimento === TODAY ? 'hoje' : 'em ' + esc(dm(prox.vencimento))}.` : ''}</div>`;
     } else {
       debt = `<div class="dlist">${at.slice(0, 3).map((p) => { const n = lateDays(p); return `<div class="drow clickable" data-act="pay:${esc(p.id)}" tabindex="0">
         <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d"><span class="nw">venceu ${esc(dm(p.vencimento))}</span> · <span class="nw">há ${n} ${n === 1 ? 'dia' : 'dias'}</span></div></div>
@@ -614,13 +614,13 @@
     } else if (S.agenda.status === 'ok') nextBody = `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
     else nextBody = agendaBox();
     const nextBox = `<div class="panel"><div class="ph"><h2>Próxima aula</h2></div>${nextBody}
-      <div class="pfoot"><span>${S.agenda.status === 'ok' ? `${ev7.length} ${ev7.length === 1 ? 'aula' : 'aulas'} em 7 dias` : ''}</span><button class="lnk" data-act="tab:agenda">Ver agenda</button></div></div>`;
+      <div class="pfoot"><span></span><button class="lnk" data-act="tab:agenda">Ver agenda</button></div></div>`;
 
     const renovar = S.clientes.filter((c) => c.status === 'renovar').length;
     let h = `<div class="today">${hero}${debtBox}${nextBox}</div>
     <div class="minis">
       <div class="mini clickable" data-act="tab:clientes" tabindex="0"><div class="l">Clientes ativos</div><div class="n">${loading ? '…' : noDb ? '—' : ativos().length}</div><div class="s">${loading || noDb ? '&nbsp;' : `${renovar} para renovar`}</div></div>
-      <div class="mini"><div class="l">Pacotes ativos</div><div class="n">${loading ? '…' : noDb ? '—' : brl(fatEstimado())}</div><div class="s">não é receita</div></div>
+      <div class="mini"><div class="l">Em pacotes ativos</div><div class="n">${loading ? '…' : noDb ? '—' : brl(fatEstimado())}</div><div class="s">valor contratado</div></div>
       <div class="mini clickable" data-act="tab:agenda" tabindex="0"><div class="l">Aulas em 7 dias</div><div class="n">${agendaN}</div><div class="s">${S.agenda.status === 'ok' ? `${evMes.length} dadas em ${monthShort(CUR)}` : agendaHint()}</div></div>
     </div>`;
 
@@ -647,7 +647,7 @@
     S.agenda.events.filter((e) => e.pay && e.date >= TODAY && !shownEv.has(e)).forEach((e) => { const n = evName(e); items.push({ u: 1, dt: e.date, k: 'warn', t: `Cobrar ${n.name} na aula de ${dm(e.date)}`,
       d: [n.dog, e.time !== 'dia' ? e.time : ''].filter(Boolean).join(' · '), href: e.link, btn: `<a class="btn ghost small" href="${esc(e.link)}" target="_blank" rel="noopener" aria-label="${esc(`Abrir a aula de ${n.name} no Google Agenda`)}">Abrir</a>` }); });
     S.clientes.filter((c) => c.status === 'renovar').forEach((c) => {
-      const lancado = S.pagamentos.some((p) => noPrazo(p) && sameName(p.cliente || '', c.nome || ''));
+      const lancado = S.pagamentos.some((p) => noPrazo(p) && p.status === 'pendente' && sameName(p.cliente || '', c.nome || ''));
       items.push(lancado
         ? { u: 2, dt: '', k: 'info', t: `${c.nome} já renovou?`, d: 'Já tem pagamento lançado. Se renovou, marque como ativo.', act: `cli:${c.id}`, btn: actBtn(`cli:${c.id}`, 'Abrir', `Abrir ${c.nome}`) }
         : { u: 2, dt: '', k: 'warn', t: `Oferecer renovação a ${c.nome}`, d: [c.cao, c.obs].filter(Boolean).join(' · '), v: c.valorMensal ? brl(c.valorMensal) : '', act: `cli:${c.id}`, btn: actBtn(`cli:${c.id}`, 'Abrir', `Abrir ${c.nome}`) });
@@ -677,7 +677,7 @@
       <div>
         <section><div class="sh"><h2>Precisa de atenção</h2>${items.length ? `<span class="count">${items.length} ${items.length === 1 ? 'item' : 'itens'}</span>` : ''}</div>${attn}</section>
         <section><div class="sh"><h2>Faturamento</h2><span class="count">últimos 6 meses</span></div>${revenueChart()}
-          <div class="inline" style="margin-top:.75rem"><label for="metaInput" style="font-size:.85rem;color:var(--soft)">${m ? `Meta mensal: <b class="num" style="color:var(--ink)">${brl(m)}</b>. Mudar para` : 'Meta mensal (R$)'}</label><input id="metaInput" type="number" inputmode="decimal" min="0" step="50" value="" placeholder="${m ? esc(int(m)) : 'ex.: 6.000'}"><button class="btn small" data-act="saveMeta">Salvar meta</button></div>
+          <div class="inline" style="margin-top:.75rem"><label for="metaInput" style="font-size:.85rem;color:var(--soft)">${m ? `Meta mensal: <b class="num" style="color:var(--ink)">${brl(m)}</b>. Mudar para` : 'Meta mensal (R$)'}</label><input id="metaInput" type="number" inputmode="decimal" min="0" step="50" value="" placeholder="${m ? String(Math.round(m)) : 'ex.: 6000'}"><button class="btn small" data-act="saveMeta">Salvar meta</button></div>
         </section>
         <section><div class="sh"><h2>Aulas por mês</h2><span class="count">Google Agenda, últimos 7 meses</span></div>${classesChart()}</section>
       </div>
@@ -952,7 +952,7 @@
     const info = new Map(S.clientes.map((c) => {
       const late = at.filter((p) => sameName(p.cliente || '', c.nome || ''));
       const owe = sum(late, (p) => p.valor);
-      const openP = S.pagamentos.filter((p) => noPrazo(p) && sameName(p.cliente || '', c.nome || '')).sort((x, y) => x.vencimento.localeCompare(y.vencimento))[0];
+      const openP = S.pagamentos.filter((p) => noPrazo(p) && p.status === 'pendente' && sameName(p.cliente || '', c.nome || '')).sort((x, y) => x.vencimento.localeCompare(y.vencimento))[0];
       const pk = c.status === 'ativo' || c.status === 'renovar' ? pacoteInfo(c) : null;
       const full = pk && pk.done >= pk.total && c.status === 'ativo';
       const rank = owe ? 0 : (c.status === 'renovar' || full) ? 1 : 2;
@@ -971,7 +971,7 @@
       const late0 = i.late[0];
       let flag = '', cls = '';
       if (i.owe) {
-        const d = Math.round((parse(TODAY) - parse(late0.vencimento)) / 864e5);
+        const d = Math.round((parse(TODAY) - parse(late0.vencimento.slice(0, 10))) / 864e5);
         flag = `<div class="flag" title="${esc('Venceu ' + dm(late0.vencimento))}"><span>Devendo há ${d} ${d === 1 ? 'dia' : 'dias'}</span><b>${brl(i.owe)}</b></div>`; cls = 'bad';
       } else if (c.status === 'renovar' || i.full) {
         if (i.openP) flag = `<div class="flag info"><span>Já renovou? Pagamento em ${esc(dm(i.openP.vencimento))}</span><b>${brl(i.openP.valor)}</b></div>`;
@@ -1238,14 +1238,15 @@
     if (k === 'markpaid') {
       ev.stopPropagation();
       const p = findIn('pagamentos', v); if (!p || !S.db) return toast('Abra o painel pelo claude.ai para salvar.');
-      const out = { ...p, status: 'pago', pagoEm: TODAY }; delete out.id;
+      const out = { ...p, status: 'pago', pagoEm: ymd(new Date()) }; delete out.id;
       try { await S.db.collection('pagamentos').doc(v).set(out); toast(`${p.cliente}: ${brl(p.valor)} marcado como recebido`); } catch (e) { toast(dbErr(e)); }
       return;
     }
     if (k === 'saveMeta') {
-      const raw = $('#metaInput').value.trim(), val = Number(raw);
+      const raw = $('#metaInput').value.trim(), val = Number(/^\d{1,3}(\.\d{3})+$/.test(raw) ? raw.replace(/\./g, '') : raw.replace(',', '.'));
       if (raw === '') return toast('Digite o valor da nova meta.');
       if (!S.db) return toast('Abra o painel pelo claude.ai para salvar.');
+      if (!S.loaded.config) return toast('Ainda carregando os dados. Tente de novo em instantes.');
       if (!Number.isFinite(val) || val < 0) return toast('Digite um valor válido.');
       try { await S.db.doc('config/geral').set({ ...S.config, metaMensal: val }); toast('Meta salva'); } catch (e) { toast(dbErr(e)); }
     }
@@ -1288,7 +1289,7 @@
         S.loaded[col] = true; render();
       }, onErr);
     });
-    db.doc('config/geral').onSnapshot((d) => { S.config = d.exists ? { ...d.data() } : {}; render(); }, onErr);
+    db.doc('config/geral').onSnapshot((d) => { S.config = d.exists ? { ...d.data() } : {}; S.loaded.config = true; render(); }, onErr);
     db.doc('config/funil').onSnapshot((d) => { S.funil = d.exists ? d.data() : null; render(); }, onErr);
   }
 
@@ -1350,6 +1351,6 @@
   bootDb();
   bootAgenda();
   // mantém "próxima aula" e "em atraso" atualizados com o painel aberto
-  setInterval(() => { if (S.tab === 'geral' && !sheet.open) render(); }, 5 * 60 * 1000);
+  setInterval(() => { if (sheet.open) return; if (ymd(new Date()) !== TODAY) { location.reload(); return; } if (S.tab === 'geral') render(); }, 5 * 60 * 1000);
 })();
 </script>
