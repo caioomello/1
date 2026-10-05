@@ -23,6 +23,17 @@
 - Um exemplo desse levantamento foi publicado como Artifact
   ("Ficha de Leads") na sessão de nome "OPA".
 
+## Painel do negócio
+
+- Artifact "Painel Caio Adestra": https://claude.ai/artifact/BPwwe2A3dn2FzptCkdtEJi
+  (código em `dashboard/painel.html`).
+- Dados no banco do próprio artifact (só dono/editores leem): coleções
+  `clientes`, `pagamentos` (status pago/pendente/previsto), `despesas`,
+  `anuncios` (doc id = `AAAA-MM`), e docs `config/geral` (metaMensal) e
+  `config/funil` (contagens da Ficha de Leads + follow-ups).
+- Agenda vem ao vivo do Google Agenda (eventos criados pelo Caio que começam
+  com "Aula" ou "Avaliação"). Campo `conferir: true` = dado deduzido.
+
 ## Preferências
 
 - Comunicação em **português do Brasil (pt-BR)**.
