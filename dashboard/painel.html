@@ -215,21 +215,72 @@
   .day h3 { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); font-weight: 600; margin-bottom: .35rem; }
   .day.is-today h3 { color: var(--accent); }
   .time { font-weight: 700; width: 3.2rem; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .agfoot { font-size: .8rem; color: var(--soft); margin: .5rem 0 0; }
 
   /* Filtros */
   .chips { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .chip { border: 1px solid var(--line); background: var(--raised); padding: .3rem .7rem; font-size: .82rem; cursor: pointer; font-weight: 500; }
   .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-  /* Cards de cliente */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: .85rem; }
-  .card { background: var(--raised); border: 1px solid var(--line); padding: .9rem var(--px) 1rem; display: flex; flex-direction: column; gap: .35rem; cursor: pointer; min-width: 0; }
+  /* Cards de cliente: o que pede ação (dívida, renovação) primeiro, depois próxima aula, valor e progresso do pacote */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: .75rem; }
+  .card { background: var(--raised); border: 1px solid var(--line); padding: .85rem var(--px) .9rem; display: flex; flex-direction: column; gap: .5rem; cursor: pointer; min-width: 0; }
   .card:hover { border-color: var(--ink); }
+  .card.bad { box-shadow: inset 3px 0 0 var(--rust); }
+  .card.warn { box-shadow: inset 3px 0 0 var(--amber); }
   .card .top { display: flex; justify-content: space-between; gap: .5rem; align-items: flex-start; }
-  .card .name { font-weight: 700; font-size: 1.02rem; overflow-wrap: anywhere; }
-  .card .dog { font-size: .85rem; color: var(--soft); }
-  .card .facts { display: flex; gap: .4rem 1rem; flex-wrap: wrap; font-size: .82rem; border-top: 1px dashed var(--line); padding-top: .45rem; margin-top: auto; }
-  .card .facts span b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .card .top .bs { display: flex; gap: .3rem; flex-wrap: wrap; justify-content: flex-end; }
+  .card .name { font-weight: 700; font-size: 1.02rem; line-height: 1.3; overflow-wrap: anywhere; }
+  .card .dog { font-size: .84rem; color: var(--soft); line-height: 1.35; margin-top: .1rem; }
+  .card .flag { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; font-size: .84rem; line-height: 1.35; padding: .4rem .6rem; background: var(--rust-soft); color: var(--rust); }
+  .card .flag b { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .card .flag.warn { background: var(--amber-soft); color: var(--amber); }
+  .card .flag.info { background: var(--slate-soft); color: var(--slate); }
+  .card .kv { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 1rem; padding-top: .55rem; border-top: 1px solid var(--line); margin-top: auto; }
+  .card .kv .l { font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--soft); }
+  .card .kv .v { font-weight: 700; font-size: .95rem; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card .kv .v.none { font-weight: 500; color: var(--soft); }
+  .card .kv .r { text-align: right; }
+  .card .prog .pl { display: flex; justify-content: space-between; gap: .75rem; font-size: .8rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .card .prog .pl b { color: var(--ink); font-weight: 700; }
+  .pbar { height: 4px; background: var(--line); margin-top: .3rem; position: relative; overflow: hidden; border-radius: 2px; }
+  .pbar span { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 2px; }
+  .card .meta { font-size: .78rem; color: var(--soft); line-height: 1.35; overflow-wrap: anywhere; }
+
+  /* Google Ads: retorno do mês em destaque, custos ao lado */
+  .adwarn { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; background: var(--amber-soft); color: var(--ink); border-left: 4px solid var(--amber); padding: .65rem var(--px); margin-bottom: 1rem; font-size: .88rem; line-height: 1.4; }
+  .adwarn b { font-weight: 700; }
+  .adtop { display: grid; gap: .75rem; margin-bottom: 2rem; }
+  .adtop .kpis { margin: 0; }
+  @media (min-width: 900px) { .adtop { grid-template-columns: 1.1fr 1fr; gap: 1rem; } .adtop .kpis { grid-template-columns: 1fr 1fr; } }
+  .roi { background: var(--raised); border: 1px solid var(--line); padding: .9rem var(--px) 1rem; min-width: 0; }
+  .roi .l { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--soft); }
+  .roi .r1 { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1rem; flex-wrap: wrap; margin-top: .3rem; }
+  .roi .n { font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 10vw, 2.8rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .roi .n.good { color: var(--accent); }
+  .roi .n.bad { color: var(--rust); }
+  .roi .x { font-size: .85rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .roi .x b { color: var(--ink); font-weight: 700; }
+  .roi .t { margin: .55rem 0 .8rem; font-size: .92rem; line-height: 1.45; }
+  .roi .t b.good { color: var(--accent); }
+  .roi .t b.bad { color: var(--rust); }
+  .cmp { display: grid; gap: .55rem; }
+  .cmp .hl { display: flex; justify-content: space-between; gap: .75rem; font-size: .84rem; margin-bottom: .25rem; }
+  .cmp .hl b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .cmp .bar { height: 6px; background: var(--line); position: relative; border-radius: 3px; overflow: hidden; }
+  .cmp .bar span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+  .cmp .inv span { background: var(--rust); }
+  .cmp .rec span { background: var(--accent); }
+  .roi .f { font-size: .76rem; color: var(--soft); line-height: 1.4; margin: .8rem 0 0; }
+  .dl { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .dl.good { color: var(--accent); }
+  .dl.bad { color: var(--rust); }
+  .adlist .row .v { text-align: right; }
+  .adlist .row .v small { display: block; font-size: .76rem; font-weight: 600; }
+  .adtable { display: none; }
+  @media (min-width: 720px) { .adlist { display: none; } .adtable { display: block; } }
+  td .dl, td.good { color: var(--accent); font-weight: 600; }
+  td.bad { color: var(--rust); font-weight: 600; }
 
   /* Tabelas */
   .tscroll { overflow-x: auto; border: 1px solid var(--line); }
@@ -741,40 +792,68 @@
     }[c] || 'Não consegui ler o Google Agenda agora. Recarregue a página para tentar de novo.';
     return `<div class="empty">${esc(msg)}</div>`;
   }
-  function evRow(e) {
+  // noDate === true esconde o chip de data (linhas já agrupadas por dia). Checa === true porque .map(evRow) passa o índice.
+  function evRow(e, noDate) {
     const n = evName(e);
     const sub = [n.dog, e.loc].filter(Boolean).join(' · ');
     const tags = (/^avalia/i.test(e.raw) ? badge('previsto', 'avaliação') : '') + (e.pay ? badge('pendente', 'pagamento') : '');
     return `<a class="row" href="${esc(e.link)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
-      <div class="datechip">${esc(weekday(e.date))}<b>${esc(e.date.slice(8, 10))}</b></div>
+      ${noDate === true ? '' : `<div class="datechip">${esc(weekday(e.date))}<b>${esc(e.date.slice(8, 10))}</b></div>`}
       <div class="time">${esc(e.time)}</div>
       <div class="main"><div class="t">${esc(n.name)}</div>${tags || sub ? `<div class="d">${tags}${esc(sub)}</div>` : ''}</div></a>`;
   }
+  // Agenda: começa pelo que importa agora (hoje), depois os próximos dias; histórico fica por último
   function vAgenda() {
     const nowD = new Date();
     const fresh = S.agenda.storedAt ? `atualizado às ${new Date(S.agenda.storedAt).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}` : '';
-    let body;
-    if (S.agenda.status !== 'ok' && !S.agenda.events.length) body = agendaBox();
+    const rowsOf = (evs) => `<div class="list">${evs.map((e) => evRow(e, true)).join('')}</div>`;
+    const aulas = (n) => `${n} ${n === 1 ? 'aula' : 'aulas'}`;
+    const noData = S.agenda.status !== 'ok' && !S.agenda.events.length;
+    const warn = S.agenda.status === 'err' && !noData ? agendaBox() : '';
+    const tod = S.agenda.events.filter((e) => e.date === TODAY);
+    const end = addDays(TODAY, 14);
+    const later = S.agenda.events.filter((e) => e.date > TODAY && e.date <= end);
+
+    // hoje
+    const left = tod.filter((e) => e.startDate >= nowD).length;
+    let hoje;
+    if (noData) hoje = agendaBox();
+    else if (tod.length) hoje = rowsOf(tod);
     else {
-      const days = Array.from({ length: 15 }, (_, i) => addDays(TODAY, i));
-      const up = S.agenda.events.filter((e) => e.date >= TODAY);
-      body = (S.agenda.status === 'err' ? agendaBox() : '') + days.map((d) => {
-        const evs = up.filter((e) => e.date === d);
-        if (!evs.length) return '';
-        return `<div class="day ${d === TODAY ? 'is-today' : ''}"><h3>${d === TODAY ? 'Hoje · ' : ''}${esc(dayLong(d))}</h3><div class="list">${evs.map(evRow).join('')}</div></div>`;
-      }).join('') || `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
+      const nx = later[0];
+      hoje = `<div class="empty">Nada marcado hoje.${nx ? ` Próxima: <b style="color:var(--ink)">${esc(evName(nx).name)}</b>, ${nx.date === addDays(TODAY, 1) ? 'amanhã' : esc(weekday(nx.date)) + ' ' + esc(dm(nx.date))}${nx.time === 'dia' ? '' : ' às ' + esc(nx.time)}.` : ''}</div>`;
     }
+    const hojeCount = noData ? '' : tod.length ? `${aulas(tod.length)}${left < tod.length ? `, ${left === 0 ? 'todas dadas' : left + ' a fazer'}` : ''}` : '';
+
+    // próximos dias (amanhã em diante), agrupados por dia, sem repetir a data na linha
+    let prox = '';
+    if (!noData) {
+      const days = Array.from({ length: 14 }, (_, i) => addDays(TODAY, i + 1));
+      prox = days.map((d) => {
+        const evs = later.filter((e) => e.date === d);
+        if (!evs.length) return '';
+        return `<div class="day"><h3>${d === addDays(TODAY, 1) ? 'Amanhã · ' : ''}${esc(dayLong(d))}</h3>${rowsOf(evs)}</div>`;
+      }).join('') || `<div class="empty">Nenhuma aula marcada nas próximas duas semanas.</div>`;
+    }
+
+    // aulas dadas no mês, por cliente
     const past = S.agenda.events.filter((e) => e.date.startsWith(CUR) && e.startDate < nowD);
     const byClient = {};
     past.forEach((e) => { const k = evName(e).name; byClient[k] = (byClient[k] || 0) + 1; });
     const rows = Object.entries(byClient).sort((a, b) => b[1] - a[1]);
     const maxN = Math.max(1, ...rows.map((r) => r[1]));
-    const side = rows.length ? `<div class="hbars">${rows.map(([n, k]) => hbar(n, k, maxN)).join('')}</div>` : `<div class="empty">Nenhuma aula dada ainda em ${monthLabel(CUR, true)}.</div>`;
-    return `<section><div class="sh"><h2>Aulas por mês</h2><span class="count">Google Agenda, últimos 7 meses</span></div>${classesChart()}</section>
-    <div class="grid2">
-      <section><div class="sh"><h2>Próximos 15 dias</h2><span class="count">${esc(fresh)}</span></div>
-        <p class="note">Toque numa aula para abrir no Google Agenda. Aulas marcadas com "pagamento" no título aparecem destacadas.</p>${body}</section>
-      <section><div class="sh"><h2>Aulas dadas em ${esc(monthShort(CUR))}</h2><span class="count">${past.length} no total</span></div>${S.agenda.status === 'ok' ? side : agendaBox()}</section>
+    const side = rows.length ? `<div class="hbars">${rows.map(([n, k]) => hbar(n, k, maxN)).join('')}</div>` : `<div class="empty">Nenhuma aula dada ainda em ${esc(monthLabel(CUR, true))}.</div>`;
+
+    return `${warn}<div class="grid2">
+      <div>
+        <section><div class="sh"><h2>Hoje</h2><span class="count">${esc(hojeCount || (weekday(TODAY) + ', ' + dm(TODAY)))}</span></div>${hoje}</section>
+        ${noData ? '' : `<section><div class="sh"><h2>Próximos 15 dias</h2><span class="count">${esc(aulas(later.length))}${fresh ? ' · ' + esc(fresh) : ''}</span></div>${prox}
+          <p class="agfoot">Toque numa aula para abrir no Google Agenda.</p></section>`}
+      </div>
+      ${noData ? '' : `<div>
+        <section><div class="sh"><h2>Aulas dadas em ${esc(monthShort(CUR))}</h2><span class="count">${esc(aulas(past.length))}</span></div>${side}</section>
+        <section><div class="sh"><h2>Aulas por mês</h2><span class="count">últimos 7 meses</span></div>${classesChart()}</section>
+      </div>`}
     </div>`;
   }
 
