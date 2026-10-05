@@ -16,7 +16,7 @@
     --leather-soft: #efe0ce;
     --rust: #ad4a2c;
     --rust-soft: #f4ddd2;
-    --amber: #9c7420;
+    --amber: #80601a;
     --amber-soft: #f3e6bf;
     --slate: #56606a;
     --slate-soft: #e2e7ea;
@@ -63,6 +63,25 @@
   .tab { background: none; border: 0; padding: .8rem .9rem .7rem; font-weight: 600; font-size: .92rem; color: var(--soft); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; }
   .tab:hover { color: var(--ink); }
   .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab .ico { display: none; }
+
+  /* Celular: cabeçalho de uma linha e abas fixas embaixo, ao alcance do polegar */
+  @media (max-width: 719px) {
+    .wrap { padding-block: .9rem calc(6rem + env(safe-area-inset-bottom, 0px)); }
+    .masthead { flex-wrap: nowrap; align-items: flex-end; padding-bottom: .65rem; margin-bottom: .9rem; }
+    .eyebrow { font-size: .66rem; margin-bottom: .1rem; }
+    .eyebrow .long, .masthead .meta .hoje { display: none; }
+    .masthead h1 { font-size: 1.4rem; white-space: nowrap; }
+    .masthead .meta strong { font-size: .8rem; white-space: nowrap; }
+    .tabs { position: fixed; inset: auto 0 0 0; z-index: 5; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+      background: var(--raised); border-top: 1px solid var(--line); border-bottom: 0; padding-bottom: env(safe-area-inset-bottom, 0px); overflow: visible; }
+    .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; min-height: 58px; padding: .45rem .1rem .4rem;
+      font-size: .7rem; line-height: 1.15; border-bottom: 0; border-top: 3px solid transparent; white-space: normal; text-align: center; }
+    .tab .ico { display: block; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
+    .tab[aria-selected="true"] { border-top-color: var(--accent); color: var(--accent); }
+    .tab[aria-selected="true"] .ico { stroke-width: 2.1; }
+    .toast { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  }
 
   .banner { background: var(--amber-soft); color: var(--ink); border-left: 4px solid var(--amber); padding: .75rem 1rem; margin-bottom: 1.5rem; font-size: .9rem; }
 
@@ -77,6 +96,62 @@
   .kpi.bad .n { color: var(--rust); }
   .meter { height: 6px; background: var(--line); margin-top: .5rem; position: relative; }
   .meter > span { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
+
+  /* Visão geral: o resumo do dia (quanto entrou, quem deve, próxima aula) */
+  .today { display: grid; gap: .75rem; margin-bottom: .75rem; }
+  @media (min-width: 720px) { .today { grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } .today .hero { grid-column: 1 / -1; } }
+  @media (min-width: 1000px) { .today { grid-template-columns: 1.3fr 1fr 1fr; } .today .hero { grid-column: auto; } }
+  .panel { background: var(--raised); border: 1px solid var(--line); padding: .85rem 1rem .9rem; min-width: 0; display: flex; flex-direction: column; }
+  .panel .empty { border: 0; padding: .1rem 0 0; }
+  .ph { display: flex; justify-content: space-between; align-items: center; gap: .5rem; min-height: 1.5rem; margin-bottom: .4rem; }
+  .ph h2 { font-family: var(--body); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--soft); }
+  .ph .tot { font-family: var(--mono); font-weight: 600; font-size: .92rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .ph .tot.bad { color: var(--rust); }
+  .hero .r1 { display: flex; justify-content: space-between; align-items: flex-end; gap: .5rem 1rem; flex-wrap: wrap; }
+  .big { font-family: var(--display); font-weight: 700; font-size: clamp(2.6rem, 12vw, 3.3rem); line-height: .95; letter-spacing: -.01em; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .big .cur { font-size: .4em; font-weight: 600; color: var(--soft); margin-right: .18em; vertical-align: .95em; letter-spacing: 0; }
+  .delta { text-align: right; font-size: .76rem; color: var(--soft); line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .delta b { display: block; font-family: var(--mono); font-size: .95rem; color: var(--ink); }
+  .delta.up b { color: var(--accent); }
+  .delta.down b { color: var(--rust); }
+  .goal { display: flex; height: 10px; background: var(--line); margin: .85rem 0 .45rem; overflow: hidden; }
+  .goal > span { display: block; height: 100%; }
+  .goal .got { background: var(--accent); }
+  .goal .due { background: repeating-linear-gradient(135deg, var(--amber) 0 2px, var(--amber-soft) 2px 5px); }
+  .gcap { display: flex; justify-content: space-between; gap: .2rem 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .gcap b { color: var(--ink); font-weight: 600; }
+  .sw { display: inline-block; width: .7rem; height: .7rem; margin-right: .3rem; vertical-align: -1px; }
+  .sw.due { background: repeating-linear-gradient(135deg, var(--amber) 0 2px, var(--amber-soft) 2px 5px); }
+  .dlist { margin: 0 -1rem; }
+  .dlist:last-child { margin-bottom: -.9rem; }
+  .drow { display: flex; align-items: center; gap: .65rem; padding: .5rem 1rem; border-top: 1px solid var(--line); }
+  .drow .main { flex: 1; min-width: 0; }
+  .drow .t { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .drow .d { font-size: .78rem; color: var(--soft); }
+  .drow .v { font-family: var(--mono); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .drow .btn { min-height: 2.25rem; }
+  .drow.clickable { cursor: pointer; }
+  .drow.clickable:hover { background: var(--accent-soft); }
+  .okmsg { font-weight: 600; color: var(--accent); }
+  .pfoot { margin-top: auto; padding-top: .55rem; display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-size: .82rem; color: var(--soft); }
+  .lnk { background: none; border: 0; padding: .3rem 0; color: var(--accent); font-weight: 600; font-size: .82rem; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+  .nextc { display: block; color: inherit; text-decoration: none; }
+  .nextc:hover .who { text-decoration: underline; }
+  .nextc .when { font-family: var(--display); font-weight: 700; font-size: 1.65rem; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+  .nextc .who { font-weight: 600; font-size: 1rem; margin-top: .15rem; overflow-wrap: anywhere; }
+  .nextc .d { font-size: .82rem; color: var(--soft); overflow-wrap: anywhere; }
+  .minis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 2rem; }
+  .mini { background: var(--raised); padding: .6rem .75rem .65rem; min-width: 0; }
+  .mini.clickable { cursor: pointer; }
+  .mini.clickable:hover { background: var(--accent-soft); }
+  .mini .l { font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); font-weight: 600; line-height: 1.25; }
+  .mini .n { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1.2; margin-top: .15rem; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+  .mini .s { font-size: .74rem; color: var(--soft); line-height: 1.3; }
+  @media (max-width: 719px) {
+    .mini { padding: .55rem .65rem .6rem; }
+    .mini .l { font-size: .76rem; text-transform: none; letter-spacing: 0; }
+    .mini .n { font-size: 1.25rem; }
+  }
 
   /* Seções */
   .grid2 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
@@ -202,18 +277,18 @@
 <div class="wrap">
   <header class="masthead">
     <div>
-      <span class="eyebrow">Caio Adestra · Adestramento e comportamento canino</span>
+      <span class="eyebrow">Caio Adestra<span class="long"> · Adestramento e comportamento canino</span></span>
       <h1>Painel do negócio</h1>
     </div>
-    <div class="meta">Hoje<strong id="todayLabel">—</strong></div>
+    <div class="meta"><span class="hoje">Hoje</span><strong id="todayLabel">—</strong></div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Seções do painel">
-    <button class="tab" role="tab" data-tab="geral" aria-selected="true">Visão geral</button>
-    <button class="tab" role="tab" data-tab="agenda" aria-selected="false">Agenda</button>
-    <button class="tab" role="tab" data-tab="financeiro" aria-selected="false">Financeiro</button>
-    <button class="tab" role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
-    <button class="tab" role="tab" data-tab="anuncios" aria-selected="false">Google Ads</button>
+    <button class="tab" role="tab" data-tab="geral" aria-selected="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 3.5h7v8h-7zM13.5 3.5h7v5h-7zM13.5 11.5h7v9h-7zM3.5 14.5h7v6h-7z"/></svg>Visão geral</button>
+    <button class="tab" role="tab" data-tab="agenda" aria-selected="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17v15h-17zM3.5 10h17M8 3v4M16 3v4"/></svg>Agenda</button>
+    <button class="tab" role="tab" data-tab="financeiro" aria-selected="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 6.5h19v11h-19z"/><circle cx="12" cy="12" r="2.75"/><path d="M5.5 9.5v5M18.5 9.5v5"/></svg>Financeiro</button>
+    <button class="tab" role="tab" data-tab="clientes" aria-selected="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M15.5 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.7 3.5 5.7"/></svg>Clientes</button>
+    <button class="tab" role="tab" data-tab="anuncios" aria-selected="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5v5h3l7.5 4.5v-14l-7.5 4.5zM6.5 14.5l1.5 5.5M17 9a4 4 0 0 1 0 6M19.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>Google Ads</button>
   </nav>
 
   <div id="dbBanner" class="banner" hidden></div>
@@ -265,7 +340,7 @@
 
   const TODAY = ymd(new Date());
   const CUR = TODAY.slice(0, 7);
-  $('#todayLabel').textContent = parse(TODAY).toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
+  $('#todayLabel').textContent = parse(TODAY).toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short', ...(matchMedia('(max-width: 719px)').matches ? {} : { year: 'numeric' }) });
 
   const CLI_STATUS = [['ativo', 'Ativo'], ['renovar', 'Renovar pacote'], ['pausado', 'Pausado'], ['encerrado', 'Encerrado']];
   const PAY_STATUS = [['pago', 'Pago'], ['pendente', 'Combinado, a receber'], ['previsto', 'Previsto (estimado)']];
@@ -291,6 +366,7 @@
   const open = (p) => p.status !== 'pago';
   const sum = (arr, f) => arr.reduce((a, x) => a + num(f(x)), 0);
   const recebido = (m) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m)), (p) => p.valor);
+  const recebidoAte = (m, dia) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m) && Number(payMonth(p).slice(8, 10)) <= dia), (p) => p.valor);
   const aReceber = (m) => sum(S.pagamentos.filter((p) => open(p) && (p.vencimento || '').startsWith(m)), (p) => p.valor);
   const previstosVencidos = () => S.pagamentos.filter((p) => p.status === 'previsto' && p.vencimento && p.vencimento < TODAY);
   const atrasados = () => S.pagamentos.filter((p) => p.status === 'pendente' && p.vencimento && p.vencimento < TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
@@ -344,19 +420,69 @@
     const ev7 = S.agenda.events.filter((e) => e.startDate >= nowD && e.date <= addDays(TODAY, 6));
     const evMes = S.agenda.events.filter((e) => e.date.startsWith(CUR) && e.startDate < nowD);
     const agendaN = S.agenda.status === 'ok' ? String(ev7.length) : '—';
-    const meter = m ? `<div class="meter" aria-label="Progresso da meta"><span style="width:${Math.min(100, (rec / m) * 100).toFixed(1)}%"></span></div>` : '';
+    const loading = isLoading(), noDb = S.dbState === 'off';
 
-    let h = `<div class="kpis">
-      ${kpi('Clientes ativos', isLoading() ? '…' : ativos().length, `${S.clientes.filter((c) => c.status === 'renovar').length} para renovar`)}
-      ${kpi('Valor dos pacotes ativos', isLoading() ? '…' : brl(fatEstimado()), 'soma dos pacotes em andamento, não é o que entra no mês')}
-      ${kpi(`Recebido em ${monthShort(CUR)}`, brl(rec), m ? `${pct(rec / m)} da meta de ${brl(m)}` : 'defina uma meta abaixo', 'good', meter)}
-      ${kpi('A receber no mês', brl(are), at.length ? `${at.length} em atraso: ${brl(sum(at, (p) => p.valor))}` : 'nada em atraso', at.length ? 'bad' : 'warn')}
-      ${kpi('Aulas nos próximos 7 dias', agendaN, S.agenda.status === 'ok' ? `${evMes.length} dadas em ${monthShort(CUR)}` : agendaHint())}
+    // 1) quanto entrou no mês: número herói + meta + comparação com o mês anterior no mesmo dia
+    const dia = Number(TODAY.slice(8, 10)), lastM = addMonths(CUR, -1), prevRec = recebidoAte(lastM, dia);
+    const big = (n) => { const s = brl(n), i = s.search(/\d/); return `<span class="cur">${s.slice(0, i).trim()}</span>${s.slice(i)}`; };
+    let delta = '';
+    if (!loading && !noDb && (rec || prevRec)) {
+      const d = rec - prevRec, p = prevRec ? Math.round((d / prevRec) * 100) : null;
+      const arrow = d > 0 ? '▲' : d < 0 ? '▼' : '=';
+      delta = `<div class="delta ${d > 0 ? 'up' : d < 0 ? 'down' : ''}"><b>${arrow} ${p != null ? Math.abs(p) + '%' : brl(Math.abs(d))}</b>vs. ${esc(monthShort(lastM))} até dia ${dia}: ${brl(prevRec)}</div>`;
+    }
+    const got = m ? Math.min(100, (rec / m) * 100) : 0, due = m ? Math.min(100 - got, (are / m) * 100) : 0;
+    const goal = m ? `<div class="goal" role="img" aria-label="${esc(`${pct(rec / m)} da meta recebido, mais ${brl(are)} a receber`)}"><span class="got" style="width:${got.toFixed(1)}%"></span><span class="due" style="width:${due.toFixed(1)}%"></span></div>` : '';
+    const hero = `<div class="panel hero">
+      <div class="ph"><h2>Recebido em ${esc(monthLabel(CUR, true).split(' ')[0])}</h2></div>
+      <div class="r1"><div class="big">${loading ? '…' : noDb ? '—' : big(rec)}</div>${delta}</div>
+      ${goal}
+      ${loading || noDb ? '' : `<div class="gcap" ${m ? '' : 'style="margin-top:.6rem"'}><span>${m ? `<b>${pct(rec / m)}</b> da meta de ${brl(m)}` : 'Sem meta mensal. Defina em Faturamento.'}</span>${are ? `<span><i class="sw due"></i><b>${brl(are)}</b> a receber</span>` : ''}</div>`}
     </div>`;
 
-    // atenção
+    // 2) quem está devendo agora
+    const atTot = sum(at, (p) => p.valor);
+    const lateDays = (p) => Math.round((parse(TODAY) - parse(p.vencimento)) / 864e5);
+    let debt;
+    if (loading) debt = `<div class="empty">Carregando recebimentos…</div>`;
+    else if (noDb) debt = `<div class="empty">Os recebimentos aparecem quando o painel é aberto pelo claude.ai.</div>`;
+    else if (!at.length) {
+      const prox = S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento))[0];
+      debt = `<div class="empty"><span class="okmsg">Ninguém em atraso.</span>${prox ? ` Próximo: ${esc(prox.cliente || 'cliente')}, ${brl(prox.valor)} ${prox.vencimento === TODAY ? 'hoje' : 'em ' + dm(prox.vencimento)}.` : ''}</div>`;
+    } else {
+      debt = `<div class="dlist">${at.slice(0, 3).map((p) => { const n = lateDays(p); return `<div class="drow clickable" data-act="pay:${esc(p.id)}" tabindex="0">
+        <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">venceu ${esc(dm(p.vencimento))} · há ${n} ${n === 1 ? 'dia' : 'dias'}</div></div>
+        <div class="v">${brl(p.valor)}</div><button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button></div>`; }).join('')}</div>`
+        + (at.length > 3 ? `<div class="pfoot"><span>Mais ${at.length - 3} em atraso</span><button class="lnk" data-act="tab:financeiro">Ver no Financeiro</button></div>` : '');
+    }
+    const debtBox = `<div class="panel"><div class="ph"><h2>Quem está devendo</h2>${at.length && !loading ? `<span class="tot bad">${brl(atTot)}</span>` : ''}</div>${debt}</div>`;
+
+    // 3) próxima aula
+    const nx = S.agenda.events.find((e) => e.startDate >= nowD);
+    let nextBody;
+    if (nx) {
+      const c = clientForEvent(nx);
+      const when = nx.date === TODAY ? 'Hoje' : nx.date === addDays(TODAY, 1) ? 'Amanhã' : `${weekday(nx.date)}, ${dm(nx.date)}`;
+      const sub = [c?.cao, nx.loc].filter(Boolean).join(' · ');
+      nextBody = `<a class="nextc" href="${esc(nx.link)}" target="_blank" rel="noopener">
+        <div class="when">${esc(when)}${nx.time === 'dia' ? ', dia todo' : ' · ' + esc(nx.time)}</div>
+        <div class="who">${esc(nx.title)} ${/^avalia/i.test(nx.raw) ? badge('previsto', 'avaliação') : ''} ${nx.pay ? badge('pendente', 'pagamento') : ''}</div>
+        ${sub ? `<div class="d">${esc(sub)}</div>` : ''}</a>`;
+    } else if (S.agenda.status === 'ok') nextBody = `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
+    else nextBody = agendaBox();
+    const nextBox = `<div class="panel"><div class="ph"><h2>Próxima aula</h2></div>${nextBody}
+      <div class="pfoot"><span>${S.agenda.status === 'ok' ? `${ev7.length} ${ev7.length === 1 ? 'aula' : 'aulas'} em 7 dias` : ''}</span><button class="lnk" data-act="tab:agenda">Ver agenda</button></div></div>`;
+
+    const renovar = S.clientes.filter((c) => c.status === 'renovar').length;
+    let h = `<div class="today">${hero}${debtBox}${nextBox}</div>
+    <div class="minis">
+      <div class="mini clickable" data-act="tab:clientes" tabindex="0"><div class="l">Clientes ativos</div><div class="n">${loading ? '…' : noDb ? '—' : ativos().length}</div><div class="s">${loading || noDb ? '&nbsp;' : `${renovar} para renovar`}</div></div>
+      <div class="mini"><div class="l">Pacotes ativos</div><div class="n">${loading ? '…' : noDb ? '—' : brl(fatEstimado())}</div><div class="s">não é receita</div></div>
+      <div class="mini clickable" data-act="tab:agenda" tabindex="0"><div class="l">Aulas em 7 dias</div><div class="n">${agendaN}</div><div class="s">${S.agenda.status === 'ok' ? `${evMes.length} dadas em ${monthShort(CUR)}` : agendaHint()}</div></div>
+    </div>`;
+
+    // atenção (atrasados já aparecem em "Quem está devendo")
     const items = [];
-    at.forEach((p) => items.push(['bad', `Cobrar ${p.cliente || 'cliente'}`, `${p.descricao || 'Pagamento'} · venceu ${dm(p.vencimento)}`, brl(p.valor), `pay:${p.id}`]));
     previstosVencidos().forEach((p) => items.push(['info', `Confirmar com ${p.cliente || 'cliente'}`, `${p.descricao || 'Previsão'} · era previsto para ${dm(p.vencimento)}. Marque como pago, combinado ou exclua.`, brl(p.valor), `pay:${p.id}`]));
     ven.forEach((p) => items.push(['warn', `${p.cliente || 'Cliente'} paga ${p.vencimento === TODAY ? 'hoje' : 'em ' + dm(p.vencimento)}`, `${p.descricao || ''}${p.status === 'previsto' ? ' · previsto' : ''}`, brl(p.valor), `pay:${p.id}`]));
     S.agenda.events.filter((e) => e.pay && e.date >= TODAY).forEach((e) => items.push(['warn', `Pagamento na aula de ${dm(e.date)}`, e.raw, '', '']));
@@ -879,5 +1005,7 @@
   render();
   bootDb();
   bootAgenda();
+  // mantém "próxima aula" e "em atraso" atualizados com o painel aberto
+  setInterval(() => { if (S.tab === 'geral' && !sheet.open) render(); }, 5 * 60 * 1000);
 })();
 </script>
