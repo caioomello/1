@@ -94,7 +94,7 @@
   .kpi { background: var(--raised); padding: .95rem var(--px) .9rem; min-width: 0; }
   .kpi .l { font-size: .72rem; color: var(--soft); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
   .kpi .n { font-family: var(--display); font-weight: 700; font-size: 1.9rem; line-height: 1.15; margin-top: .25rem; font-variant-numeric: lining-nums tabular-nums; }
-  @media (max-width: 719px) { .kpis { grid-template-columns: 1fr 1fr; } .kpis > .kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+  @media (max-width: 719px) { .kpis { grid-template-columns: 1fr 1fr; } .kpis > .kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } .kpi { padding-block: .75rem .8rem; } .kpi .n { font-size: 1.55rem; } }
   .kpi .s { font-size: .8rem; color: var(--soft); margin-top: .15rem; }
   .kpi.good .n { color: var(--accent); }
   .kpi.warn .n { color: var(--amber); }
@@ -801,7 +801,7 @@
         ${kpi('Recebido', brl(rec), `${list.filter((p) => p.status === 'pago').length} pagamentos`, 'good')}
         ${kpi('A receber no prazo', brl(are), (() => { const n = list.filter(noPrazo).length; return `${n} ${n === 1 ? 'pagamento' : 'pagamentos'}, sem os atrasados`; })(), 'warn')}
         ${kpi('Despesas + anúncios', brl(desp + ads), ads ? `${brl(ads)} no Google Ads` : 'Google Ads não lançado')}
-        ${kpi('Sobra aproximada', brl(lucro), 'recebido − custos lançados (sem impostos e taxas)', lucro < 0 ? 'bad' : '')}
+        ${kpi('Sobra aproximada', brl(lucro), 'recebido menos custos, antes de impostos', lucro < 0 ? 'bad' : '')}
         ${kpi('Em atraso', brl(sum(at, (p) => p.valor)), `${at.length} ${at.length === 1 ? 'pagamento' : 'pagamentos'}, de todos os meses`, at.length ? 'bad' : '')}
       </div>
       <div class="grid2">
