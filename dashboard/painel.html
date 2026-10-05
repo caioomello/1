@@ -264,6 +264,12 @@
     .chips.scroll { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); } }
   .adwarn { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; background: var(--amber-soft); color: var(--ink); border-left: 4px solid var(--amber); padding: .65rem var(--px); margin-bottom: 1rem; font-size: .88rem; line-height: 1.4; }
   .adwarn b { font-weight: 700; }
+  .adnow { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem 1.1rem; background: var(--raised); border: 1px solid var(--line); padding: .7rem var(--px); margin-bottom: 1rem; font-size: .88rem; color: var(--soft); }
+  .adnow .l { color: var(--ink); font-weight: 600; flex-basis: 100%; }
+  .adnow .l::first-letter { text-transform: uppercase; }
+  .adnow b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  @media (min-width: 720px) { .adnow .l { flex-basis: auto; } }
+  .adsrc { font-size: .82rem; color: var(--soft); margin: -.4rem 0 1rem; max-width: 72ch; }
   .adtop { display: grid; gap: .75rem; margin-bottom: 2rem; }
   .adtop .kpis { margin: 0; }
   @media (min-width: 900px) { .adtop { grid-template-columns: 1.1fr 1fr; gap: 1rem; } .adtop .kpis { grid-template-columns: 1fr 1fr; } }
@@ -488,6 +494,7 @@
     db: null, dbState: 'loading',
     agenda: { status: 'loading', events: [], storedAt: null, code: null },
     hist: { status: 'loading', events: [] },
+    adsLive: { status: 'loading', months: {}, updated: '', code: null },
   };
 
   // ---------- derivados ----------
@@ -505,7 +512,20 @@
   const atrasados = () => S.pagamentos.filter(isLate).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const vencendo = (days) => S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY && p.vencimento <= addDays(TODAY, days)).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const despesasMes = (m) => sum(S.despesas.filter((d) => (d.data || '').startsWith(m)), (d) => d.valor);
-  const adsMes = (m) => S.anuncios.find((a) => a.id === m);
+  // Google Ads: investimento, impressões, cliques e conversões vêm da planilha que o script do Google Ads atualiza todo dia;
+  // clientes fechados e observações continuam lançados à mão (coleção anuncios)
+  const ADS_SHEET = '1nsUmDzHuedT8zWRtPutrNwgJVxK2MpS54Wv5p35prfs';
+  const adsAll = () => {
+    const by = {};
+    S.anuncios.forEach((a) => { by[a.id] = { ...a }; });
+    Object.entries(S.adsLive.months).forEach(([m, v]) => {
+      const a = by[m] || (by[m] = { id: m });
+      a.investimento = v.investimento; a.impressoes = v.impressoes; a.cliques = v.cliques; a.contatos = v.conversoes;
+      a.live = true;
+    });
+    return Object.values(by);
+  };
+  const adsMes = (m) => adsAll().find((a) => a.id === m);
   const ativos = () => S.clientes.filter((c) => c.status === 'ativo');
   const fatEstimado = () => sum(ativos(), (c) => c.valorMensal);
   const meta = () => num(S.config.metaMensal);
@@ -657,7 +677,9 @@
     else if (confs.length) items.push({ u: 3, dt: '', k: 'info', t: `${confs.length} clientes com dados a conferir`, d: 'Valor, plano ou status foram deduzidos da agenda.', act: 'tab:clientes', btn: actBtn('tab:clientes', 'Ver', 'Ver clientes') });
     const prevM = addMonths(CUR, -1);
     const pa = adsMes(prevM);
-    if (S.loaded.anuncios && (!pa || pa.investimento == null || pa.investimento === '')) items.push({ u: 4, dt: '', k: 'info', t: `Lançar Google Ads de ${monthLabel(prevM, true).split(' ')[0]}`,
+    if (S.loaded.anuncios && pa?.live && num(pa.investimento) > 0 && (pa.clientes == null || pa.clientes === '')) items.push({ u: 4, dt: '', k: 'info', t: `Quantos clientes o Google trouxe em ${monthLabel(prevM, true).split(' ')[0]}?`,
+      d: 'Os números do anúncio já entram sozinhos. Falta só esse, para saber se o anúncio se pagou.', act: `ads:${prevM}`, btn: actBtn(`ads:${prevM}`, 'Lançar', `Lançar clientes do Google em ${monthLabel(prevM, true)}`) });
+    else if (S.loaded.anuncios && (!pa || pa.investimento == null || pa.investimento === '')) items.push({ u: 4, dt: '', k: 'info', t: `Lançar Google Ads de ${monthLabel(prevM, true).split(' ')[0]}`,
       d: 'Investimento, cliques e contatos. Leva 1 minuto.', act: 'new:anuncios', btn: actBtn('new:anuncios', 'Lançar', `Lançar Google Ads de ${monthLabel(prevM, true)}`) });
     items.sort((a, b) => a.u - b.u || a.dt.localeCompare(b.dt));
 
@@ -1025,10 +1047,13 @@
 
   // ---------- anúncios ----------
   function vAnuncios() {
-    const rows = [...S.anuncios].sort((a, b) => b.id.localeCompare(a.id));
+    const rows = adsAll().sort((a, b) => b.id.localeCompare(a.id));
     const has = (v) => v != null && v !== '';
     const filled = rows.filter((a) => has(a.investimento));
-    const last = filled[0], prev = filled[1];
+    // o destaque usa o último mês fechado; o mês corrente aparece à parte, como parcial
+    const li = Math.max(0, filled.findIndex((a) => a.id < CUR));
+    const last = filled[li], prev = filled[li + 1];
+    const curA = rows.find((a) => a.id === CUR && a.live);
     const div = (a, b) => (num(b) ? num(a) / num(b) : null);
     // custos por unidade sempre com 2 casas; totais em reais (centavos só se houver)
     const brl2 = (v) => num(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -1055,7 +1080,7 @@
       let hero;
       if (r == null) {
         hero = `<div class="roi"><div class="l">Retorno de ${esc(mName(last.id))}</div><div class="r1"><div class="n">—</div></div>
-          <p class="t">${!has(last.clientes) ? 'Lance quantos clientes fecharam via Google neste mês para ver se o anúncio se pagou.' : 'Marque a origem "Google Ads" nos clientes (com valor do pacote) para estimar o retorno.'}</p></div>`;
+          <p class="t">${!has(last.clientes) ? 'Lance quantos clientes fecharam via Google neste mês para ver se o anúncio se pagou.' : 'Marque a origem "Google Ads" nos clientes (com valor do pacote) para estimar o retorno.'}</p>${!has(last.clientes) ? `<button class="btn small" data-act="ads:${esc(last.id)}">Lançar clientes de ${esc(mName(last.id))}</button>` : ''}</div>`;
       } else {
         const rec = r + inv, ok = r >= 0, n = num(last.clientes);
         const mx = Math.max(rec, inv, 1);
@@ -1085,7 +1110,7 @@
           ${kpi(`Investido em ${esc(monthShort(last.id))}`, brl(last.investimento), `${has(last.impressoes) ? `<span class="nw">${int(last.impressoes)} impressões</span><br>` : ''}<span class="nw">CTR ${fx(div(last.cliques, last.impressoes), pct1)}</span>`)}
           ${kpi('Custo por clique', fx(div(last.investimento, last.cliques), brl2), `<span class="nw">${int(last.cliques)} cliques</span>${dv('cliques')}`)}
           ${kpi('Custo por contato', fx(div(last.investimento, last.contatos), brl2), `<span class="nw">${int(last.contatos)} contatos</span>${dv('contatos')}`)}
-          ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl2), `<span class="nw">${int(last.clientes)} ${num(last.clientes) === 1 ? 'cliente' : 'clientes'}</span>${dv('clientes')}`)}
+          ${kpi('Custo por cliente', fx(div(last.investimento, last.clientes), brl2), has(last.clientes) ? `<span class="nw">${int(last.clientes)} ${num(last.clientes) === 1 ? 'cliente' : 'clientes'}</span>${dv('clientes')}` : '<span class="nw">clientes não lançados</span><br>&nbsp;')}
         </div>`;
       top = `<div class="adtop">${hero}${k}</div>`;
     }
@@ -1095,12 +1120,12 @@
     const retCell = (a) => { const r = has(a.investimento) ? ret(a) : null; return r == null ? '—' : `${r >= 0 ? '+' : '−'}${brl(Math.round(Math.abs(r)))}`; };
     const retCls = (a) => { const r = has(a.investimento) ? ret(a) : null; return r == null ? '' : r >= 0 ? 'good' : 'bad'; };
     const mlist = rows.length ? `<div class="list adlist">${rows.map((a) => `<div class="row clickable" data-act="ads:${esc(a.id)}" tabindex="0">
-        <div class="main"><div class="t" style="text-transform:capitalize">${esc(monthLabel(a.id, true))}</div>
+        <div class="main"><div class="t" style="text-transform:capitalize">${esc(monthLabel(a.id, true))}${a.id === CUR ? ' <small class="dl">parcial</small>' : ''}</div>
           <div class="d">${cell(a.cliques)} cliques · ${cell(a.contatos)} contatos · ${cell(a.clientes)} ${num(a.clientes) === 1 ? 'cliente' : 'clientes'}</div>
           <div class="d">${fx(div(a.investimento, a.clientes), brl2)} por cliente · ${fx(div(a.investimento, a.cliques), brl2)} por clique</div></div>
         <div class="v">${has(a.investimento) ? brl(a.investimento) : '—'}<small class="dl ${retCls(a)}">${retCell(a) === '—' ? '' : 'retorno ' + retCell(a)}</small></div></div>`).join('')}</div>` : '';
     const table = rows.length ? `${mlist}<div class="tscroll adtable"><table><thead><tr><th>Mês</th><th class="r">Investido</th><th class="r">Cliques</th><th class="r">CTR</th><th class="r">Por clique</th><th class="r">Contatos</th><th class="r">Por contato</th><th class="r">Clientes</th><th class="r">Por cliente</th><th class="r">Retorno</th></tr></thead><tbody>
-      ${rows.map((a) => `<tr class="clickable" data-act="ads:${esc(a.id)}" tabindex="0"><td style="text-transform:capitalize">${esc(monthLabel(a.id))}</td><td class="r">${has(a.investimento) ? brl(a.investimento) : '—'}</td><td class="r">${cell(a.cliques)}</td><td class="r">${fx(div(a.cliques, a.impressoes), pct1)}</td><td class="r">${fx(div(a.investimento, a.cliques), brl2)}</td><td class="r">${cell(a.contatos)}</td><td class="r">${fx(div(a.investimento, a.contatos), brl2)}</td><td class="r">${cell(a.clientes)}</td><td class="r">${fx(div(a.investimento, a.clientes), brl2)}</td><td class="r ${retCls(a)}">${retCell(a)}</td></tr>`).join('')}
+      ${rows.map((a) => `<tr class="clickable" data-act="ads:${esc(a.id)}" tabindex="0"><td style="text-transform:capitalize">${esc(monthLabel(a.id))}${a.id === CUR ? ' <small class="dl">parcial</small>' : ''}</td><td class="r">${has(a.investimento) ? brl(a.investimento) : '—'}</td><td class="r">${cell(a.cliques)}</td><td class="r">${fx(div(a.cliques, a.impressoes), pct1)}</td><td class="r">${fx(div(a.investimento, a.cliques), brl2)}</td><td class="r">${cell(a.contatos)}</td><td class="r">${fx(div(a.investimento, a.contatos), brl2)}</td><td class="r">${cell(a.clientes)}</td><td class="r">${fx(div(a.investimento, a.clientes), brl2)}</td><td class="r ${retCls(a)}">${retCell(a)}</td></tr>`).join('')}
       </tbody></table></div>` : `<div class="empty">${loading ? 'Carregando…' : 'Nenhum mês lançado.'}</div>`;
     const withNotes = rows.find((a) => (a.termos && a.termos.length) || (a.recomendacoes && a.recomendacoes.length) || a.leitura);
     const notes = withNotes ? `
@@ -1108,8 +1133,23 @@
       ${withNotes.termos?.length ? `<h3 style="font-size:1rem;margin:.5rem 0">Termos que mostraram seus anúncios</h3><div class="tags">${withNotes.termos.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
       ${withNotes.recomendacoes?.length ? `<h3 style="font-size:1rem;margin:1.25rem 0 .5rem">Recomendações do Google pendentes</h3><div class="list">${withNotes.recomendacoes.map((r) => `<div class="row"><div class="main"><div class="t">${esc(r.t)}</div>${r.nota ? `<div class="d">${esc(r.nota)}</div>` : ''}</div><div class="v">${esc(r.g || '')}</div></div>`).join('')}</div>` : ''}
       <p class="note" style="margin-top:.6rem">Fonte: prints do app do Google Ads de ${esc(dm(withNotes.fonteData || ''))}.</p>` : '<div class="empty">Sem observações salvas.</div>';
+    const L = S.adsLive;
+    const upd = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(L.updated) ? `${L.updated.slice(8, 10)}/${L.updated.slice(5, 7)} às ${L.updated.slice(11)}` : '';
+    const src = L.status === 'ok'
+      ? `Investimento, cliques e conversões vêm sozinhos do Google Ads${upd ? ` (atualizado em ${esc(upd)})` : ''}. Clientes fechados você lança tocando no mês.`
+      : L.status === 'loading' ? 'Buscando os números do Google Ads…' : esc({
+        off: 'Os números do Google Ads só entram sozinhos quando o painel é aberto pelo claude.ai, logado na sua conta.',
+        needs_reauth: 'O acesso ao Google Drive expirou. Reconecte em claude.ai → Configurações → Conectores para os números do Google Ads voltarem a entrar.',
+        server_not_connected: 'Conecte o Google Drive em claude.ai → Configurações → Conectores para os números do Google Ads entrarem sozinhos.',
+        not_in_manifest: 'O Google Drive não foi liberado para este painel. Libere no menu de permissões do artifact e recarregue.',
+        consent_required: 'O Google Drive não foi liberado para este painel. Libere no menu de permissões do artifact e recarregue.',
+        tool_error: 'Não achei a planilha do Google Ads no seu Drive. Confira se o script do Google Ads está rodando.',
+        parse: 'A planilha do Google Ads mudou de formato. Mostrando só os números lançados à mão.',
+      }[L.code] || 'Não consegui ler a planilha do Google Ads agora. Mostrando os números lançados à mão.');
+    const strip = curA ? `<div class="adnow"><span class="l">${esc(mName(CUR))} até agora</span><span><b>${brl(curA.investimento)}</b> investidos</span><span><b>${int(curA.cliques)}</b> cliques</span><span><b>${int(curA.contatos)}</b> ${num(curA.contatos) === 1 ? 'conversão' : 'conversões'}</span><span>${fx(div(curA.investimento, curA.cliques), brl2)} por clique</span></div>` : '';
     return `<div class="sh"><h2>Google Ads</h2>${missing ? '' : '<button class="btn" data-act="new:anuncios">Lançar mês</button>'}</div>
-      <div class="${loading ? 'vload' : ''}">${warn}${top}
+      <p class="adsrc">${src}</p>
+      <div class="${loading ? 'vload' : ''}">${warn}${strip}${top}
       <section><div class="sh"><h2>Mês a mês</h2><span class="count">toque num mês para editar</span></div>${table}</section>
       <section><div class="sh"><h2>O que o Google está mostrando</h2></div>${notes}</section></div>`;
   }
@@ -1232,7 +1272,11 @@
     if (k === 'cli') return openForm('clientes', findIn('clientes', v));
     if (k === 'pay') return openForm('pagamentos', findIn('pagamentos', v));
     if (k === 'desp') return openForm('despesas', findIn('despesas', v));
-    if (k === 'ads') return openForm('anuncios', findIn('anuncios', v));
+    if (k === 'ads') {
+      const live = adsMes(v);
+      const base = findIn('anuncios', v) || (live ? { id: v } : undefined);
+      return openForm('anuncios', base && live?.live ? { ...base, investimento: live.investimento, impressoes: live.impressoes, cliques: live.cliques, contatos: live.contatos } : base);
+    }
     if (k === 'cf') { S.cliFilter = v; return render(); }
     if (k === 'month') { S.finMonth = addMonths(S.finMonth, Number(v)); return render(); }
     if (k === 'markpaid') {
@@ -1312,7 +1356,7 @@
   async function bootAgenda() {
     const C = window.claude;
     const mcp = C && C.use ? await C.use('mcp').catch(() => null) : null;
-    if (!mcp) { S.agenda.status = 'off'; S.hist.status = 'off'; render(); return; }
+    if (!mcp) { S.agenda.status = 'off'; S.hist.status = 'off'; S.adsLive.status = 'off'; render(); return; }
     const monthEnd = addDays(addMonths(CUR, 1) + '-01', -1);
     const endDay = addDays(TODAY, 15) > monthEnd ? addDays(TODAY, 15) : monthEnd;
     const input = { startTime: CUR + '-01T00:00:00-03:00', endTime: endDay + 'T23:59:00-03:00', pageSize: 250, orderBy: 'startTime' };
@@ -1344,7 +1388,39 @@
         }
         render();
       }, { refetchInterval: 60 * 60 * 1000 });
-    } catch (_) { S.agenda.status = 'err'; S.hist.status = 'err'; render(); }
+      mcp.watchTool('Google Drive', 'download_file_content', { fileId: ADS_SHEET, exportMimeType: 'text/csv' }, (ev) => {
+        if (ev.type === 'data') {
+          if (parseAdsCsv(ev.result?.payload)) { S.adsLive.status = 'ok'; S.adsLive.code = null; }
+          else { S.adsLive.status = 'err'; S.adsLive.code = 'parse'; }
+        } else {
+          const code = ev.error?.code;
+          if (DENIALS.includes(code)) S.adsLive.months = {};
+          S.adsLive.status = 'err'; S.adsLive.code = code;
+        }
+        render();
+      }, { refetchInterval: 60 * 60 * 1000, cache: { staleTime: 5 * 60 * 1000, gcTime: 24 * 60 * 60 * 1000 } });
+    } catch (_) { S.agenda.status = 'err'; S.hist.status = 'err'; S.adsLive.status = 'err'; render(); }
+  }
+  // planilha do script do Google Ads: data,investimento,impressoes,cliques,conversoes,,atualizado em,<data hora>
+  function parseAdsCsv(p) {
+    if (typeof p === 'string') { try { p = JSON.parse(p); } catch (_) { /* CSV em texto puro */ } }
+    let txt = typeof p === 'string' ? p : '';
+    if (p && typeof p === 'object' && typeof p.content === 'string') {
+      try { const bin = atob(p.content); txt = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))); } catch (_) { return false; }
+    }
+    const lines = txt.replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean);
+    if (!lines.length || !/^data,investimento,impressoes,cliques,conversoes/.test(lines[0])) return false;
+    const head = lines[0].split(','), months = {};
+    lines.slice(1).forEach((l) => {
+      const c = l.split(',');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(c[0])) return;
+      const a = months[c[0].slice(0, 7)] || (months[c[0].slice(0, 7)] = { investimento: 0, impressoes: 0, cliques: 0, conversoes: 0 });
+      a.investimento += num(c[1]); a.impressoes += num(c[2]); a.cliques += num(c[3]); a.conversoes += num(c[4]);
+    });
+    Object.values(months).forEach((a) => { a.investimento = Math.round(a.investimento * 100) / 100; a.conversoes = Math.round(a.conversoes * 10) / 10; });
+    S.adsLive.months = months;
+    S.adsLive.updated = head[6] === 'atualizado em' ? (head[7] || '').trim() : '';
+    return true;
   }
 
   render();
