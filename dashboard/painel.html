@@ -23,7 +23,9 @@
     --display: "Zilla Slab", Georgia, serif;
     --body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --px: 1rem; /* recuo lateral único de cartões, faixas e linhas de lista */
   }
+  @media (max-width: 719px) { :root { --px: .875rem; } }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --paper: #191b14; --raised: #21231a; --ink: #ece5d2; --soft: #a8a290; --line: #383826;
@@ -44,7 +46,9 @@
   .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 2rem 5rem; }
   @media (min-width: 720px) { .wrap { padding-inline: 1.75rem; } }
   h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
-  .num, .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  /* Números: serifada só nos números grandes; em listas e totais, fonte do corpo com algarismos tabulares. Mono só em rótulos curtos em caixa alta. */
+  .num { font-family: var(--body); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   a { color: var(--accent); }
   button, input, select, textarea { font: inherit; color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -55,7 +59,7 @@
   .eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: block; margin-bottom: .3rem; }
   .masthead h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.1; }
   .masthead .meta { font-size: .85rem; color: var(--soft); text-align: right; }
-  .masthead .meta strong { display: block; color: var(--ink); font-family: var(--mono); font-size: .95rem; }
+  .masthead .meta strong { display: block; color: var(--ink); font-weight: 600; font-size: .95rem; font-variant-numeric: tabular-nums; }
 
   /* Abas */
   .tabs { display: flex; gap: .25rem; overflow-x: auto; margin: 0 0 1.75rem; border-bottom: 1px solid var(--line); scrollbar-width: none; }
@@ -87,9 +91,10 @@
 
   /* KPIs */
   .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 2rem; }
-  .kpi { background: var(--raised); padding: .95rem 1rem .9rem; min-width: 0; }
+  .kpi { background: var(--raised); padding: .95rem var(--px) .9rem; min-width: 0; }
   .kpi .l { font-size: .72rem; color: var(--soft); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
-  .kpi .n { font-family: var(--display); font-weight: 700; font-size: 1.9rem; line-height: 1.15; margin-top: .25rem; font-variant-numeric: tabular-nums; }
+  .kpi .n { font-family: var(--display); font-weight: 700; font-size: 1.9rem; line-height: 1.15; margin-top: .25rem; font-variant-numeric: lining-nums tabular-nums; }
+  @media (max-width: 719px) { .kpis { grid-template-columns: 1fr 1fr; } .kpis > .kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } }
   .kpi .s { font-size: .8rem; color: var(--soft); margin-top: .15rem; }
   .kpi.good .n { color: var(--accent); }
   .kpi.warn .n { color: var(--amber); }
@@ -101,17 +106,17 @@
   .today { display: grid; gap: .75rem; margin-bottom: .75rem; }
   @media (min-width: 720px) { .today { grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } .today .hero { grid-column: 1 / -1; } }
   @media (min-width: 1000px) { .today { grid-template-columns: 1.3fr 1fr 1fr; } .today .hero { grid-column: auto; } }
-  .panel { background: var(--raised); border: 1px solid var(--line); padding: .85rem 1rem .9rem; min-width: 0; display: flex; flex-direction: column; }
+  .panel { background: var(--raised); border: 1px solid var(--line); padding: .85rem var(--px) .9rem; min-width: 0; display: flex; flex-direction: column; }
   .panel .empty { border: 0; padding: .1rem 0 0; }
   .ph { display: flex; justify-content: space-between; align-items: center; gap: .5rem; min-height: 1.5rem; margin-bottom: .4rem; }
   .ph h2 { font-family: var(--body); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--soft); }
-  .ph .tot { font-family: var(--mono); font-weight: 600; font-size: .92rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .ph .tot { font-weight: 700; font-size: .95rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .ph .tot.bad { color: var(--rust); }
   .hero .r1 { display: flex; justify-content: space-between; align-items: flex-end; gap: .5rem 1rem; flex-wrap: wrap; }
   .big { font-family: var(--display); font-weight: 700; font-size: clamp(2.6rem, 12vw, 3.3rem); line-height: .95; letter-spacing: -.01em; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
   .big .cur { font-size: .4em; font-weight: 600; color: var(--soft); margin-right: .18em; vertical-align: .95em; letter-spacing: 0; }
   .delta { text-align: right; font-size: .76rem; color: var(--soft); line-height: 1.3; font-variant-numeric: tabular-nums; }
-  .delta b { display: block; font-family: var(--mono); font-size: .95rem; color: var(--ink); }
+  .delta b { display: block; font-weight: 700; font-size: .95rem; color: var(--ink); }
   .delta.up b { color: var(--accent); }
   .delta.down b { color: var(--rust); }
   .goal { display: flex; height: 10px; background: var(--line); margin: .85rem 0 .45rem; overflow: hidden; }
@@ -122,13 +127,13 @@
   .gcap b { color: var(--ink); font-weight: 600; }
   .sw { display: inline-block; width: .7rem; height: .7rem; margin-right: .3rem; vertical-align: -1px; }
   .sw.due { background: repeating-linear-gradient(135deg, var(--amber) 0 2px, var(--amber-soft) 2px 5px); }
-  .dlist { margin: 0 -1rem; }
+  .dlist { margin: 0 calc(-1 * var(--px)); }
   .dlist:last-child { margin-bottom: -.9rem; }
-  .drow { display: flex; align-items: center; gap: .65rem; padding: .5rem 1rem; border-top: 1px solid var(--line); }
+  .drow { display: flex; align-items: center; gap: .65rem; padding: .5rem var(--px); border-top: 1px solid var(--line); }
   .drow .main { flex: 1; min-width: 0; }
   .drow .t { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .drow .d { font-size: .78rem; color: var(--soft); }
-  .drow .v { font-family: var(--mono); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .drow .d { font-size: .78rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .drow .v { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .drow .btn { min-height: 2.25rem; }
   .drow.clickable { cursor: pointer; }
   .drow.clickable:hover { background: var(--accent-soft); }
@@ -141,14 +146,13 @@
   .nextc .who { font-weight: 600; font-size: 1rem; margin-top: .15rem; overflow-wrap: anywhere; }
   .nextc .d { font-size: .82rem; color: var(--soft); overflow-wrap: anywhere; }
   .minis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 2rem; }
-  .mini { background: var(--raised); padding: .6rem .75rem .65rem; min-width: 0; }
+  .mini { background: var(--raised); padding: .65rem var(--px) .7rem; min-width: 0; }
   .mini.clickable { cursor: pointer; }
   .mini.clickable:hover { background: var(--accent-soft); }
   .mini .l { font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); font-weight: 600; line-height: 1.25; }
   .mini .n { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1.2; margin-top: .15rem; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
   .mini .s { font-size: .74rem; color: var(--soft); line-height: 1.3; }
   @media (max-width: 719px) {
-    .mini { padding: .55rem .65rem .6rem; }
     .mini .l { font-size: .76rem; text-transform: none; letter-spacing: 0; }
     .mini .n { font-size: 1.25rem; }
   }
@@ -160,11 +164,12 @@
   section { margin-bottom: 2.25rem; }
   .sh { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; flex-wrap: wrap; margin-bottom: .85rem; }
   .sh h2 { font-size: 1.3rem; font-weight: 600; }
-  .sh .count { font-family: var(--mono); font-size: .8rem; color: var(--soft); }
+  .sh .count { font-size: .82rem; color: var(--soft); font-variant-numeric: tabular-nums; }
   .note { font-size: .88rem; color: var(--soft); max-width: 68ch; margin: -.3rem 0 1rem; }
 
   .btn { background: var(--ink); color: var(--paper); border: 0; padding: .5rem .85rem; font-weight: 600; font-size: .85rem; cursor: pointer; }
   .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  a.btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
   .btn.ghost:hover { border-color: var(--ink); }
   .btn.small { padding: .3rem .6rem; font-size: .78rem; }
   .btn.danger { background: var(--rust); color: #fff; }
@@ -172,24 +177,30 @@
 
   /* Listas */
   .list { border: 1px solid var(--line); background: var(--raised); }
-  .row { display: flex; gap: .85rem; align-items: center; padding: .7rem .9rem; border-bottom: 1px solid var(--line); }
+  .row { display: flex; gap: .85rem; align-items: center; padding: .7rem var(--px); border-bottom: 1px solid var(--line); }
   .row:last-child { border-bottom: 0; }
   .row .main { flex: 1; min-width: 0; }
   .row .t { font-weight: 600; overflow-wrap: anywhere; }
   .row .d { font-size: .82rem; color: var(--soft); overflow-wrap: anywhere; }
-  .row .v { font-family: var(--mono); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .row .v { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .row .acts { display: flex; gap: .4rem; flex-shrink: 0; }
+  .row .end { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
+  .row .end .btn, .drow .btn { min-height: 2.25rem; min-width: 4.75rem; }
+  @media (max-width: 719px) { .row .end { flex-direction: column; align-items: flex-end; gap: .35rem; } }
+  .row .d .badge { margin-right: .35rem; vertical-align: 1px; }
+  .row .t .badge { margin-left: .35rem; vertical-align: 2px; }
+  .day .datechip { display: none; }
   .row.clickable { cursor: pointer; }
   .row.clickable:hover { background: var(--accent-soft); }
-  .stripe { border-left: 4px solid var(--line); }
+  .stripe { border-left: 4px solid var(--line); padding-left: calc(var(--px) - 3px); }
   .stripe.bad { border-left-color: var(--rust); }
   .stripe.warn { border-left-color: var(--amber); }
   .stripe.info { border-left-color: var(--slate); }
   .stripe.good { border-left-color: var(--accent); }
-  .empty { padding: 1.1rem 1rem; color: var(--soft); font-size: .9rem; border: 1px dashed var(--line); }
+  .empty { padding: 1.1rem var(--px); color: var(--soft); font-size: .9rem; border: 1px dashed var(--line); }
 
-  .datechip { font-family: var(--mono); font-size: .75rem; text-align: center; min-width: 3.1rem; line-height: 1.2; color: var(--soft); flex-shrink: 0; }
-  .datechip b { display: block; font-size: 1.05rem; color: var(--ink); font-family: var(--display); }
+  .datechip { font-size: .72rem; font-weight: 600; text-transform: lowercase; text-align: center; min-width: 3.1rem; line-height: 1.2; color: var(--soft); flex-shrink: 0; }
+  .datechip b { display: block; font-size: 1.1rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 
   .badge { display: inline-block; font-family: var(--mono); font-size: .66rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: .15rem .45rem; white-space: nowrap; vertical-align: middle; }
   .b-ativo, .b-pago { background: var(--accent-soft); color: var(--accent); }
@@ -202,8 +213,8 @@
   /* Agenda */
   .day { margin-bottom: 1rem; }
   .day h3 { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); font-weight: 600; margin-bottom: .35rem; }
-  .day.today h3 { color: var(--accent); }
-  .time { font-family: var(--mono); font-weight: 600; width: 3.2rem; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .day.is-today h3 { color: var(--accent); }
+  .time { font-weight: 700; width: 3.2rem; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 
   /* Filtros */
   .chips { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -212,13 +223,13 @@
 
   /* Cards de cliente */
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: .85rem; }
-  .card { background: var(--raised); border: 1px solid var(--line); padding: .9rem 1rem 1rem; display: flex; flex-direction: column; gap: .35rem; cursor: pointer; min-width: 0; }
+  .card { background: var(--raised); border: 1px solid var(--line); padding: .9rem var(--px) 1rem; display: flex; flex-direction: column; gap: .35rem; cursor: pointer; min-width: 0; }
   .card:hover { border-color: var(--ink); }
   .card .top { display: flex; justify-content: space-between; gap: .5rem; align-items: flex-start; }
   .card .name { font-weight: 700; font-size: 1.02rem; overflow-wrap: anywhere; }
   .card .dog { font-size: .85rem; color: var(--soft); }
   .card .facts { display: flex; gap: .4rem 1rem; flex-wrap: wrap; font-size: .82rem; border-top: 1px dashed var(--line); padding-top: .45rem; margin-top: auto; }
-  .card .facts span b { font-family: var(--mono); font-weight: 600; }
+  .card .facts span b { font-weight: 700; font-variant-numeric: tabular-nums; }
 
   /* Tabelas */
   .tscroll { overflow-x: auto; border: 1px solid var(--line); }
@@ -231,18 +242,70 @@
   tbody tr.clickable:hover { background: var(--accent-soft); }
 
   /* Gráficos */
-  .chart { background: var(--raised); border: 1px solid var(--line); padding: .75rem .5rem .25rem; }
-  .chart svg { width: 100%; height: auto; display: block; }
-  .legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .78rem; color: var(--soft); padding: .35rem .5rem .5rem; }
-  .legend i { display: inline-block; width: .7rem; height: .7rem; margin-right: .35rem; vertical-align: -1px; }
-  .funnel { display: flex; height: 26px; border: 1px solid var(--line); }
-  .funnel span { display: block; height: 100%; }
-  .hbar { display: grid; grid-template-columns: minmax(90px, 9rem) 1fr 2.5rem; gap: .6rem; align-items: center; font-size: .84rem; margin-bottom: .35rem; }
-  .hbar .bar { height: 10px; background: var(--line); position: relative; }
+  /* Colunas em HTML/CSS: o texto tem tamanho real em qualquer largura e o gráfico se ajusta sozinho ao redimensionar. */
+  .chart { --gut: 4rem; background: var(--raised); border: 1px solid var(--line); padding: .85rem 1rem .8rem; }
+  .legend { display: flex; gap: .3rem 1.1rem; flex-wrap: wrap; font-size: .8rem; line-height: 1.3; color: var(--soft); margin: 0 0 1rem; }
+  .legend span { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
+  .legend i { flex: none; width: 10px; height: 10px; }
+  .legend i.ln { width: 14px; height: 0; border-top: 2px dashed var(--rust); }
+  .legend b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .s-rec { background: var(--accent); }
+  .s-are { background: repeating-linear-gradient(135deg, var(--amber) 0 2px, var(--amber-soft) 2px 5px); }
+  .s-dad { background: var(--leather); }
+  .s-mar { background: repeating-linear-gradient(135deg, var(--leather) 0 2px, var(--leather-soft) 2px 5px); }
+  .cplot, .ctab { display: grid; grid-template-columns: var(--gut) repeat(var(--n), minmax(0, 1fr)); }
+  .cplot { height: 148px; }
+  @media (min-width: 720px) { .cplot { height: 176px; } }
+  .yax { position: relative; }
+  .yax span { position: absolute; right: .65rem; transform: translateY(50%); font: 500 11px/1 var(--mono); color: var(--soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .yax .ref { font-family: var(--body); font-weight: 600; color: var(--rust); }
+  .parea { grid-column: 2 / -1; position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); border-bottom: 1px solid var(--soft); }
+  .parea .gl, .parea .rl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--line); pointer-events: none; }
+  .parea .rl { z-index: 2; border-top: 1.5px dashed var(--rust); }
+  .col { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 100%; cursor: default; }
+  .col::before { content: ""; position: absolute; top: -6px; bottom: 0; left: max(2px, calc(50% - min(28%, 1.375rem) - 12px)); right: max(2px, calc(50% - min(28%, 1.375rem) - 12px)); background: transparent; }
+  .col.cur::before { background: var(--accent-soft); }
+  .col:hover::before, .col:focus-visible::before { background: var(--line); opacity: .55; }
+  .col.cur:hover::before, .col.cur:focus-visible::before { background: var(--accent-soft); opacity: 1; }
+  .col:focus-visible { outline-offset: -2px; }
+  .stk { position: relative; z-index: 1; width: min(56%, 2.75rem); height: 100%; display: flex; flex-direction: column-reverse; gap: 2px; }
+  .stk span { display: block; flex: none; min-height: 2px; }
+  .stk span:last-child { border-radius: 2px 2px 0 0; }
+  .tip { display: none; position: absolute; z-index: 4; top: -8px; left: 50%; transform: translate(-50%, -100%); background: var(--ink); color: var(--paper);
+    font-size: .78rem; line-height: 1.4; padding: .4rem .6rem; white-space: nowrap; pointer-events: none; font-variant-numeric: tabular-nums; }
+  .tip.l { left: 0; transform: translateY(-100%); }
+  .tip.r { left: auto; right: 0; transform: translateY(-100%); }
+  .col:hover .tip, .col:focus .tip { display: block; }
+  .ctab span { min-width: 0; text-align: center; white-space: nowrap; overflow: hidden; }
+  .ctab.mos { padding-top: .4rem; font-size: .8rem; color: var(--soft); }
+  .ctab.mos .cur { color: var(--ink); font-weight: 700; }
+  .ctab.vals { margin-top: .55rem; padding-top: .5rem; border-top: 1px solid var(--line); row-gap: .2rem; align-items: baseline; }
+  .ctab .rh { text-align: left; font-size: .75rem; color: var(--soft); overflow: hidden; text-overflow: ellipsis; }
+  .ctab .cv { font-family: var(--mono); font-size: .78rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ctab .cv.cur { font-weight: 700; }
+  .ctab .cv.z { color: var(--soft); font-weight: 400; }
+  .ctab .cv.am:not(.z) { color: var(--amber); }
+  @media (max-width: 380px) { .chart { --gut: 3.5rem; padding-inline: .75rem; } }
+  /* Funil: barra fina segmentada + lista com quantidade e fatia */
+  .funnel { display: flex; gap: 2px; height: 10px; }
+  .funnel span { display: block; height: 100%; min-width: 2px; }
+  .flist { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); gap: .4rem 1.5rem; font-size: .86rem; }
+  .flist li { display: flex; align-items: center; gap: .5rem; min-width: 0; max-width: 15rem; }
+  .flist i { flex: none; width: 10px; height: 10px; }
+  .flist .lb { flex: 1; min-width: 0; }
+  .flist b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .flist .pc { width: 3.1rem; text-align: right; font-size: .78rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  /* Barras horizontais: nome e número na mesma linha, barra fina embaixo (nome nunca é cortado no celular) */
+  .hbars { background: var(--raised); border: 1px solid var(--line); padding: .85rem 1rem .25rem; }
+  .hbar { margin-bottom: .75rem; }
+  .hbar .hl { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; font-size: .875rem; margin-bottom: .3rem; }
+  .hbar .hl span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hbar .hl b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .hbar .bar { height: 6px; background: var(--leather-soft); position: relative; }
   .hbar .bar span { position: absolute; inset: 0 auto 0 0; background: var(--leather); }
 
   .monthnav { display: flex; align-items: center; gap: .5rem; }
-  .monthnav strong { font-family: var(--mono); min-width: 7.5rem; text-align: center; text-transform: capitalize; }
+  .monthnav strong { font-weight: 700; min-width: 7.5rem; text-align: center; text-transform: capitalize; }
 
   .tags { display: flex; gap: .35rem; flex-wrap: wrap; }
   .tag { font-size: .8rem; background: var(--raised); border: 1px solid var(--line); padding: .15rem .5rem; }
@@ -297,7 +360,7 @@
 
   <footer>
     Dados de clientes, recebimentos, despesas e anúncios ficam salvos neste painel (só você e editores veem). A agenda vem ao vivo do seu Google Agenda: entram os eventos que você criou começando com "Aula" ou "Avaliação".
-    Itens marcados <span class="badge b-conferir">conferir</span> foram deduzidos da Ficha de Leads e da agenda — confira e ajuste.
+    Itens marcados <span class="badge b-conferir">conferir</span> foram deduzidos da Ficha de Leads e da agenda. Confira e ajuste.
   </footer>
 </div>
 
@@ -368,6 +431,10 @@
   const recebido = (m) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m)), (p) => p.valor);
   const recebidoAte = (m, dia) => sum(S.pagamentos.filter((p) => p.status === 'pago' && payMonth(p).startsWith(m) && Number(payMonth(p).slice(8, 10)) <= dia), (p) => p.valor);
   const aReceber = (m) => sum(S.pagamentos.filter((p) => open(p) && (p.vencimento || '').startsWith(m)), (p) => p.valor);
+  const isLate = (p) => p.status === 'pendente' && !!p.vencimento && p.vencimento < TODAY;
+  // em aberto no mês com data de hoje em diante: sem os atrasados (que já contam em "Em atraso" / "Quem está devendo") nem previsões vencidas, para não somar o mesmo dinheiro duas vezes
+  const noPrazo = (p) => open(p) && (p.vencimento || '') >= TODAY;
+  const aReceberNoPrazo = (m) => sum(S.pagamentos.filter((p) => noPrazo(p) && p.vencimento.startsWith(m)), (p) => p.valor);
   const previstosVencidos = () => S.pagamentos.filter((p) => p.status === 'previsto' && p.vencimento && p.vencimento < TODAY);
   const atrasados = () => S.pagamentos.filter((p) => p.status === 'pendente' && p.vencimento && p.vencimento < TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
   const vencendo = (days) => S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY && p.vencimento <= addDays(TODAY, days)).sort((a, b) => a.vencimento.localeCompare(b.vencimento));
@@ -397,6 +464,15 @@
     const now = new Date();
     return S.agenda.events.find((e) => e.startDate > now && clientForEvent(e) === c);
   }
+  // Nome para exibir de um evento: o cliente cadastrado (e o cão), ou o título limpo ("Fernanda (Zeca, beagle) pagamento" → Fernanda / Zeca, beagle)
+  function evName(e) {
+    const c = clientForEvent(e);
+    if (c) return { name: c.nome, dog: c.cao || '' };
+    let dog = '';
+    const name = e.title.replace(/\(([^)]*)\)/, (_, x) => { dog = x.trim(); return ' '; })
+      .replace(/\b(pagamento|pagar)\b/gi, ' ').replace(/\s{2,}/g, ' ').replace(/^[\s,.:;·-]+|[\s,.:;·-]+$/g, '').trim();
+    return { name: name || e.title, dog };
+  }
 
   // ---------- render ----------
   const view = $('#view');
@@ -415,7 +491,8 @@
 
   function vGeral() {
     const at = atrasados(), ven = vencendo(7);
-    const rec = recebido(CUR), are = aReceber(CUR), m = meta();
+    // "a receber" aqui é só o que ainda está no prazo; os atrasados ficam em "Quem está devendo"
+    const rec = recebido(CUR), are = aReceberNoPrazo(CUR), m = meta();
     const nowD = new Date();
     const ev7 = S.agenda.events.filter((e) => e.startDate >= nowD && e.date <= addDays(TODAY, 6));
     const evMes = S.agenda.events.filter((e) => e.date.startsWith(CUR) && e.startDate < nowD);
@@ -432,12 +509,12 @@
       delta = `<div class="delta ${d > 0 ? 'up' : d < 0 ? 'down' : ''}"><b>${arrow} ${p != null ? Math.abs(p) + '%' : brl(Math.abs(d))}</b>vs. ${esc(monthShort(lastM))} até dia ${dia}: ${brl(prevRec)}</div>`;
     }
     const got = m ? Math.min(100, (rec / m) * 100) : 0, due = m ? Math.min(100 - got, (are / m) * 100) : 0;
-    const goal = m ? `<div class="goal" role="img" aria-label="${esc(`${pct(rec / m)} da meta recebido, mais ${brl(are)} a receber`)}"><span class="got" style="width:${got.toFixed(1)}%"></span><span class="due" style="width:${due.toFixed(1)}%"></span></div>` : '';
+    const goal = m ? `<div class="goal" role="img" aria-label="${esc(`${pct(rec / m)} da meta recebido, mais ${brl(are)} a receber no prazo`)}"><span class="got" style="width:${got.toFixed(1)}%"></span><span class="due" style="width:${due.toFixed(1)}%"></span></div>` : '';
     const hero = `<div class="panel hero">
       <div class="ph"><h2>Recebido em ${esc(monthLabel(CUR, true).split(' ')[0])}</h2></div>
       <div class="r1"><div class="big">${loading ? '…' : noDb ? '—' : big(rec)}</div>${delta}</div>
       ${goal}
-      ${loading || noDb ? '' : `<div class="gcap" ${m ? '' : 'style="margin-top:.6rem"'}><span>${m ? `<b>${pct(rec / m)}</b> da meta de ${brl(m)}` : 'Sem meta mensal. Defina em Faturamento.'}</span>${are ? `<span><i class="sw due"></i><b>${brl(are)}</b> a receber</span>` : ''}</div>`}
+      ${loading || noDb ? '' : `<div class="gcap" ${m ? '' : 'style="margin-top:.6rem"'}><span>${m ? `<b>${pct(rec / m)}</b> da meta de ${brl(m)}` : 'Sem meta mensal. Defina em Faturamento.'}</span>${are ? `<span><i class="sw due"></i><b>${brl(are)}</b> a receber no prazo</span>` : ''}</div>`}
     </div>`;
 
     // 2) quem está devendo agora
@@ -451,7 +528,7 @@
       debt = `<div class="empty"><span class="okmsg">Ninguém em atraso.</span>${prox ? ` Próximo: ${esc(prox.cliente || 'cliente')}, ${brl(prox.valor)} ${prox.vencimento === TODAY ? 'hoje' : 'em ' + dm(prox.vencimento)}.` : ''}</div>`;
     } else {
       debt = `<div class="dlist">${at.slice(0, 3).map((p) => { const n = lateDays(p); return `<div class="drow clickable" data-act="pay:${esc(p.id)}" tabindex="0">
-        <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">venceu ${esc(dm(p.vencimento))} · há ${n} ${n === 1 ? 'dia' : 'dias'}</div></div>
+        <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">há ${n} ${n === 1 ? 'dia' : 'dias'} · venceu ${esc(dm(p.vencimento))}</div></div>
         <div class="v">${brl(p.valor)}</div><button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button></div>`; }).join('')}</div>`
         + (at.length > 3 ? `<div class="pfoot"><span>Mais ${at.length - 3} em atraso</span><button class="lnk" data-act="tab:financeiro">Ver no Financeiro</button></div>` : '');
     }
@@ -461,12 +538,12 @@
     const nx = S.agenda.events.find((e) => e.startDate >= nowD);
     let nextBody;
     if (nx) {
-      const c = clientForEvent(nx);
+      const nn = evName(nx);
       const when = nx.date === TODAY ? 'Hoje' : nx.date === addDays(TODAY, 1) ? 'Amanhã' : `${weekday(nx.date)}, ${dm(nx.date)}`;
-      const sub = [c?.cao, nx.loc].filter(Boolean).join(' · ');
+      const sub = [nn.dog, nx.loc].filter(Boolean).join(' · ');
       nextBody = `<a class="nextc" href="${esc(nx.link)}" target="_blank" rel="noopener">
         <div class="when">${esc(when)}${nx.time === 'dia' ? ', dia todo' : ' · ' + esc(nx.time)}</div>
-        <div class="who">${esc(nx.title)} ${/^avalia/i.test(nx.raw) ? badge('previsto', 'avaliação') : ''} ${nx.pay ? badge('pendente', 'pagamento') : ''}</div>
+        <div class="who">${esc(nn.name)} ${/^avalia/i.test(nx.raw) ? badge('previsto', 'avaliação') : ''} ${nx.pay ? badge('pendente', 'pagamento') : ''}</div>
         ${sub ? `<div class="d">${esc(sub)}</div>` : ''}</a>`;
     } else if (S.agenda.status === 'ok') nextBody = `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
     else nextBody = agendaBox();
@@ -481,35 +558,55 @@
       <div class="mini clickable" data-act="tab:agenda" tabindex="0"><div class="l">Aulas em 7 dias</div><div class="n">${agendaN}</div><div class="s">${S.agenda.status === 'ok' ? `${evMes.length} dadas em ${monthShort(CUR)}` : agendaHint()}</div></div>
     </div>`;
 
-    // atenção (atrasados já aparecem em "Quem está devendo")
-    const items = [];
-    previstosVencidos().forEach((p) => items.push(['info', `Confirmar com ${p.cliente || 'cliente'}`, `${p.descricao || 'Previsão'} · era previsto para ${dm(p.vencimento)}. Marque como pago, combinado ou exclua.`, brl(p.valor), `pay:${p.id}`]));
-    ven.forEach((p) => items.push(['warn', `${p.cliente || 'Cliente'} paga ${p.vencimento === TODAY ? 'hoje' : 'em ' + dm(p.vencimento)}`, `${p.descricao || ''}${p.status === 'previsto' ? ' · previsto' : ''}`, brl(p.valor), `pay:${p.id}`]));
-    S.agenda.events.filter((e) => e.pay && e.date >= TODAY).forEach((e) => items.push(['warn', `Pagamento na aula de ${dm(e.date)}`, e.raw, '', '']));
-    S.clientes.filter((c) => c.status === 'renovar').forEach((c) => items.push(['warn', `Oferecer renovação a ${c.nome}`, [c.cao, c.obs].filter(Boolean).join(' · '), c.valorMensal ? brl(c.valorMensal) : '', `cli:${c.id}`]));
-    const conf = S.clientes.filter((c) => c.conferir).length;
-    if (conf) items.push(['info', `${conf} clientes com dados a conferir`, 'Valor, plano ou status foram deduzidos da agenda e da Ficha de Leads', '', 'tab:clientes']);
+    // listas ao lado (calculadas antes para a fila de ações não repetir o que já está nelas)
+    // "Próximas aulas" começa depois da aula que já está no painel "Próxima aula"
+    const up = S.agenda.events.filter((e) => e.startDate >= nowD && e !== nx).slice(0, 6);
+    const nextPays = S.pagamentos.filter(noPrazo).sort((a, b) => a.vencimento.localeCompare(b.vencimento)).slice(0, 5);
+
+    // Precisa de atenção: fila única de ações, mais urgente primeiro. Fica de fora o que já aparece
+    // em "Quem está devendo", "Próxima aula", "Próximas aulas" e "Próximos recebimentos".
+    const shownPay = new Set([...at.slice(0, 3), ...nextPays].map((p) => p.id));
+    const shownEv = new Set(nx ? [nx, ...up] : up);
+    const sameName = (a, b) => norm(a).trim() === norm(b).trim();
+    const recebiBtn = (p) => `<button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button>`;
+    const actBtn = (act, txt, aria) => `<button class="btn ghost small" data-act="${esc(act)}" aria-label="${esc(aria)}">${esc(txt)}</button>`;
+    const items = []; // u = urgência (0 primeiro), dt = data para desempate
+    previstosVencidos().forEach((p) => items.push({ u: 0, dt: p.vencimento, k: 'warn', t: `${p.cliente || 'Cliente'} pagou?`,
+      d: `Previsto para ${dm(p.vencimento)}${p.descricao ? ' · ' + p.descricao : ''}. Toque para corrigir ou excluir.`, v: brl(p.valor), act: `pay:${p.id}`, btn: recebiBtn(p) }));
+    ven.filter((p) => !shownPay.has(p.id)).forEach((p) => items.push({ u: 1, dt: p.vencimento, k: 'warn', t: `${p.cliente || 'Cliente'} paga ${p.vencimento === TODAY ? 'hoje' : 'em ' + dm(p.vencimento)}`,
+      d: [p.descricao, p.status === 'previsto' ? 'previsto' : ''].filter(Boolean).join(' · '), v: brl(p.valor), act: `pay:${p.id}`, btn: recebiBtn(p) }));
+    S.agenda.events.filter((e) => e.pay && e.date >= TODAY && !shownEv.has(e)).forEach((e) => { const n = evName(e); items.push({ u: 1, dt: e.date, k: 'warn', t: `Cobrar ${n.name} na aula de ${dm(e.date)}`,
+      d: [n.dog, e.time !== 'dia' ? e.time : ''].filter(Boolean).join(' · '), href: e.link, btn: `<a class="btn ghost small" href="${esc(e.link)}" target="_blank" rel="noopener" aria-label="${esc(`Abrir a aula de ${n.name} no Google Agenda`)}">Abrir</a>` }); });
+    S.clientes.filter((c) => c.status === 'renovar').forEach((c) => {
+      const lancado = S.pagamentos.some((p) => noPrazo(p) && sameName(p.cliente || '', c.nome || ''));
+      items.push(lancado
+        ? { u: 2, dt: '', k: 'info', t: `${c.nome} já renovou?`, d: 'Já tem pagamento lançado. Se renovou, marque como ativo.', act: `cli:${c.id}`, btn: actBtn(`cli:${c.id}`, 'Abrir', `Abrir ${c.nome}`) }
+        : { u: 2, dt: '', k: 'warn', t: `Oferecer renovação a ${c.nome}`, d: [c.cao, c.obs].filter(Boolean).join(' · '), v: c.valorMensal ? brl(c.valorMensal) : '', act: `cli:${c.id}`, btn: actBtn(`cli:${c.id}`, 'Abrir', `Abrir ${c.nome}`) });
+    });
+    const confs = S.clientes.filter((c) => c.conferir);
+    if (confs.length === 1) items.push({ u: 3, dt: '', k: 'info', t: `Conferir dados de ${confs[0].nome}`, d: 'Valor, plano ou status foram deduzidos da agenda.', act: `cli:${confs[0].id}`, btn: actBtn(`cli:${confs[0].id}`, 'Abrir', `Abrir ${confs[0].nome}`) });
+    else if (confs.length) items.push({ u: 3, dt: '', k: 'info', t: `${confs.length} clientes com dados a conferir`, d: 'Valor, plano ou status foram deduzidos da agenda.', act: 'tab:clientes', btn: actBtn('tab:clientes', 'Ver', 'Ver clientes') });
     const prevM = addMonths(CUR, -1);
     const pa = adsMes(prevM);
-    if (S.loaded.anuncios && (!pa || pa.investimento == null || pa.investimento === '')) items.push(['info', `Lançar números do Google Ads de ${monthLabel(prevM, true)}`, 'Investimento, cliques e contatos — leva 1 minuto e libera o custo por cliente', '', 'tab:anuncios']);
+    if (S.loaded.anuncios && (!pa || pa.investimento == null || pa.investimento === '')) items.push({ u: 4, dt: '', k: 'info', t: `Lançar Google Ads de ${monthLabel(prevM, true).split(' ')[0]}`,
+      d: 'Investimento, cliques e contatos. Leva 1 minuto.', act: 'new:anuncios', btn: actBtn('new:anuncios', 'Lançar', `Lançar Google Ads de ${monthLabel(prevM, true)}`) });
+    items.sort((a, b) => a.u - b.u || a.dt.localeCompare(b.dt));
 
     const attn = items.length
-      ? `<div class="list">${items.map(([k, t, d, v, act]) => `<div class="row stripe ${k} ${act ? 'clickable' : ''}" ${act ? `data-act="${esc(act)}" tabindex="0"` : ''}><div class="main"><div class="t">${esc(t)}</div>${d ? `<div class="d">${esc(d)}</div>` : ''}</div>${v ? `<div class="v">${v}</div>` : ''}</div>`).join('')}</div>`
+      ? `<div class="list">${items.map((i) => `<div class="row stripe ${i.k}${i.act ? ' clickable' : ''}"${i.act ? ` data-act="${esc(i.act)}" tabindex="0"` : ''}><div class="main"><div class="t">${esc(i.t)}</div>${i.d ? `<div class="d">${esc(i.d)}</div>` : ''}</div>${i.v || i.btn ? `<div class="end">${i.v ? `<div class="v">${i.v}</div>` : ''}${i.btn || ''}</div>` : ''}</div>`).join('')}</div>`
       : `<div class="empty">${isLoading() ? 'Carregando…' : 'Nada pedindo ação agora.'}</div>`;
 
     // próximas aulas
-    const up = S.agenda.events.filter((e) => e.startDate >= nowD).slice(0, 6);
-    const aulas = (S.agenda.status !== 'ok' && !up.length) ? agendaBox() : up.length
+    const aulas = (S.agenda.status !== 'ok' && !up.length && !nx) ? agendaBox() : up.length
       ? `<div class="list">${up.map(evRow).join('')}</div>`
-      : `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
+      : `<div class="empty">${nx ? 'Depois da próxima aula, nada marcado nos próximos 15 dias.' : 'Nenhuma aula marcada nos próximos 15 dias.'}</div>`;
 
     // recebimentos próximos
-    const nextPays = S.pagamentos.filter((p) => open(p) && p.vencimento >= TODAY).sort((a, b) => a.vencimento.localeCompare(b.vencimento)).slice(0, 5);
-    const pays = nextPays.length ? `<div class="list">${nextPays.map(payRow).join('')}</div>` : `<div class="empty">Nenhum recebimento futuro lançado. Use "Novo recebimento" na aba Financeiro.</div>`;
+    const pays =nextPays.length ? `<div class="list">${nextPays.map(payRow).join('')}</div>` : `<div class="empty">Nenhum recebimento futuro lançado. Use "Novo recebimento" na aba Financeiro.</div>`;
 
     h += `<div class="grid2">
       <div>
-        <section><div class="sh"><h2>Precisa de atenção</h2><span class="count">${items.length} itens</span></div>${attn}</section>
+        <section><div class="sh"><h2>Precisa de atenção</h2>${items.length ? `<span class="count">${items.length} ${items.length === 1 ? 'item' : 'itens'}</span>` : ''}</div>${attn}</section>
         <section><div class="sh"><h2>Faturamento</h2><span class="count">últimos 6 meses</span></div>${revenueChart()}
           <div class="inline" style="margin-top:.75rem"><label for="metaInput" style="font-size:.85rem;color:var(--soft)">Meta mensal (R$)</label><input id="metaInput" type="number" inputmode="decimal" min="0" step="50" value="${m || ''}" placeholder="ex.: 6000"><button class="btn small" data-act="saveMeta">Salvar meta</button></div>
         </section>
@@ -530,40 +627,60 @@
     const parts = [['fechado', 'Fechados', 'var(--leather)'], ['aberto', 'Em aberto', 'var(--amber)'], ['perdido', 'Perdidos', 'var(--rust)'], ['indefinido', 'Indefinidos', 'var(--slate)'], ['erro', 'Erro', 'var(--line)']];
     const total = parts.reduce((a, [k]) => a + num(f[k]), 0) || 1;
     const valid = total - num(f.erro);
+    const share = (k) => Math.round((num(f[k]) / total) * 100) + '%';
     return `<div class="sh"><h2>Funil de leads</h2><span class="count">levantamento de ${esc(dm(f.data))}</span></div>
-      <div class="funnel" role="img" aria-label="Distribuição dos leads por status">${parts.map(([k, , c]) => `<span style="width:${(num(f[k]) / total) * 100}%;background:${c}" title="${k}"></span>`).join('')}</div>
-      <div class="legend">${parts.map(([k, l, c]) => `<span><i style="background:${c}"></i>${l} <b class="num">${num(f[k])}</b></span>`).join('')}</div>
-      <p class="note" style="margin:.25rem 0 0">Na Ficha, ${num(f.fechado)} dos ${valid} leads lidos estavam fechados (${pct(num(f.fechado) / (valid || 1))}). A conversão real é maior: vários clientes que pagaram não estão na Ficha. ${num(f.aberto)} ainda em aberto. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
+      <div class="chart">
+        <div class="funnel" role="img" aria-label="${esc('Leads por status: ' + parts.map(([k, l]) => `${l} ${num(f[k])}`).join(', '))}">${parts.filter(([k]) => num(f[k]) > 0).map(([k, l, c]) => `<span style="width:${((num(f[k]) / total) * 100).toFixed(2)}%;background:${c}" title="${esc(`${l}: ${num(f[k])}`)}"></span>`).join('')}</div>
+        <ul class="flist">${parts.map(([k, l, c]) => `<li><i style="background:${c}${k === 'erro' ? ';box-shadow:inset 0 0 0 1px var(--soft)' : ''}"></i><span class="lb">${l}</span><b>${num(f[k])}</b><span class="pc">${share(k)}</span></li>`).join('')}</ul>
+      </div>
+      <p class="note" style="margin:.6rem 0 0">Na Ficha, ${num(f.fechado)} dos ${valid} leads lidos estavam fechados (${pct(num(f.fechado) / (valid || 1))}). A conversão real é maior: vários clientes que pagaram não estão na Ficha. ${num(f.aberto)} ainda em aberto. <a href="${FICHA}" target="_blank" rel="noopener">Abrir a Ficha de Leads</a></p>`;
+  }
+
+  // ---------- gráfico de colunas (HTML/CSS) ----------
+  // Texto em tamanho real em qualquer tela; sem medir nada nem redesenhar no resize.
+  const PLOT_MIN_H = 148; // altura mínima da área do gráfico (igual a .cplot no CSS), usada para evitar rótulos sobrepostos no eixo
+  const kfmt = (v) => (v >= 1000 ? (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits: v >= 10000 ? 0 : 1 }) + 'k' : String(Math.round(v)));
+  // cols: [{ label, cur, segs: [{ v, cls }], tip, aria }]; rows: [{ h, vals: [{ t, z }], cls }]; ref: { v, l } (linha de meta)
+  function colChart({ aria, legend, cols, rows, ref }) {
+    const n = cols.length;
+    const maxV = Math.max(ref ? ref.v : 0, ...cols.map((c) => c.segs.reduce((a, s) => a + s.v, 0)), 1);
+    const step = Math.max(1, niceStep(maxV / 3)), top = Math.ceil(maxV / step) * step;
+    const pc = (v) => ((v / top) * 100).toFixed(2) + '%';
+    const nearRef = (v) => ref && (Math.abs(v - ref.v) / top) * PLOT_MIN_H < 14;
+    let ax = '', lines = '';
+    for (let v = 0; v <= top + 1e-9; v += step) {
+      if (!nearRef(v)) ax += `<span style="bottom:${pc(v)}">${kfmt(v)}</span>`;
+      if (v > 0) lines += `<i class="gl" style="bottom:${pc(v)}"></i>`;
+    }
+    if (ref) { lines += `<i class="rl" style="bottom:${pc(ref.v)}"></i>`; ax += `<span class="ref" style="bottom:${pc(ref.v)}">${esc(ref.l)}</span>`; }
+    const bars = cols.map((c, i) => `<div class="col${c.cur ? ' cur' : ''}" tabindex="0" role="img" aria-label="${esc(c.aria)}"><div class="stk">${c.segs.filter((s) => s.v > 0).map((s) => `<span class="${s.cls}" style="height:${pc(s.v)}"></span>`).join('')}</div><div class="tip${i === 0 ? ' l' : i === n - 1 ? ' r' : ''}" aria-hidden="true">${c.tip}</div></div>`).join('');
+    const cell = (c, i, cls, x) => `<span class="${cls}${cols[i].cur ? ' cur' : ''}${x || ''}">${c}</span>`;
+    return `<figure class="chart" style="margin:0;--n:${n}" aria-label="${esc(aria)}">
+      <div class="legend">${legend}</div>
+      <div class="cplot"><div class="yax" aria-hidden="true">${ax}</div><div class="parea">${lines}${bars}</div></div>
+      <div class="ctab mos" aria-hidden="true"><span></span>${cols.map((c, i) => cell(esc(c.label), i, '')).join('')}</div>
+      <div class="ctab vals" aria-hidden="true">${rows.map((r) => `<span class="rh">${esc(r.h)}</span>${r.vals.map((v, i) => cell(v.t, i, 'cv ' + (r.cls || ''), v.z ? ' z' : '')).join('')}`).join('')}</div>
+    </figure>`;
   }
 
   function revenueChart() {
     const months = Array.from({ length: 6 }, (_, i) => addMonths(CUR, i - 5));
     const data = months.map((m) => ({ m, r: recebido(m), o: aReceber(m) }));
     const m = meta();
-    const maxV = Math.max(m, ...data.map((d) => d.r + d.o), 1);
-    const step = niceStep(maxV / 4);
-    const top = Math.ceil(maxV / step) * step;
-    const W = 600, H = 230, L = 52, R = 12, T = 16, B = 30;
-    const iw = W - L - R, ih = H - T - B;
-    const y = (v) => T + ih - (v / top) * ih;
-    const bw = (iw / data.length) * 0.56;
-    let g = '';
-    for (let v = 0; v <= top + 0.001; v += step) {
-      g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>`;
-      g += `<text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--soft)" font-family="IBM Plex Mono, monospace">${v >= 1000 ? (v / 1000).toLocaleString('pt-BR') + 'k' : v}</text>`;
-    }
-    data.forEach((d, i) => {
-      const cx = L + (iw / data.length) * (i + 0.5), x = cx - bw / 2;
-      const yr = y(d.r), yo = y(d.r + d.o);
-      if (d.o > 0) g += `<rect x="${x}" y="${yo}" width="${bw}" height="${yr - yo}" fill="var(--amber-soft)" stroke="var(--amber)" stroke-dasharray="3 2"/>`;
-      if (d.r > 0) g += `<rect x="${x}" y="${yr}" width="${bw}" height="${T + ih - yr}" fill="${d.m === CUR ? 'var(--accent)' : 'var(--leather)'}"/>`;
-      const lbl = d.r + d.o > 0 ? brl(d.r) : '';
-      if (lbl) g += `<text x="${cx}" y="${Math.min(yo, yr) - 5}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">${lbl.replace('R$', '').trim()}</text>`;
-      g += `<text x="${cx}" y="${H - 9}" text-anchor="middle" font-size="12" fill="${d.m === CUR ? 'var(--ink)' : 'var(--soft)'}" font-weight="${d.m === CUR ? 700 : 400}">${monthShort(d.m)}</text>`;
+    const anyO = data.some((d) => d.o > 0);
+    const cols = data.map((d) => {
+      const name = monthLabel(d.m, true);
+      return {
+        label: monthShort(d.m), cur: d.m === CUR,
+        segs: [{ v: d.r, cls: 's-rec' }, { v: d.o, cls: 's-are' }],
+        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>Recebido ${brl(d.r)}${d.o ? `<br>A receber ${brl(d.o)}` : ''}`,
+        aria: `${name}: recebido ${brl(d.r)}${d.o ? `, a receber ${brl(d.o)}` : ''}`,
+      };
     });
-    if (m) g += `<line x1="${L}" x2="${W - R}" y1="${y(m)}" y2="${y(m)}" stroke="var(--rust)" stroke-width="1.5" stroke-dasharray="6 4"/><text x="${W - R}" y="${y(m) - 5}" text-anchor="end" font-size="11" fill="var(--rust)">meta</text>`;
-    return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Recebido por mês nos últimos 6 meses">${g}</svg>
-      <div class="legend"><span><i style="background:var(--leather)"></i>Recebido</span><span><i style="background:var(--accent)"></i>Recebido (mês atual)</span><span><i style="background:var(--amber-soft);outline:1px dashed var(--amber)"></i>A receber</span>${m ? '<span><i style="background:var(--rust);height:2px;vertical-align:3px"></i>Meta</span>' : ''}</div></div>`;
+    const rows = [{ h: 'Recebido', vals: data.map((d) => ({ t: d.r ? kfmt(d.r) : '0', z: !d.r })) }];
+    if (anyO) rows.push({ h: 'A receber', cls: 'am', vals: data.map((d) => ({ t: d.o ? kfmt(d.o) : '–', z: !d.o })) });
+    const legend = `<span><i class="s-rec"></i>Recebido</span>${anyO ? '<span><i class="s-are"></i>A receber</span>' : ''}${m ? `<span><i class="ln"></i>Meta <b>${brl(m)}</b></span>` : ''}`;
+    return colChart({ aria: 'Recebido por mês nos últimos 6 meses', legend, cols, rows, ref: m ? { v: m, l: 'meta' } : null });
   }
   // ---------- aulas por mês ----------
   const SKIP = ['remarcada', 'remarcado', 'pro', 'final', 'do', 'da', 'pacote', 'e', 'de'];
@@ -584,30 +701,25 @@
       const done = evs.filter((e) => e.startDate < nowD);
       return { m, done: done.length, sched: evs.length - done.length, cli: new Set(evs.map(classKey)).size };
     });
-    const maxV = Math.max(...data.map((d) => d.done + d.sched), 1);
-    const step = niceStep(maxV / 4), top = Math.ceil(maxV / step) * step;
-    const W = 600, H = 240, L = 40, R = 12, T = 18, B = 44;
-    const iw = W - L - R, ih = H - T - B;
-    const y = (v) => T + ih - (v / top) * ih;
-    const bw = (iw / data.length) * 0.56;
-    let g = '';
-    for (let v = 0; v <= top + 0.001; v += step) {
-      g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>`;
-      g += `<text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--soft)" font-family="IBM Plex Mono, monospace">${v}</text>`;
-    }
-    data.forEach((d, i) => {
-      const cx = L + (iw / data.length) * (i + 0.5), x = cx - bw / 2;
-      const yd = y(d.done), ys = y(d.done + d.sched);
-      if (d.sched > 0) g += `<rect x="${x}" y="${ys}" width="${bw}" height="${yd - ys}" fill="var(--amber-soft)" stroke="var(--amber)" stroke-dasharray="3 2"/>`;
-      if (d.done > 0) g += `<rect x="${x}" y="${yd}" width="${bw}" height="${T + ih - yd}" fill="${d.m === CUR ? 'var(--accent)' : 'var(--leather)'}"/>`;
-      const tot = d.done + d.sched;
-      g += `<text x="${cx}" y="${ys - 5}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono, monospace">${tot}</text>`;
-      g += `<text x="${cx}" y="${H - 24}" text-anchor="middle" font-size="12" fill="${d.m === CUR ? 'var(--ink)' : 'var(--soft)'}" font-weight="${d.m === CUR ? 700 : 400}">${monthShort(d.m)}</text>`;
-      g += `<text x="${cx}" y="${H - 8}" text-anchor="middle" font-size="10.5" fill="var(--soft)">${d.cli} cli.</text>`;
+    const anyS = data.some((d) => d.sched > 0);
+    const cols = data.map((d) => {
+      const name = monthLabel(d.m, true);
+      const parts = `${d.done} ${d.done === 1 ? 'dada' : 'dadas'}${d.sched ? `, ${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}, ${d.cli} ${d.cli === 1 ? 'cliente' : 'clientes'}`;
+      return {
+        label: monthShort(d.m), cur: d.m === CUR,
+        segs: [{ v: d.done, cls: 's-dad' }, { v: d.sched, cls: 's-mar' }],
+        tip: `<b style="text-transform:capitalize">${esc(name)}</b><br>${d.done} ${d.done === 1 ? 'aula dada' : 'aulas dadas'}${d.sched ? `<br>${d.sched} ${d.sched === 1 ? 'marcada' : 'marcadas'}` : ''}<br>${d.cli} ${d.cli === 1 ? 'cliente' : 'clientes'}`,
+        aria: `${name}: ${parts}`,
+      };
     });
-    return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Aulas por mês nos últimos 7 meses">${g}</svg>
-      <div class="legend"><span><i style="background:var(--leather)"></i>Aulas dadas</span><span><i style="background:var(--accent)"></i>Dadas no mês atual</span><span><i style="background:var(--amber-soft);outline:1px dashed var(--amber)"></i>Marcadas</span><span>"cli." = clientes diferentes no mês</span></div></div>`;
+    const rows = [
+      { h: 'Aulas', vals: data.map((d) => ({ t: String(d.done + d.sched), z: !(d.done + d.sched) })) },
+      { h: 'Clientes', vals: data.map((d) => ({ t: String(d.cli), z: !d.cli })) },
+    ];
+    const legend = `<span><i class="s-dad"></i>Dadas</span>${anyS ? '<span><i class="s-mar"></i>Marcadas</span>' : ''}`;
+    return colChart({ aria: 'Aulas por mês nos últimos 7 meses', legend, cols, rows });
   }
+  const hbar = (n, k, max) => `<div class="hbar"><div class="hl"><span>${esc(n)}</span><b>${k}</b></div><div class="bar" aria-hidden="true"><span style="width:${((k / max) * 100).toFixed(1)}%"></span></div></div>`;
   function niceStep(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); const n = v / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p; }
 
   // ---------- agenda ----------
@@ -630,12 +742,13 @@
     return `<div class="empty">${esc(msg)}</div>`;
   }
   function evRow(e) {
-    const c = clientForEvent(e);
-    const sub = [c?.cao, e.loc].filter(Boolean).join(' · ');
+    const n = evName(e);
+    const sub = [n.dog, e.loc].filter(Boolean).join(' · ');
+    const tags = (/^avalia/i.test(e.raw) ? badge('previsto', 'avaliação') : '') + (e.pay ? badge('pendente', 'pagamento') : '');
     return `<a class="row" href="${esc(e.link)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
       <div class="datechip">${esc(weekday(e.date))}<b>${esc(e.date.slice(8, 10))}</b></div>
       <div class="time">${esc(e.time)}</div>
-      <div class="main"><div class="t">${esc(e.title)} ${e.pay ? badge('pendente', 'pagamento') : ''}</div>${sub ? `<div class="d">${esc(sub)}</div>` : ''}</div></a>`;
+      <div class="main"><div class="t">${esc(n.name)}</div>${tags || sub ? `<div class="d">${tags}${esc(sub)}</div>` : ''}</div></a>`;
   }
   function vAgenda() {
     const nowD = new Date();
@@ -648,15 +761,15 @@
       body = (S.agenda.status === 'err' ? agendaBox() : '') + days.map((d) => {
         const evs = up.filter((e) => e.date === d);
         if (!evs.length) return '';
-        return `<div class="day ${d === TODAY ? 'today' : ''}"><h3>${d === TODAY ? 'Hoje · ' : ''}${esc(dayLong(d))}</h3><div class="list">${evs.map(evRow).join('')}</div></div>`;
+        return `<div class="day ${d === TODAY ? 'is-today' : ''}"><h3>${d === TODAY ? 'Hoje · ' : ''}${esc(dayLong(d))}</h3><div class="list">${evs.map(evRow).join('')}</div></div>`;
       }).join('') || `<div class="empty">Nenhuma aula marcada nos próximos 15 dias.</div>`;
     }
     const past = S.agenda.events.filter((e) => e.date.startsWith(CUR) && e.startDate < nowD);
     const byClient = {};
-    past.forEach((e) => { const k = clientForEvent(e)?.nome || e.title; byClient[k] = (byClient[k] || 0) + 1; });
+    past.forEach((e) => { const k = evName(e).name; byClient[k] = (byClient[k] || 0) + 1; });
     const rows = Object.entries(byClient).sort((a, b) => b[1] - a[1]);
     const maxN = Math.max(1, ...rows.map((r) => r[1]));
-    const side = rows.length ? rows.map(([n, k]) => `<div class="hbar"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(n)}</span><div class="bar"><span style="width:${(k / maxN) * 100}%"></span></div><span class="num">${k}</span></div>`).join('') : `<div class="empty">Nenhuma aula dada ainda em ${monthLabel(CUR, true)}.</div>`;
+    const side = rows.length ? `<div class="hbars">${rows.map(([n, k]) => hbar(n, k, maxN)).join('')}</div>` : `<div class="empty">Nenhuma aula dada ainda em ${monthLabel(CUR, true)}.</div>`;
     return `<section><div class="sh"><h2>Aulas por mês</h2><span class="count">Google Agenda, últimos 7 meses</span></div>${classesChart()}</section>
     <div class="grid2">
       <section><div class="sh"><h2>Próximos 15 dias</h2><span class="count">${esc(fresh)}</span></div>
@@ -667,18 +780,18 @@
 
   // ---------- financeiro ----------
   function payRow(p) {
-    const late = p.status === 'pendente' && p.vencimento && p.vencimento < TODAY;
+    const late = isLate(p);
     const st = late ? badge('atrasado', 'atrasado') : badge(p.status, label(PAY_STATUS, p.status).split(/[ ,]/)[0]);
+    const det = [p.descricao, p.status === 'pago' && p.pagoEm && p.pagoEm !== p.vencimento ? 'pago em ' + dm(p.pagoEm) : '', p.status === 'pago' ? p.forma : ''].filter(Boolean).join(' · ');
     return `<div class="row stripe ${late ? 'bad' : p.status === 'pago' ? 'good' : p.status === 'pendente' ? 'warn' : 'info'} clickable" data-act="pay:${esc(p.id)}" tabindex="0">
       <div class="datechip">${esc(weekday(p.vencimento || TODAY))}<b>${esc((p.vencimento || '').slice(8, 10) || '—')}</b>${esc(p.vencimento ? monthShort(p.vencimento.slice(0, 7)) : '')}</div>
-      <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')} ${st} ${p.conferir ? badge('conferir', 'conferir') : ''}</div><div class="d">${esc([p.descricao, p.forma, p.status === 'pago' && p.pagoEm ? 'pago em ' + dm(p.pagoEm) : ''].filter(Boolean).join(' · '))}</div></div>
-      <div class="v">${brl(p.valor)}</div>
-      <div class="acts">${open(p) ? `<button class="btn small" data-act="markpaid:${esc(p.id)}">Recebi</button>` : ''}</div></div>`;
+      <div class="main"><div class="t">${esc(p.cliente || 'Sem cliente')}</div><div class="d">${st}${p.conferir ? badge('conferir', 'conferir') : ''}${esc(det)}</div></div>
+      <div class="end"><div class="v">${brl(p.valor)}</div>${open(p) ? `<button class="btn ghost small" data-act="markpaid:${esc(p.id)}" aria-label="${esc(`Recebi ${brl(p.valor)} de ${p.cliente || 'cliente'}`)}">Recebi</button>` : ''}</div></div>`;
   }
   function vFinanceiro() {
     const m = S.finMonth;
     const list = S.pagamentos.filter((p) => (open(p) ? (p.vencimento || '') : payMonth(p)).startsWith(m)).sort((a, b) => (a.vencimento || '').localeCompare(b.vencimento || ''));
-    const rec = recebido(m), are = aReceber(m), desp = despesasMes(m), ads = num(adsMes(m)?.investimento);
+    const rec = recebido(m), are = aReceberNoPrazo(m), desp = despesasMes(m), ads = num(adsMes(m)?.investimento);
     const lucro = rec - desp - ads;
     const at = atrasados();
     const dl = S.despesas.filter((d) => (d.data || '').startsWith(m)).sort((a, b) => (a.data || '').localeCompare(b.data || ''));
@@ -686,14 +799,14 @@
       <div class="inline"><button class="btn" data-act="new:pagamentos">Novo recebimento</button><button class="btn ghost" data-act="new:despesas">Nova despesa</button></div></div>
       <div class="kpis">
         ${kpi('Recebido', brl(rec), `${list.filter((p) => p.status === 'pago').length} pagamentos`, 'good')}
-        ${kpi('A receber', brl(are), `${list.filter(open).length} em aberto`, 'warn')}
+        ${kpi('A receber no prazo', brl(are), (() => { const n = list.filter(noPrazo).length; return `${n} ${n === 1 ? 'pagamento' : 'pagamentos'}, sem os atrasados`; })(), 'warn')}
         ${kpi('Despesas + anúncios', brl(desp + ads), ads ? `${brl(ads)} no Google Ads` : 'Google Ads não lançado')}
         ${kpi('Sobra aproximada', brl(lucro), 'recebido − custos lançados (sem impostos e taxas)', lucro < 0 ? 'bad' : '')}
-        ${kpi('Em atraso (todos os meses)', brl(sum(at, (p) => p.valor)), `${at.length} pagamentos`, at.length ? 'bad' : '')}
+        ${kpi('Em atraso', brl(sum(at, (p) => p.valor)), `${at.length} ${at.length === 1 ? 'pagamento' : 'pagamentos'}, de todos os meses`, at.length ? 'bad' : '')}
       </div>
       <div class="grid2">
         <section><div class="sh"><h2>Recebimentos de ${esc(monthShort(m))}</h2><span class="count">${list.length} lançamentos</span></div>
-          <p class="note"><b>Pago</b> já entrou. <b>Combinado</b> o cliente confirmou data e valor. <b>Previsto</b> é estimativa minha (mensalidade esperada) — confirme com o cliente ou exclua.</p>
+          <p class="note"><b>Pago</b> já entrou. <b>Combinado</b> o cliente confirmou data e valor. <b>Previsto</b> é estimativa minha (mensalidade esperada). Confirme com o cliente ou exclua.</p>
           ${list.length ? `<div class="list">${list.map(payRow).join('')}</div>` : `<div class="empty">${isLoading() ? 'Carregando…' : 'Nenhum recebimento neste mês.'}</div>`}
           ${at.length && m === CUR ? `<div class="sh" style="margin-top:1.5rem"><h2>Atrasados de meses anteriores</h2></div><div class="list">${at.filter((p) => !p.vencimento.startsWith(m)).map(payRow).join('') || '<div class="row"><div class="main d">Nenhum.</div></div>'}</div>` : ''}
         </section>
@@ -738,7 +851,7 @@
         <section>${list.length ? `<div class="cards">${cards}</div>` : `<div class="empty">${isLoading() ? 'Carregando…' : 'Nenhum cliente neste filtro.'}</div>`}</section>
         <section><div class="sh"><h2>De onde vêm os clientes</h2></div>
           <p class="note">Clientes não encerrados por origem. Preencher a origem mostra se o Google Ads está se pagando.</p>
-          ${ogRows.map(([n, k]) => `<div class="hbar"><span>${esc(n)}</span><div class="bar"><span style="width:${(k / maxO) * 100}%"></span></div><span class="num">${k}</span></div>`).join('') || '<div class="empty">Sem dados.</div>'}
+          ${ogRows.length ? `<div class="hbars">${ogRows.map(([n, k]) => hbar(n, k, maxO)).join('')}</div>` : '<div class="empty">Sem dados.</div>'}
         </section>
       </div>`;
   }
