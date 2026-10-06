@@ -9,5 +9,7 @@ Cada parte venceu, às cegas, um júri simulado a partir de 8 clientes reais que
 - `revisao-copy-atual.md` — revisão da copy atual (38/100).
 - `briefing.md` e `conceitos.md` — fatos do negócio e os 10 ângulos.
 
+A copy recomendada é `copies/FINAL.md`: topo escolhido pelo Caio + seções mais fortes, aprovada às cegas contra D2 e W1 com os 8 clientes no júri.
+
 Recomendação: ligar a medição de conversão primeiro; testar D2 x W1, depois D4 x W5.
 Os dossiês e as transcrições dos clientes não foram versionados, por privacidade.
