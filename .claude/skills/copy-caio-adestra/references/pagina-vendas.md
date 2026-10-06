@@ -22,7 +22,6 @@ Entregue em seções nomeadas, prontas pra colar no construtor do site:
    - Preciso participar? (Sim — "eu passo uma hora por semana com ele, você passa o resto".)
    - Vocês machucam o cachorro? Como é a correção? (Método equilibrado: recompensa quando acerta, correção leve e justa quando erra — pressão e alívio na guia, nunca bater.)
    - Atende minha cidade? Vem até em casa? Atende fim de semana? (Sim: Salto e região, em domicílio, inclusive sábado e domingo.)
-   - Quanto custa? (só se o Caio passar o valor no pedido; senão, omita essa pergunta)
 8. **O que você leva** — entregáveis reais, cada um ligado a um obstáculo do tutor (aula SOS em casa, plano pro seu cão, passo a passo do dia a dia, suporte no WhatsApp, indicação dos produtos certos). Garantia: ver Pendências no `SKILL.md`.
 9. **O que está em jogo × o final feliz** — 2 linhas de cada, sem drama: o hábito que se instala vs. a cena concreta de paz.
 10. **Chamada final** — repete a promessa + botão do WhatsApp + motivo real pra agir agora (o hábito se instala a cada dia; filhote aprende mais fácil agora).

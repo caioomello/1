@@ -37,6 +37,7 @@
 ## Preferências
 
 - Comunicação em **português do Brasil (pt-BR)**.
+- Respostas **resumidas**: curtas e diretas, sem textão.
 
 ## Notas técnicas — Claude Code Remote (mensagens entre sessões)
 

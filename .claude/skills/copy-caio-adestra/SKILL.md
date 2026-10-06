@@ -13,7 +13,7 @@ Estas decisões ainda são do Caio. Até ele responder no pedido, siga a coluna 
 
 | Assunto | Padrão enquanto pendente |
 |---|---|
-| **Preço** | Não citar valor. Só cite se o Caio passar no pedido. Nunca use colchetes de preço no texto — omita. |
+| **Preço** | ✅ Decidido: **sem preço** em anúncio, página e post (aula custa R$169 — informação interna, não publicar). Nunca colchetes de preço — omita. |
 | **Garantia** | Não oferecer garantia nenhuma. Pode sugerir uma em "Pra completar:". |
 | **Nome do método** | ✅ Decidido: **método equilibrado** (pode usar com destaque no texto). Pacotes: só "aula SOS"; nome novo de pacote vai como sugestão em "Pra completar:". |
 | **Provas/depoimentos** | Só anônimos e genéricos (ver `references/provas.md`). |
