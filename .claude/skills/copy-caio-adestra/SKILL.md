@@ -15,9 +15,9 @@ Estas decisões ainda são do Caio. Até ele responder no pedido, siga a coluna 
 |---|---|
 | **Preço** | Não citar valor. Só cite se o Caio passar no pedido. Nunca use colchetes de preço no texto — omita. |
 | **Garantia** | Não oferecer garantia nenhuma. Pode sugerir uma em "Pra completar:". |
-| **Nome do método/pacotes** | Usar só "aula SOS". Nome novo: sugerir 2–3 opções em "Pra completar:", nunca no texto. |
+| **Nome do método** | ✅ Decidido: **método equilibrado** (pode usar com destaque no texto). Pacotes: só "aula SOS"; nome novo de pacote vai como sugestão em "Pra completar:". |
 | **Provas/depoimentos** | Só anônimos e genéricos (ver `references/provas.md`). |
-| **Bônus por indicação** | Só citar se o Caio confirmar que continua valendo. |
+| **Bônus por indicação** | ✅ Decidido: **não usar**. Nada de chamada de indicação com recompensa. |
 | **Agenda cheia como urgência** | Não usar. Pode dizer que atende também aos fins de semana (é verdade). |
 
 Quando o Caio decidir algo, sugira atualizar esta tabela.

@@ -15,8 +15,4 @@ Avaliações e vídeos: o Caio tem avaliações no Google e alguns vídeos de au
 
 ## Indicações
 
-Clientes costumam indicar parentes, amigos e vizinhos. O Caio dá uma aula (ou o valor de uma aula) a quem indica quando a indicação fecha — **cite só se o Caio confirmar no pedido que a regra continua valendo**.
-
-Chamada base (quando confirmada):
-
-> Conhece alguém que tá passando perrengue com o cachorro? Me indica! Se a pessoa fechar o adestramento, você ganha uma aula. 🐾
+Clientes costumam indicar parentes, amigos e vizinhos — isso pode ser dito como prova de confiança ("vários clientes chegaram por indicação de outros clientes"). **Não ofereça recompensa por indicação** (decisão do Caio).
