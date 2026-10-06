@@ -11,7 +11,7 @@ Campos e limites práticos (o que aparece sem cortar):
 Formato de entrega para cada variação:
 
 ```
-Variação A — ângulo: <dor | desejo | curiosidade | objeção>
+Variação A — Big Idea: <...> · Dor: <...> · Ângulo: dor | teste-<desejo|prova|curiosidade>
 Texto principal: ...
 Título: ...
 Descrição: ...
@@ -28,10 +28,17 @@ Políticas do Meta que importam aqui: não afirme atributos pessoais do leitor d
 - Inclua palavras que o tutor pesquisa: "adestrador", "adestramento", "comportamento canino", "filhote", "cachorro late", "ansiedade de separação" + `[cidade]` se o Caio informar.
 - Conte os caracteres; não ultrapasse.
 
-## Ângulos que costumam funcionar
+## Ângulos
 
-- **Dor da cena**: "Chegou em casa e o sofá virou confete?"
-- **Alívio/desejo**: "Imagina passear sem ser arrastado pela guia."
-- **Tirar a culpa**: "Seu cão não é teimoso. Ele só ainda não entendeu o que você quer."
-- **Objeção de tempo/dinheiro**: começar pela avaliação, que mostra o caminho antes de qualquer pacote.
-- **Filhote novo**: "Os primeiros meses definem os próximos 15 anos."
+**Padrão: dor.** A maioria das variações explora dores diferentes do mesmo problema, com cenas tiradas de `voz-do-cliente.md`. Exemplos de gancho:
+- "Chegou em casa e o sofá virou confete — de novo?"
+- "Cinco da tarde é a hora da vergonha no passeio?"
+- "Seu filho tem medo do próprio filhote?"
+- "Já comprou tapetinho, spray, Pipidog… e ele faz xixi do lado?"
+
+**Testes (no máximo 1 por entrega, sinalizado como teste):**
+- **Desejo/paz**: "Imagina passear sem ser arrastado pela guia."
+- **Prova**: caso real de `provas.md` (respeitando autorização).
+- **Curiosidade/mito**: uma Big Idea direta ("Seu cachorro aprende rápido. O problema é outro.").
+
+**Sempre** feche com a aula SOS: "Vou até sua casa, descubro a causa e você já sai com o passo a passo." (o texto é na voz do Caio, em primeira pessoa)

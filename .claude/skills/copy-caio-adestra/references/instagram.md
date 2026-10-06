@@ -1,6 +1,6 @@
 # Posts de Instagram
 
-O objetivo do conteúdo orgânico é **gerar confiança** (o tutor pensa "esse cara entende") e levar pro WhatsApp. Misture: dica prática que funciona sozinha, bastidor de aula, caso real (com autorização), quebra de mito. Não precisa vender em todo post — mas todo post tem um próximo passo.
+O objetivo do conteúdo orgânico é **gerar confiança** (o tutor pensa "esse cara entende") e levar pro WhatsApp. Misture: dor (cenas de `voz-do-cliente.md`), dica prática que funciona sozinha, bastidor de aula, caso real (de `provas.md`, com autorização), quebra de mito (Big Idea). Em post de resultado, feche com a chamada de indicação de `provas.md`. Não precisa vender em todo post — mas todo post tem um próximo passo.
 
 ## Legenda
 
