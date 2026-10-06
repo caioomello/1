@@ -1,0 +1,365 @@
+<title>Copy do Site Caio Adestra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: caderno de campo; resumo e recomendação no topo, depois as 10 copies em abas (dor em cobre, desejo em verde-água), e no fim o que confirmar */
+:root{
+  --bg:#f3f1ec; --card:#fbfaf7; --ink:#1d2523; --soft:#5c6763; --line:#d9d6cc;
+  --accent:#1f6f6a; --accent-soft:#d9ebe8; --warm:#b4612a; --warm-soft:#f4e3d4;
+  --cf:#8a6a12; --cf-soft:#f6ebc6; --pr:#8a3b52; --pr-soft:#f5dde4;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a19; --card:#1b2321; --ink:#e7ece9; --soft:#9aa7a2; --line:#2c3633;
+  --accent:#5fc0b6; --accent-soft:#1d3532; --warm:#e39a62; --warm-soft:#3a2a1d;
+  --cf:#e8c766; --cf-soft:#3a3118; --pr:#ec9ab0; --pr-soft:#3c2129; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a19; --card:#1b2321; --ink:#e7ece9; --soft:#9aa7a2; --line:#2c3633;
+  --accent:#5fc0b6; --accent-soft:#1d3532; --warm:#e39a62; --warm-soft:#3a2a1d;
+  --cf:#e8c766; --cf-soft:#3a3118; --pr:#ec9ab0; --pr-soft:#3c2129; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:920px;margin:0 auto;padding-inline:16px;padding-block:2.2rem 4rem;display:flex;flex-direction:column;gap:2.6rem}
+header{display:flex;flex-direction:column;gap:.5rem;border-bottom:2px solid var(--ink);padding-bottom:1.2rem}
+.eye{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3rem);line-height:1.02;margin:0;text-wrap:balance}
+.lede{color:var(--soft);max-width:64ch;margin:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.35rem;margin:0 0 .8rem;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:1.05rem;margin:0}
+p{margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--line);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.big{font-family:var(--f-display);font-weight:800;font-size:2.2rem;line-height:1;color:var(--warm)}
+.card .small{color:var(--soft);font-size:.92rem}
+.reco{background:var(--accent-soft);border-left:4px solid var(--accent);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.reco ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem}
+.tabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:.5rem;margin-bottom:1rem}
+.tab{all:unset;cursor:pointer;display:flex;gap:.55rem;align-items:center;padding:.55rem .65rem;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:.9rem;line-height:1.25;min-width:0}
+.tab[aria-selected="true"]{border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.tab:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tid{font-family:var(--f-mono);font-size:.75rem;padding:.12rem .4rem;border-radius:3px;flex:none}
+.tid.dor,.tag.dor{background:var(--warm-soft);color:var(--warm)}
+.tid.final,.tag.final{background:var(--ink);color:var(--bg)}
+.tid.desejo,.tag.desejo{background:var(--accent-soft);color:var(--accent)}
+.tag{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;padding:.15rem .45rem;border-radius:3px;align-self:flex-start}
+.panel{background:var(--card);border:1px solid var(--line);padding:1.2rem 1.3rem 1.5rem}
+.ph{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1rem}
+.phl{display:flex;flex-direction:column;gap:.35rem;min-width:0;flex:1 1 320px}
+.h1q{font-family:var(--f-display);font-size:1.15rem;color:var(--soft)}
+.meta{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+.meta div{display:flex;flex-direction:column;align-items:flex-start}
+.meta b{font-family:var(--f-mono);font-size:1.1rem;font-variant-numeric:tabular-nums}
+.meta span{font-size:.75rem;color:var(--soft)}
+.copy{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.78rem;padding:.45rem .75rem;border:1px solid var(--ink);color:var(--ink)}
+.copybody{max-width:68ch;min-width:0;overflow-wrap:anywhere}
+.copybody h2{font-size:1.1rem;margin:1.6rem 0 .6rem;padding-top:.9rem;border-top:1px dashed var(--line)}
+.copybody h2:first-child{margin-top:0;border-top:0;padding-top:0}
+.copybody h1{font-family:var(--f-display);font-size:1.45rem;line-height:1.15;margin:.6rem 0}
+.copybody p,.copybody ul,.copybody ol{margin:.5rem 0}
+.copybody li{margin:.2rem 0}
+.pn{font-family:var(--f-mono);font-size:.75rem;color:var(--soft);margin-right:.3rem}
+mark{padding:0 .25rem;border-radius:2px;font-family:var(--f-mono);font-size:.72em}
+mark.cf{background:var(--cf-soft);color:var(--cf)}
+mark.pr{background:var(--pr-soft);color:var(--pr)}
+.src{position:absolute;left:-9999px;width:1px;height:1px}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.88rem;color:var(--soft);margin-bottom:.8rem}
+.list{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.4rem;max-width:70ch}
+.note{color:var(--soft);font-size:.92rem;max-width:68ch}
+</style>
+<div class="wrap">
+  <header>
+    <span class="eye">Caio Adestra · gauntlet de copy · out/2026</span>
+    <h1>Copy do Site Caio Adestra</h1>
+    <p class="lede">O texto completo do site, do topo à chamada final. Cada parte venceu, às cegas, um júri formado pelos 8 clientes que fecharam com o Caio, montado a partir das conversas e dos áudios reais do WhatsApp.</p>
+  </header>
+
+  <section>
+    <h2>O que os dados dizem</h2>
+    <div class="grid">
+      <div class="card"><span class="big">5 de 8</span><p>clientes que fecharam chegaram por dor. Só 1 por desejo (a Julia, que viaja e queria levar a filhote). 2 foram mistos.</p></div>
+      <div class="card"><span class="big">~6 de 190</span><p>pedidos públicos de orçamento na região eram preventivos. Todo o resto já chegava com o problema instalado.</p></div>
+      <div class="card"><span class="big">38/100</span><p>foi a nota do revisor para a copy atual. Título genérico, preço escondido e nenhuma prova de confiança.</p></div>
+    </div>
+    <p class="note" style="margin-top:1rem">O que fecha venda nas conversas: preço e duração na mesma mensagem, data concreta (muitas vezes hoje ou amanhã), a família aprendendo junto e um método sem tranco. Ninguém discutiu o preço da avaliação. A objeção de preço só aparece no pacote.</p>
+  </section>
+
+  <section class="reco">
+    <h2 style="margin:0">Antes de pôr no ar</h2>
+    <ol>
+      <li><b>Ligue a medição.</b> No código atual a conversão do Google Ads está vazia, então não dá para saber quantas conversas a página gera.</li>
+      <li><b>Confirme os dados</b> da lista no fim da página e troque os campos marcados.</li>
+      <li>Depois de umas 30 conversas pelo site, compare com o período da copy antiga.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>A copy</h2>
+    <div class="legend"><span><mark class="cf">CONFIRMAR</mark> dado que o Caio precisa validar</span><span><mark class="pr">PREENCHER</mark> dado que ainda não existe</span></div>
+    <div class="tabs" role="tablist" aria-label="Copy" hidden><button class="tab" role="tab" id="t-FINAL" aria-controls="p-FINAL" aria-selected="true" data-id="FINAL"><span class="tid final">FINAL</span><span class="tn">Copy final (topo escolhido)</span></button></div>
+    <section class="panel" role="tabpanel" id="p-FINAL" aria-labelledby="t-FINAL" >
+<div class="ph"><div class="phl"><span class="tag final">final</span><h2>Copy final (topo escolhido)</h2><p class="h1q">“Você ama seu cachorro. Só não sabe mais o que fazer com ele.”</p></div>
+<div class="meta"><div><b>7</b><span>rodadas até vencer</span></div><div><b>5/8</b><span>na última rodada</span></div><button class="copy" data-src="src-FINAL">Copiar texto</button></div></div>
+<div class="copybody"><h2><span class="pn">P1</span> Topo</h2>
+<p><strong>Etiqueta:</strong> Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí</p>
+<p><strong>Título (H1):</strong> Você ama seu cachorro. Só não sabe mais o que fazer com ele.</p>
+<p><strong>Subtítulo:</strong> Filhote que morde tudo e faz xixi pela casa. Adulto que puxa a guia, avança em outro cão ou bate no outro da casa. Vou até você, sem grito e sem machucar, e você sai da avaliação sabendo o que fazer.</p>
+<p><strong>Botão:</strong> Me conta o que está acontecendo (WhatsApp)</p>
+<p><strong>Apoio:</strong>
+- Avaliação em casa: R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 1 hora
+- Muitas vezes vou no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>
+- Pode mandar áudio</p>
+<h2><span class="pn">P2</span> Problemas</h2>
+<p><strong>Ache a sua frase</strong></p>
+<p>Toque e ela vai escrita pro meu WhatsApp.</p>
+<p><strong>Filhote</strong>
+- "Morder tudo e todos" → brincar sem machucar
+- "Espalha as necessidades por toda a garagem" → xixi e cocô num lugar só
+- "Eu desço 1 andar ele fica chorando muito" → sair e ele ficar tranquilo</p>
+<p><strong>Cão adulto</strong>
+- "Os passeios, tá impossível" → guia frouxa, ele do seu lado
+- "Minha mulher não consegue segurar ele" → qualquer um da casa levar
+- "Trocamos de local, tô com medo de ficar perdido" → xixi certo na casa nova
+- "Está batendo no cão menor" → os cães juntos de novo
+- "Fica franzinho do nariz pra mim, me ameaçando" → mexer nele sem medo</p>
+<p>Não achou? <strong>[Me conta no WhatsApp]</strong></p>
+<h2><span class="pn">P3</span> Como funciona</h2>
+<p><strong>Como a gente começa</strong></p>
+<ol>
+<li><strong>Você chama no WhatsApp.</strong> Eu mesmo respondo.</li>
+<li><strong>Vou até a sua casa,</strong> muitas vezes no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark>. Manhã, tarde ou fim de semana. Remarcar é tranquilo.</li>
+<li><strong>Avaliação de cerca de 1 hora,</strong> com a família junto, como em toda aula. Você sai com o plano pro dia seguinte.</li>
+<li><strong>Depois, pacote mensal <mark class="cf">CONFIRMAR</mark>,</strong> 1 ou 2 aulas por semana. Filhote sem todas as vacinas já começa, dentro de casa.</li>
+</ol>
+<p><strong>Como eu ensino:</strong> petisco pro certo; no limite, a guia avisa e solta. Sem tranco, sem grito.</p>
+<h2><span class="pn">P4</span> Oferta e preço</h2>
+<p><strong>Os valores, antes de eu chegar.</strong></p>
+<ul>
+<li><strong>Avaliação na sua casa:</strong> R$ 169 <mark class="cf">CONFIRMAR</mark>, cerca de 1 hora.</li>
+<li><strong>Cão tranquilo, 4 aulas (1 por semana):</strong> R$ 636 <mark class="cf">CONFIRMAR</mark>. Filhote e rotina corrida: xixi, mordidinha, guia, caixa de transporte.</li>
+<li><strong>Cão agitado, 8 aulas (2 por semana):</strong> R$ 1.272 <mark class="cf">CONFIRMAR</mark>. Mordida, briga entre cães, passeio difícil.</li>
+<li><strong>Aula avulsa:</strong> R$ 160 <mark class="cf">CONFIRMAR</mark>.</li>
+</ul>
+<p>O pacote dura cerca de 1 mês e, ao renovar, você escolhe o ritmo <mark class="cf">CONFIRMAR</mark>.</p>
+<p><strong>Pagamento:</strong> Pix ou cartão em 2x sem juros <mark class="cf">CONFIRMAR</mark>, até em dois cartões. Pacote: metade no começo, metade no meio.</p>
+<p><strong>Botão:</strong> Agendar minha avaliação</p>
+<h2><span class="pn">P5</span> Quem é o Caio</h2>
+<p><strong>Quem vai na sua casa sou eu, o Caio</strong></p>
+<p><strong>Nota no Google: <mark class="pr">PREENCHER nota e nº de avaliações, com link</mark></strong></p>
+<p>Sou de Salto e eu mesmo faço todas as aulas <mark class="cf">CONFIRMAR</mark>. <mark class="pr">PREENCHER anos de experiência e formação</mark></p>
+<p>Minha malinois é elétrica e tem instinto de caça alto, mas fica tranquila em casa porque criei uma rotina com ela. E não pega nenhum dos meus gatos: ensinei desde pequena. É essa rotina que eu monto com você.</p>
+<p><strong>Casos reais:</strong>
+- <strong>Xixi no apartamento novo, Indaiatuba.</strong> Um dia depois da avaliação: "Ontem ele não fez nenhuma necessidade em casa." Lucas <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Filhote que mordia, chorava e assustava os 3 gatos, Cabreúva.</strong> "Ele não tá aprontando muito não." Felipe <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Golden de 45 kg que avançava em outros cães, Campinas.</strong> Depois da 1ª aula: "Agora ele tá aqui brincando." Kaylhandra <mark class="cf">CONFIRMAR autorização</mark>
+- <strong>Cão batendo no menor, Itu.</strong> O tutor chamou às 14h20. Às 15h18 eu estava chegando. <mark class="cf">CONFIRMAR autorização</mark></p>
+<p><mark class="pr">PREENCHER foto do Caio com a malinois</mark></p>
+<h2><span class="pn">P6</span> Perguntas</h2>
+<p><strong>A avaliação é paga?</strong>
+Sim. Ali eu já trabalho com ele e com vocês.</p>
+<p><strong>Você atende a minha cidade?</strong>
+Salto, Itu, Indaiatuba e região, até Campinas, Jundiaí e Sorocaba. Me fala o bairro.</p>
+<p><strong>Meu filhote não tomou todas as vacinas. Já dá?</strong>
+Dá. Dentro de casa sem problema; a rua fica pra depois.</p>
+<p><strong>Ele chora quando eu saio. Tem como melhorar?</strong>
+Dá pra trabalhar. Ele aprende a ficar sozinho aos poucos, e você aprende o que fazer na saída e na volta. O tempo muda de cão pra cão.</p>
+<p><strong>Meu cachorro avança, rosna ou briga com o outro da casa. Tem jeito?</strong>
+Tem. Olho todos os cães da casa. Com ameaça ou mordida, o ideal é começar logo. Na avaliação já passo um jeito seguro de lidar.</p>
+<p><strong>Você vai ser bruto com ele?</strong>
+Não. Rosnado é aviso, e punir o aviso faz ele ir direto pra mordida. E você vê tudo de perto.</p>
+<h2><span class="pn">P7</span> Chamada final</h2>
+<p><strong>Daqui a pouco você já sabe o que fazer com ele.</strong></p>
+<p>Problema de agora ou filhote recém-chegado: me manda nome, o que acontece e bairro, em texto ou áudio. Sem sermão. Eu mesmo respondo.</p>
+<p><strong>Botão:</strong> Chamar o Caio no WhatsApp</p>
+<p><strong>Abaixo do botão:</strong> Avaliação na sua casa: R$ 169 <mark class="cf">CONFIRMAR</mark> · Manhã, tarde ou fim de semana · Muitas vezes no mesmo dia ou no seguinte <mark class="cf">CONFIRMAR</mark></p>
+<h2>Mensagem pronta do WhatsApp</h2>
+<p>Oi, Caio! Vim pelo site e não sei mais o que fazer com meu cachorro. Ele se chama <strong><em>, tem ___ e o que mais me preocupa é </em></strong>. Moro no bairro <strong><em>, em </em></strong>.</p>
+<p>(Nas frases da P2: "Oi, Caio! Vim pelo site. Meu cachorro se chama ___ e aqui é assim: "<frase tocada>". Moro no bairro <strong><em>, em </em></strong>.")</p>
+<h2>Título da aba (SEO)</h2>
+<p>Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra</p>
+<h2>Para o Caio confirmar</h2>
+<ol>
+<li>Valor da avaliação: R$ 169.</li>
+<li>"Muitas vezes vou no mesmo dia ou no seguinte."</li>
+<li>Pacote mensal, com duração de cerca de 1 mês e escolha do ritmo ao renovar.</li>
+<li>Pacote de 4 aulas (1 por semana): R$ 636.</li>
+<li>Pacote de 8 aulas (2 por semana): R$ 1.272.</li>
+<li>Aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).</li>
+<li>Cartão em 2x sem juros (para o Luiz Felipe você falou em "juros da maquininha").</li>
+<li>"Eu mesmo faço todas as aulas."</li>
+<li><mark class="pr">PREENCHER</mark> Nota no Google, nº de avaliações e link.</li>
+<li><mark class="pr">PREENCHER</mark> Anos de experiência e formação.</li>
+<li><mark class="pr">PREENCHER</mark> Foto do Caio com a malinois.</li>
+<li>Autorização para citar os casos de Lucas, Felipe, Kaylhandra e do tutor de Itu (Tarciso).</li>
+</ol></div>
+<textarea class="src" id="src-FINAL" readonly aria-label="Texto em markdown da copy FINAL"># FINAL: Você ama seu cachorro
+
+## P1 Topo
+**Etiqueta:** Adestrador em casa · Salto, Itu, Indaiatuba, Cabreúva, Campinas e Jundiaí
+
+**Título (H1):** Você ama seu cachorro. Só não sabe mais o que fazer com ele.
+
+**Subtítulo:** Filhote que morde tudo e faz xixi pela casa. Adulto que puxa a guia, avança em outro cão ou bate no outro da casa. Vou até você, sem grito e sem machucar, e você sai da avaliação sabendo o que fazer.
+
+**Botão:** Me conta o que está acontecendo (WhatsApp)
+
+**Apoio:**
+- Avaliação em casa: R$ 169 [CONFIRMAR], cerca de 1 hora
+- Muitas vezes vou no mesmo dia ou no seguinte [CONFIRMAR]
+- Pode mandar áudio
+
+## P2 Problemas
+**Ache a sua frase**
+
+Toque e ela vai escrita pro meu WhatsApp.
+
+**Filhote**
+- &quot;Morder tudo e todos&quot; → brincar sem machucar
+- &quot;Espalha as necessidades por toda a garagem&quot; → xixi e cocô num lugar só
+- &quot;Eu desço 1 andar ele fica chorando muito&quot; → sair e ele ficar tranquilo
+
+**Cão adulto**
+- &quot;Os passeios, tá impossível&quot; → guia frouxa, ele do seu lado
+- &quot;Minha mulher não consegue segurar ele&quot; → qualquer um da casa levar
+- &quot;Trocamos de local, tô com medo de ficar perdido&quot; → xixi certo na casa nova
+- &quot;Está batendo no cão menor&quot; → os cães juntos de novo
+- &quot;Fica franzinho do nariz pra mim, me ameaçando&quot; → mexer nele sem medo
+
+Não achou? **[Me conta no WhatsApp]**
+
+## P3 Como funciona
+**Como a gente começa**
+
+1. **Você chama no WhatsApp.** Eu mesmo respondo.
+2. **Vou até a sua casa,** muitas vezes no mesmo dia ou no seguinte [CONFIRMAR]. Manhã, tarde ou fim de semana. Remarcar é tranquilo.
+3. **Avaliação de cerca de 1 hora,** com a família junto, como em toda aula. Você sai com o plano pro dia seguinte.
+4. **Depois, pacote mensal [CONFIRMAR],** 1 ou 2 aulas por semana. Filhote sem todas as vacinas já começa, dentro de casa.
+
+**Como eu ensino:** petisco pro certo; no limite, a guia avisa e solta. Sem tranco, sem grito.
+
+## P4 Oferta e preço
+**Os valores, antes de eu chegar.**
+
+- **Avaliação na sua casa:** R$ 169 [CONFIRMAR], cerca de 1 hora.
+- **Cão tranquilo, 4 aulas (1 por semana):** R$ 636 [CONFIRMAR]. Filhote e rotina corrida: xixi, mordidinha, guia, caixa de transporte.
+- **Cão agitado, 8 aulas (2 por semana):** R$ 1.272 [CONFIRMAR]. Mordida, briga entre cães, passeio difícil.
+- **Aula avulsa:** R$ 160 [CONFIRMAR].
+
+O pacote dura cerca de 1 mês e, ao renovar, você escolhe o ritmo [CONFIRMAR].
+
+**Pagamento:** Pix ou cartão em 2x sem juros [CONFIRMAR], até em dois cartões. Pacote: metade no começo, metade no meio.
+
+**Botão:** Agendar minha avaliação
+
+## P5 Quem é o Caio
+**Quem vai na sua casa sou eu, o Caio**
+
+**Nota no Google: [PREENCHER nota e nº de avaliações, com link]**
+
+Sou de Salto e eu mesmo faço todas as aulas [CONFIRMAR]. [PREENCHER anos de experiência e formação]
+
+Minha malinois é elétrica e tem instinto de caça alto, mas fica tranquila em casa porque criei uma rotina com ela. E não pega nenhum dos meus gatos: ensinei desde pequena. É essa rotina que eu monto com você.
+
+**Casos reais:**
+- **Xixi no apartamento novo, Indaiatuba.** Um dia depois da avaliação: &quot;Ontem ele não fez nenhuma necessidade em casa.&quot; Lucas [CONFIRMAR autorização]
+- **Filhote que mordia, chorava e assustava os 3 gatos, Cabreúva.** &quot;Ele não tá aprontando muito não.&quot; Felipe [CONFIRMAR autorização]
+- **Golden de 45 kg que avançava em outros cães, Campinas.** Depois da 1ª aula: &quot;Agora ele tá aqui brincando.&quot; Kaylhandra [CONFIRMAR autorização]
+- **Cão batendo no menor, Itu.** O tutor chamou às 14h20. Às 15h18 eu estava chegando. [CONFIRMAR autorização]
+
+[PREENCHER foto do Caio com a malinois]
+
+## P6 Perguntas
+**A avaliação é paga?**
+Sim. Ali eu já trabalho com ele e com vocês.
+
+**Você atende a minha cidade?**
+Salto, Itu, Indaiatuba e região, até Campinas, Jundiaí e Sorocaba. Me fala o bairro.
+
+**Meu filhote não tomou todas as vacinas. Já dá?**
+Dá. Dentro de casa sem problema; a rua fica pra depois.
+
+**Ele chora quando eu saio. Tem como melhorar?**
+Dá pra trabalhar. Ele aprende a ficar sozinho aos poucos, e você aprende o que fazer na saída e na volta. O tempo muda de cão pra cão.
+
+**Meu cachorro avança, rosna ou briga com o outro da casa. Tem jeito?**
+Tem. Olho todos os cães da casa. Com ameaça ou mordida, o ideal é começar logo. Na avaliação já passo um jeito seguro de lidar.
+
+**Você vai ser bruto com ele?**
+Não. Rosnado é aviso, e punir o aviso faz ele ir direto pra mordida. E você vê tudo de perto.
+
+## P7 Chamada final
+**Daqui a pouco você já sabe o que fazer com ele.**
+
+Problema de agora ou filhote recém-chegado: me manda nome, o que acontece e bairro, em texto ou áudio. Sem sermão. Eu mesmo respondo.
+
+**Botão:** Chamar o Caio no WhatsApp
+
+**Abaixo do botão:** Avaliação na sua casa: R$ 169 [CONFIRMAR] · Manhã, tarde ou fim de semana · Muitas vezes no mesmo dia ou no seguinte [CONFIRMAR]
+
+## Mensagem pronta do WhatsApp
+Oi, Caio! Vim pelo site e não sei mais o que fazer com meu cachorro. Ele se chama ___, tem ___ e o que mais me preocupa é ___. Moro no bairro ___, em ___.
+
+(Nas frases da P2: &quot;Oi, Caio! Vim pelo site. Meu cachorro se chama ___ e aqui é assim: &quot;&lt;frase tocada&gt;&quot;. Moro no bairro ___, em ___.&quot;)
+
+## Título da aba (SEO)
+Adestrador em casa em Salto, Itu e Indaiatuba | Caio Adestra
+
+## Para o Caio confirmar
+1. Valor da avaliação: R$ 169.
+2. &quot;Muitas vezes vou no mesmo dia ou no seguinte.&quot;
+3. Pacote mensal, com duração de cerca de 1 mês e escolha do ritmo ao renovar.
+4. Pacote de 4 aulas (1 por semana): R$ 636.
+5. Pacote de 8 aulas (2 por semana): R$ 1.272.
+6. Aula avulsa: R$ 160 (para a Kaylhandra foi cotada a R$ 190).
+7. Cartão em 2x sem juros (para o Luiz Felipe você falou em &quot;juros da maquininha&quot;).
+8. &quot;Eu mesmo faço todas as aulas.&quot;
+9. [PREENCHER] Nota no Google, nº de avaliações e link.
+10. [PREENCHER] Anos de experiência e formação.
+11. [PREENCHER] Foto do Caio com a malinois.
+12. Autorização para citar os casos de Lucas, Felipe, Kaylhandra e do tutor de Itu (Tarciso).
+</textarea>
+</section>
+  </section>
+
+  <section>
+    <h2>Antes de publicar, confirme</h2>
+    <ol class="list">
+      <li><b>Preço da avaliação.</b> As copies usam R$ 169. Nas conversas aparece de R$ 159 a R$ 169, e para a Kaylhandra foram R$ 190.</li>
+      <li><b>Preço dos pacotes.</b> As copies usam R$ 636 (4 aulas) e R$ 1.272 (8 aulas). Nas conversas também aparecem R$ 520, R$ 604 e R$ 676.</li>
+      <li><b>Aula avulsa.</b> As copies variam entre R$ 150 e R$ 160. Para a Kaylhandra foi cotada a R$ 190.</li>
+      <li><b>Rapidez.</b> "Respondo no mesmo dia" e "muitas vezes vou no mesmo dia ou no seguinte". Aconteceu com 3 dos 8 clientes.</li>
+      <li><b>Regras do pacote.</b> Renova mês a mês, dá para começar 1x por semana e subir, 2x sem juros no cartão (para o Luiz Felipe você falou em "juros da maquininha") e duração de cerca de 1 hora por aula.</li>
+      <li><b>Prova de confiança.</b> Nota e link do Google, número de avaliações, anos de experiência, formação e uma foto sua. É a parte que mais pesou no júri.</li>
+      <li><b>Autorização dos clientes</b> citados nos casos: Tarciso, Felipe, Kaylhandra, Lucas, Julia, Luiz Felipe e Juliana. Use só o primeiro nome.</li>
+      <li><b>O caso da sua malinois</b> que convive com os gatos, citado em várias copies.</li>
+      <li><b>Deslocamento</b> fora de Salto, Itu e Indaiatuba: se tem taxa, e quanto.</li>
+    </ol>
+    
+  </section>
+
+  <section>
+    <h2>Como a copy foi julgada</h2>
+    <p class="note">Transcrevi os áudios de 8 clientes que fecharam e montei um dossiê de cada um, com as palavras deles. A copy foi dividida em 7 partes (topo, problemas, como funciona, oferta e preço, quem é o Caio, perguntas, chamada final), mais a página inteira. Um crítico separado, sem saber qual texto era qual, encarnou os 8 clientes e escolheu a versão que os faria chamar no WhatsApp, comparando com as duas melhores versões alternativas testadas antes. A parte que perdia voltava ao redator até vencer, o que levou 6 rodadas. No fim, um checador conferiu cada fato e cada citação com as conversas reais.</p>
+  </section>
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){
+    tabs.forEach(function(t){var on=t.dataset.id===id;t.setAttribute('aria-selected',on?'true':'false');document.getElementById('p-'+t.dataset.id).hidden=!on;});
+    try{localStorage.setItem('copyTab',id)}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.id)});});
+  try{var s=localStorage.getItem('copyTab');if(s&&document.getElementById('p-'+s))show(s)}catch(e){}
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var ta=document.getElementById(b.dataset.src);
+      var done=function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar texto'},1600)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,function(){ta.style.position='static';ta.style.width='100%';ta.style.height='12rem';ta.select();b.textContent='Selecione e copie'});}
+      else{ta.style.position='static';ta.style.width='100%';ta.style.height='12rem';ta.select();b.textContent='Selecione e copie';}
+    });
+  });
+})();
+</script>

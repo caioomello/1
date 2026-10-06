@@ -1,15 +1,13 @@
-# Copies do site Caio Adestra
+# Copy do site Caio Adestra
 
-10 versões completas do texto do site: D1–D5 focadas na dor e W1–W5 focadas no desejo.
-Cada parte venceu, às cegas, um júri simulado a partir de 8 clientes reais que fecharam com o Caio (conversas e áudios do WhatsApp transcritos).
+**`copy-final.md` é a copy do site.** Topo escolhido pelo Caio ("Você ama seu cachorro. Só não sabe mais o que fazer com ele.") e as seções mais fortes, aprovada às cegas parte por parte por um júri simulado a partir de 8 clientes reais que fecharam. Termina com a lista "Para o Caio confirmar".
 
-- `copies/` — as 10 copies em markdown. Cada uma termina com "Para o Caio confirmar".
-- `copies-caio-adestra.html` — página com todas as copies, recomendação de teste e checklist (publicada como Artifact).
+- `copy-caio-adestra.html` — a mesma copy em página (publicada como Artifact).
+- `topo-escolhido.md` — headline, subtítulo e versão para anúncio.
 - `pesquisa-mercado.md` — dores, desejos, objeções, concorrentes e vocabulário dos tutores.
-- `revisao-copy-atual.md` — revisão da copy atual (38/100).
-- `briefing.md` e `conceitos.md` — fatos do negócio e os 10 ângulos.
+- `revisao-copy-atual.md` — revisão da copy antiga (38/100).
+- `rascunhos/` — as 10 versões (D1–D5 dor, W1–W5 desejo) usadas como matéria-prima e concorrentes no teste cego. Não usar no site.
+- `briefing.md` e `conceitos.md` — fatos do negócio e ângulos usados pelos redatores.
 
-A copy recomendada é `copies/FINAL.md`: topo escolhido pelo Caio + seções mais fortes, aprovada às cegas contra D2 e W1 com os 8 clientes no júri.
-
-Recomendação: ligar a medição de conversão primeiro; testar D2 x W1, depois D4 x W5.
+Antes de publicar: ligar a medição de conversão do Google Ads e confirmar os dados marcados [CONFIRMAR]/[PREENCHER].
 Os dossiês e as transcrições dos clientes não foram versionados, por privacidade.
