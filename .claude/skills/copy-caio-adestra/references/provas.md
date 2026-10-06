@@ -16,3 +16,9 @@ Avaliações e vídeos: o Caio tem avaliações no Google e alguns vídeos de au
 ## Indicações
 
 Clientes costumam indicar parentes, amigos e vizinhos — isso pode ser dito como prova de confiança ("vários clientes chegaram por indicação de outros clientes"). **Não ofereça recompensa por indicação** (decisão do Caio).
+
+## Avaliações do Google (autorizadas pelo Caio)
+
+O Caio tem autorização pra usar os depoimentos das avaliações do Google. Use o trecho **literal** e só o primeiro nome como aparece na avaliação — sem sobrenome, bairro ou detalhes extras.
+
+_(Ainda vazio: cole aqui os trechos das avaliações quando o Caio enviar. Até lá, diga só "veja as avaliações no Google".)_

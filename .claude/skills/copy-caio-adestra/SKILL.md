@@ -16,7 +16,7 @@ Estas decisões ainda são do Caio. Até ele responder no pedido, siga a coluna 
 | **Preço** | ✅ Decidido: **sem preço** em anúncio, página e post (aula custa R$169 — informação interna, não publicar). Nunca colchetes de preço — omita. |
 | **Garantia** | Não oferecer garantia nenhuma. Pode sugerir uma em "Pra completar:". |
 | **Nome do método** | ✅ Decidido: **método equilibrado** (pode usar com destaque no texto). Pacotes: só "aula SOS"; nome novo de pacote vai como sugestão em "Pra completar:". |
-| **Provas/depoimentos** | Só anônimos e genéricos (ver `references/provas.md`). |
+| **Provas/depoimentos** | ✅ Avaliações do **Google** autorizadas: pode citar trechos literais com o primeiro nome que aparece na avaliação (só os que estiverem em `references/provas.md`). Demais casos: só anônimos. |
 | **Bônus por indicação** | ✅ Decidido: **não usar**. Nada de chamada de indicação com recompensa. |
 | **Agenda cheia como urgência** | Não usar. Pode dizer que atende também aos fins de semana (é verdade). |
 
