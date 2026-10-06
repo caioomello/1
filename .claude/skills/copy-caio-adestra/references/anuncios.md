@@ -2,6 +2,8 @@
 
 ## Meta Ads (Instagram/Facebook)
 
+Público frio no Meta costuma estar **consciente do problema**: dor → empatia → tem jeito → aula SOS. Remarketing (quem já viu o perfil/conversou) é **consciente do Caio**: prova + oferta + motivo real pra agir agora.
+
 Campos e limites práticos (o que aparece sem cortar):
 - **Texto principal**: ~125 caracteres aparecem antes do "ver mais". Coloque gancho + promessa de ajuda nesse trecho. Pode ter versão longa (até ~500) abaixo.
 - **Título**: até ~40 caracteres.
@@ -22,6 +24,8 @@ Ideia de criativo: <foto/vídeo sugerido em 1 linha>
 Políticas do Meta que importam aqui: não afirme atributos pessoais do leitor de forma acusatória ("Seu cão é agressivo?" pode passar; "Você é um tutor que falhou" não), sem antes/depois sensacionalista, sem garantia de resultado.
 
 ## Google Ads (pesquisa)
+
+Quem busca "adestrador" já está **consciente da solução**: menos dor longa, mais diferencial (vai até sua casa, tutor aprende junto, método equilibrado, avaliações no Google) e cidade.
 
 - **Títulos**: até 30 caracteres cada — entregue 8–10 opções variadas (serviço, problema, local, CTA).
 - **Descrições**: até 90 caracteres — entregue 3–4.
