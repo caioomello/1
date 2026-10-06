@@ -13,7 +13,7 @@ Campos e limites práticos (o que aparece sem cortar):
 Formato de entrega para cada variação:
 
 ```
-Variação A — Nível: <...> · Desejo: <...> · Big Idea: <...> · Dor: <...> · Ângulo: dor | teste-<desejo|prova|curiosidade>
+Variação A — Big Idea: <...> · Dor: <...> (· teste, se for o caso)
 Texto principal: ...
 Título: ...
 Descrição: ...
@@ -21,7 +21,10 @@ Botão: Enviar mensagem
 Ideia de criativo: <foto/vídeo sugerido em 1 linha>
 ```
 
-Políticas do Meta que importam aqui: não afirme atributos pessoais do leitor de forma acusatória ("Seu cão é agressivo?" pode passar; "Você é um tutor que falhou" não), sem antes/depois sensacionalista, sem garantia de resultado.
+Cuidados com as políticas do Meta (interpretação prática, não texto oficial — na dúvida, seja conservador):
+- **Não afirme nem presuma características do leitor** ("você tem vergonha…", "você está desesperado…"). Descreva a **cena do cão** ("Chegou em casa e o sofá tá destruído?") em vez de falar do estado da pessoa.
+- **Sem antes/depois sensacionalista** e sem promessa de resultado ou prazo.
+- Sem medo exagerado (mordida em criança, ataque) como gancho de anúncio — use tom sério só em página/post.
 
 ## Google Ads (pesquisa)
 
@@ -36,9 +39,9 @@ Quem busca "adestrador" já está **consciente da solução**: menos dor longa, 
 
 **Padrão: dor.** A maioria das variações explora dores diferentes do mesmo problema, com cenas tiradas de `voz-do-cliente.md`. Exemplos de gancho:
 - "Chegou em casa e o sofá virou confete — de novo?"
-- "Cinco da tarde é a hora da vergonha no passeio?"
-- "Seu filho tem medo do próprio filhote?"
-- "Já comprou tapetinho, spray, Pipidog… e ele faz xixi do lado?"
+- "Passeio que vira cabo de guerra toda vez que aparece outro cachorro."
+- "Filhote mordendo mão, pé, barra da calça… e as crianças já evitam brincar com ele."
+- "Tapetinho, spray, Pipidog… e o xixi continua do lado."
 
 **Testes (no máximo 1 por entrega, sinalizado como teste):**
 - **Desejo/paz**: "Imagina passear sem ser arrastado pela guia."

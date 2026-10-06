@@ -8,28 +8,28 @@ Status: `nova` · `funcionou` · `fraca`
 
 ### 🗣️ "O cachorro aprende muito rápido. A diferença é que ele não obedece."
 - **Corrige:** "ele sabe os comandos / é burro / é teimoso".
-- **Leva à avaliação:** o que falta é controle e comunicação — e isso se ensina ao tutor.
+- **Leva à aula SOS:** o que falta é controle e comunicação — e isso se ensina ao tutor.
 - **Status:** nova
 
 ### 🗣️ "Não adianta ensinar senta, deita e fica se o cachorro está destruindo a casa."
 - **Corrige:** "adestramento é ensinar truque".
-- **Leva à avaliação:** o foco do Caio é resolver o problema de hoje.
+- **Leva à aula SOS:** o foco do Caio é resolver o problema de hoje.
 - **Status:** nova
 
 ### 🗣️ "Cachorro agitado não escuta — pode usar um megafone. Cachorro calmo toma decisões certas."
 - **Corrige:** "ele não me ouve / é desobediente".
-- **Leva à avaliação:** primeiro controla a emoção, depois vêm os comandos.
+- **Leva à aula SOS:** primeiro controla a emoção, depois vêm os comandos.
 - **Status:** nova
 
 ### 🗣️ "Não é maldade. Ele apertou um botão e o botão funcionou."
 - **Corrige:** "faz de propósito / pra me provocar / pra chamar atenção".
-- **Leva à avaliação:** é preciso descobrir qual botão a família está apertando sem perceber.
+- **Leva à aula SOS:** é preciso descobrir qual botão a família está apertando sem perceber.
 - **Exemplo do Caio:** "Chorou, chorou, e a caminha foi pro lado da cama. Pronto: a fórmula mágica é chorar."
 - **Status:** nova
 
 ### 🗣️ "Eu passo uma hora por semana com ele. Você passa o resto."
 - **Corrige:** "vou deixar com o adestrador e ele volta pronto".
-- **Leva à avaliação:** justifica o tutor participar e a autonomia ("seu cão obedece você, não só o adestrador").
+- **Leva à aula SOS:** justifica o tutor participar e a autonomia ("seu cão obedece você, não só o adestrador").
 - **Status:** nova
 
 ### "Seu cão não é teimoso, ele está confuso."
@@ -40,12 +40,12 @@ Status: `nova` · `funcionou` · `fraca`
 
 ### 🗣️ "É normal de filhote. Mas pode ficar normal pro resto da vida."
 - **Corrige:** "é só filhote, depois passa" / "sei que é normal, mas…".
-- **Leva à avaliação:** urgência sem promessa milagrosa — é mais fácil ensinar agora com "a cabecinha zeradinha".
+- **Leva à aula SOS:** urgência sem promessa milagrosa — é mais fácil ensinar agora com "a cabecinha zeradinha".
 - **Status:** nova
 
 ### 🗣️ "Se a casa toda cheira a xixi, a casa toda é banheiro."
 - **Corrige:** "já comprei tudo e ele erra" / "ele regride".
-- **Leva à avaliação:** tem jeito certo de limpar e montar o ambiente ("tirar o mapa").
+- **Leva à aula SOS:** tem jeito certo de limpar e montar o ambiente ("tirar o mapa").
 - **Status:** nova
 
 ### "Os primeiros meses do filhote definem os próximos 15 anos."
@@ -66,12 +66,12 @@ Status: `nova` · `funcionou` · `fraca`
 
 ### 🗣️ "Quanto mais forte ele puxa, mais rápido chega onde quer."
 - **Corrige:** "ele puxa porque é forte / é agitado".
-- **Leva à avaliação:** o puxão foi recompensado; dá pra mudar o padrão.
+- **Leva à aula SOS:** o puxão foi recompensado; dá pra mudar o padrão.
 - **Status:** nova
 
 ### 🗣️ "Ele vira a chavinha."
 - **Corrige:** "em casa é um anjo, na rua é outro cachorro, não tem explicação".
-- **Leva à avaliação:** a chave tem gatilho e dá pra ensinar ele a se controlar.
+- **Leva à aula SOS:** a chave tem gatilho e dá pra ensinar ele a se controlar.
 - **Status:** nova
 
 ### "O problema não começa quando ele late — começa 3 segundos antes."
@@ -87,17 +87,17 @@ Status: `nova` · `funcionou` · `fraca`
 
 ### 🗣️ "Ele está descobrindo que no dente ele ganha."
 - **Corrige:** "ele só ameaça, nunca mordeu de verdade".
-- **Leva à avaliação:** agir antes que ele descubra o próprio poder. Tom sério.
+- **Leva à aula SOS:** agir antes que ele descubra o próprio poder. Tom sério.
 - **Status:** nova
 
 ### 🗣️ "Se com esse tamanho ele já quer se impor na força, imagina adulto."
 - **Corrige:** "é filhote, é só brincadeira" (filhote que rosna e mostra dente).
-- **Leva à avaliação:** urgência real; elogia o tutor por buscar ajuda cedo.
+- **Leva à aula SOS:** urgência real; elogia o tutor por buscar ajuda cedo.
 - **Status:** nova
 
 ### 🗣️ "Se você punir o rosnado, ele para de avisar. E só morde."
 - **Corrige:** "se brigar ele aprende".
-- **Leva à avaliação:** precisa tratar a causa, com correção justa.
+- **Leva à aula SOS:** precisa tratar a causa, com correção justa.
 - **Status:** nova
 
 ### 🗣️ "A raça define alguns aspectos. Não define como o cachorro vai se portar na sua mão."
@@ -111,5 +111,5 @@ Status: `nova` · `funcionou` · `fraca`
 1. Procure a crença errada em `voz-do-cliente.md` (seção 4).
 2. Escreva a verdade que o Caio sabe e o tutor não.
 3. Transforme em **uma frase** curta, que surpreenda e dê pra repetir em anúncio, post e página.
-4. Confira: muda a crença? Leva à avaliação? Promete resultado ou culpa alguém? (Se sim, refaça.)
+4. Confira: muda a crença? Leva à aula SOS? Promete resultado ou culpa alguém? (Se sim, refaça.)
 5. Marque como `nova` e sugira incluir no banco se o Caio gostar.

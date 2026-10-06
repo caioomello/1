@@ -104,9 +104,9 @@ Tirado de ~60 conversas reais de leads no WhatsApp (jul–out/2026, GetNinjas, C
 |---|---|---|
 | "Vou ver com meu marido/esposa/pais/irmão" | muito alta (~12 casos; já fez perder venda pra "adestrador amigo do marido") | Dar ao lead algo fácil de encaminhar (resumo curto: problema → o que a aula SOS faz → valor); convidar a família toda pra aula ("quanto mais gente da casa participar, melhor") |
 | "Achei que a avaliação era grátis" / "cobra a aula experimental?" / "hoje você só vai conhecer?" | alta | Apresentar como **aula SOS**: já é aula, já aplica exercícios, tutor sai com passo a passo |
-| Dinheiro / data: "semana de pagamento", "recebo dia 5", "gastei muito com ele", "faz desconto?", "não tenho condições", "posso pagar por aula?" | alta | Mostrar que começa só pela avaliação; parcelamento (Pix 50/50, cartão) se o Caio confirmar; nunca pressão |
-| "Quantas aulas? Quanto tempo? Vai ficar pronto?" / "o resultado é garantido?" | alta | Honestidade: depende do cão e do que a família aplica; a avaliação dá a estimativa |
+| Dinheiro / data: "semana de pagamento", "recebo dia 5", "gastei muito com ele", "faz desconto?", "não tenho condições", "posso pagar por aula?" | alta | Mostrar que começa só pela aula SOS; parcelamento (Pix 50/50, cartão) se o Caio confirmar; nunca pressão |
+| "Quantas aulas? Quanto tempo? Vai ficar pronto?" / "o resultado é garantido?" | alta | Honestidade: depende do cão e do que a família aplica; a aula SOS dá a estimativa |
 | Comparando orçamentos ("vendo com outros profissionais") | média | Diferenciais: vai até a casa, tutor aprende junto, suporte no WhatsApp, vai na causa; prova social |
 | Medo do método: "técnicas rígidas demais, sinto que estou maltratando", "medo de machucar a traqueia" | média | Método equilibrado: recompensa + correção leve (pressão e alívio), nunca bater |
 | "Você vem até em casa?" / "você é daqui?" | média | Sim, atendimento em casa; citar região |
-| Decisor ausente/agenda ("só fim de semana", "meu pai de folga") | média | Atende sábado e domingo (se o Caio confirmar) |
+| Decisor ausente/agenda ("só fim de semana", "meu pai de folga") | média | Atende sábado e domingo (é verdade) |

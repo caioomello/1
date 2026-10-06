@@ -1,26 +1,22 @@
 # Banco de provas
 
-Casos reais que podem virar prova social. **Regra de ouro:** nunca cite nome, sobrenome, bairro, endereço ou telefone de tutor. Nome do cão só com autorização. Se a coluna "Liberado?" não diz "sim", escreva o texto com o caso de forma anônima ("um cliente de Indaiatuba…") e coloque em "Pra completar:" o pedido de autorização ao Caio.
+Padrões reais vistos em atendimentos do Caio. **Enquanto o Caio não autorizar casos específicos, use só a forma anônima e genérica da coluna "Como citar"** — sem cidade, bairro, raça + peso, tipo de moradia ou qualquer combinação que permita alguém reconhecer o cliente. Nunca cite nome de tutor nem de cão.
 
-| Caso | Antes | Depois / prova | Liberado? |
-|---|---|---|---|
-| Cão adulto (7 anos) muito reativo | "Queria matar tudo e todos", puxava "igual um maluco", reativo com cães, crianças, bicicleta, moto | Fechou o "pacote reatividade resolvida" logo após a aula SOS; hoje passeia ao lado da tutora; o Caio diz "primeira aula queria me matar, hoje é meu best friend" | Vídeo de aula autorizado pela tutora; avaliação 5★ no Google. Nome do cão: confirmar |
-| Cão resgatado traumatizado, precisava ir ao veterinário | Ninguém conseguia colocar no carro; "até quem dizia ter experiência com cachorro bravo arregou na hora" | "Você foi o único que conseguiu" — tutor deixou avaliação no Google e indicou no Instagram | Avaliação pública no Google. Citação: confirmar |
-| Filhote de 4 meses (apartamento) | Xixi e cocô pela casa, mordidas, chorava quando ficavam sozinhos | "Vai sozinha na sacada fazer tudo"; os tutores indicaram um amigo no mesmo dia | Confirmar |
-| Bulldog francês (apartamento novo) | Puxava, avançava em outros cães, medo de errar o banheiro na casa nova | "Já aprendeu que xixi é só lá fora" depois da primeira aula | Confirmar |
-| Filhote SRD de 5 meses "afrontosa" | Pulava, mordia a canela quando a família chegava | Em 3 dias "já não está fazendo tanto escândalo"; mandou vídeo "olha o progresso"; avaliação no Google | Confirmar |
-| Golden de 45 kg com posse e ameaça | "Ameaça porque sabe que a gente fica com medo"; passeio "impossível" | Tutores aplicaram já na primeira semana ("capturar a calma") e voltaram pra fechar pacote | Confirmar |
+| Tipo de caso | O que aconteceu (resumo interno) | Como citar (forma segura) |
+|---|---|---|
+| Cão adulto com reatividade forte | Atacava cães, crianças, bicicleta; depois de um pacote de aulas passeia ao lado da tutora | "Já atendi cão adulto que queria avançar em tudo na rua e hoje passeia do lado da tutora." |
+| Cão traumatizado que ninguém conseguia manejar | Pessoas "com experiência" desistiram; o Caio conseguiu conduzir com calma | "Já peguei cão que ninguém conseguia nem colocar no carro." |
+| Filhote com xixi pela casa | Depois da aula SOS e da rotina certa, passou a ir sozinho ao lugar certo | "Filhote que fazia xixi na casa toda e hoje vai sozinho no lugar certo." |
+| Cão adulto que mudou de casa | Errava o banheiro no lugar novo; acertou depois da primeira aula | "Mudou de casa e esqueceu onde era o banheiro? Acontece — e tem jeito rápido." |
+| Filhote que pulava e mordia na chegada | Família notou diferença poucos dias depois de aplicar o que aprendeu | "Família que já viu diferença nos primeiros dias, aplicando o que aprendeu na aula." |
+| Cão grande que ameaçava os donos | Tutores começaram a aplicar na mesma semana e voltaram pra continuar o trabalho | "Cão grande que rosnava pros próprios donos — com manejo certo, a família recuperou o controle." |
 
-## Indicações (prova de confiança)
+Avaliações e vídeos: o Caio tem avaliações no Google e alguns vídeos de aula autorizados por clientes. Pode dizer "veja as avaliações no Google" ou "tem vídeo no meu Instagram", **sem descrever o cliente**. Citação literal de depoimento só com autorização confirmada no pedido.
 
-- Clientes indicam parentes e amigos com frequência (prima, tios, amigo do prédio, vizinho de condomínio); um indicado marcou aula no dia seguinte.
-- O Caio dá **uma aula grátis ou cashback de uma aula** a quem indica e a indicação fecha.
-- Parceiros que indicam: creche Abana Rabo (Sorocaba), pet shop/veterinários da região.
+## Indicações
 
-## Chamada de indicação (usar no fim de atendimento, post de resultado ou story)
+Clientes costumam indicar parentes, amigos e vizinhos. O Caio dá uma aula (ou o valor de uma aula) a quem indica quando a indicação fecha — **cite só se o Caio confirmar no pedido que a regra continua valendo**.
 
-Base (adapte ao tom do post):
+Chamada base (quando confirmada):
 
-> Conhece alguém que tá passando perrengue com o cachorro? Me indica! Se a pessoa fechar o adestramento, você ganha uma aula (ou o valor de uma aula de volta). 🐾
-
-Confirme com o Caio se a regra de recompensa continua valendo antes de publicar.
+> Conhece alguém que tá passando perrengue com o cachorro? Me indica! Se a pessoa fechar o adestramento, você ganha uma aula. 🐾

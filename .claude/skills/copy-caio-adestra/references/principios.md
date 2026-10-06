@@ -1,6 +1,6 @@
 # Princípios dos clássicos aplicados à Caio Adestra
 
-Resumo, em palavras próprias, dos princípios de livros de referência — já traduzidos pro caso do Caio. Não cite os livros no texto final; use os princípios.
+Fundamentos dos clássicos de copy, em palavras próprias, aplicados ao Caio. Servem pra **montar** a peça; as **regras** (o que pode e o que não pode) estão no `SKILL.md` e prevalecem. Não cite os livros no texto final.
 
 ## Sumário
 1. Nível de consciência (Schwartz, *Breakthrough Advertising*)
@@ -41,12 +41,11 @@ Roteiro (serve pra página, carrossel, roteiro de Reels, anúncio longo):
    - *interno*: o que ele sente — vergonha, culpa, cansaço, medo pelo filho, "tô perdido";
    - *filosófico*: "ninguém devia ter medo do próprio cachorro" / "todo cão merece uma família que entende ele".
    A copy vende melhor resolvendo o **interno**.
-3. **Encontra um guia** — o Caio mostra **empatia** ("sei bem o que você tá passando, tenho uma malinois em casa") e **autoridade** (casos, avaliações, "já trabalhei vários casos assim"). Os dois juntos; só autoridade soa arrogante, só empatia soa amador.
+3. **Encontra um guia** — o Caio mostra **empatia** ("sei bem o que você tá passando" — ele tem uma malinois e gatos em casa, pode citar) e **autoridade** (casos, avaliações, "já trabalhei vários casos assim"). Os dois juntos; só autoridade soa arrogante, só empatia soa amador.
 4. **Que dá um plano simples** — 3 passos: *1) aula SOS na sua casa → 2) plano pro seu cão → 3) você no controle, com suporte no WhatsApp*.
 5. **E chama pra ação** — direta (agendar aula SOS) e, pra quem não está pronto, uma de transição (salvar o post, mandar a dica pro parceiro, ver os casos no Instagram).
 6. **Mostra o que está em jogo (fracasso)** — sem drama: o hábito se instala, o cão cresce, a mordida machuca, "normal pro resto da vida".
-7. **E o final feliz (sucesso)** — cena concreta de paz: o filho brincando com o cão, o passeio de domingo sem vergonha, chegar em casa e o sofá inteiro.
-8. **Transformação de identidade** — o tutor passa de "refém do cachorro" a "tutor que sabe lidar com o próprio cão" (é o que o Caio chama de autonomia).
+7. **E o final feliz (sucesso)** — cena concreta de paz: o filho brincando com o cão, o passeio de domingo sem vergonha, chegar em casa e o sofá inteiro. De quebra, o tutor vira alguém que "dá conta" do próprio cão (autonomia).
 
 **Frase-resumo** (para bio, topo de página, fala em vídeo): *"Você tem [problema]. Eu vou até sua casa e te ensino a [solução no seu cão] — pra você ter [paz]."*
 
@@ -55,33 +54,26 @@ Roteiro (serve pra página, carrossel, roteiro de Reels, anúncio longo):
 **Equação de valor** — a pessoa percebe mais valor quando:
 - ↑ o **resultado sonhado** é grande e concreto (paz, passeio tranquilo, filho seguro);
 - ↑ a **confiança de que vai funcionar** é alta (prova, mecanismo, avaliação no Google);
-- ↓ o **tempo até o primeiro resultado** é curto (a aula SOS já entrega o passo a passo; clientes relatam melhora nos primeiros dias — use só caso real);
+- ↓ o **tempo até o primeiro resultado** é curto (a aula SOS já entrega o passo a passo);
 - ↓ o **esforço e sacrifício** são pequenos (o Caio vai até a casa; exercícios cabem na rotina; suporte no WhatsApp).
 
-Copy forte mexe nos **quatro**, não só no resultado. Em anúncio, pelo menos um dos dois "↓" tem que aparecer.
+Copy forte mexe nos quatro, não só no resultado.
 
 **Liste os problemas e transforme em entregáveis**: para cada obstáculo do tutor ("não tenho tempo", "já tentei de tudo", "e se não funcionar com meu cão", "não sei se vou conseguir aplicar"), mostre o que o Caio entrega que resolve. Isso vira bullets de página e respostas de FAQ.
 
-**Nome da oferta** — ofertas com nome convertem mais e são mais fáceis de lembrar. Fórmula: *resultado/benefício + público ou problema + formato*. O Caio já usa nomes ("pacote reatividade resolvida", "aula SOS", "cão tranquilo / cão agitado"). Use os nomes que ele já tem; se for criar nome novo para pacote ou método, **sugira 2–3 opções e marque como sugestão** até ele aprovar.
+**Nome da oferta, garantia e preço** — nomes próprios, garantias concretas sobre o processo (nunca sobre o comportamento do cão) e preço exposto cedo costumam converter mais em serviço local. **Mas são decisões pendentes do Caio** — siga a tabela "Pendências" do `SKILL.md`.
 
-**Inversão de risco** — garantia concreta tira o medo de errar; "satisfação garantida" vaga não vale nada. O Caio **não pode** garantir comportamento do cão, mas pode garantir o **processo** (ex.: "se você não sair da aula SOS com o passo a passo, não paga"). **Só use garantia que o Caio aprovou** — se o pedido não trouxer uma, não invente; sugira no "Pra completar:".
+**Bônus** — o que é real e resolve objeção pode ser apresentado como parte do que o tutor leva: passo a passo da aula, suporte no WhatsApp, indicação dos produtos certos (limpador enzimático, guia).
 
-**Bônus** — itens que resolvem objeções específicas ganham peso: resumo da aula por escrito, suporte no WhatsApp, lista de produtos certos (limpador enzimático, guia). Pode apresentá-los como parte do que o tutor leva — são reais.
-
-**Escassez e urgência — só verdadeiras**:
-- *real*: agenda de fim de semana limitada (o Caio atende presencialmente e tem horários fixos); janela de aprendizado do filhote; hábito que piora a cada dia que se repete.
-- *proibido*: "últimas vagas" inventadas, contagem regressiva falsa, desconto "só hoje" que não existe.
-
-**Preço** — em serviço local, citar valor cedo filtra curioso e reduz atrito. Só faça isso se o Caio passar o valor no pedido; senão, use "agende a aula SOS" sem número.
+**Urgência** — só a verdadeira (ver `SKILL.md`). Escassez inventada destrói confiança, e o negócio do Caio vive de indicação.
 
 ## 4. Gatilhos de persuasão com ética
 
 - **Reciprocidade** — dar antes de pedir: dica que o tutor testa hoje no post, áudio explicando o porquê no WhatsApp. O conteúdo orgânico do Caio deve sempre entregar algo útil.
 - **Compromisso e coerência** — pequenos "sins" antes do grande: salvar o post → mandar mensagem → aula SOS → pacote. CTA de baixo atrito pra quem é frio.
-- **Prova social** — mais forte quando é **parecida com o leitor** ("tutora de filhote em apartamento em Sorocaba"), não genérica. Use `provas.md`.
+- **Prova social** — mais forte quando é **parecida com o leitor** ("tutor de filhote em apartamento"), sem detalhes que identifiquem alguém. Use `provas.md`.
 - **Autoridade** — sinais concretos (avaliações no Google, casos difíceis resolvidos, formação se o Caio informar), nunca autopromoção vazia.
 - **Afinidade** — o Caio é gente como o tutor: tem malinois e gatos, responde áudio no domingo. Humaniza; use pitadas, não biografia.
-- **Escassez** — só a real (ver seção 3).
 
 ## 5. Ideias que grudam
 
@@ -93,18 +85,11 @@ Teste cada Big Idea e gancho com estes seis filtros:
 5. **Emocional** — toca em um sentimento (vergonha, medo, alívio), não só em lógica?
 6. **História** — dá pra contar como caso de um cão real?
 
-Se passar em 4 de 6, está boa. Se for abstrata ("adestramento comportamental especializado"), reescreva concreto.
+Use como teste rápido, não como nota: se a ideia for abstrata ("adestramento comportamental especializado"), reescreva concreto.
 
 ## 6. Desejos básicos
 
-As pessoas compram movidas por alguns desejos de fundo. Os que mais aparecem nas conversas do Caio:
-- **Proteção dos que amo** — filhos pequenos, bebê, o próprio cão ("ele se machucou puxando"), a gatinha do namorado. É o desejo mais forte do nicho.
-- **Conforto e ausência de medo/dor** — passear sem medo, mãos sem mordida.
-- **Aprovação social** — não passar vergonha no passeio, vizinho não reclamar, visita bem recebida.
-- **Viver bem / prazer** — dormir a noite, sofá inteiro, casa limpa.
-- **Superioridade/competência** — ser o tutor que "dá conta" do próprio cão.
-
-Escolha **um desejo principal por peça** e deixe ele claro no gancho ou no final feliz.
+Escolha **um desejo de fundo por peça** e deixe ele claro no gancho ou no final feliz. No nicho do Caio, o mais forte é **proteger quem ama** (filho pequeno, bebê, o próprio cão); depois vêm viver sem medo, não passar vergonha (passeio, vizinho, visita) e conforto (dormir, sofá inteiro).
 
 ## 7. Ofício do texto
 

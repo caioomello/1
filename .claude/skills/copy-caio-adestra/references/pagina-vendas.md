@@ -1,6 +1,6 @@
 # Página de vendas / landing page
 
-Objetivo único: o visitante clicar no botão de WhatsApp pra agendar a **avaliação (aula SOS)**. Tudo na página serve a isso.
+Objetivo único: o visitante clicar no botão de WhatsApp pra agendar a **aula SOS**. Tudo na página serve a isso.
 
 A página segue o roteiro herói/guia de `principios.md` §2 (tutor = herói, Caio = guia com plano em 3 passos) e a equação de valor de §3. Nível de consciência típico: consciente da solução (veio de busca) ou do problema (veio de anúncio) — pergunte a origem do tráfego se não estiver claro.
 
@@ -16,16 +16,16 @@ Entregue em seções nomeadas, prontas pra colar no construtor do site:
 5. **Sobre o Caio** — curto, humano, primeira pessoa. Credenciais e tempo de experiência só se ele informar → senão `[experiência/formação]`.
 6. **Depoimentos / casos** — só de `provas.md`, respeitando autorização; senão deixe `[depoimento 1]` e avise.
 7. **Perguntas frequentes** — responda as objeções reais de `voz-do-cliente.md` (seção 5):
-   - A avaliação é grátis? (Não — é a aula SOS, já resolve; explique o que a pessoa leva.)
+   - A primeira aula é só pra conhecer? (Não — a aula SOS já é aula: descobre a causa, aplica exercícios e você sai com o passo a passo.)
    - O resultado é garantido? (Honestidade: depende do cão e da família; a aula SOS dá a estimativa.)
    - Quantas aulas precisa?
    - Preciso participar? (Sim — "eu passo uma hora por semana com ele, você passa o resto".)
    - Vocês machucam o cachorro? Como é a correção? (Método equilibrado: recompensa quando acerta, correção leve e justa quando erra — pressão e alívio na guia, nunca bater.)
-   - Atende minha cidade? Vem até em casa? Atende fim de semana?
-   - Quanto custa? (só com valor informado pelo Caio)
-8. **O que você leva** — lista dos entregáveis reais, cada um ligado a um obstáculo do tutor (aula SOS em casa, plano pro seu cão, resumo por escrito, suporte no WhatsApp, lista de produtos certos). Garantia só se o Caio aprovou.
+   - Atende minha cidade? Vem até em casa? Atende fim de semana? (Sim: Salto e região, em domicílio, inclusive sábado e domingo.)
+   - Quanto custa? (só se o Caio passar o valor no pedido; senão, omita essa pergunta)
+8. **O que você leva** — entregáveis reais, cada um ligado a um obstáculo do tutor (aula SOS em casa, plano pro seu cão, passo a passo do dia a dia, suporte no WhatsApp, indicação dos produtos certos). Garantia: ver Pendências no `SKILL.md`.
 9. **O que está em jogo × o final feliz** — 2 linhas de cada, sem drama: o hábito que se instala vs. a cena concreta de paz.
-10. **Chamada final** — repete a promessa + botão do WhatsApp + motivo real pra agir agora (agenda limitada, se for verdade).
+10. **Chamada final** — repete a promessa + botão do WhatsApp + motivo real pra agir agora (o hábito se instala a cada dia; filhote aprende mais fácil agora).
 
 Dicas:
 - Muita gente decide com o parceiro/família: inclua um bloco curto "Pra mandar pra quem decide com você" (3 linhas: problema → o que a aula SOS faz → botão).

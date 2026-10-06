@@ -1,12 +1,12 @@
 # Posts de Instagram
 
-O objetivo do conteúdo orgânico é **gerar confiança** (o tutor pensa "esse cara entende") e levar pro WhatsApp. Misture: dor (cenas de `voz-do-cliente.md`), dica prática que funciona sozinha, bastidor de aula, caso real (de `provas.md`, com autorização), quebra de mito (Big Idea). Em post de resultado, feche com a chamada de indicação de `provas.md`. Não precisa vender em todo post — mas todo post tem um próximo passo.
+O objetivo do conteúdo orgânico é **gerar confiança** (o tutor pensa "esse cara entende") e levar pro WhatsApp. Misture: dor (cenas de `voz-do-cliente.md`), dica prática que funciona sozinha, bastidor de aula, caso real (de `provas.md`, com autorização), quebra de mito (Big Idea). Em post de resultado, pode fechar com a chamada de indicação de `provas.md` — só se o Caio confirmar que a regra continua valendo. Não precisa vender em todo post — mas todo post tem um próximo passo.
 
 ## Legenda
 
 - **Primeira linha** = gancho (é o que aparece antes do "mais"; ~125 caracteres). Pergunta ou cena.
 - Corpo em parágrafos curtos (1–3 linhas), com respiro entre eles.
-- Uma dica concreta que o tutor consegue testar hoje — isso gera salvamento e prova competência.
+- Uma dica concreta que o tutor consegue testar hoje — isso gera salvamento e prova competência. Use dicas que já aparecem nas referências (são falas do Caio); dica nova vai marcada em "Pra completar:" pro Caio revisar. **Agressividade/mordida séria: nada de dica de manejo** — explique o porquê e leve pra aula SOS.
 - CTA no fim: comentar, salvar, ou "me chama no WhatsApp pra agendar a aula SOS" (link na bio).
 - Hashtags: 5–10, mistas (nicho + local se houver `[cidade]`): #adestramento #adestradordecaes #comportamentocanino #filhote #ansiedadedeseparacao …
 
