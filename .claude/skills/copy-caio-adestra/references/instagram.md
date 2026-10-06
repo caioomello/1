@@ -7,7 +7,7 @@ O objetivo do conteúdo orgânico é **gerar confiança** (o tutor pensa "esse c
 - **Primeira linha** = gancho (é o que aparece antes do "mais"; ~125 caracteres). Pergunta ou cena.
 - Corpo em parágrafos curtos (1–3 linhas), com respiro entre eles.
 - Uma dica concreta que o tutor consegue testar hoje — isso gera salvamento e prova competência.
-- CTA no fim: comentar, salvar, ou "me chama no WhatsApp pra avaliação" (link na bio).
+- CTA no fim: comentar, salvar, ou "me chama no WhatsApp pra agendar a aula SOS" (link na bio).
 - Hashtags: 5–10, mistas (nicho + local se houver `[cidade]`): #adestramento #adestradordecaes #comportamentocanino #filhote #ansiedadedeseparacao …
 
 ## Carrossel

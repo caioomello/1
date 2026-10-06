@@ -8,8 +8,8 @@ Entregue em seções nomeadas, prontas pra colar no construtor do site:
 
 1. **Topo (hero)**
    - Headline: a transformação na linguagem do tutor (ex.: "Seu cão calmo em casa e tranquilo no passeio").
-   - Subheadline: como (avaliação + aulas no ritmo do seu cão, com acompanhamento do Caio).
-   - Botão: "Agendar avaliação no WhatsApp".
+   - Subheadline: como (aula SOS na sua casa + aulas no ritmo do seu cão, com você aprendendo junto).
+   - Botão: "Agendar minha aula SOS no WhatsApp".
 2. **Você se identifica?** — 4–6 bullets de cenas reais, com as palavras dos tutores de `voz-do-cliente.md` ("lavei o tapete e ele fez xixi no primeiro dia", "não consigo passear com ele", "meu filho tem medo").
 3. **Não é culpa sua (nem dele)** — parágrafo curto que tira a culpa e explica que comportamento se ensina.
 4. **Como funciona** — passos numerados: 1) **aula SOS** em casa (já é aula: descobre a causa, aplica exercícios, você sai com o passo a passo), 2) plano personalizado, 3) pacote de aulas 1x ou 2x por semana com você participando, 4) suporte no WhatsApp entre as aulas.
